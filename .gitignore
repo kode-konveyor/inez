@@ -7,6 +7,8 @@
 /bazel-out
 /www
 /platforms/android/app/src/main/assets/www/
+/reports
+/package-lock.json
 
 # Node
 /node_modules
@@ -42,3 +44,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# stryker temp files
+.stryker-tmp
