@@ -6,6 +6,7 @@
 /out-tsc
 /bazel-out
 /www
+/platforms/android/app/src/main/assets/www/
 
 # Node
 /node_modules
