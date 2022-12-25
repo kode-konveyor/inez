@@ -1,6 +1,5 @@
 
-export function registerPerson(dispatch:Function, setState:Function) {
-  dispatch();
-  setState();
-
+export function registerPerson (dispatch: Function, setState: Function): void {
+  dispatch()
+  setState()
 }
