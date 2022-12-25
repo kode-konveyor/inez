@@ -1,0 +1,5 @@
+<sources>
+	<source name="metamodel" type="github" repo="kode-konveyor/metamodel" path="modelparts/metamodel" branch="model/frontend_ui"/>`
+	<source name="backend" type="folder" uri="modelparts/backend"/>
+	<source name="frontend" type="folder" uri="modelparts/frontend"/>
+</sources>

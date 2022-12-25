@@ -1,0 +1,7 @@
+<index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:zenta="http://magwas.rulez.org/zenta">
+   <entry name="Complex enough to test most of the use cases of the frontend coding process"
+          id="776f7c12-907a-4ca2-b505-f80163cf7e06"/>
+   <entry name="Uses the full Hero example"
+          id="54048056-3864-4983-8569-672cad6b0e7b"/>
+</index>

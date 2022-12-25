@@ -1,0 +1,25 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:BasicObject"
+         name="Components are backed by a data structure"
+         id="d7fd3a53-3e52-4f68-a26b-607e8b30ed34"
+         ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
+   <documentation>ui_bindings|
+if (
+	count(zenta:neighboursRun1($doc,$element,'is bound to,1')) = 1
+)
+then ()
+else
+	(
+	concat(
+		'not exactly one backing data structure ', 
+		string-join(zenta:neighboursRun1($doc,$element,'is bound to,1')/@name,', '),
+		count(zenta:neighboursRun1($doc,$element,'is bound to,1'))
+	    )
+	) </documentation>
+   <property key="fillColor"/>
+   <property key="elementShape"/>
+   <property key="textAlignment" value="2"/>
+   <property key="fontColor"/>
+   <property key="font"/>
+</element>

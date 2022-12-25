@@ -1,0 +1,12 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:BasicObject"
+         name="Image"
+         id="dd7f60ef-d427-4960-8b62-f9dffea8b07c"
+         ancestor="4753b1bb-fc45-4aa1-821d-f08baf8a1766">
+   <property key="fillColor"/>
+   <property key="elementShape"/>
+   <property key="textAlignment" value="2"/>
+   <property key="fontColor"/>
+   <property key="font"/>
+</element>

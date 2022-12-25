@@ -1,0 +1,9 @@
+<index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:zenta="http://magwas.rulez.org/zenta">
+   <folder name="1. High level requirements"
+           id="0f6b8113-837b-469e-81c7-28b3192ecce0"/>
+   <folder name="00Relations" id="a8e27c9b-c586-4b38-af02-85d5bb1461da"/>
+   <folder name="2. Business Objects" id="dff9c7c3-b731-47aa-9f09-81fd3a363601"/>
+   <folder name="3. Process" id="f2bc1ebd-ce12-4949-8fbd-db762e43097b"/>
+   <folder name="4. User Interface" id="b3ae4f8a-f650-4583-939c-421cc3a43541"/>
+</index>

@@ -1,0 +1,6 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:BasicObject"
+         name="Complex enough to test most of the use cases of the frontend coding process"
+         id="6ffba3d7-a557-4735-9a62-32597592baa2"
+         ancestor="107b9a83-1292-49ee-bf2f-542de02b2654"/>

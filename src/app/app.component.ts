@@ -1,4 +1,7 @@
 import { Component } from '@angular/core'
+import { AppData } from '../types/AppData';
+
+export let appData: AppData;
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,14 @@ import { Component } from '@angular/core'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular test'
+
+  appData: AppData = {
+    title: "Hello World",
+  }
+
+  constructor() {
+    appData = this.appData;
+  }
 }
+
+

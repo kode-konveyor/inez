@@ -1,0 +1,9 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:BasicObject"
+         name="Uses the full Hero example"
+         id="54048056-3864-4983-8569-672cad6b0e7b"
+         ancestor="e7c7a3b9-cc91-4d99-854a-d5eab68efd7c">
+   <documentation>https://angular.io/tutorial/tour-of-heroes
+</documentation>
+</element>

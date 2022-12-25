@@ -1,0 +1,7 @@
+<index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:zenta="http://magwas.rulez.org/zenta">
+   <folder name="App" id="af3776a9-aec0-4b79-8e02-f2f057744b61"/>
+   <folder name="Heroes" id="157aa701-683b-45c4-ab79-7bbf3c7f7227"/>
+   <folder name="HeroItem" id="23c19935-7d29-4d47-ba19-31faa7ba4c23"/>
+   <folder name="Hero Editor" id="f10451bf-845e-4b8b-8b9c-e0999acb8011"/>
+</index>

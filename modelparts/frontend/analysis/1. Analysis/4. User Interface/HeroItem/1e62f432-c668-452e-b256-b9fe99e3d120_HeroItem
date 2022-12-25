@@ -1,0 +1,6 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:BasicObject"
+         name="HeroItem"
+         id="1e62f432-c668-452e-b256-b9fe99e3d120"
+         ancestor="7082d74b-12fc-4df2-8074-3844eddd4866"/>

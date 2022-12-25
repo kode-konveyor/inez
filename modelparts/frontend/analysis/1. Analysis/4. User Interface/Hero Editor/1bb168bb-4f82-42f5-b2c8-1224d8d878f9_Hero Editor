@@ -1,0 +1,27 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:ZentaDiagramModel"
+         name="Hero Editor"
+         id="1bb168bb-4f82-42f5-b2c8-1224d8d878f9">
+   <child xsi:type="zenta:DiagramObject"
+          id="f524cad0-c817-4ac5-8ae7-b4d0f150a9ff"
+          zentaElement="53b3e5d7-b0b7-47ea-ba5b-134e3dcfb04c">
+      <bounds x="144" y="72" width="-1" height="-1"/>
+      <sourceConnection xsi:type="zenta:Connection"
+                        id="5a044a6c-662a-45eb-9fa3-2a3a0934bc3e"
+                        source="f524cad0-c817-4ac5-8ae7-b4d0f150a9ff"
+                        target="9be8171e-ed18-4d74-a6e5-e0b10f6a22ae"
+                        relationship="1b57f779-afe1-4419-8a90-61ad6535c4d3"/>
+      <child xsi:type="zenta:DiagramObject"
+             id="94cfb902-f183-4ab2-a0e7-a2fc4c13c387"
+             zentaElement="eead594d-519e-4240-9296-ef664625585a">
+         <bounds x="24" y="36" width="-1" height="-1"/>
+      </child>
+   </child>
+   <child xsi:type="zenta:DiagramObject"
+          id="9be8171e-ed18-4d74-a6e5-e0b10f6a22ae"
+          targetConnections="5a044a6c-662a-45eb-9fa3-2a3a0934bc3e"
+          zentaElement="9eba6ffd-9d3f-44b7-acdc-63d3433f9303">
+      <bounds x="420" y="72" width="-1" height="-1"/>
+   </child>
+</element>

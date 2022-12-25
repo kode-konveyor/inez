@@ -1,0 +1,22 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:BasicObject"
+         name="Component view contains the backing data structure "
+         id="c2e04a6d-f5d2-4d1a-9478-b734d440f6d4"
+         ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
+   <documentation>ui_bindings|
+zentatools:let(
+	'backingobj',
+	'zenta:neighbours($doc,$element,''is bound to,1'')',
+   '
+if($element/../*//@zentaElement=$backingobj/@id)
+then ()
+else concat($backingobj/@name, '' is not in view '', $element/@name)
+   '
+)</documentation>
+   <property key="fillColor"/>
+   <property key="elementShape"/>
+   <property key="textAlignment" value="2"/>
+   <property key="fontColor"/>
+   <property key="font"/>
+</element>

@@ -9,6 +9,12 @@
 /platforms/android/app/src/main/assets/www/
 /reports
 /package-lock.json
+/inputs
+/target
+/shippable
+/runapache
+model.zenta
+*.bak
 
 # Node
 /node_modules
@@ -47,3 +53,16 @@ Thumbs.db
 
 # stryker temp files
 .stryker-tmp
+model.compiled
+model.consistency.stderr
+model.consistencycheck
+model.docbook
+model.html
+model.interfaces
+model.objlist
+model.objlist.html
+model.rich
+model.richescape
+model.stubs
+model.testdata
+model/
