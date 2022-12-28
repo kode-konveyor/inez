@@ -1,12 +1,11 @@
+<h1>{{appData.title}}</h1>
+
 <div>
   <heroeditor [hero]="appData.selectedHero"></heroeditor>
 </div>
 <h2>My Heroes</h2>
 <div class="heroes">
   <div *ngFor="let hero of appData.heroes">
-    <button type="button" [class.selected]="hero === appData.selectedHero" (click)="selectHeroService.call(hero)">
-      <span class="badge">{{hero.id}}</span>
-      <span class="name">{{hero.name}}</span>
-    </button>
+    <heroitem [hero]="hero"></heroitem>
   </div>
 </div>

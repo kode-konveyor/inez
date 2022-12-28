@@ -1,5 +1,5 @@
-import { appData } from '../app.component';
-import { Hero } from '../../types/Hero';
+import { appData } from '../app/app.component';
+import { Hero } from '../types/Hero';
 import { Injectable } from '@angular/core';
 
 @Injectable()

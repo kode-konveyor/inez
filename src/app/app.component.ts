@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { AppData } from '../types/AppData';
-import { HEROES } from './mock-heroes';
+import { InitializeAppDataService } from '../services/InitializeAppDataService';
 
 export let appData: AppData;
 
@@ -11,14 +11,13 @@ export let appData: AppData;
 })
 export class AppComponent {
 
-  appData: AppData;
+  appData: AppData = appData;
+  initializeAppDataService: InitializeAppDataService
 
-  constructor() {
-    this.appData = {
-      title: "Hello World",
-      heroes: HEROES
-    };
-    appData = this.appData;
+  constructor(initializeAppDataService: InitializeAppDataService) {
+    this.initializeAppDataService = initializeAppDataService;
+    appData = this.initializeAppDataService.call()
+
   }
 }
 
