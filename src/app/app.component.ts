@@ -11,14 +11,13 @@ export let appData: AppData;
 })
 export class AppComponent {
 
-  appData: AppData = appData;
+  appData: AppData;
   initializeAppDataService: InitializeAppDataService
 
   constructor(initializeAppDataService: InitializeAppDataService) {
     this.initializeAppDataService = initializeAppDataService;
     appData = this.initializeAppDataService.call()
-
+    this.appData = appData;
   }
 }
-
 
