@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { AppData } from '../types/AppData';
+import { HEROES } from './mock-heroes';
 
 export let appData: AppData;
 
@@ -10,11 +11,13 @@ export let appData: AppData;
 })
 export class AppComponent {
 
-  appData: AppData = {
-    title: "Hello World",
-  }
+  appData: AppData;
 
   constructor() {
+    this.appData = {
+      title: "Hello World",
+      heroes: HEROES
+    };
     appData = this.appData;
   }
 }

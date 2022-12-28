@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core'
-import { appData } from '../app.component'
-import { Hero } from '../../types/Hero'
-import { HEROES } from '../mock-heroes'
+import { Component } from '@angular/core'
+import { appData } from '../app.component';
+import { SelectHeroService } from './SelectHeroService';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent implements OnInit {
-  heroes = HEROES
+export class HeroesComponent {
+
   appData = appData;
+  selectHeroService: SelectHeroService;
 
-  onSelect(hero: Hero): void {
-    appData.selectedHero = hero;
-  }
-
-  ngOnInit(): void {
+  constructor(selectHeroService: SelectHeroService) {
+    this.selectHeroService = selectHeroService;
   }
 }
+
+
