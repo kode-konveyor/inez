@@ -1,6 +1,6 @@
-import { Hero } from '../types/Hero';
+import { Heroes } from 'src/types/Heroes';
 import { HEROES } from './mock-heroes';
 
-export function obtainHeroesService(): Hero[] {
+export function obtainHeroesService(): Heroes {
   return HEROES;
 }

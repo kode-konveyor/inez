@@ -1,11 +1,12 @@
 import { Hero } from '../types/Hero';
 import { EventEmitter, Injectable } from '@angular/core';
 import { obtainHeroesService } from './ObtainHeroesService';
+import { Heroes } from 'src/types/Heroes';
 
 @Injectable()
 export class HeroesRepository {
-  private _heroes!: Hero[];
-  public readonly heroesEvent = new EventEmitter<Hero[]>();
+  private _heroes!: Heroes;
+  public readonly heroesEvent = new EventEmitter<Heroes>();
 
   public addHero(hero: Hero): void {
     this.initializeIfUndefined();
@@ -19,7 +20,7 @@ export class HeroesRepository {
     }
   }
 
-  get heroes(): Hero[] {
+  get heroes(): Heroes {
     this.initializeIfUndefined();
     return this._heroes.slice()
   }

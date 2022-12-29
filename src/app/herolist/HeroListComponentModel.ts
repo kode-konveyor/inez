@@ -1,5 +1,5 @@
-import { Hero } from 'src/types/Hero';
+import { Heroes } from 'src/types/Heroes';
 
 export interface HeroListComponentModel {
-    heroes?: Hero[];
+  heroes?: Heroes;
 }

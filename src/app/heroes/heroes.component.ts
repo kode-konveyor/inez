@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { HeroesRepository } from 'src/services/HeroesRepository';
 import { SelectedHeroRepository } from 'src/services/SelectedHeroRepository';
-import { Hero } from 'src/types/Hero';
+import { Heroes } from 'src/types/Heroes';
 import { HeroesComponentInitService } from './HeroesComponentInitService';
 import { HeroesComponentModel } from './HeroesComponentModel';
 
@@ -12,7 +12,7 @@ import { HeroesComponentModel } from './HeroesComponentModel';
 })
 export class HeroesComponent implements HeroesComponentModel, OnInit {
 
-  heroes?: Hero[];
+  heroes?: Heroes;
 
   heroesRepository: HeroesRepository;
   selectedHeroRepository: SelectedHeroRepository;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { Hero } from 'src/types/Hero';
+import { Heroes } from 'src/types/Heroes';
 import { HeroListComponentModel } from './HeroListComponentModel';
 
 @Component({
@@ -8,5 +8,5 @@ import { HeroListComponentModel } from './HeroListComponentModel';
   styleUrls: ['../../assets/app.css']
 })
 export class HeroListComponent implements HeroListComponentModel {
-  @Input() heroes?: Hero[];
+  @Input() heroes?: Heroes;
 }
