@@ -4,8 +4,4 @@
   <heroeditor></heroeditor>
 </div>
 <h2>My Heroes</h2>
-<div class="heroes">
-  <div *ngFor="let hero of appData.heroes">
-    <heroitem [selected]="appData.selectedHero" [hero]="hero"></heroitem>
-  </div>
-</div>
+<herolist [heroes]="heroes"></herolist>

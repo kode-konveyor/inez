@@ -3,8 +3,8 @@ import { EventEmitter, Injectable } from '@angular/core';
 
 
 @Injectable()
-export class SelectHeroRepository {
-  private selectedHero?: Hero;
+export class SelectedHeroRepository {
+  public selectedHero?: Hero;
   public readonly selectedHeroEvent = new EventEmitter<Hero>();
 
   setSelectedHero(hero: Hero): void {

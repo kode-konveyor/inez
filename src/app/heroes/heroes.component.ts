@@ -1,13 +1,26 @@
-import { Component, Input } from '@angular/core'
-import { AppData } from 'src/types/AppData';
+import { Component, OnInit } from '@angular/core'
+import { HeroesRepository } from 'src/services/HeroesRepository';
+import { SelectedHeroRepository } from 'src/services/SelectedHeroRepository';
+import { Hero } from 'src/types/Hero';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent {
-  @Input() appData!: AppData;
+export class HeroesComponent implements OnInit {
+  heroes?: Hero[];
+  heroesRepository: HeroesRepository;
+  selectedHeroRepository: SelectedHeroRepository;
+
+  constructor(heroesRepository: HeroesRepository, selectedHeroRepository: SelectedHeroRepository) {
+    this.heroesRepository = heroesRepository;
+    this.selectedHeroRepository = selectedHeroRepository;
+  }
+
+  ngOnInit(): void {
+    this.heroes = this.heroesRepository.heroes;
+  }
 }
 
 

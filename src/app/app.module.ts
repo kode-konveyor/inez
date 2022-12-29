@@ -6,16 +6,18 @@ import { AppComponent } from './app.component'
 import { HeroesComponent } from './heroes/heroes.component'
 import { FormsModule } from '@angular/forms'
 import { HeroeditorComponent } from './heroeditor/heroeditor.component'
-import { SelectHeroRepository } from '../services/SelectHeroService'
+import { SelectedHeroRepository } from '../services/SelectedHeroRepository'
 import { HeroItemComponent } from './heroitem/heroitem.component'
-import { InitializeAppDataService } from '../services/InitializeAppDataService'
+import { HeroesRepository } from 'src/services/HeroesRepository'
+import { HeroListComponent } from './herolist/herolist.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroeditorComponent,
-    HeroItemComponent
+    HeroItemComponent,
+    HeroListComponent
   ],
   imports: [
     BrowserModule,
@@ -23,8 +25,8 @@ import { InitializeAppDataService } from '../services/InitializeAppDataService'
     FormsModule
   ],
   providers: [
-    SelectHeroRepository,
-    InitializeAppDataService
+    SelectedHeroRepository,
+    HeroesRepository
   ],
   bootstrap: [AppComponent]
 })
