@@ -4,7 +4,7 @@ import { SelectedHeroRepository } from 'src/services/SelectedHeroRepository';
 import { Hero } from 'src/types/Hero';
 
 @Component({
-  selector: 'app-heroes',
+  selector: 'heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['../../assets/app.css']
 })
