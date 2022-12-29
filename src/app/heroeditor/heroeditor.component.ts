@@ -7,7 +7,7 @@ import { heroeditorSetHeroService } from './HeroeditorSetHeroService';
 @Component({
   selector: 'heroeditor',
   templateUrl: './heroeditor.component.html',
-  styleUrls: ['./heroeditor.component.css']
+  styleUrls: ['../../assets/app.css']
 })
 export class HeroeditorComponent implements HeroEditorComponentModel {
   hero?: Hero;

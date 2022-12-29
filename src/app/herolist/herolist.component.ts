@@ -4,7 +4,7 @@ import { Hero } from 'src/types/Hero';
 @Component({
   selector: 'herolist',
   templateUrl: './herolist.component.html',
-  styleUrls: ['./herolist.component.css']
+  styleUrls: ['../../assets/app.css']
 })
 export class HeroListComponent {
   @Input() heroes?: Hero[];
