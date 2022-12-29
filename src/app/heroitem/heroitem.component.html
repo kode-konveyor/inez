@@ -1,5 +1,5 @@
-<button class="heroitem" type="button" [class.selected]="hero === appData.selectedHero"
-  (click)="selectHeroService.call(hero)">
+<button class="heroitem" type="button" [class.selected]="hero === selected"
+  (click)="selectHeroService.setSelectedHero(hero)">
   <span class="badge">{{hero.id}}</span>
   <span class="name">{{hero.name}}</span>
 </button>

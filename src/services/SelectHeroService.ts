@@ -1,10 +1,16 @@
-import { appData } from '../app/app.component';
 import { Hero } from '../types/Hero';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+
 
 @Injectable()
-export class SelectHeroService {
-  call(hero: Hero): void {
-    appData.selectedHero = hero;
+export class SelectHeroRepository {
+  private selectedHero?: Hero;
+  public readonly selectedHeroEvent = new EventEmitter<Hero>();
+
+  setSelectedHero(hero: Hero): void {
+    this.selectedHero = hero;
+    this.selectedHeroEvent.emit(hero);
   }
+
 }
+

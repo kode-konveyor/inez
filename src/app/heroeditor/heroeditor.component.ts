@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core'
-import { appData } from 'src/app/app.component';
+import { Component } from '@angular/core'
+import { SelectHeroRepository } from 'src/services/SelectHeroService';
 import { Hero } from 'src/types/Hero'
 
 @Component({
@@ -8,8 +8,16 @@ import { Hero } from 'src/types/Hero'
   styleUrls: ['./heroeditor.component.css']
 })
 export class HeroeditorComponent {
-  @Input() hero?: Hero;
+  hero?: Hero;
+  heroSetter: SelectHeroRepository;
 
-  appData = appData;
+  constructor(heroSetter: SelectHeroRepository) {
+    this.heroSetter = heroSetter;
+    this.heroSetter.selectedHeroEvent.subscribe(this.setHero)
+  }
+
+  setHero = (hero: Hero): void => {
+    this.hero = hero;
+  }
 
 }

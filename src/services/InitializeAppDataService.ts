@@ -7,7 +7,6 @@ import { HEROES } from './mock-heroes';
 export class InitializeAppDataService {
   call(): AppData {
     return {
-      title: "Hello World",
       heroes: HEROES
     }
   };

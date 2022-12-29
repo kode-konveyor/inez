@@ -1,11 +1,11 @@
-<h1>{{appData.title}}</h1>
+<h1>The Heroes</h1>
 
 <div>
-  <heroeditor [hero]="appData.selectedHero"></heroeditor>
+  <heroeditor></heroeditor>
 </div>
 <h2>My Heroes</h2>
 <div class="heroes">
   <div *ngFor="let hero of appData.heroes">
-    <heroitem [hero]="hero"></heroitem>
+    <heroitem [selected]="appData.selectedHero" [hero]="hero"></heroitem>
   </div>
 </div>

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { Hero } from 'src/types/Hero';
-import { appData } from '../app.component';
-import { SelectHeroService } from '../../services/SelectHeroService';
+import { SelectHeroRepository } from '../../services/SelectHeroService';
 
 @Component({
   selector: 'heroitem',
@@ -10,11 +9,12 @@ import { SelectHeroService } from '../../services/SelectHeroService';
 })
 export class HeroItemComponent {
 
-  appData = appData;
   @Input() hero!: Hero;
-  selectHeroService: SelectHeroService;
+  @Input() selected?: Hero;
 
-  constructor(selectHeroService: SelectHeroService) {
+  selectHeroService: SelectHeroRepository;
+
+  constructor(selectHeroService: SelectHeroRepository) {
     this.selectHeroService = selectHeroService;
   }
 

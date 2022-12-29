@@ -1,5 +1,5 @@
-import { Component } from '@angular/core'
-import { appData } from '../app.component';
+import { Component, Input } from '@angular/core'
+import { AppData } from 'src/types/AppData';
 
 @Component({
   selector: 'app-heroes',
@@ -7,8 +7,7 @@ import { appData } from '../app.component';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent {
-
-  appData = appData;
+  @Input() appData!: AppData;
 }
 
 

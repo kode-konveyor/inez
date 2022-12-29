@@ -6,7 +6,7 @@ import { AppComponent } from './app.component'
 import { HeroesComponent } from './heroes/heroes.component'
 import { FormsModule } from '@angular/forms'
 import { HeroeditorComponent } from './heroeditor/heroeditor.component'
-import { SelectHeroService } from '../services/SelectHeroService'
+import { SelectHeroRepository } from '../services/SelectHeroService'
 import { HeroItemComponent } from './heroitem/heroitem.component'
 import { InitializeAppDataService } from '../services/InitializeAppDataService'
 
@@ -23,7 +23,7 @@ import { InitializeAppDataService } from '../services/InitializeAppDataService'
     FormsModule
   ],
   providers: [
-    SelectHeroService,
+    SelectHeroRepository,
     InitializeAppDataService
   ],
   bootstrap: [AppComponent]
