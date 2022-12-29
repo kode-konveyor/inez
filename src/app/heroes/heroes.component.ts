@@ -11,7 +11,9 @@ import { HeroesComponentModel } from './HeroesComponentModel';
   styleUrls: ['../../assets/app.css']
 })
 export class HeroesComponent implements HeroesComponentModel, OnInit {
+
   heroes?: Hero[];
+
   heroesRepository: HeroesRepository;
   selectedHeroRepository: SelectedHeroRepository;
   heroesComponentInitService: HeroesComponentInitService;

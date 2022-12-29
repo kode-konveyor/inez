@@ -5,13 +5,13 @@ import { HeroesComponentModel } from './HeroesComponentModel';
 
 @Injectable()
 export class HeroesComponentInitService {
-    heroesRepository: HeroesRepository;
+  heroesRepository: HeroesRepository;
 
-    heroesComponentInitService(self: HeroesComponentModel): void {
-        self.heroes = this.heroesRepository.heroes;
-    }
+  heroesComponentInitService(self: HeroesComponentModel): void {
+    self.heroes = this.heroesRepository.heroes;
+  }
 
-    constructor(heroesRepository: HeroesRepository) {
-        this.heroesRepository = heroesRepository;
-    }
+  constructor(heroesRepository: HeroesRepository) {
+    this.heroesRepository = heroesRepository;
+  }
 }

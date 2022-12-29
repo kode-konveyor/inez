@@ -11,6 +11,7 @@ import { heroeditorSetHeroService } from './HeroeditorSetHeroService';
 })
 export class HeroeditorComponent implements HeroEditorComponentModel {
   hero?: Hero;
+
   selectedHeroRepository: SelectedHeroRepository;
 
   constructor(selectedHeroRepository: SelectedHeroRepository) {
