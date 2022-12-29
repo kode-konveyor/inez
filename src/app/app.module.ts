@@ -9,6 +9,7 @@ import { SelectedHeroRepository } from '../services/SelectedHeroRepository'
 import { HeroItemComponent } from './heroitem/heroitem.component'
 import { HeroesRepository } from 'src/services/HeroesRepository'
 import { HeroListComponent } from './herolist/herolist.component'
+import { HeroesComponentInitService } from './heroes/HeroesComponentInitService'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HeroListComponent } from './herolist/herolist.component'
   ],
   providers: [
     SelectedHeroRepository,
-    HeroesRepository
+    HeroesRepository,
+    HeroesComponentInitService
   ],
   bootstrap: [HeroesComponent]
 })
