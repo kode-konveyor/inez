@@ -16,7 +16,6 @@ export class SelectHeroesWithMatchingNamesService {
     }
 
     run(): Heroes {
-        console.log("filtering")
         const filter = this.heroFilterRepository.heroFilter;
         if (!filter)
             return [];
@@ -25,7 +24,6 @@ export class SelectHeroesWithMatchingNamesService {
             if (hero.name.match(filter.filterString))
                 heroes.push(hero)
         });
-        console.log(heroes)
         return heroes;
     }
 }
