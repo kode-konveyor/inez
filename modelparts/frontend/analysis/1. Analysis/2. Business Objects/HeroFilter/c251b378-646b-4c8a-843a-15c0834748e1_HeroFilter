@@ -1,0 +1,33 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:ZentaDiagramModel"
+         name="HeroFilter"
+         id="c251b378-646b-4c8a-843a-15c0834748e1">
+   <child xsi:type="zenta:DiagramObject"
+          id="78698b98-941b-4218-a351-365ccd72a199"
+          zentaElement="2a8ca7f4-292e-4684-b00a-1425baeae1bf">
+      <bounds x="696" y="197" width="-1" height="-1"/>
+      <sourceConnection xsi:type="zenta:Connection"
+                        id="c13b4c59-340b-4a88-9929-9779f1d05d4c"
+                        source="78698b98-941b-4218-a351-365ccd72a199"
+                        target="9d010392-8bef-4fc3-8327-bf0ec556778e"
+                        relationship="24ee514e-08ec-43ee-8e3e-9d1355952181"/>
+   </child>
+   <child xsi:type="zenta:DiagramObject"
+          id="9d010392-8bef-4fc3-8327-bf0ec556778e"
+          targetConnections="c13b4c59-340b-4a88-9929-9779f1d05d4c"
+          zentaElement="1765f093-4788-4641-8311-e5698d2568d1">
+      <bounds x="578" y="331" width="-1" height="-1"/>
+      <sourceConnection xsi:type="zenta:Connection"
+                        id="6e570a17-6f08-47da-9aff-7243d8ebb1da"
+                        source="9d010392-8bef-4fc3-8327-bf0ec556778e"
+                        target="4763187c-e4c9-40ea-b8c4-1795a9757977"
+                        relationship="4adc769f-0a0c-4614-a508-0dc7214b3c23"/>
+   </child>
+   <child xsi:type="zenta:DiagramObject"
+          id="4763187c-e4c9-40ea-b8c4-1795a9757977"
+          targetConnections="6e570a17-6f08-47da-9aff-7243d8ebb1da"
+          zentaElement="b0b9e3d0-389f-4989-941a-e97aeb77bdbc">
+      <bounds x="568" y="487" width="-1" height="-1"/>
+   </child>
+</element>

@@ -15,12 +15,17 @@
       <child xsi:type="zenta:DiagramObject"
              id="fc133a52-730d-400e-81d4-169117cf49ba"
              zentaElement="b27ecd3a-7171-4ecb-9fcc-264cabd81eea">
-         <bounds x="24" y="108" width="-1" height="-1"/>
+         <bounds x="24" y="144" width="-1" height="-1"/>
          <child xsi:type="zenta:DiagramObject"
                 id="fb9bb3ed-075d-4fe6-bdee-3312f3047847"
                 zentaElement="8be9143c-3104-44c2-b278-4d1c9e535fbc">
             <bounds x="24" y="24" width="-1" height="-1"/>
          </child>
+      </child>
+      <child xsi:type="zenta:DiagramObject"
+             id="c561e91d-94b9-4b6b-90cc-cd1a2f0f3cdf"
+             zentaElement="7494054b-5d07-4aba-ade9-a3833857f974">
+         <bounds x="39" y="96" width="113" height="37"/>
       </child>
    </child>
 </element>

@@ -1,6 +1,6 @@
 <element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns:zenta="http://magwas.rulez.org/zenta"
          xsi:type="zenta:BasicObject"
-         name="selectedHero"
-         id="29c47a7e-7566-478d-afb1-208044aebd15"
-         ancestor="f3661f51-5cc7-4188-a665-731685419708"/>
+         name="filterString"
+         id="1765f093-4788-4641-8311-e5698d2568d1"
+         ancestor="267f4d47-e1e6-4af4-8677-3cf65fc8db86"/>

@@ -39,6 +39,17 @@
           id="c79d2d25-1afd-4c57-9af9-a90d9031e205"
           targetConnections="ea4d8d1b-ffb4-4df9-ad09-9213b16ab62c"
           zentaElement="874fb453-9837-4a4a-858c-02c6b0edc1ea">
-      <bounds x="692" y="179" width="-1" height="-1"/>
+      <bounds x="692" y="179" width="209" height="86"/>
+      <sourceConnection xsi:type="zenta:Connection"
+                        id="404d50fe-29c8-4f80-a7e9-9cafa5ee86c5"
+                        source="c79d2d25-1afd-4c57-9af9-a90d9031e205"
+                        target="0ce22419-2bdf-4ecf-be8a-8aa9ad22afa0"
+                        relationship="e25ec1fa-1f3a-48c0-aee1-2d8d92a23b80"/>
+   </child>
+   <child xsi:type="zenta:DiagramObject"
+          id="0ce22419-2bdf-4ecf-be8a-8aa9ad22afa0"
+          targetConnections="404d50fe-29c8-4f80-a7e9-9cafa5ee86c5"
+          zentaElement="203bb9a5-ae01-42a1-a554-a75081cf6444">
+      <bounds x="810" y="379" width="-1" height="-1"/>
    </child>
 </element>

@@ -4,12 +4,14 @@
    <folder name="herolist" id="7d591163-10f2-42a6-850b-a4e99e81f1de"/>
    <folder name="heroitem" id="fba8d53e-245d-4f2c-8dc2-48ff20e57d83"/>
    <folder name="heroes" id="6eb17b38-de47-408b-9896-8f3aa9af75a5"/>
+   <folder name="herofilter" id="dc6250b5-361f-40f1-9d88-27a5cdc3d24e"/>
    <entry name="UI" id="e59e9d5b-28d9-45f7-a80d-653a2200fc4a"/>
    <entry id="69dcfdca-eee1-446c-844c-e90a132f9e79"/>
-   <entry id="ccab5181-9aaf-4354-b321-a0c52277403a"/>
+   <entry name="Heroes" id="ccab5181-9aaf-4354-b321-a0c52277403a"/>
    <entry id="f88286b3-6937-4784-9615-aec8faacde08"/>
    <entry id="a3e3fb45-9537-48ec-badb-69f54811ad7c"/>
    <entry id="d370873b-718d-422f-9e31-8caa4affba40"/>
    <entry id="85033c71-d20c-452d-bb56-9ea4775d23a7"/>
    <entry id="9b6fcd98-1ef0-411b-96b4-f9278ec29d4e"/>
+   <entry id="e39edaca-f709-411d-89ee-f39c693ebce9"/>
 </index>

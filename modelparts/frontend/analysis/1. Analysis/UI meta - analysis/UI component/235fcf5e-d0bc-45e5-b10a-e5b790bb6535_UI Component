@@ -8,24 +8,23 @@
 
 A Process step must use a UI Component.
 
-A UI component models a Type (most probably a Business Object). If it must be given to it as an input, then the relation is named 'input'
+A UI component 'models' a Type (most probably a Business Object). If it must be given to it as an input, then the relation is named 'input'.
+When such a component is used, the 
 
 If there is no value of the model (undefined), the component is not shown. 
 
-The UI component can be an instance of a ui component. E.g. maybe a component named 'fullname' to enter a value 'is a' textentry component.
+The UI component can be an instance of a ui component. E.g. maybe a component named fullname to enter a value 'is a' textentry component.
 
-A UI component can contain multiple other components.
+A UI component 'contains' and 'iterates' multiple other components.
+
+There might be a process step responsible to filter the items for the iteration. It is something the UI Component does. It is signified by the name of the does relation. The name in this case 'filter for &lt;iterated UI Component&gt;'
 
 A UI component 'does' process steps when certain event happen. The event name appears as the name of the 'does' relation. The name in this case starts with 'On'
 
-A UI component can iterate over another UI components. For this the modeled business object have to aggregate a type, and the iterated UI Component must model the aggregated type.
-There might be a process step responsible to filter the items for the iteration. It is something the UI Component does. It is signified by the name of the does relation. The name in this case 'filter for &lt;iterated UI Component&gt;'
 
 A UI component can have a special look (css class in implementation) which is turned on on some condition. A process step does the figuring out. It is signified by the name of the does relation: 'shown as &lt;classname&gt;'
 
 A UI component can be modeled on a state as well. In that case the state should be derived from the business object modeled by the component. In this case the component folows the changes of the modeled state.
-
-
 </documentation>
    <property key="fillColor" value="#ffffff"/>
    <property key="elementShape" value="emptyShape"/>
