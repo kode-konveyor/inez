@@ -9,7 +9,8 @@ if (
     zenta:neighbours($doc,$element,'reads,1')[@xsi:type='Business Object'] or
     zenta:neighbours($doc,$element,'is done by/does,1')[@xsi:type='Role'] or
     zenta:neighbours($doc,$element,'effectuate,1') or
-    zenta:neighbours($doc,$element,'employs,2') or
+    zenta:neighbours($doc,$element,'does,2')[@xsi:type='UI Component'] or
+    zenta:neighbours($doc,$element,'contains,2;does,2')[@xsi:type='UI Component'] or
     zenta:neighbours($doc,$element,'depends on,2')[@xsi:type='Process Step'] 
 )
 then ()

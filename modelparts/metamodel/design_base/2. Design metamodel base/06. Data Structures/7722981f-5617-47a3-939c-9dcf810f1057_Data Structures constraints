@@ -32,19 +32,9 @@
    </child>
    <child xsi:type="zenta:DiagramObject"
           id="5b2c53b9-9e2c-49eb-94cc-642e90b53b82"
-          targetConnections="79b0bd2e-7689-4a0a-a2ae-522261021ef1 8f9d4c03-4a1c-417b-bfca-211f9cb2750a b13c7b6b-72a6-4816-b23e-e12d9455f18b"
+          targetConnections="79b0bd2e-7689-4a0a-a2ae-522261021ef1 8f9d4c03-4a1c-417b-bfca-211f9cb2750a"
           zentaElement="267f4d47-e1e6-4af4-8677-3cf65fc8db86">
       <bounds x="396" y="36" width="-1" height="-1"/>
-   </child>
-   <child xsi:type="zenta:DiagramObject"
-          id="0f6f1a8a-a4ce-412d-8c0e-6765627830bc"
-          zentaElement="05f5c95a-6781-4d95-a90b-9e9aede97472">
-      <bounds x="588" y="516" height="73"/>
-      <sourceConnection xsi:type="zenta:Connection"
-                        id="b13c7b6b-72a6-4816-b23e-e12d9455f18b"
-                        source="0f6f1a8a-a4ce-412d-8c0e-6765627830bc"
-                        target="5b2c53b9-9e2c-49eb-94cc-642e90b53b82"
-                        relationship="f1764cb5-9a75-4efd-8b78-a288afeb033c"/>
    </child>
    <child xsi:type="zenta:DiagramObject"
           id="37cff8ac-bfd1-47e1-bb92-3ab4f3334f16"

@@ -1,7 +1,7 @@
 <element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns:zenta="http://magwas.rulez.org/zenta"
          xsi:type="zenta:ZentaDiagramModel"
-         name="Process"
+         name="Manages heroes"
          id="a50c142a-eecd-4fae-80dd-9f196d361c18"
          connectionRouterType="1">
    <child xsi:type="zenta:DiagramObject"
@@ -89,17 +89,22 @@
              id="97284c3a-f106-4e0a-bb0f-e0351d145257"
              targetConnections="50715023-b9dc-4cc5-b4b3-98d72fa5b366"
              zentaElement="16df762a-0a74-42a9-a7f8-d579e1cfaf32">
-         <bounds x="96" y="132" width="-1" height="-1"/>
+         <bounds x="60" y="132" width="-1" height="-1"/>
          <sourceConnection xsi:type="zenta:Connection"
                            id="3c61a988-2626-441b-9f2c-b3bb5030e847"
                            source="97284c3a-f106-4e0a-bb0f-e0351d145257"
                            target="433122e1-c160-42b7-b2fd-560a14cc2728"
                            relationship="f86b0232-e9d5-4c91-86b2-92d338c1529c"/>
+         <sourceConnection xsi:type="zenta:Connection"
+                           id="3bb6c089-a17f-495e-b017-ab243170c844"
+                           source="97284c3a-f106-4e0a-bb0f-e0351d145257"
+                           target="eac014ea-84ee-4006-b5ac-c6d6b508cd02"
+                           relationship="abf68953-a630-486a-8416-3bad4d075b00"/>
       </child>
    </child>
    <child xsi:type="zenta:DiagramObject"
           id="eac014ea-84ee-4006-b5ac-c6d6b508cd02"
-          targetConnections="0fb0d861-5b8b-487e-9f21-b9372b08fbc2 ff855674-cdf5-47f5-8f37-23ea049e722d 89f5133b-5610-4cb8-bdd0-deaea40f0bc8 dbd849a4-b690-4a84-8188-f6cd2816e59e"
+          targetConnections="0fb0d861-5b8b-487e-9f21-b9372b08fbc2 ff855674-cdf5-47f5-8f37-23ea049e722d 89f5133b-5610-4cb8-bdd0-deaea40f0bc8 dbd849a4-b690-4a84-8188-f6cd2816e59e 3bb6c089-a17f-495e-b017-ab243170c844"
           zentaElement="224ead9f-e371-413a-a564-a52e3087000c">
       <bounds x="96" y="84" width="-1" height="-1"/>
    </child>

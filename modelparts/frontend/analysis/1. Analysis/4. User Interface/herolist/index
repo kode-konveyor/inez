@@ -3,8 +3,6 @@
    <entry name="herolist" id="8544ca1b-854c-4278-ae7f-fc8c2d7d3370"/>
    <entry name="herolist" id="b27ecd3a-7171-4ecb-9fcc-264cabd81eea"/>
    <entry name="input" id="470ca629-313b-43ca-a201-a006b2e2c399"/>
-   <entry name="select heroes with matching names"
-          id="874fb453-9837-4a4a-858c-02c6b0edc1ea"/>
    <entry name="filter for heroitem" id="ea2c0a6a-9a42-4c83-89d5-11c7c6b16401"/>
    <entry id="e25ec1fa-1f3a-48c0-aee1-2d8d92a23b80"/>
 </index>

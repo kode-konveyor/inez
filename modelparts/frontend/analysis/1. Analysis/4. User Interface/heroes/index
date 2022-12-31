@@ -2,12 +2,7 @@
        xmlns:zenta="http://magwas.rulez.org/zenta">
    <entry name="heroes" id="155947c6-a136-4081-a010-539df76d1948"/>
    <entry name="heroes" id="c2f88a24-662d-46df-aeb6-141c62ddbf69"/>
-   <entry name="Get the actual list of heroes."
-          id="d135fa06-a3f9-4a92-98c2-404d38fc79bd"/>
-   <entry name="Initialize states" id="d33772da-13a6-4a41-be8e-26683df9bea3"/>
    <entry name="on init" id="2423d926-54d1-41fe-926b-6111f5b7d09b"/>
    <entry id="d95a58e1-6ef6-49ba-b591-5d008b9f7796"/>
-   <entry name="initialize hero filter" id="d60e7c3e-19f2-43a8-bd1c-6d9d2f6c530e"/>
-   <entry id="a426c0cf-bae3-4d38-b274-a7fae64140c4"/>
    <entry id="9cca8898-0eb0-4a4b-928e-8133e4dcaf33"/>
 </index>
