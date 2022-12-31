@@ -1,8 +1,8 @@
 import { Component } from '@angular/core'
-import { SelectedHeroRepository } from 'src/services/SelectedHeroRepository';
+import { SelectedHeroRepository } from 'src/app/repositories/SelectedHeroRepository';
 import { Hero } from 'src/types/Hero'
 import { HeroEditorComponentModel } from './HeroEditorComponentModel';
-import { heroeditorSetHeroService } from './HeroeditorSetHeroService';
+import { heroeditorSetHeroService } from '../../services/HeroeditorSetHeroService';
 
 @Component({
   selector: 'heroeditor',

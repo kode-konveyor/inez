@@ -1,6 +1,6 @@
-import { Hero } from '../types/Hero';
+import { Hero } from '../../types/Hero';
 import { EventEmitter, Injectable } from '@angular/core';
-import { obtainHeroesService } from './ObtainHeroesService';
+import { obtainHeroesService } from '../../services/ObtainHeroesService';
 import { Heroes } from 'src/types/Heroes';
 
 @Injectable()

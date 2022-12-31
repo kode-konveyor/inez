@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module'
 import { HeroesComponent } from './heroes/heroes.component'
 import { FormsModule } from '@angular/forms'
 import { HeroeditorComponent } from './heroeditor/heroeditor.component'
-import { SelectedHeroRepository } from '../services/SelectedHeroRepository'
+import { SelectedHeroRepository } from './repositories/SelectedHeroRepository'
 import { HeroItemComponent } from './heroitem/heroitem.component'
-import { HeroesRepository } from 'src/services/HeroesRepository'
+import { HeroesRepository } from 'src/app/repositories/HeroesRepository'
 import { HeroListComponent } from './herolist/herolist.component'
-import { HeroesComponentInitService } from './heroes/HeroesComponentInitService'
+import { HeroesComponentInitService } from '../services/HeroesComponentInitService'
+import { HeroItemClassSelectorService } from '../services/HeroItemClassSelectorService'
+import { HeroItemOnClickService } from '../services/HeroItemOnClickService'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HeroesComponentInitService } from './heroes/HeroesComponentInitService'
   providers: [
     SelectedHeroRepository,
     HeroesRepository,
-    HeroesComponentInitService
+    HeroesComponentInitService,
+    HeroItemClassSelectorService,
+    HeroItemOnClickService
   ],
   bootstrap: [HeroesComponent]
 })

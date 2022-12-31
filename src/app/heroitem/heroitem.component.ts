@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core'
 import { Hero } from 'src/types/Hero';
-import { SelectedHeroRepository } from '../../services/SelectedHeroRepository';
+import { HeroItemClassSelectorService } from '../../services/HeroItemClassSelectorService';
 import { HeroItemComponentModel } from './HeroItemComponentModel';
+import { HeroItemOnClickService } from '../../services/HeroItemOnClickService';
 
 @Component({
   selector: 'heroitem',
@@ -12,12 +13,21 @@ export class HeroItemComponent implements HeroItemComponentModel {
 
   @Input() hero!: Hero;
 
-  selectedHeroRepository: SelectedHeroRepository;
+  heroItemClassSelectorService: HeroItemClassSelectorService;
+  heroItemOnClickService: HeroItemOnClickService;
 
-  constructor(selectedHeroRepository: SelectedHeroRepository) {
-    this.selectedHeroRepository = selectedHeroRepository;
+  constructor(heroItemClassSelectorService: HeroItemClassSelectorService, heroItemOnClickService: HeroItemOnClickService) {
+    this.heroItemClassSelectorService = heroItemClassSelectorService;
+    this.heroItemOnClickService = heroItemOnClickService;
   }
 
+  heroitemClassSelectedIsActive(): boolean {
+    return this.heroItemClassSelectorService.run(this)
+  }
+
+  heroitemOnClick(): void {
+    this.heroItemOnClickService.run(this);
+  }
 }
 
 
