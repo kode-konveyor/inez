@@ -1,31 +1,31 @@
 import { Component, Input } from '@angular/core'
 import { Hero } from 'src/types/Hero';
-import { HeroItemClassSelectorService } from '../../services/HeroItemClassSelectorService';
+import { IsThisHeroSelectedForEditingService } from '../../services/IsThisHeroSelectedForEditingService';
 import { HeroItemComponentModel } from './HeroItemComponentModel';
-import { HeroItemOnClickService } from '../../services/HeroItemOnClickService';
+import { SelectHeroForEditingService } from '../../services/SelectHeroForEditingService';
 
 @Component({
   selector: 'heroitem',
   templateUrl: './heroitem.component.html'
 })
-export class HeroItemComponent implements HeroItemComponentModel {
+export class HeroitemComponent implements HeroItemComponentModel {
 
   @Input() hero!: Hero;
 
-  heroItemClassSelectorService: HeroItemClassSelectorService;
-  heroItemOnClickService: HeroItemOnClickService;
+  isThisHeroSelectedForEditingService: IsThisHeroSelectedForEditingService;
+  selectHeroForEditingService: SelectHeroForEditingService;
 
-  constructor(heroItemClassSelectorService: HeroItemClassSelectorService, heroItemOnClickService: HeroItemOnClickService) {
-    this.heroItemClassSelectorService = heroItemClassSelectorService;
-    this.heroItemOnClickService = heroItemOnClickService;
+  constructor(heroItemClassSelectorService: IsThisHeroSelectedForEditingService, heroItemOnClickService: SelectHeroForEditingService) {
+    this.isThisHeroSelectedForEditingService = heroItemClassSelectorService;
+    this.selectHeroForEditingService = heroItemOnClickService;
   }
 
-  heroitemClassSelectedIsActive(): boolean {
-    return this.heroItemClassSelectorService.run(this)
+  heroitemShownAsSelected(): boolean {
+    return this.isThisHeroSelectedForEditingService.run(this)
   }
 
   heroitemOnClick(): void {
-    this.heroItemOnClickService.run(this);
+    this.selectHeroForEditingService.run(this);
   }
 }
 

@@ -1,24 +1,30 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
-
 import { AppRoutingModule } from './app-routing.module'
-import { HeroesComponent } from './heroes/heroes.component'
 import { FormsModule } from '@angular/forms'
+
+import { HeroesComponent } from './heroes/heroes.component'
 import { HeroeditorComponent } from './heroeditor/heroeditor.component'
 import { SelectedHeroRepository } from './repositories/SelectedHeroRepository'
-import { HeroItemComponent } from './heroitem/heroitem.component'
+import { HeroitemComponent } from './heroitem/heroitem.component'
 import { HeroesRepository } from 'src/app/repositories/HeroesRepository'
 import { HeroListComponent } from './herolist/herolist.component'
-import { HeroesComponentInitService } from '../services/HeroesComponentInitService'
-import { HeroItemClassSelectorService } from '../services/HeroItemClassSelectorService'
-import { HeroItemOnClickService } from '../services/HeroItemOnClickService'
+import { GetTheActualListOfHeroesService } from '../services/GetTheActualListOfHeroesService'
+import { IsThisHeroSelectedForEditingService } from '../services/IsThisHeroSelectedForEditingService'
+import { SelectHeroForEditingService } from '../services/SelectHeroForEditingService'
+import { HeroFilterRepository } from './repositories/HeroFilterRepository'
+import { HeroFilterComponent } from './herofilter/herofilter.component'
+import { InitializeStatesService } from 'src/services/InitializeStatesService'
+import { setHeroFilterService } from 'src/services/InitializeFilterService'
+import { SelectHeroesWithMatchingNamesService } from 'src/services/SelectHeroesWithMatchingNamesService'
 
 @NgModule({
   declarations: [
     HeroesComponent,
     HeroeditorComponent,
-    HeroItemComponent,
-    HeroListComponent
+    HeroitemComponent,
+    HeroListComponent,
+    HeroFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +34,13 @@ import { HeroItemOnClickService } from '../services/HeroItemOnClickService'
   providers: [
     SelectedHeroRepository,
     HeroesRepository,
-    HeroesComponentInitService,
-    HeroItemClassSelectorService,
-    HeroItemOnClickService
+    HeroFilterRepository,
+    GetTheActualListOfHeroesService,
+    IsThisHeroSelectedForEditingService,
+    SelectHeroForEditingService,
+    InitializeStatesService,
+    setHeroFilterService,
+    SelectHeroesWithMatchingNamesService,
   ],
   bootstrap: [HeroesComponent]
 })

@@ -3,7 +3,7 @@ import { SelectedHeroRepository } from 'src/app/repositories/SelectedHeroReposit
 import { HeroItemComponentModel } from '../app/heroitem/HeroItemComponentModel';
 
 @Injectable()
-export class HeroItemOnClickService {
+export class SelectHeroForEditingService {
 
   selectedHeroRepository: SelectedHeroRepository;
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
+import { InitializeStatesService } from 'src/services/InitializeStatesService';
 import { Heroes } from 'src/types/Heroes';
-import { HeroesComponentInitService } from '../../services/HeroesComponentInitService';
+import { GetTheActualListOfHeroesService } from '../../services/GetTheActualListOfHeroesService';
 import { HeroesComponentModel } from './HeroesComponentModel';
 
 @Component({
@@ -10,15 +11,15 @@ import { HeroesComponentModel } from './HeroesComponentModel';
 export class HeroesComponent implements HeroesComponentModel, OnInit {
 
   heroes?: Heroes;
+  initializeStatesService: InitializeStatesService;
 
-  heroesComponentInitService: HeroesComponentInitService;
 
-  constructor(heroesComponentInitService: HeroesComponentInitService) {
-    this.heroesComponentInitService = heroesComponentInitService;
+  constructor(initializeStatesService: InitializeStatesService) {
+    this.initializeStatesService = initializeStatesService;
   }
 
   ngOnInit(): void {
-    this.heroesComponentInitService.heroesComponentInitService(this)
+    this.initializeStatesService.run(this)
   }
 }
 
