@@ -1,8 +1,7 @@
 <element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns:zenta="http://magwas.rulez.org/zenta"
          xsi:type="zenta:BasicRelationship"
-         name="input"
-         id="e2b8db7f-ef6e-4589-8ff8-4f44ebed5f47"
-         ancestor="2f184946-3e82-4b09-896f-96fdd6d05d1c"
+         id="9cca8898-0eb0-4a4b-928e-8133e4dcaf33"
+         ancestor="e6aa3e3c-3256-46e3-a75e-d7b42da22b0a"
          source="c2f88a24-662d-46df-aeb6-141c62ddbf69"
-         target="e6c7bf2c-f44f-4468-9276-d1f6f48de621"/>
+         target="77ce65c3-2f42-4986-aad7-061dab257bd2"/>

@@ -8,8 +8,7 @@
 
 A Process step must use a UI Component.
 
-A UI component 'models' a Type (most probably a Business Object). If it must be given to it as an input, then the relation is named 'input'.
-When such a component is used, the 
+A UI component 'models' a Type (most probably a Business Object) or 'is bound to' a State. A Type can be given to it as an input, then the relation is named 'input'.
 
 If there is no value of the model (undefined), the component is not shown. 
 

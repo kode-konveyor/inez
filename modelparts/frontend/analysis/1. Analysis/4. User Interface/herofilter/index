@@ -2,6 +2,8 @@
        xmlns:zenta="http://magwas.rulez.org/zenta">
    <entry name="herofilter" id="eb1551d7-294e-4da5-b580-c85551a14ef6"/>
    <entry name="herofilter" id="7494054b-5d07-4aba-ade9-a3833857f974"/>
-   <entry id="7a46fa5b-2ec1-4b67-be13-35e5b3f474fe"/>
    <entry id="2b480cbb-eb50-4667-9ffa-18ea4d2a44e7"/>
+   <entry name="filterstring" id="858baaf5-0b26-46fe-b39c-1c2af99969a2"/>
+   <entry id="24d1d65c-c4f7-41be-bfdd-823d50383856"/>
+   <entry id="fdd50ace-bbe2-4052-b617-2a7eecda83a3"/>
 </index>
