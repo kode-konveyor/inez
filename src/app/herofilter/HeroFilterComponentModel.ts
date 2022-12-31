@@ -1,5 +1,5 @@
-import { HeroFilter } from 'src/types/HeroFilter';
+import { HeroFilterRepository } from "../repositories/HeroFilterRepository";
 
 export interface HeroFilterComponentModel {
-  heroFilter?: HeroFilter;
+  heroFilterRepository: HeroFilterRepository;
 }

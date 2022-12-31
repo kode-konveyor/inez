@@ -1,5 +1,5 @@
-<div class="herofilter" *ngIf="heroFilter">
+<div class="herofilter" *ngIf="heroFilterRepository.heroFilter">
   <div class=" herofilter-filterstring">
-    <input [(ngModel)]="heroFilter.filterString" (change)="onChange()">
+    <input [(ngModel)]="heroFilterRepository.heroFilter.filterString">
   </div>
 </div>

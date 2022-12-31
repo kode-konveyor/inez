@@ -15,7 +15,6 @@ import { SelectHeroForEditingService } from '../services/SelectHeroForEditingSer
 import { HeroFilterRepository } from './repositories/HeroFilterRepository'
 import { HeroFilterComponent } from './herofilter/herofilter.component'
 import { InitializeStatesService } from 'src/services/InitializeStatesService'
-import { setHeroFilterService } from 'src/services/InitializeFilterService'
 import { SelectHeroesWithMatchingNamesService } from 'src/services/SelectHeroesWithMatchingNamesService'
 
 @NgModule({
@@ -39,7 +38,6 @@ import { SelectHeroesWithMatchingNamesService } from 'src/services/SelectHeroesW
     IsThisHeroSelectedForEditingService,
     SelectHeroForEditingService,
     InitializeStatesService,
-    setHeroFilterService,
     SelectHeroesWithMatchingNamesService,
   ],
   bootstrap: [HeroesComponent]

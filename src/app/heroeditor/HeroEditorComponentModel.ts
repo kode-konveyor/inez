@@ -1,5 +1,6 @@
-import { Hero } from 'src/types/Hero';
+import { SelectedHeroRepository } from '../repositories/SelectedHeroRepository';
 
 export interface HeroEditorComponentModel {
-    hero?: Hero;
+    selectedHeroRepository: SelectedHeroRepository;
 }
+

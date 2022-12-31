@@ -12,7 +12,7 @@ export class SelectHeroForEditingService {
   }
 
   run(self: HeroItemComponentModel): void {
-    this.selectedHeroRepository.setSelectedHero(self.hero);
+    this.selectedHeroRepository.selectedHero = self.hero;
   }
 }
 

@@ -1,5 +1,5 @@
-<div class="heroes" *ngIf="heroes">
+<div class="heroes" *ngIf="heroesRepository.heroes">
   <heroeditor class="heroes-heroeditor"></heroeditor>
   <herofilter></herofilter>
-  <herolist class="heroes-herolist" [heroes]="heroes"></herolist>
+  <herolist class="heroes-herolist" [heroes]="heroesRepository.heroes"></herolist>
 </div>

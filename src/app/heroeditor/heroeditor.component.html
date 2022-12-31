@@ -1,6 +1,6 @@
-<div class="heroeditor" *ngIf="hero">
-  <div class="heroeditor-id">{{hero.id}}</div>
+<div class="heroeditor" *ngIf="selectedHeroRepository.selectedHero">
+  <div class="heroeditor-id">{{selectedHeroRepository.selectedHero.id}}</div>
   <div class="heroeditor-name">
-    <input [(ngModel)]="hero.name">
+    <input [(ngModel)]="selectedHeroRepository.selectedHero.name">
   </div>
 </div>

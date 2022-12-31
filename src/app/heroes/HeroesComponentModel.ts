@@ -1,5 +1,5 @@
-import { Heroes } from 'src/types/Heroes';
+import { HeroesRepository } from '../repositories/HeroesRepository';
 
 export interface HeroesComponentModel {
-  heroes?: Heroes;
+  heroesRepository: HeroesRepository;
 }
