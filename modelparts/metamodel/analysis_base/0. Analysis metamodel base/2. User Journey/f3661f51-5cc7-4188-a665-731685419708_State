@@ -1,0 +1,12 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:BasicObject"
+         name="State"
+         id="f3661f51-5cc7-4188-a665-731685419708"
+         ancestor="thing">
+   <property key="fillColor" value="#cdab8f"/>
+   <property key="elementShape"/>
+   <property key="textAlignment" value="2"/>
+   <property key="fontColor"/>
+   <property key="font"/>
+</element>

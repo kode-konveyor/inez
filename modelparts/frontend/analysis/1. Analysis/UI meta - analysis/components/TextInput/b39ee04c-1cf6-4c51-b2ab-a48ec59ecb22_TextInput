@@ -1,0 +1,24 @@
+<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:zenta="http://magwas.rulez.org/zenta"
+         xsi:type="zenta:ZentaDiagramModel"
+         name="TextInput"
+         id="b39ee04c-1cf6-4c51-b2ab-a48ec59ecb22">
+   <child xsi:type="zenta:DiagramObject"
+          id="8cb55a2f-2305-4c74-b344-a774ab4d197e"
+          fillColor="#ffffff"
+          elementShape="emptyShape"
+          zentaElement="c574489f-328c-4311-a881-a5e396c6ee42">
+      <bounds x="780" y="233" width="-1" height="-1"/>
+      <sourceConnection xsi:type="zenta:Connection"
+                        id="822b9832-8b9f-4813-8a07-2c9a940b4b8d"
+                        source="8cb55a2f-2305-4c74-b344-a774ab4d197e"
+                        target="335064c1-497b-43ab-a87c-60e2422f68ce"
+                        relationship="8bc467b7-ebf6-4ba5-87a0-8ce582ac2de8"/>
+   </child>
+   <child xsi:type="zenta:DiagramObject"
+          id="335064c1-497b-43ab-a87c-60e2422f68ce"
+          targetConnections="822b9832-8b9f-4813-8a07-2c9a940b4b8d"
+          zentaElement="b0b9e3d0-389f-4989-941a-e97aeb77bdbc">
+      <bounds x="622" y="452" width="-1" height="-1"/>
+   </child>
+</element>

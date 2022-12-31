@@ -1,0 +1,18 @@
+<index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:zenta="http://magwas.rulez.org/zenta">
+   <entry name="heroitem" id="74fd4d1a-e19b-45fa-883c-3198864164d2"/>
+   <entry name="heroitem" id="8be9143c-3104-44c2-b278-4d1c9e535fbc"/>
+   <entry name="input" id="f132a2fa-34cc-479f-9a48-14cecff9f784"/>
+   <entry name="Is this hero selected for editing?"
+          id="fd9da06c-1abc-499c-a34b-bf6738c99155"/>
+   <entry name="shown as selected" id="38ee7e8a-62da-42ef-a7a5-125c74bca6e7"/>
+   <entry name="Select hero for editing"
+          id="b0bbcb32-04ef-4824-94de-aabfc0346a0c"/>
+   <entry name="on click" id="60ea46db-cc3e-4e26-bacc-c295ae25bd74"/>
+   <entry name="id" id="9644572d-bc3c-4b18-ba2b-9fba53cc1293"/>
+   <entry id="1e1df253-4954-4e51-90a2-51cddfbe98fb"/>
+   <entry name="name" id="f6ac59ce-1a7f-4622-9711-a3cc9aa772ee"/>
+   <entry id="a9930fb7-1773-4336-8eda-672f204e6efd"/>
+   <entry id="3078ad72-e7b4-4185-8368-2118c3fac5c7"/>
+   <entry id="a66300c3-ee8f-43a9-bb29-14aef1aa7738"/>
+</index>

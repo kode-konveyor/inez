@@ -1,7 +1,15 @@
 <index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:zenta="http://magwas.rulez.org/zenta">
-   <folder name="App" id="af3776a9-aec0-4b79-8e02-f2f057744b61"/>
-   <folder name="Heroes" id="157aa701-683b-45c4-ab79-7bbf3c7f7227"/>
-   <folder name="HeroItem" id="23c19935-7d29-4d47-ba19-31faa7ba4c23"/>
-   <folder name="Hero Editor" id="f10451bf-845e-4b8b-8b9c-e0999acb8011"/>
+   <folder name="heroeditor" id="1c3fa990-4367-4cee-ad24-6e072c06d815"/>
+   <folder name="herolist" id="7d591163-10f2-42a6-850b-a4e99e81f1de"/>
+   <folder name="heroitem" id="fba8d53e-245d-4f2c-8dc2-48ff20e57d83"/>
+   <folder name="heroes" id="6eb17b38-de47-408b-9896-8f3aa9af75a5"/>
+   <entry name="UI" id="e59e9d5b-28d9-45f7-a80d-653a2200fc4a"/>
+   <entry id="69dcfdca-eee1-446c-844c-e90a132f9e79"/>
+   <entry id="ccab5181-9aaf-4354-b321-a0c52277403a"/>
+   <entry id="f88286b3-6937-4784-9615-aec8faacde08"/>
+   <entry id="a3e3fb45-9537-48ec-badb-69f54811ad7c"/>
+   <entry id="d370873b-718d-422f-9e31-8caa4affba40"/>
+   <entry id="85033c71-d20c-452d-bb56-9ea4775d23a7"/>
+   <entry id="9b6fcd98-1ef0-411b-96b4-f9278ec29d4e"/>
 </index>

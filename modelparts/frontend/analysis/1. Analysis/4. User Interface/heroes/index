@@ -1,0 +1,9 @@
+<index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:zenta="http://magwas.rulez.org/zenta">
+   <entry name="heroes" id="155947c6-a136-4081-a010-539df76d1948"/>
+   <entry name="heroes" id="c2f88a24-662d-46df-aeb6-141c62ddbf69"/>
+   <entry name="input" id="e2b8db7f-ef6e-4589-8ff8-4f44ebed5f47"/>
+   <entry name="Get the actual list of heroes."
+          id="d135fa06-a3f9-4a92-98c2-404d38fc79bd"/>
+   <entry name="on init" id="07bb4156-4001-4d54-9631-c3f6e057d594"/>
+</index>

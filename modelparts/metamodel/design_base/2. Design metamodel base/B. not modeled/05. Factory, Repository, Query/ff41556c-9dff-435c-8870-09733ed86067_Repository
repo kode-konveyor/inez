@@ -6,7 +6,7 @@
          ancestor="thing">
    <documentation>A repository is managing the persistence of entities.
 </documentation>
-   <property key="fillColor" value="#fcaf3e"/>
+   <property key="fillColor" value="#ffbe6f"/>
    <property key="elementShape" value="applicationShape"/>
    <property key="textAlignment" value="2"/>
    <property key="fontColor"/>

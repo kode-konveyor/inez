@@ -1,6 +1,0 @@
-<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns:zenta="http://magwas.rulez.org/zenta"
-         xsi:type="zenta:BasicObject"
-         name="App"
-         id="b3aae9e2-7c90-4526-b7fc-d7aed70a5910"
-         ancestor="7082d74b-12fc-4df2-8074-3844eddd4866"/>

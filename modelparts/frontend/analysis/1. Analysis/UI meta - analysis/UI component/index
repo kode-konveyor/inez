@@ -1,0 +1,15 @@
+<index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:zenta="http://magwas.rulez.org/zenta">
+   <entry name="contains" id="2e6e0d3c-25f2-4544-9aad-054d1738ddcc"/>
+   <entry name="iterates" id="1c6f4527-8f90-4e99-be8a-1e4e6fd8a5cf"/>
+   <entry name="models (deprecated)" id="9185ff37-c53d-4804-bd77-d9ab93d615b0"/>
+   <entry name="UI Component" id="235fcf5e-d0bc-45e5-b10a-e5b790bb6535"/>
+   <entry name="UI meta - analysis" id="6d931d57-83e4-4091-bf0d-b056a2fc0f38"/>
+   <entry name="uses" id="ab956768-4d7d-4ed5-bacf-c18725513671"/>
+   <entry name="Type" id="c5a9ac99-da80-47ef-b8ef-e4e18085f762"/>
+   <entry name="models" id="2f184946-3e82-4b09-896f-96fdd6d05d1c"/>
+   <entry name="is a/is at" id="ff83d661-d397-4b39-a070-673c513e491e"/>
+   <entry name="does" id="a22dee4c-9d94-496e-aa57-6f8384a03f75"/>
+   <entry name="uses" id="25152687-2493-40b9-88f1-e0579f07a8c2"/>
+   <entry name="is bound to/feeds" id="e6aa3e3c-3256-46e3-a75e-d7b42da22b0a"/>
+</index>

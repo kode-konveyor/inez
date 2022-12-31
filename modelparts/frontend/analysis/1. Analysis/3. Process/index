@@ -1,6 +1,5 @@
 <index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:zenta="http://magwas.rulez.org/zenta">
-   <folder name="0. Roles" id="3678a2fe-a142-40b3-98f8-9aa654db04db"/>
    <entry name="Start Hero app" id="26247ca4-68ac-4d93-91fe-fcca4f774e33"/>
    <entry name="Process" id="a50c142a-eecd-4fae-80dd-9f196d361c18"/>
    <entry name="Look at heroes list" id="4344826b-feb5-494d-a86d-33572acfc1de"/>
