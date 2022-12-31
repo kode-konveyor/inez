@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HeroesRepository } from 'src/app/repositories/HeroesRepository';
 import { HeroFilterRepository } from 'src/app/repositories/HeroFilterRepository';
-import { SelectedHeroRepository } from 'src/app/repositories/SelectedHeroRepository';
 import { Heroes } from 'src/types/Heroes';
-import { HeroFilter } from 'src/types/HeroFilter';
 
 @Injectable()
 export class SelectHeroesWithMatchingNamesService {
@@ -17,11 +15,9 @@ export class SelectHeroesWithMatchingNamesService {
 
     run(): Heroes {
         const filter = this.heroFilterRepository.heroFilter;
-        if (!filter)
-            return [];
         const heroes: Heroes = []
         this.heroesRepository.heroes.forEach(hero => {
-            if (hero.name.match(filter.filterString))
+            if (hero.name.match(filter.filterString) != null)
                 heroes.push(hero)
         });
         return heroes;

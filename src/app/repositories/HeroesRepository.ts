@@ -1,5 +1,4 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { obtainHeroesService } from '../../services/ObtainHeroesService';
 import { Heroes } from 'src/types/Heroes';
 
 @Injectable()

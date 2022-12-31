@@ -12,8 +12,6 @@ export class HeroeditorComponent implements HeroEditorComponentModel {
 
   constructor(selectedHeroRepository: SelectedHeroRepository) {
     this.selectedHeroRepository = selectedHeroRepository;
-    //this.hero = selectedHeroRepository.selectedHero;
-    //    this.selectedHeroRepository.selectedHeroEvent.subscribe((hero: Hero) => heroeditorSetHeroService(this, hero))
   }
 
 }

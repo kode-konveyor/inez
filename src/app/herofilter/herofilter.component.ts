@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { HeroFilter } from 'src/types/HeroFilter';
 import { HeroFilterRepository } from '../repositories/HeroFilterRepository';
 import { HeroFilterComponentModel } from './HeroFilterComponentModel';
 
