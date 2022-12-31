@@ -6,7 +6,6 @@ import { HeroesComponentModel } from './HeroesComponentModel';
 @Component({
   selector: 'heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: ['../../assets/app.css']
 })
 export class HeroesComponent implements HeroesComponentModel, OnInit {
 

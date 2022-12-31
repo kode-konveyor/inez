@@ -6,8 +6,7 @@ import { HeroItemOnClickService } from '../../services/HeroItemOnClickService';
 
 @Component({
   selector: 'heroitem',
-  templateUrl: './heroitem.component.html',
-  styleUrls: ['../../assets/app.css']
+  templateUrl: './heroitem.component.html'
 })
 export class HeroItemComponent implements HeroItemComponentModel {
 
