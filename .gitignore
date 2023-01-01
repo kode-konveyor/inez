@@ -13,34 +13,35 @@
 /target
 /shippable
 /runapache
-model.zenta
+#delink have problems
+#/model.zenta
 *.bak
 
 # Node
 /node_modules
-npm-debug.log
-yarn-error.log
+/npm-debug.log
+/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
+/.idea/
+/.project
+/.classpath
+/.c9/
 *.launch
-.settings/
+/.settings/
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
+/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
+/.history/*
 
 # Miscellaneous
 /.angular/cache
-.sass-cache/
+/.sass-cache/
 /connect.lock
 /coverage
 /libpeerconnection.log
@@ -52,17 +53,17 @@ testem.log
 Thumbs.db
 
 # stryker temp files
-.stryker-tmp
-model.compiled
-model.consistency.stderr
-model.consistencycheck
-model.docbook
-model.html
-model.interfaces
-model.objlist
-model.objlist.html
-model.rich
-model.richescape
-model.stubs
-model.testdata
-model/
+/.stryker-tmp
+/model.compiled
+/model.consistency.stderr
+/model.consistencycheck
+/model.docbook
+/model.html
+/model.interfaces
+/model.objlist
+/model.objlist.html
+/model.rich
+/model.richescape
+/model.stubs
+/model.testdata
+/model/

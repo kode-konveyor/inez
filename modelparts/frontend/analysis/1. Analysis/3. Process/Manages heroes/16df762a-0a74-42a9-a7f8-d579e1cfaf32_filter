@@ -1,6 +1,0 @@
-<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns:zenta="http://magwas.rulez.org/zenta"
-         xsi:type="zenta:BasicObject"
-         name="filter"
-         id="16df762a-0a74-42a9-a7f8-d579e1cfaf32"
-         ancestor="83af8497-bfef-451b-9bc6-f00d58c8df6a"/>

@@ -1,9 +1,0 @@
-<index xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:zenta="http://magwas.rulez.org/zenta">
-   <entry name="Hero" id="3fe08b86-6c5a-485c-a915-8dd5cc262a9a"/>
-   <entry name="Hero" id="9eba6ffd-9d3f-44b7-acdc-63d3433f9303"/>
-   <entry name="name" id="08b47309-3084-4f7c-96e0-38749aecaa37"/>
-   <entry id="990b961a-1641-43b1-abb6-5771ebe31cfa"/>
-   <entry name="id" id="655e233e-cf00-40dd-95b9-ef3ff62f825e"/>
-   <entry id="8f020613-19c3-4551-b514-87a96264b243"/>
-</index>

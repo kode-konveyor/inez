@@ -1,8 +1,0 @@
-<element xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns:zenta="http://magwas.rulez.org/zenta"
-         xsi:type="zenta:BasicRelationship"
-         name="filter for heroitem"
-         id="ea2c0a6a-9a42-4c83-89d5-11c7c6b16401"
-         ancestor="a22dee4c-9d94-496e-aa57-6f8384a03f75"
-         source="b27ecd3a-7171-4ecb-9fcc-264cabd81eea"
-         target="874fb453-9837-4a4a-858c-02c6b0edc1ea"/>
