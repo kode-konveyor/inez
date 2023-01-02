@@ -14,5 +14,5 @@ inputs/codingrules:
 	git clone -b v0.5 https://github.com/kode-konveyor/codingrules.git inputs/codingrules
 
 inputs/androidplatform:
-	cordova platform rm android && cordova platform add android && cordova prepare android
+	mkdir -p www && cordova platform rm android && cordova platform add android && cordova prepare android
 
