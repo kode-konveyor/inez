@@ -6,7 +6,7 @@
 /out-tsc
 /bazel-out
 /www
-/platforms/android/app/src/main/assets/www/
+/platforms
 /reports
 /package-lock.json
 /inputs
