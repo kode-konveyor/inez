@@ -42,4 +42,4 @@ import { SelectHeroesWithMatchingNamesService } from 'src/com.kodekonveyor.angul
   ],
   bootstrap: [HeroesComponent]
 })
-export class AppModule { }
+export class Angulartest { }

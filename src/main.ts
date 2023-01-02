@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 
-import { AppModule } from './com.kodekonveyor.angulartest/module'
+import { Angulartest } from './com.kodekonveyor.angulartest/module'
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(Angulartest)
   .catch(err => console.error(err))
