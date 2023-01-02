@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SelectedHeroRepository } from 'src/app/repositories/SelectedHeroRepository';
-import { HeroItemComponentModel } from '../app/heroitem/HeroItemComponentModel';
+import { HeroItemComponentModel } from '../../app/heroitem/HeroItemComponentModel';
 
 @Injectable()
 export class SelectHeroForEditingService {

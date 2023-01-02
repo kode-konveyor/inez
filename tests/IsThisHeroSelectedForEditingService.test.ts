@@ -1,6 +1,6 @@
 import { HeroItemComponentModel } from "src/app/heroitem/HeroItemComponentModel";
 import { SelectedHeroRepository } from "src/app/repositories/SelectedHeroRepository";
-import { IsThisHeroSelectedForEditingService } from "src/services/IsThisHeroSelectedForEditingService";
+import { IsThisHeroSelectedForEditingService } from "src/com.kodekonveyor.angulartest/services/IsThisHeroSelectedForEditingService";
 import { HERO, HERO_OTHER } from "./testdata/HeroTestData";
 
 describe("Is this hero selected for editing?", () => {

@@ -1,6 +1,6 @@
 import { HeroItemComponentModel } from "src/app/heroitem/HeroItemComponentModel";
 import { SelectedHeroRepository } from "src/app/repositories/SelectedHeroRepository";
-import { SelectHeroForEditingService } from "src/services/SelectHeroForEditingService";
+import { SelectHeroForEditingService } from "src/com.kodekonveyor.angulartest/services/SelectHeroForEditingService";
 import { HERO, HERO_OTHER } from "./testdata/HeroTestData";
 
 describe("Select hero for editing", () => {

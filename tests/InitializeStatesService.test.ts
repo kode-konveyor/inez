@@ -1,6 +1,6 @@
 import { mock } from "jest-mock-extended";
-import { GetTheActualListOfHeroesService } from "src/services/GetTheActualListOfHeroesService";
-import { InitializeStatesService } from "src/services/InitializeStatesService";
+import { GetTheActualListOfHeroesService } from "src/com.kodekonveyor.angulartest/services/GetTheActualListOfHeroesService";
+import { InitializeStatesService } from "src/com.kodekonveyor.angulartest/services/InitializeStatesService";
 
 describe("Initialize states", () => {
   let getTheActualListOfHeroesService: GetTheActualListOfHeroesService;

@@ -9,13 +9,13 @@ import { SelectedHeroRepository } from './repositories/SelectedHeroRepository'
 import { HeroitemComponent } from './heroitem/heroitem.component'
 import { HeroesRepository } from 'src/app/repositories/HeroesRepository'
 import { HeroListComponent } from './herolist/herolist.component'
-import { GetTheActualListOfHeroesService } from '../services/GetTheActualListOfHeroesService'
-import { IsThisHeroSelectedForEditingService } from '../services/IsThisHeroSelectedForEditingService'
-import { SelectHeroForEditingService } from '../services/SelectHeroForEditingService'
+import { GetTheActualListOfHeroesService } from '../com.kodekonveyor.angulartest/services/GetTheActualListOfHeroesService'
+import { IsThisHeroSelectedForEditingService } from '../com.kodekonveyor.angulartest/services/IsThisHeroSelectedForEditingService'
+import { SelectHeroForEditingService } from '../com.kodekonveyor.angulartest/services/SelectHeroForEditingService'
 import { HeroFilterRepository } from './repositories/HeroFilterRepository'
 import { HeroFilterComponent } from './herofilter/herofilter.component'
-import { InitializeStatesService } from 'src/services/InitializeStatesService'
-import { SelectHeroesWithMatchingNamesService } from 'src/services/SelectHeroesWithMatchingNamesService'
+import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService'
+import { SelectHeroesWithMatchingNamesService } from 'src/com.kodekonveyor.angulartest/services/SelectHeroesWithMatchingNamesService'
 
 @NgModule({
   declarations: [

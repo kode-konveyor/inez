@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HeroesRepository } from 'src/app/repositories/HeroesRepository';
-import { obtainHeroesService } from './ObtainHeroesService';
+import { obtainHeroesService } from '../../services/ObtainHeroesService';
 
 
 @Injectable()

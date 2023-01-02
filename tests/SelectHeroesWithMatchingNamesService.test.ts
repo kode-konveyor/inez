@@ -1,7 +1,7 @@
 import { HeroesRepository } from "src/app/repositories/HeroesRepository";
 import { HeroFilterRepository } from "src/app/repositories/HeroFilterRepository";
 import { HEROES, HEROES_WITHOUT_E, HEROES_WITH_E } from "src/services/mock-heroes";
-import { SelectHeroesWithMatchingNamesService } from "src/services/SelectHeroesWithMatchingNamesService";
+import { SelectHeroesWithMatchingNamesService } from "src/com.kodekonveyor.angulartest/services/SelectHeroesWithMatchingNamesService";
 
 
 describe("Select heroes with matching name", () => {

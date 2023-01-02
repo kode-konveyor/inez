@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { InitializeStatesService } from 'src/services/InitializeStatesService';
+import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService';
 import { HeroesRepository } from '../repositories/HeroesRepository';
 import { HeroesComponentModel } from './HeroesComponentModel';
 

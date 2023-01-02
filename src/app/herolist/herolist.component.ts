@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { SelectHeroesWithMatchingNamesService } from 'src/services/SelectHeroesWithMatchingNamesService';
+import { SelectHeroesWithMatchingNamesService } from 'src/com.kodekonveyor.angulartest/services/SelectHeroesWithMatchingNamesService';
 import { Heroes } from 'src/types/Heroes';
 import { HeroListComponentModel } from './HeroListComponentModel';
 
