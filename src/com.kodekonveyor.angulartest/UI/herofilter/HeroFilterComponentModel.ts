@@ -1,4 +1,4 @@
-import { HeroFilterRepository } from "../repositories/HeroFilterRepository";
+import { HeroFilterRepository } from "../../repositories/HeroFilterRepository";
 
 export interface HeroFilterComponentModel {
   heroFilterRepository: HeroFilterRepository;

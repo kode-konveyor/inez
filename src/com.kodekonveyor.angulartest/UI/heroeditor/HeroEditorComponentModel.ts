@@ -1,4 +1,4 @@
-import { SelectedHeroRepository } from '../repositories/SelectedHeroRepository';
+import { SelectedHeroRepository } from '../../repositories/SelectedHeroRepository';
 
 export interface HeroEditorComponentModel {
     selectedHeroRepository: SelectedHeroRepository;

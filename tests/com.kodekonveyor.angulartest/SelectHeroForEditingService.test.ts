@@ -1,5 +1,5 @@
-import { HeroItemComponentModel } from "src/app/heroitem/HeroItemComponentModel";
-import { SelectedHeroRepository } from "src/app/repositories/SelectedHeroRepository";
+import { HeroItemComponentModel } from "src/com.kodekonveyor.angulartest/UI/heroitem/HeroItemComponentModel";
+import { SelectedHeroRepository } from "src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository";
 import { SelectHeroForEditingService } from "src/com.kodekonveyor.angulartest/services/SelectHeroForEditingService";
 import { HERO, HERO_OTHER } from "./testdata/HeroTestData";
 

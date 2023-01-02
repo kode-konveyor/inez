@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
-import { Hero } from 'src/types/Hero';
-import { IsThisHeroSelectedForEditingService } from '../../com.kodekonveyor.angulartest/services/IsThisHeroSelectedForEditingService';
+import { Hero } from 'src/com.kodekonveyor.angulartest/types/Hero';
+import { IsThisHeroSelectedForEditingService } from '../../services/IsThisHeroSelectedForEditingService';
 import { HeroItemComponentModel } from './HeroItemComponentModel';
-import { SelectHeroForEditingService } from '../../com.kodekonveyor.angulartest/services/SelectHeroForEditingService';
+import { SelectHeroForEditingService } from '../../services/SelectHeroForEditingService';
 
 @Component({
   selector: 'heroitem',

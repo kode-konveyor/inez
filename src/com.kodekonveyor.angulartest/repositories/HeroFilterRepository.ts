@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HeroFilter } from 'src/types/HeroFilter';
+import { HeroFilter } from 'src/com.kodekonveyor.angulartest/types/HeroFilter';
 
 
 @Injectable()

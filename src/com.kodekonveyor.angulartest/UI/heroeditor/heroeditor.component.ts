@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { SelectedHeroRepository } from 'src/app/repositories/SelectedHeroRepository';
+import { SelectedHeroRepository } from 'src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository';
 import { HeroEditorComponentModel } from './HeroEditorComponentModel';
 
 @Component({

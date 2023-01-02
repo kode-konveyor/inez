@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HeroesRepository } from 'src/app/repositories/HeroesRepository';
-import { HeroFilterRepository } from 'src/app/repositories/HeroFilterRepository';
-import { Heroes } from 'src/types/Heroes';
+import { HeroesRepository } from 'src/com.kodekonveyor.angulartest/repositories/HeroesRepository';
+import { HeroFilterRepository } from 'src/com.kodekonveyor.angulartest/repositories/HeroFilterRepository';
+import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
 
 @Injectable()
 export class SelectHeroesWithMatchingNamesService {

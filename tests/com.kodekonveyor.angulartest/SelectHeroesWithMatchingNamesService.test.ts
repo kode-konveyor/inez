@@ -1,6 +1,6 @@
-import { HeroesRepository } from "src/app/repositories/HeroesRepository";
-import { HeroFilterRepository } from "src/app/repositories/HeroFilterRepository";
-import { HEROES, HEROES_WITHOUT_E, HEROES_WITH_E } from "src/services/mock-heroes";
+import { HeroesRepository } from "src/com.kodekonveyor.angulartest/repositories/HeroesRepository";
+import { HeroFilterRepository } from "src/com.kodekonveyor.angulartest/repositories/HeroFilterRepository";
+import { HEROES, HEROES_WITHOUT_E, HEROES_WITH_E } from "src/legacy/mock-heroes";
 import { SelectHeroesWithMatchingNamesService } from "src/com.kodekonveyor.angulartest/services/SelectHeroesWithMatchingNamesService";
 
 

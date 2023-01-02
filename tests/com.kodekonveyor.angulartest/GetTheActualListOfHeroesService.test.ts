@@ -1,4 +1,4 @@
-import { HeroesRepository } from "src/app/repositories/HeroesRepository";
+import { HeroesRepository } from "src/com.kodekonveyor.angulartest/repositories/HeroesRepository";
 import { GetTheActualListOfHeroesService } from "src/com.kodekonveyor.angulartest/services/GetTheActualListOfHeroesService";
 
 describe("Get the actual list of heroes", () => {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { HeroFilterRepository } from '../repositories/HeroFilterRepository';
+import { HeroFilterRepository } from '../../repositories/HeroFilterRepository';
 import { HeroFilterComponentModel } from './HeroFilterComponentModel';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HeroesRepository } from 'src/app/repositories/HeroesRepository';
-import { obtainHeroesService } from '../../services/ObtainHeroesService';
+import { HeroesRepository } from 'src/com.kodekonveyor.angulartest/repositories/HeroesRepository';
+import { obtainHeroesService } from '../../legacy/ObtainHeroesService';
 
 
 @Injectable()

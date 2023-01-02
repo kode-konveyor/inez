@@ -1,4 +1,4 @@
-import { Heroes } from 'src/types/Heroes'
+import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes'
 
 export const HEROES: Heroes = [
   { id: 12, name: 'Dr. Nice' },

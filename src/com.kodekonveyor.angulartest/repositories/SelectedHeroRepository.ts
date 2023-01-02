@@ -1,4 +1,4 @@
-import { Hero } from '../../types/Hero';
+import { Hero } from '../types/Hero';
 import { Injectable } from '@angular/core';
 
 
