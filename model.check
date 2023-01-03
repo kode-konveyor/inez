@@ -1,10 +1,9 @@
 <checks>
 <!--
-		stage/@value='low_level_requirements' or
 		stage/@value='milestones' or
-		stage/@value='services' or
 		stage/@value='clarifications' or
 		stage/@value='data_structures' or
+		stage/@value='services' or
 -->
 <check
 		title="Model Errors"
@@ -15,6 +14,7 @@
 		stage/@value='user_journey' or
 		stage/@value='ui_design' or
 		stage/@value='ui_bindings' or
+		stage/@value='low_level_requirements' or
 		stage/@value='application_structure' or
 		stage/@value='deprecation' 
 	]"

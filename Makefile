@@ -1,5 +1,5 @@
 export MODEL_BASENAME=model
-export REPO_NAME=metamodel
+export REPO_NAME=angulartest
 export GITHUB_ORGANIZATION=kode-konveyor
 export CONSISTENCY_INPUTS=model.rich shippable/behaviours.xml
 LANGUAGE=java
