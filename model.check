@@ -1,8 +1,7 @@
 <checks>
 <!--
-		stage/@value='milestones' or
-		stage/@value='clarifications' or
 		stage/@value='services' or
+		stage/@value='clarifications' or
 -->
 <check
 		title="Model Errors"
@@ -16,6 +15,7 @@
 		stage/@value='low_level_requirements' or
 		stage/@value='application_structure' or
 		stage/@value='data_structures' or
+		stage/@value='milestones' or
 		stage/@value='deprecation' 
 	]"
       	modelnamepath="@type"
