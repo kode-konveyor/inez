@@ -410,7 +410,7 @@
 if(
 	$element/ancestor::folder[@name='6. Milestones']
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else string-join($element/ancestor::folder/@name,'/')
 
 </documentation>
@@ -420,7 +420,7 @@ else string-join($element/ancestor::folder/@name,'/')
               <documentation>milestones|
 for $implemented in zenta:neighbours($doc,$element,'implements,1')
 	return if ($doc//folder[@name='6. Milestones']//*[.//@zentaElement=$element/@id]//@zentaElement=$implemented/@id)
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat($implemented/@name, ' not in a view with its milestone ')
 </documentation>
             </element>
@@ -428,7 +428,7 @@ for $implemented in zenta:neighbours($doc,$element,'implements,1')
             <element xsi:type="zenta:BasicObject" name="belongs to a milestone" id="70b42ec0-f6e0-42de-bf86-5cbffd43e41c" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>milestones|
 if(zenta:neighbours($doc,$element,'is initialized by/initializes,2'))
-then ('CONSTRAINT_PASSED')
+then ()
 else if(
 zenta:neighbours($doc,$element,'implements,2')|
 zenta:neighbours($doc,$element,'contains,2;implements,2')|
@@ -471,7 +471,7 @@ zenta:neighbours($doc,$element,'depends on,2;depends on,2;contains,2;implements,
 zenta:neighbours($doc,$element,'depends on,2;depends on,2;iterates,2;implements,2')|
 zenta:neighbours($doc,$element,'depends on,2;depends on,2;depends on,2;implements,2')
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no milestone'
 </documentation>
             </element>
@@ -479,7 +479,7 @@ else 'no milestone'
             <element xsi:type="zenta:BasicObject" name="Is in the Milestones view" id="4d15738c-09e8-4971-820d-c254a5e99d06" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>milestones|
 if($doc//folder[@name='6. Milestones']//*[@name='Milestones']//@zentaElement=$element/@id)
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else 'not in Milestones view'
 </documentation>
             </element>
@@ -734,14 +734,14 @@ if($doc//folder[@name='6. Milestones']//*[@name='Milestones']//@zentaElement=$el
             <element xsi:type="zenta:BasicObject" name="Policies are inside the high level requirement folder" id="2bd3b516-7b67-46c2-95f7-6a6d3a8e0c90" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>policies|
 if($element/ancestor::folder[@name='1. High level requirements'])
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat($element/@name, ' is in ', string-join($element/ancestor::folder/@name, '/'))
 </documentation>
             </element>
             <element xsi:type="zenta:BasicObject" name="Policies are in the High level requirements view" id="cd2a10f5-5a5b-4e45-b427-d9c97180423d" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>policies|
 if($doc//element[@name='High level requirements' and @xsi:type='zenta:ZentaDiagramModel']//@zentaElement = $element/@id)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat($element/@name, ' is not in the High level requirements view')
 </documentation>
             </element>
@@ -773,7 +773,7 @@ Projects can contain packages.
               <documentation>policies|
 if(not(zenta:neighbours($doc,$element,'is supported by,2')))
 then concat($element/@name, ' does not support any project')
-else ('CONSTRAINT_PASSED')
+else ()
 </documentation>
             </element>
             <element xsi:type="zenta:BasicObject" name="The analysis contains High level requirements folder" id="5863abc4-16f0-4980-a6c2-1fcb47ddc4c6" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
@@ -786,14 +786,14 @@ zenta:exactlyOne(
             <element xsi:type="zenta:BasicObject" name="The high level requirements folder contains a 'High level requirements' view" id="a9e4282e-ea93-44fd-a5bd-12c17fd6f9c1" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>policies|
 if($element/..[@name='1. High level requirements']/element[@name='High level requirements' and @xsi:type='zenta:ZentaDiagramModel'])
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else 'no High level requirements view in the high level requirements folder'
 </documentation>
             </element>
             <element xsi:type="zenta:BasicObject" name="The project is in the High level requirements folder" id="b91e12e3-10bd-4e4f-b826-1645a8a4f6e5" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>policies|
 if($element/../@name='1. High level requirements')
-then ('CONSTRAINT_PASSED')
+then ()
 else concat($element/@name, ' in ', string-join($element/ancestor::folder/@name, '/'))
 
 
@@ -802,7 +802,7 @@ else concat($element/@name, ' in ', string-join($element/ancestor::folder/@name,
             <element xsi:type="zenta:BasicObject" name="The project is in the high level requirements view" id="276f83f9-d734-42db-926e-9670d4773509" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>policies|
 if($element/../element[@name='High level requirements' and @xsi:type='zenta:ZentaDiagramModel']//@zentaElement=$element/@id)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat($element/@name, ' is not in the High level requirements view')
 </documentation>
             </element>
@@ -816,14 +816,14 @@ zenta:exactlyOne(
             <element xsi:type="zenta:BasicObject" name="Policies have a folder in the high level requirements folder, which contains a view with the name of the policy" id="c93f82ab-f93f-4141-a50a-745da78f0fa7" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>high_level_requirements|
 if($doc//folder[@name='1. High level requirements']/folder[contains(@name,$element/@name)]/element[@name=$element/@name and @xsi:type='zenta:ZentaDiagramModel'])
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat('No folder for ', $element/@name, ' view in the high level requirements folder')</documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="5e745094-0092-4ee6-a097-f3593dfd0ed2" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="c93f82ab-f93f-4141-a50a-745da78f0fa7" target="107b9a83-1292-49ee-bf2f-542de02b2654"/>
             <element xsi:type="zenta:BasicObject" name="The policy is in its policy view" id="33411319-451d-4e1d-9d24-b6758dec786a" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>hugh_level_requirements|
 if($doc//element[@name=$element/@name and @xsi:type='zenta:ZentaDiagramModel']//@zentaElement=$element/@id)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat($element/@name, ' is not in its policy view')</documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="64b1a781-6cdb-4c1e-a2e4-70a890063458" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="33411319-451d-4e1d-9d24-b6758dec786a" target="107b9a83-1292-49ee-bf2f-542de02b2654"/>
@@ -833,7 +833,7 @@ for $policy in zenta:neighbours($doc,$element,'drives,2')[@xsi:type='Policy']
 return
 	if($doc//element[@name=$policy/@name]//@zentaElement=$element/@id)
 	then
-		('CONSTRAINT_PASSED')
+		()
 	else concat($element/@name, ' is not in the ', $policy/@name, ' view ')
 </documentation>
             </element>
@@ -849,7 +849,7 @@ return
 		$y in if($child/bounds/@height=-1) then 60 else $child/bounds/@height
 	return
 		if(string-length($stuff/@name) &lt; 25 or ($x - 10) * ($y - 10) div string-length($stuff/@name) > 200 )
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat($stuff/@name,' in ', $child/ancestor::element/@name, ' is too small ', ($x - 10)*($y - 10) div string-length($stuff/@name), codepoints-to-string(10))
 </documentation>
             </element>
@@ -862,7 +862,7 @@ if(
 		zenta:neighbours($doc,$element,'drives,2')[@xsi:type='Policy'],
 		zenta:neighbours($doc,$element,'drives,2;drives,2')[@xsi:type='Policy']
 	)) > 0))
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no policy found'
 </documentation>
             </element>
@@ -870,7 +870,7 @@ else 'no policy found'
               <documentation>high_level_requirements|
 if(count(zenta:neighbours($doc,$element,'drives,1')[@xsi:type='Objective' or @xsi:type='External Objective'])=0)
 then 'no Objective found'
-else ('CONSTRAINT_PASSED')
+else ()
 </documentation>
             </element>
             <element xsi:type="zenta:BasicObject" name="Objectives are inside the folder for their most important policy" id="d5b2fb34-85b5-4ffa-8ecf-44e278d5d279" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
@@ -881,7 +881,7 @@ else ('CONSTRAINT_PASSED')
         (for $objective in zenta:neighbours($doc,$element,'drives,2')
 			return contains($element/../@name,$objective/@name)) = true()
 	)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat($element, ' not in the folder of its policy')
 </documentation>
             </element>
@@ -920,7 +920,7 @@ zentatools:let(
 						else 0
 					)
 			) = 0)
-			then (''CONSTRAINT_PASSED'')
+			then ()
 			else if (sum(
 				for $step in $substeps
 					return sum(
@@ -939,8 +939,8 @@ zentatools:let(
 					)
 			) > 1 )
 			then ''too much starting steps''
-			else (''CONSTRAINT_PASSED'')
-		else (''CONSTRAINT_PASSED'')
+			else ()
+		else ()
 	'
   )
 </documentation>
@@ -950,7 +950,7 @@ zentatools:let(
 if(matches($element/@name,'^[A-Z]'))
 then
 	if (matches($element/../@name,$element/@name))
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat($element/@name,' is not in its folder')
 else
 	zentatools:let(
@@ -963,10 +963,10 @@ else
 				then if(
 						(for $p in $parent return contains($element/../@name,$p/@name))=true()
 					)
-					then (''CONSTRAINT_PASSED'')
+					then ()
 					else concat($element/@name,''('',$element/../@name,'') is not in folder for any of '', string-join($parent/@name,'',''))
 				else if($element/../@name=''others'')
-					then (''CONSTRAINT_PASSED'')
+					then ()
 					else concat($element/@name, ''is not in others folder'')
 			'
 	)	</documentation>
@@ -1012,7 +1012,7 @@ else
               <element xsi:type="zenta:BasicObject" name="if its a frontend story, then it is in its own folder, otherwise in the folder of the story, backend steps are in the backend folder" id="89163bc3-1a7e-4d0a-9963-d765ea90d643" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
                 <documentation>user_journey|
 if($element/ancestor::folder/@name='backend')
-then ('CONSTRAINT_PASSED')
+then ()
 else
 	if(count(zenta:neighbours($doc,$element,'contains,2')[@xsi:type='Process Step']) > 0)
 	then 
@@ -1026,14 +1026,14 @@ else
 			$doc//element[@id=zenta:neighbours($doc,$element,'contains,2')[@xsi:type='Process Step']/@id]/../@name
 		  ) 
         )
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else if(
 			zenta:neighbours($doc,$element,'contains,1') and 
 			contains(
 				$element/../@name,
 				$element/@name
 			))
-			then ('CONSTRAINT_PASSED')
+			then ()
 			else (
 			concat(
 				'not in story folder: ',$element/@name,
@@ -1061,7 +1061,7 @@ else
 				)[@xsi:type='Process Step']/@name
 			)
 		)
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat('story not in its folder:', $element/@name, 
 					zenta:neighbours($doc,$element,'iterates,2')/@name
 				)
@@ -1070,14 +1070,14 @@ else
               <element xsi:type="zenta:BasicObject" name="inside the folder for business objects" id="8019b11c-e5fc-47df-b103-82a913cf409a" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
                 <documentation>user_journey|
 if($element/ancestor::folder[@name='2. Business Objects'] )
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else string-join($element/ancestor::folder/concat(@name,':',@id),'/')
 </documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="is inside the process folder" id="519c2ea9-eb09-463b-9001-c2eeb01a3d72" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
                 <documentation>user_journey|
 if($element/ancestor::folder[@name='3. Process'])
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else string-join($element/ancestor::folder/@name,' , ')
 </documentation>
               </element>
@@ -1100,28 +1100,8 @@ else
 		zenta:neighboursRun1($doc,$element,'iterates,1;iterates,1;modifies,1')
 	)</documentation>
               </element>
-              <element xsi:type="zenta:BasicObject" name="done by a user using a UI Component, modifies state, done by a UI Component orchestrates a process or effectuate side effect" id="8c949a6c-39ed-43e5-839f-39e9518fc42a" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
-                <documentation>user_journey|
-if ( 
-       zenta:neighbours($doc,$element,'is done by/does,1') |
-       zenta:neighbours($doc,$element,'contains,1;is done by/does,1') 
-       
-)
-then if ( zenta:neighbours($doc,$element,'uses,1') | zenta:neighbours($doc,$element,'contains,1;uses,1'))
-  then ('CONSTRAINT_PASSED')
-  else 'done by a user but does not use UI element'
-else if (
-    zenta:neighbours($doc,$element,'modifies,1') or
-    zenta:neighbours($doc,$element,'effectuate,1') or
-    zenta:neighbours($doc,$element,'depends on,1')
-)
-then ('CONSTRAINT_PASSED')
-else if(
-    (zenta:neighbours($doc,$element,'does,2')|
-    zenta:neighbours($doc,$element,'contains,2;does,2'))/@xsi:type = 'UI Component'
-)
-then ('CONSTRAINT_PASSED')
-else 'does not modify'
+              <element xsi:type="zenta:BasicObject" name="done by a user using a UI Component, modifies state, done by a UI Component. or effectuate side effect" id="8c949a6c-39ed-43e5-839f-39e9518fc42a" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
+                <documentation>user_journey|zenta:processStepDoneByConstraint($doc,$element)
 </documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="process flows in stories" id="e09a95b5-33ae-4140-897b-0517a29c1431" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
@@ -1132,7 +1112,7 @@ if(
 	not(zenta:neighbours($doc,$element,'contains,2'))
 )
 then 'flow step outside any story'
-else ('CONSTRAINT_PASSED')
+else ()
 </documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="reads" id="e25feaf4-0e78-440a-ae79-165699040278" ancestor="188f9954-0501-432b-8022-6a49fd1cc83c">
@@ -1165,14 +1145,14 @@ if (
     zenta:neighbours($doc,$element,'contains,2;does,2')[@xsi:type='UI Component'] or
     zenta:neighbours($doc,$element,'depends on,2')[@xsi:type='Process Step'] 
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else 'does not read'
 </documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="simple business objects are named with smallCamelcase letters, complex business objects are named with CamelCase" id="c91c92da-78ea-47b2-9db8-10fc10e0274f" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
                 <documentation>user_journey|
 if ($element/@template='true')
-then ('CONSTRAINT_PASSED')
+then ()
 else if(matches($element/@name,'^[a-z ][a-zA-Z]*$'))
 then
 	if (  
@@ -1186,7 +1166,7 @@ then
 		)) > 0 
 	)
 	then concat('complex business object with simple name: ', $element/@name)
-	else ('CONSTRAINT_PASSED')
+	else ()
 else if(matches($element/@name,'^[A-Z][a-zA-Z]*'))
 	then if (
 				count((
@@ -1199,7 +1179,7 @@ else if(matches($element/@name,'^[A-Z][a-zA-Z]*'))
 				)) = 0 
 			)
 			then concat('simple business object with complex name: ', $element/@name)
-			else ('CONSTRAINT_PASSED')
+			else ()
 else concat('business object with strange name: ', $element/@name)
 </documentation>
               </element>
@@ -1210,7 +1190,7 @@ if(
 	not($element/../element[@name='others']//@zentaElement=$element/@id)
 )
 then 'not in others view'
-else ('CONSTRAINT_PASSED')
+else ()
 </documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="The story view contains all the story steps" id="2cd672d4-8692-4c4c-aa01-6aa4dd05aec2" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
@@ -1222,7 +1202,7 @@ if(
 		else false()
 	= true()
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else 'not in folder view'
 </documentation>
               </element>
@@ -1239,16 +1219,16 @@ then
 		)
 		return
 			if($view//@zentaElement = $field/@id)
-			then (''CONSTRAINT_PASSED'')
+			then ()
 			else concat($field/@name,'' not in view for '', $element/@name)
 		'
 	)
-else ('CONSTRAINT_PASSED')</documentation>
+else ()</documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="UI elements are in the view of the folder they are in" id="82be22d1-371b-4b89-bf2c-16de9c516a48" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
                 <documentation>user_journey|
 if($element/../*[@name=$element/../@name]//@zentaElement=$element/@id)
-then ('CONSTRAINT_PASSED')
+then ()
 else 'not in its folder view'
 </documentation>
               </element>
@@ -1261,7 +1241,7 @@ if($element/ancestor::folder[@name='4. User Interface'])
 		contains($element/../@name,zenta:neighbours($doc,$element,'contains,2;contains,2')/@name) or
 		contains($element/../@name,zenta:neighbours($doc,$element,'contains,2;contains,2;contains,2')/@name)
 	)
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat('not in its own or parents folder ', string-join($element/ancestor::folder/concat(@name,':',@id),'/'))
 	else concat('not in User Interface folder ', string-join($element/ancestor::folder/concat(@name,':',@id),'/'))
 </documentation>
@@ -1337,15 +1317,9 @@ if($element/ancestor::folder[@name='4. User Interface'])
                   <bounds x="960" y="444" width="217" height="165"/>
                   <sourceConnection xsi:type="zenta:Connection" id="54e0287a-e4b3-4b7e-8ede-196ba1bdf178" source="cfe6f7d9-1da6-4f54-bf7c-0614edfcb2b2" target="89403412-f003-4065-86f4-8347ca8f2703" relationship="89633c29-eb3e-4da7-8b11-67032026be10"/>
                 </child>
-                <child xsi:type="zenta:DiagramObject" id="3fe38dc9-92f5-4f97-b3b8-7c6101f1b2ff" zentaElement="eb88fe97-984c-4fd8-b44e-2964f3654fde">
-                  <bounds x="1368" y="180" width="145" height="168"/>
-                </child>
                 <child xsi:type="zenta:DiagramObject" id="9e329606-a4f4-44bf-b506-f15947fa0b07" zentaElement="2cd672d4-8692-4c4c-aa01-6aa4dd05aec2">
                   <bounds x="446" y="497" width="167" height="92"/>
                   <sourceConnection xsi:type="zenta:Connection" id="3acaff04-6a34-4708-975c-952b8fb954e9" source="9e329606-a4f4-44bf-b506-f15947fa0b07" target="19c7799d-6d58-4520-9c1e-e171364362ba" relationship="a8195710-8cb2-4f6d-94ec-8fb91f2e5d1a"/>
-                </child>
-                <child xsi:type="zenta:DiagramObject" id="1cef6b5d-2284-4fb0-bb8b-1ccded92c4e8" zentaElement="82be22d1-371b-4b89-bf2c-16de9c516a48">
-                  <bounds x="1568" y="180" height="133"/>
                 </child>
                 <child xsi:type="zenta:DiagramObject" id="4c5a3257-6123-47af-b21f-ac7309b05425" zentaElement="dcc137b8-7b0e-4e47-9d1c-265d3684e4cd">
                   <bounds x="408" y="608" width="191" height="106"/>
@@ -1385,9 +1359,6 @@ if($element/ancestor::folder[@name='4. User Interface'])
                   <bounds x="1559" y="569" width="266" height="116"/>
                   <sourceConnection xsi:type="zenta:Connection" id="1b0d15e4-e163-4c8f-a50c-ab4859659168" source="e62c64a8-bdd3-409b-999a-570312d08ea0" target="68044f4e-b089-464c-840f-1304af6a1a6e" relationship="4e04510f-7fa3-4a85-bfe4-00d11bea79b5"/>
                 </child>
-                <child xsi:type="zenta:DiagramObject" id="139f1e0f-def3-4567-9e17-acd04b1e045e" zentaElement="89d20721-06e9-424f-beee-238a5c867f4b">
-                  <bounds x="1639" y="354" width="186" height="115"/>
-                </child>
               </element>
               <element xsi:type="zenta:BasicObject" name="No flow between steps in different stories" id="dcc137b8-7b0e-4e47-9d1c-265d3684e4cd" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
                 <documentation>user_journey|
@@ -1405,7 +1376,7 @@ then concat('continued in another story:', string-join(
 			return concat('through ', $next/@name, ' to ', $story/@name)
 	,
 	', '))
-else ('CONSTRAINT_PASSED')
+else ()
 </documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="Each role have its own folder and view" id="c4acc242-a0ae-4550-a82e-d606471a2fa7" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
@@ -1414,7 +1385,7 @@ if(
 	$element/../*[.//@zentaElement=$element/@id and @name=$element/@name] and
    contains($element/../@name,$element/@name)
 )
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else 'have no view and/or folder'
 </documentation>
               </element>
@@ -1432,7 +1403,7 @@ return
 	if(
 		$doc//folder[@name = '0. Roles']/folder[@name=$element/@name]//@zentaElement = $step/@id
 	)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else (concat(
      $step/@name,
      ': not in any of ',
@@ -1457,7 +1428,7 @@ for $conn in (
 	$element/value[(@ancestorName='has' or @ancestorName='aggregates') and @direction=1]
 ) return
 	if($doc//connection[@id=$conn/@id]/..[@name=$element/ancestor::folder/@name])
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat(
 		$conn/@relationName,
 		'(',
@@ -1478,7 +1449,7 @@ for $conn in (
 	$element/value[(@ancestorName='reads' or @ancestorName='modifies') and @direction=1 and not(@derived='true')]
 ) return
 	if($doc//connection[@id=$conn/@id]/../element[@name=$element/@name])
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat(
 		$conn/@relationName,
 		'(',
@@ -1498,7 +1469,7 @@ for $conn in (
 if(count(
 	zenta:neighbours($doc,$element,'is initialized by/initializes,1')
  )&lt;2)
-then ('CONSTRAINT_PASSED')
+then ()
 else string-join(zenta:neighbours($doc,$element,'is initialized by/initializes,1')/@name,' and ')
 
 </documentation>
@@ -1512,7 +1483,7 @@ if(
    not(zenta:neighbours($doc,$element,'uses,2'))
 )
         then ('top level elements should be in their own folder, non top level elements should have a template', zenta:neighbours($doc,$element,'is a/is a template for,1'))
-        else ('CONSTRAINT_PASSED')
+        else ()
 </documentation>
               </element>
             </folder>
@@ -1761,7 +1732,7 @@ A role is assigned to human(s).
               <documentation>low_level_requirements|
 if ($element/@xsi:type!='Objective' or 
     $doc//folder[@name='5. Low level requirements']//element[@name=$element/@name and .//@zentaElement=$element/@id])
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no view found or the Objective is not in it'
 </documentation>
             </element>
@@ -1771,7 +1742,7 @@ else 'no view found or the Objective is not in it'
 for $dependent in zenta:neighbours($doc,$element,'determines,1')
 return
 	if ($doc//folder[@name='5. Low level requirements']//element[@name=$element/@name and .//@zentaElement=$dependent/@id])
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat('Not in the view: ',$dependent/@name)
 </documentation>
             </element>
@@ -1790,9 +1761,9 @@ then
 		zenta:neighbours($doc,$element,'contains,2')[@xsi:type='Process Step'] 
 	)=0)
 	then 'no process step or sub-behaviour found'
-	else ('CONSTRAINT_PASSED')
+	else ()
 else
-   ('CONSTRAINT_PASSED')</documentation>
+   ()</documentation>
             </element>
             <element xsi:type="zenta:BasicObject" name="determined by at least one Objective" id="64549231-bb38-44ff-89c4-224ed36d6d20" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>low_level_requirements|
@@ -1804,7 +1775,7 @@ if(
        zenta:neighbours($doc,$element,'iterates,1;contains,1;determines,2')
         )[@xsi:type='Objective' or @xsi:type='External Objective']
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no objective found'
 </documentation>
             </element>
@@ -1816,7 +1787,7 @@ else 'no objective found'
 		count(zenta:neighbours($doc,$element,'determines,2')) = 0 or
 		$element/../*[@name=zenta:neighbours($doc,$element,'determines,2')/@name]
 	)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat(
 		string-join($element/../@name,','),
 		'---',
@@ -1844,7 +1815,7 @@ if ($element/@xsi:type!='Objective' or
 	zenta:neighbours($doc,$element,'contains,1;determines,1')[@xsi:type='Process Step' or @xsi:type='Behaviour'],
 	zenta:neighbours($doc,$element,'drives,1;determines,1')[@xsi:type='Process Step' or @xsi:type='Behaviour'] 
      )) > 0)
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no behaviour or process step found'
 </documentation>
             </element>
@@ -2705,7 +2676,7 @@ if(
 		folder[@name=zenta:neighbours($doc,$element,'is implemented by/implements,2;contains,2')/@name]/
 		folder[@name=$element/@name]//@zentaElement=$element/@id
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else 
 	concat(
 		'at ', 
@@ -2717,18 +2688,7 @@ else
             </element>
             <element xsi:type="zenta:BasicRelationship" id="eec192ca-e7b5-4d38-9f60-ee0cfaca1dcd" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="a7530ab8-0497-48b7-a9f9-92847f4b5e7b" target="service"/>
             <element xsi:type="zenta:BasicObject" name="Its view contains the process step and its neighbourhood" id="210d8d73-81ca-40e1-ad53-659345d80518" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
-              <documentation>services|
-for $step in zenta:neighbours($doc,$element,'is implemented by/implements,2')
-	return
-		if ($doc//element[@name=$element/@name]//@zentaElement=$step/@id)
-		then 
-			for $bo in  $doc//element[@id=$step//value[not(@derived=&quot;true&quot;)]/@target]
-			return
-				if ( $doc//element[@name=$element/@name]//@zentaElement=$bo/@id )
-					then ('CONSTRAINT_PASSED')
-					else concat('not in view: ',$bo/@name)
-			
-			else concat('not in view: ',$step/@name)
+              <documentation>services|zenta:itsViewContainsTheProcessStepAndItsNeighbourhoodConstraint($doc,$element)
 </documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="076a9195-64ac-42fd-a9a9-156f6a6a312f" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="210d8d73-81ca-40e1-ad53-659345d80518" target="service"/>
@@ -2789,7 +2749,7 @@ for $bo in  $doc//element[@id=$element//value[
      ]/@target]
 return
 	if ( $doc//element[@name=$element/@name]//@zentaElement=$bo/@id )
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat('not in view: ',$bo/@name)
 </documentation>
             </element>
@@ -2804,7 +2764,7 @@ return
 			contains(@relationName,tokenize($chunk,'}')[1])
 		]
 	)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat(tokenize($chunk,'}')[1],' is not contained', codepoints-to-string(10))
 </documentation>
             </element>
@@ -2877,12 +2837,12 @@ if (
        zenta:neighbours($doc,$element,'is done by/does,1') |
        zenta:neighbours($doc,$element,'contains,1;is done by/does,1') 
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else if (count(
 	zenta:neighbours($doc,$element,'contains,1')[@xsi:type='Behaviour' or @xsi:type='Process Step']
    ) > 0 or
    $element/documentation/text())
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no behaviour or substep found'
 </documentation>
             </element>
@@ -2892,7 +2852,7 @@ if (
        zenta:neighbours($doc,$element,'is done by/does,1') |
        zenta:neighbours($doc,$element,'contains,1;is done by/does,1') 
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else if (
     count(zenta:neighbours($doc,$element,'preceeds,2')[@xsi:type='Process Step']) > 0 and 
     count(
@@ -2910,13 +2870,13 @@ then
 		zenta:neighbours($doc,$element,'inputs id of,1')
 	)[@xsi:type='Business Object']
     ) > 0)
-  then ('CONSTRAINT_PASSED')
+  then ()
   else (
 	'previous process step but no business object read: ', 
 	string-join(zenta:neighbours($doc,$element,'preceeds,2')[@xsi:type='Process Step']/concat(@name,',',@id))
 	)
 else
-  ('CONSTRAINT_PASSED')</documentation>
+  ()</documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="dcd3590e-06b4-42b5-9864-37de50d422ce" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="0c6daa63-b33e-482c-8610-d9c56a516cdb" target="83af8497-bfef-451b-9bc6-f00d58c8df6a"/>
             <element xsi:type="zenta:BasicRelationship" id="9e77deec-88d0-4544-85d7-c142594dbcb4" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="24c89149-0040-426d-9104-ffcf2cd3aedf" target="83af8497-bfef-451b-9bc6-f00d58c8df6a"/>
@@ -2977,7 +2937,7 @@ then
 		return
 			zenta:checkStepToBoName($doc,$bo)
 	)[.!='pass']
-else ('CONSTRAINT_PASSED')</documentation>
+else ()</documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="c37f84d8-d6a4-4632-b966-6cdf7f597b99" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="2a22742e-fba4-4c39-abff-73c2debab480" target="83af8497-bfef-451b-9bc6-f00d58c8df6a"/>
             <element xsi:type="zenta:BasicObject" name="Business object to business object connections should specify representation, and for aggregates orderedness" id="865a75be-ee52-4d44-98a3-6f413c70f1fb" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
@@ -2985,7 +2945,7 @@ else ('CONSTRAINT_PASSED')</documentation>
 (for $bo in $element/value[not(@derived='true') and (@ancestorName='has' or @ancestorName='aggregates') and @direction=1]
 	return
 		if(matches($bo/@name,'^[a-z ]*$'))
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else zenta:checkBoToBoName($doc,$bo)
 	)[.!='pass']
 </documentation>
@@ -3090,7 +3050,7 @@ if(
   matches($element/@name,'^[a-z]')
  )
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else zenta:exactlyOne(
 	zenta:neighbours($doc,$element,'contains,2')[@xsi:type='Package'],
 	'no package found')</documentation>
@@ -3106,7 +3066,7 @@ if(count(
 	zenta:neighbours($doc,$element,'contains,1')[@xsi:type='Package']
 ) = 0)
 then 'no package found'
-else ('CONSTRAINT_PASSED')
+else ()
 </documentation>
               <property key="fillColor"/>
               <property key="elementShape"/>
@@ -3132,7 +3092,7 @@ zenta:exactlyOne(
             <element xsi:type="zenta:BasicObject" name="appears in Application Structure view" id="6549c67a-dd03-40b7-bfe7-bed4e631d323" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>application_structure|
 if($doc//folder[@name='7. Low Level Design']/element[@name='Application Structure']//@zentaElement=$element/@id)
-then ('CONSTRAINT_PASSED')
+then ()
 else 'not in the view'</documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="efa8795e-2b62-49df-a4a7-df98d3ae9fea" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="6549c67a-dd03-40b7-bfe7-bed4e631d323" target="1fd2be20-d3ab-4f28-9171-73ef55961bd5"/>
@@ -3144,7 +3104,7 @@ if(
 then for $content in zenta:neighbours($doc,$element,'contains,1')
 	return
 		if ($doc//folder[@name='7. Low Level Design']//element[@name=$element/@name]//@zentaElement=$content/@id)
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat($content/@name,' not in the view ')
 else 'not in its folder'</documentation>
             </element>
@@ -3290,7 +3250,7 @@ then for $artifact in (
 		zenta:neighbours($doc,$element,'contains,1;has an example as/is an example of,2')
 	)
 	return if ($element/../element[@name=../@name]//@zentaElement = $artifact/@id)
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat(' not in the view: ',$artifact/@name,'; ') 
 else concat('folderr: ',string-join($element/ancestor::folder/@name,'/'))
 </documentation>
@@ -3310,7 +3270,7 @@ for $artifact in (
 			zenta:neighbours($doc,$artifact,'aggregates,1')
 	)
 	return if ($element/..//@zentaElement = $dependent/@id)
-		then ('CONSTRAINT_PASSED')
+		then ()
 		else concat(' not in the view: ',$dependent/@name,'; ') 
 </documentation>
             </element>
@@ -3318,14 +3278,14 @@ for $artifact in (
             <element xsi:type="zenta:BasicObject" name="Its view contains the package of it" id="871e8704-32b1-4c9a-b9ed-972852185088" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>data_structures|
 if ($element/..//@zentaElement = zenta:neighbours($doc,$element,'contains,2')/@id)
-then ('CONSTRAINT_PASSED')
+then ()
 else concat('not in view ', $element/@name,': ', string-join(zenta:neighbours($doc,$element,'contains,2')/@name,', '))</documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="bd0a9eaf-25c1-4896-9b17-6733a4011d27" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="871e8704-32b1-4c9a-b9ed-972852185088" target="9ec42823-7056-4e73-b1f4-600a066c8d88"/>
             <element xsi:type="zenta:BasicObject" name="is in the same folder as its test data" id="735b2b89-6ec4-42e9-b7e4-8548a9048b2e" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>data_structures|
 if($element/../element/@id = zenta:neighbours($doc,$element,'contains,2')/@id)
-then ('CONSTRAINT_PASSED')
+then ()
 else concat('in ',string-join($element/ancestor::folder/@name,'/'))</documentation>
             </element>
             <element xsi:type="zenta:BasicRelationship" id="96bb8157-ebf1-43db-a7e7-0998366a1453" ancestor="306ff791-4afd-4ccf-b09f-b9ee0db6b1a2" source="735b2b89-6ec4-42e9-b7e4-8548a9048b2e" target="ffbe5058-5089-4c5a-965d-e996df089f8e"/>
@@ -3333,7 +3293,7 @@ else concat('in ',string-join($element/ancestor::folder/@name,'/'))</documentati
               <documentation>data_structures|
 if ($element/@xsi:type='External type')
 then
-  ('CONSTRAINT_PASSED')
+  ()
 else
   if(count((
 		  zenta:neighbours($doc,$element,'is a/is the type of,1'),
@@ -3342,7 +3302,7 @@ else
 		  zenta:neighbours($doc,$element,'has an example as/is an example of,2;is a/is the type of,1')
         )) > 0)
    then
-        ('CONSTRAINT_PASSED')
+        ()
    else
 		'no type found'
 </documentation>
@@ -3361,7 +3321,7 @@ if (
    zenta:neighbours($doc,$element,'has an example as/is an example of,2')[
 		(@xsi:type='Business Object' and matches(@name,'[A-Z]')) or @xsi:type='Parameter'] 
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else 'cannot construct it'
 </documentation>
             </element>
@@ -3380,14 +3340,14 @@ if ( matches($element/@name,'^[a-z][a-zA-Z]*$'))
 	then if(
 		zenta:neighbours($doc,$element,'has an example as/is an example of,1')[@xsi:type='Test Artifact' and @name=zenta:capitalSneakCase($element/@name)]
 	)
-	then ('CONSTRAINT_PASSED')
+	then ()
 		else concat('no test artifact named ', zenta:capitalSneakCase($element/@name))
 else if(
 		zenta:neighbours($doc,$element,'has an example as/is an example of,1')[@xsi:type='Test Data' and
                                    @name=zenta:testDataName($element/@name) or
                                    @name=zenta:testDataName(replace($element/@name, 's$', ''))]
 	)
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat('no test data', zenta:testDataName($element/@name))
 </documentation>
             </element>
@@ -3411,7 +3371,7 @@ zenta:neighboursRun1($doc,$element,'has an example as/is an example of,2')[@xsi:
             <element xsi:type="zenta:BasicObject" name="is an example of a Business Object Field or parameter" id="cd077259-127c-4997-82ae-f9808af60668" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
               <documentation>data_structures|
 if ( count(zenta:neighbours($doc,$element,'has an example as/is an example of,2')[@xsi:type='Business Object'  or @xsi:type='Field' or @xsi:type='Parameter' or @xsi:type='Path parameter'])  > 0)
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no reason found'
 </documentation>
             </element>
@@ -3558,13 +3518,13 @@ if(
 	) = 0
 ) 
 then 'no behaviour found'
-else ('CONSTRAINT_PASSED')
+else ()
 </documentation>
               </element>
               <element xsi:type="zenta:BasicObject" name="have constants" id="dc5f0c92-8e08-41f4-b7d3-7157d021676b" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
                 <documentation>data_structures|
 if(zenta:neighbours($doc,$element,'contains,1'))
-then ('CONSTRAINT_PASSED')
+then ()
 else 'no constants'
 </documentation>
               </element>
@@ -3576,13 +3536,13 @@ if(
    not(contains($element/@name,'TestData')) or
    $element/..[contains(@name,' (design)')]
 )
- then ('CONSTRAINT_PASSED')
+ then ()
  else ('folder name does not contain (design), '),
 if($element/..[
                 contains(@name, tokenize($element/@name,'TestData')[1]) and
             contains(@name, tokenize(zenta:neighbours($doc,$element,'aggregates,1')/@name,'TestData')[1])
  ])
- then ('CONSTRAINT_PASSED')
+ then ()
  else (
     'folder name does not contain ',
      tokenize($element/@name,'TestData')[1],
@@ -3592,7 +3552,7 @@ if($element/..[
 if(
         $element/../../@name=zenta:neighbours($doc,$element,'contains,2')/@name
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else (concat(
   'folder''s parent name is not ',
   zenta:neighbours($doc,$element,'contains,2')/@name,
@@ -3601,7 +3561,7 @@ else (concat(
 if(
         $element/../element[@name=../@name]//@zentaElement=$element/@id
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else (concat(
   'TestData folder does not contain a view named ',
   $element/../@name,
@@ -3610,7 +3570,7 @@ else (concat(
 if(
         $element/ancestor::folder[@name='7. Low Level Design'] 
 )
-then ('CONSTRAINT_PASSED')
+then ()
 else (
  'this whole thing is not under 7. Low Level Design'
 ),
@@ -3619,7 +3579,7 @@ for $artifact in (
         )
         return if ($element/..//@zentaElement = $artifact/@id)
                 then if($element/../element/@id = $artifact/@id)
-                        then ('CONSTRAINT_PASSED')
+                        then ()
                         else concat(' not in the folder: ',$artifact/@name,'; ')
                 else concat(' not in the view: ',$artifact/@name,'; ')
 </documentation>
@@ -4002,7 +3962,7 @@ In a model view it is a good practice to grey out elements which are outside of 
 for $deprecated in $doc//(element|connection)[contains(@name,'deprecated')]
 return
 	if ($deprecated/../@name='Deprecated objects')
-	then ('CONSTRAINT_PASSED')
+	then ()
 	else concat($deprecated/@name,codepoints-to-string(10))
 </documentation>
             </element>
@@ -4014,7 +3974,7 @@ for $deprecated in $doc//*[contains(@name,'deprecated')],
 return
 	if ($child/..[@name!='Deprecated objects'])
 	then concat($child/@name,'(',$child/@id,':',$doc//element[@id=$child/@source]/@name,'-}',$doc//element[@id=$child/@target]/@name, '):',$deprecated/@name,' in ', string-join($child/ancestor::folder/@name,'/'),codepoints-to-string(10))
-	else ('CONSTRAINT_PASSED')
+	else ()
 </documentation>
             </element>
             <element xsi:type="zenta:BasicObject" name="Deprecated objects should not be in any view" id="952a7b72-30f1-484d-84dc-fb246309d058" ancestor="bb3cdf1a-0bc1-4772-8913-d0567ef7ab1f">
@@ -4937,6 +4897,7 @@ A UI component can be modeled on a state as well. In that case the state should 
                 <bounds x="355" y="151" width="198"/>
                 <sourceConnection xsi:type="zenta:Connection" id="544f490f-d2bd-4ead-8379-2e9035f5a812" source="4d50e507-c2d4-4f50-9aa8-2a56d2a0e035" target="77ca8995-1147-4424-a44b-9fd404d800c2" relationship="bbc46885-c885-4376-b591-da3ac084f6a1"/>
                 <sourceConnection xsi:type="zenta:Connection" id="e9825d32-0cd0-45da-8fdf-43005486a055" source="4d50e507-c2d4-4f50-9aa8-2a56d2a0e035" target="572ee059-187c-41f9-b58c-21f62e9b796b" relationship="540ea391-c89d-4f1a-9754-feb32ed339db"/>
+                <sourceConnection xsi:type="zenta:Connection" id="d966ed5f-bc9a-4900-a36a-02416cd8f137" source="4d50e507-c2d4-4f50-9aa8-2a56d2a0e035" target="91e040ad-542c-4821-8626-700f27562ce9" relationship="891cfcfc-095e-4094-b01a-005a6fc55448"/>
               </child>
               <child xsi:type="zenta:DiagramObject" id="77ca8995-1147-4424-a44b-9fd404d800c2" targetConnections="544f490f-d2bd-4ead-8379-2e9035f5a812" zentaElement="5dd77d02-cc2e-4071-b132-6db1af77371c">
                 <bounds x="287" y="432" width="301"/>
@@ -4966,7 +4927,7 @@ A UI component can be modeled on a state as well. In that case the state should 
               <child xsi:type="zenta:DiagramObject" id="a2e5d931-7752-467b-ae66-623e7d46dc37" targetConnections="b3c4cccd-12e2-4ced-8079-3cdba6c08625 3249f3f1-cb13-46e2-ab75-800d8d958f38" zentaElement="12586a68-8071-4c94-8765-6ec5b18e6334">
                 <bounds x="1077" y="507" width="220"/>
               </child>
-              <child xsi:type="zenta:DiagramObject" id="91e040ad-542c-4821-8626-700f27562ce9" zentaElement="6ad48e54-5ba1-42c5-a7c2-2178aa8422f0">
+              <child xsi:type="zenta:DiagramObject" id="91e040ad-542c-4821-8626-700f27562ce9" targetConnections="d966ed5f-bc9a-4900-a36a-02416cd8f137" zentaElement="6ad48e54-5ba1-42c5-a7c2-2178aa8422f0">
                 <bounds x="1078" y="297" width="-1" height="-1"/>
                 <sourceConnection xsi:type="zenta:Connection" id="3249f3f1-cb13-46e2-ab75-800d8d958f38" source="91e040ad-542c-4821-8626-700f27562ce9" target="a2e5d931-7752-467b-ae66-623e7d46dc37" relationship="f73a810f-3abc-4973-bd0e-cab782ac8405"/>
               </child>
@@ -4975,6 +4936,7 @@ A UI component can be modeled on a state as well. In that case the state should 
             <element xsi:type="zenta:BasicRelationship" id="bbc46885-c885-4376-b591-da3ac084f6a1" ancestor="3dd7b0b1-bd9f-4a13-b5d9-9db0200af5b8" source="d135fa06-a3f9-4a92-98c2-404d38fc79bd" target="5dd77d02-cc2e-4071-b132-6db1af77371c"/>
             <element xsi:type="zenta:BasicRelationship" id="540ea391-c89d-4f1a-9754-feb32ed339db" ancestor="64fbbfdf-420d-4756-821b-54fab6e7a8d2" source="d135fa06-a3f9-4a92-98c2-404d38fc79bd" target="e6c7bf2c-f44f-4468-9276-d1f6f48de621"/>
             <element xsi:type="zenta:BasicRelationship" id="b5dae11c-09d3-44a8-b56a-982654203a9f" ancestor="b9d3c41e-c415-4cf3-83b0-b54783f55879" source="5dd77d02-cc2e-4071-b132-6db1af77371c" target="12586a68-8071-4c94-8765-6ec5b18e6334"/>
+            <element xsi:type="zenta:BasicRelationship" id="891cfcfc-095e-4094-b01a-005a6fc55448" ancestor="b6f9974a-1393-4848-a6f1-febcd90c0de1" source="d135fa06-a3f9-4a92-98c2-404d38fc79bd" target="6ad48e54-5ba1-42c5-a7c2-2178aa8422f0"/>
           </folder>
           <folder name="IsThisHeroSelectedForEditingService" id="508003ac-15e7-4b66-9dca-76de28f9879e">
             <element xsi:type="zenta:ZentaDiagramModel" name="IsThisHeroSelectedForEditingService" id="6cac69e7-2816-40d3-8cfa-ae487832db05">
@@ -5380,17 +5342,17 @@ A UI component can be modeled on a state as well. In that case the state should 
       <element xsi:type="zenta:BasicRelationship" id="067b7690-58c7-4593-ad51-560c488064c6" ancestor="8e65d98a-577b-419b-863b-e023eb12d940" source="58a297eb-3378-4800-90d8-778c849b91d3" target="bd73bbee-0e0a-457d-874a-e357c5a6119e"/>
     </folder>
     <folder name="1. High level requirements" id="0549ef84-b245-4f2a-9004-8f4588654e93">
-      <folder name="Supports angulartest-frontend" id="7ad039e3-8ba5-4112-9f77-64d5d562c9e7">
-        <element xsi:type="zenta:ZentaDiagramModel" name="Supports angulartest-frontend" id="eb96c1c2-3840-448b-96ff-2b07d860e3d9">
+      <folder name="Provides services to external systems" id="7ad039e3-8ba5-4112-9f77-64d5d562c9e7">
+        <element xsi:type="zenta:ZentaDiagramModel" name="Provides services to external systems" id="eb96c1c2-3840-448b-96ff-2b07d860e3d9">
           <child xsi:type="zenta:DiagramObject" id="26aca16e-b3e5-4caa-9ca8-2a7cfb731e08" zentaElement="bde39a80-b8ec-4c2b-bbb6-46fe5c86a79c">
-            <bounds x="617" y="163" width="224"/>
+            <bounds x="617" y="163" width="248" height="90"/>
             <sourceConnection xsi:type="zenta:Connection" id="f0a1619e-64c7-4168-8214-bddb4af167da" source="26aca16e-b3e5-4caa-9ca8-2a7cfb731e08" target="e1a7b4d3-5d79-4f3d-9370-5ef83d3cadad" relationship="ad2c9d50-388d-44ca-9590-ccd2ef9ec783"/>
           </child>
           <child xsi:type="zenta:DiagramObject" id="e1a7b4d3-5d79-4f3d-9370-5ef83d3cadad" targetConnections="f0a1619e-64c7-4168-8214-bddb4af167da" zentaElement="5977e4d9-86b3-473a-856e-9d5681f76e56">
             <bounds x="496" y="323" width="393" height="86"/>
           </child>
         </element>
-        <element xsi:type="zenta:BasicObject" name="Supports angulartest-frontend" id="bde39a80-b8ec-4c2b-bbb6-46fe5c86a79c" ancestor="107b9a83-1292-49ee-bf2f-542de02b2654"/>
+        <element xsi:type="zenta:BasicObject" name="Provides services to external systems" id="bde39a80-b8ec-4c2b-bbb6-46fe5c86a79c" ancestor="107b9a83-1292-49ee-bf2f-542de02b2654"/>
         <element xsi:type="zenta:BasicObject" name="Supports synchronisation of data between the frontend and backend, backend being the master" id="5977e4d9-86b3-473a-856e-9d5681f76e56" ancestor="e7c7a3b9-cc91-4d99-854a-d5eab68efd7c"/>
         <element xsi:type="zenta:BasicRelationship" id="74ef085e-bb4b-47e1-9078-55dc4b512f4f" ancestor="22eea5e8-d46b-4ac4-9621-7bbf22994de4" source="58a297eb-3378-4800-90d8-778c849b91d3" target="bde39a80-b8ec-4c2b-bbb6-46fe5c86a79c"/>
         <element xsi:type="zenta:BasicRelationship" id="ad2c9d50-388d-44ca-9590-ccd2ef9ec783" ancestor="1a16ba6a-0441-4e7d-8f9c-f6394fcdd10b" source="bde39a80-b8ec-4c2b-bbb6-46fe5c86a79c" target="5977e4d9-86b3-473a-856e-9d5681f76e56"/>
