@@ -1,6 +1,5 @@
 <checks>
 <!--
-		stage/@value='services' or
 		stage/@value='clarifications' or
 -->
 <check
@@ -16,6 +15,7 @@
 		stage/@value='application_structure' or
 		stage/@value='data_structures' or
 		stage/@value='milestones' or
+		stage/@value='services' or
 		stage/@value='deprecation' 
 	]"
       	modelnamepath="@type"
