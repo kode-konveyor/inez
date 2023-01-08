@@ -16,3 +16,11 @@ inputs/codingrules:
 inputs/androidplatform:
 	mkdir -p www && cordova platform rm android && cordova platform add android && cordova prepare android
 
+target/publish: target/build $(BEFORE_PUBLISH)
+	mv www shippable
+	mv reports shippable
+	mv platforms/android/app/build/outputs/apk/debug/app-debug.apk shippable/$(REPO_NAME).apk
+	mv target/generated shippable
+	mv model shippable
+	echo "APK must have be signed"
+	touch target/publish

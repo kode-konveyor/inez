@@ -8,7 +8,8 @@
   "reporters": [
     "progress",
     "clear-text",
-    "html"
+    "html",
+    "json"
   ],
   "concurrency": 2,
   "coverageAnalysis": "perTest"
