@@ -62,7 +62,7 @@ target/typescript_build target/public: target/typescript_qa
 	cp -r www target/public
 	touch target/typescript_build
 
-target/deploy_war:
+target/deploy_war: target/runApache
 	deploywar
 	touch target/deploy_war
 
