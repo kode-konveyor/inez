@@ -35,14 +35,14 @@ class ListHeroesControllerTest
   @Test
   @DisplayName("returns a list")
   void test() {
-    final List<Hero> result = listHeroesController.call();
+    final List<HeroEntity> result = listHeroesController.call();
     assertNotNull(result);
   }
 
   @Test
   @DisplayName("the list of heroes are from the database")
   void test1() {
-    final List<Hero> result = listHeroesController.call();
-    assertEquals(result.get(0).id, "12");
+    final List<HeroEntity> result = listHeroesController.call();
+    assertEquals(result.get(0).id, 12);
   }
 }

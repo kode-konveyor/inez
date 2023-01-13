@@ -1,0 +1,16 @@
+set -x
+. /usr/local/toolchain/tools/environment
+xfile=$(echo /tmp/.X11-unix/X$(echo $DISPLAY|sed 's/://'))
+if [ -a $xfile ]
+then
+	echo skipping X server
+else
+    Xtightvnc :0 -geometry 1024x768&
+fi
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+if [ -f requirements.txt ]
+then
+    pip3 install -r requirements.txt
+    /usr/local/toolchain/tools/createPypirc
+fi
+set +x

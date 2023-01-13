@@ -1,0 +1,5 @@
+<Context>
+    <Environment name="com.kodekonveyor.repo.jdbcUri" value="jdbc:hsqldb:mem:repo" type="java.lang.String"/>
+    <Environment name="com.kodekonveyor.repo.jdbcDriver" value="org.hsqldb.jdbcDriver" type="java.lang.String"/>
+</Context>
+

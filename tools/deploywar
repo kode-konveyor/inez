@@ -1,0 +1,5 @@
+#!/bin/bash
+set -xe
+sudo cp etc/angulartest-server.xml /etc/tomcat9/Catalina/localhost/angulartest-server.xml
+sudo cp target/*.war /var/lib/tomcat9/webapps/angulartest-server.war
+

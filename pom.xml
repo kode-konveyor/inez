@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.kodekonveyor</groupId>
-	<artifactId>server</artifactId>
+	<artifactId>angulartest-server</artifactId>
 	<version>0.0.1-feature_test.fc52c84</version>
 	<packaging>war</packaging>
 	<name>angulartest</name>
@@ -102,6 +102,7 @@
 					<test>**/*Test.java</test>
 				</configuration>
 			</plugin>
+<!--
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<executions>
@@ -167,9 +168,22 @@
 					</execution>
 				</executions>
 			</plugin>
+-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+        <configuration>
+            <webResources>
+              <resource>
+                <directory>${project.build.directory}</directory>
+                <targetPath>WEB-INF/classes</targetPath>
+                <includes>
+                  <include>public/*</include>
+                  <include></include>
+                </includes>
+              </resource>
+            </webResources>
+          </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -221,7 +235,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -275,7 +289,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
+				<version>3.4.1</version>
 				<reportSets>
 					<reportSet>
 						<id>production-javadoc</id>
@@ -299,8 +313,7 @@
 						<id>test-javadoc</id>
 						<configuration>
 							<doclet>com.github.markusbernhardt.xmldoclet.XmlDoclet</doclet>
-							<additionalparam> -d ${project.build.directory}/test -filename
-								javadoc.xml
+							<additionalparam> -d ${project.build.directory}/test -filename javadoc.xml
 							</additionalparam>
 							<useStandardDocletOptions>false</useStandardDocletOptions>
 							<docletArtifact>
