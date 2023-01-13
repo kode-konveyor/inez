@@ -4,14 +4,14 @@ import java.util.List;
 
 public class HeroTestData {
 
-  static Hero get() {
-    final Hero hero = new Hero();
-    hero.id = "12";
+  static HeroEntity get() {
+    final HeroEntity hero = new HeroEntity();
+    hero.id = Long.valueOf(12);
     hero.name = "joe";
     return hero;
   };
 
-  static List<Hero> list() {
+  static List<HeroEntity> list() {
     return List.of(get());
   }
 }

@@ -1,0 +1,4 @@
+#!/bin/bash
+ps ax |grep apache|grep -v grep|awk '{print $1}'|xargs kill -9
+rm -f shippable/apache.*
+sudo kill $(ps ax|grep "java.*catalina.home"|grep -v grep|awk '{print $1}')

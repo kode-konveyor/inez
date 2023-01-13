@@ -33,12 +33,12 @@
       	/>
 <check
 		title="Unimplemented behaviours"
-      	modelfile="shippable/behaviours.xml"
+      	modelfile="target/behaviours.xml"
       	modelbasepath="//task[@status='open' or @status='should-make-issue']"
       	modelnamepath="concat(@service,'/',@behaviour)"
       	modelvaluepath="''"
         modelerrorid="zenta:unimplementedErrorId($error)"
-      	inputfile="shippable/behaviours.xml"
+      	inputfile="target/behaviours.xml"
       	inputbasepath="//nonexistent"
       	inputnamepath=""
       	inputvaluepath=""
