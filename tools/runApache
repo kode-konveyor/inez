@@ -1,0 +1,31 @@
+#!/bin/bash
+set -xe
+if ps ax|grep -v grep |grep "apache2 -f /build/etc/apache2.conf"
+then
+	exit
+fi
+mkdir -p target
+rm -f target/apache.pid
+cp etc/login.shtml target
+sofar="/"
+for i in $(pwd|sed 'sA/A Ag')
+do
+	sofar=$sofar/$i
+	echo $sofar
+	sudo chgrp www-data $sofar
+	sudo chmod g+rx $sofar
+done
+openssl req -x509 -newkey rsa:2048 -keyout target/key.withpass.pem -out target/server.pem -days 365 -subj "/C=EE/ST=Haarju/L=Pudisoo/O=Kode Konveyor/OU=Testing/CN=localhost" -passout pass:1234
+openssl rsa -in target/key.withpass.pem -out target/key.pem -passin pass:1234
+export APACHE_RUN_DIR=/var/lib/apache2
+export ETC_DIR=$(pwd)/etc
+export DOCUMENT_ROOT=$(pwd)/target
+export APACHE_PID_FILE=${DOCUMENT_ROOT}/apache.pid
+apache2 -f $(pwd)/etc/apache2.conf
+
+
+export CATALINA_HOME=/usr/share/tomcat9
+export CATALINA_BASE=/var/lib/tomcat9
+export CATALINA_TMPDIR=/tmp
+export JAVA_OPTS=-Djava.awt.headless=true
+sudo -E /usr/libexec/tomcat9/tomcat-start.sh&
