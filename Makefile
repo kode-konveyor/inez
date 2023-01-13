@@ -22,6 +22,7 @@ target/documentation: target/java_documentation target/typescript_documentation 
 	echo "documentation NOTIMPLEMENTED">target/documentation
 
 target/android_app: target/typescript_qa target/androidplatform
+	cordova telemetry off
 	cordova build android
 	mv platforms/android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
