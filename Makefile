@@ -75,7 +75,11 @@ target/typescript_source_generation: model.rich
 target/java_source_generation: model.rich
 	echo "java_source_generation NOTIMPLEMENTED">target/java_source_generation
 
-target/model_documentation: model.compiled
+target/x_runs:
+	tools/prepare
+	touch target/x_runs
+
+target/model_documentation: target/x_runs model.compiled
 	mv model target
 	touch target/model_documentation
 
