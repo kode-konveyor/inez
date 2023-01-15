@@ -1,0 +1,14 @@
+#!/bin/bash
+export REPO_NAME=$(repofullname | sed 'sA.*/AA')
+sed -i -zE 's~(<projectDescription>[^\n]*[\n][^\n]*)<name>[^\n]*</name>~\1<name>'$REPO_NAME'</name>~' .project
+sed -i 's~<name>.*</name>~<name>'$REPO_NAME'</name>~' config.xml
+sed -i 's~AuthFormLoginSuccessLocation "/.*/member/user"~AuthFormLoginSuccessLocation "/'${REPO_NAME}'/member/user"~' etc/apache2.conf
+sed -i 's~ProxyPass /.* http://localhost:8080/.*~ProxyPass /'${REPO_NAME}' http://localhost:8080/'${REPO_NAME}'~' etc/apache2.conf
+sed -i 's~<LocationMatch /.*\.\*>~<LocationMatch /'${REPO_NAME}'.*>~' etc/apache2.conf
+sed -i 's~<LocationMatch /.*/member\.\*>~<LocationMatch /'${REPO_NAME}'/member.*>~' etc/apache2.conf
+sed -i 's~<Directory ${DOCUMENT_ROOT}/.*/member>~<Directory ${DOCUMENT_ROOT}/'${REPO_NAME}'/member>~' etc/apache2.conf
+sed -i 's~<artifactId>.*-server</artifactId></name><!-- project name -->~<artifactId>'${REPO_NAME}'-server</artifactId></name><!-- project name -->~' pom.xml
+sed -i 's~<name>.*</name><!-- project name -->~<name>'${REPO_NAME}'</name><!-- project name -->~' pom.xml
+sed -i 's~<url>http://github.com/kode-konveyor/.*</url></name><!-- project name -->~<url>http://github.com/kode-konveyor/'${REPO_NAME}'</url></name><!-- project name -->~' pom.xml
+sed -i -zE 's~("name":[^\n]*").*(",\n[^\n]*"version":)~\1'${REPO_NAME}'\2~' package.json
+sed -i -zE 's~("projects":[^\n]*\n[^n"]*")[^"]*(":)~\1'${REPO_NAME}'\2~;s~"browserTarget": "[^:]*:build~"browserTarget": "'${REPO_NAME}':build~g' angular.json

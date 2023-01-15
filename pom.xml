@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.kodekonveyor</groupId>
-	<artifactId>angulartest-server</artifactId>
-	<version>0.0.1-feature_test.fc52c84</version>
+	<artifactId>angulartest-server</artifactId></name><!-- project name -->
+	<version>1.0-2-gb9eda27</version><!--package version -->
 	<packaging>war</packaging>
-	<name>angulartest</name>
+	<name>angulartest</name><!-- project name -->
 	<description>Backend for angular test frontend</description>
-	<url>http://github.com/kode-konveyor/angulartest</url>
+	<url>http://github.com/kode-konveyor/angulartest</url></name><!-- project name -->
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

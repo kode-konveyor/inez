@@ -1,6 +1,6 @@
 {
-  "name": "hello-app-world",
-  "version": "0.0.0",
+  "name": "angulartest",
+  "version": "1.0-2-gb9eda27",
   "main": "index.js",
   "scripts": {
     "all": "npx eslint . && npm run test && npm run mutate && npm run build && cordova build android",

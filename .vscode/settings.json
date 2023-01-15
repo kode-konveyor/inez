@@ -3,5 +3,15 @@
     "javaPMD.rulesets": [
         "pmd.xml"
     ],
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "[Makefile]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false
+    },
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false
+    }
+}
+
 }

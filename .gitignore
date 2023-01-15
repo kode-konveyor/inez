@@ -65,3 +65,5 @@ Thumbs.db
 /model.stubs
 /model.testdata
 /model/
+.sts4-cache/
+hs_err_pid*.log

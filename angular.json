@@ -6,7 +6,7 @@
     "analytics": false
   },
   "projects": {
-    "hello-app-world": {
+    "angulartest": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "hello-app-world:build:production"
+              "browserTarget": "angulartest:build:production"
             },
             "development": {
-              "browserTarget": "hello-app-world:build:development"
+              "browserTarget": "angulartest:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hello-app-world:build"
+            "browserTarget": "angulartest:build"
           }
         },
         "test": {
