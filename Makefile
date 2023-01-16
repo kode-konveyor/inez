@@ -53,10 +53,6 @@ target/typescript_dependencies:
 	npm install
 	touch target/typescript_dependencies
 
-target/java_qa: target/java_source_generation target/mutation_check
-	touch target/java_qa
-
-
 target/typescript_build: target/version_updated target/typescript_qa
 	npm run build
 	cp -r www target/public
@@ -66,8 +62,8 @@ target/deploy_war: target/runApache target/war_built
 	deploywar $(REPO_NAME) $(VERSION)
 	touch target/deploy_war
 
-target/end_to_end_test: target/runtomcat target/deploy_war
-	echo "end_to_end_test NOTIMPLEMENTED">target/end_to_end_test
+#target/end_to_end_test: target/runtomcat target/deploy_war
+#	echo "end_to_end_test NOTIMPLEMENTED">target/end_to_end_test
 
 target/typescript_source_generation: model.rich
 	echo "typescript_source_generation NOTIMPLEMENTED">target/typescript_source_generation
@@ -90,16 +86,20 @@ target/runApache:
 	runApache
 	touch target/runApache
 
-target/runtomcat: target/runApache target/deploy_war
-	tomcat
-	touch target/runtomcat
+#target/runtomcat: target/runApache target/deploy_war
+#	tomcat
+#	touch target/runtomcat
 
-target/mutation_check target/test/javadoc.xml target/war_built: target/version_updated inputs/codingrules target/typescript_build
+target/java_qa: target/mutation_check target/end_to_end_test target/test/javadoc.xml
+	echo "java_qa NOTIMPLEMENTED">target/java_qa
+
+target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation
 	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
 	cp target/pit-reports/$$(basename $$(ls -d target/pit-reports/*|tail -1))/mutations.xml target/mutations.xml
 	mkdir -p target/test
 	cp ./target/site/testapidocs/javadoc.xml target/test/javadoc.xml
 	touch target/mutation_check
+	touch target/end_to_end_test
 	touch target/war_built
 
 #export MODEL_BASENAME=model

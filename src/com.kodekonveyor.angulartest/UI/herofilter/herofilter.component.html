@@ -1,5 +1,5 @@
-<div class="herofilter" *ngIf="heroFilterRepository.heroFilter">
-  <div class=" herofilter-filterstring">
-    <input [(ngModel)]="heroFilterRepository.heroFilter.filterString">
+<div id="{{id}}" class="herofilter" *ngIf="heroFilterRepository.heroFilter">
+  <div id="{{id}}-filterstring" class=" herofilter-filterstring">
+    <input id="{{id}}-filterstring-input" [(ngModel)]="heroFilterRepository.heroFilter.filterString">
   </div>
 </div>

@@ -11,6 +11,7 @@ export class HeroesComponent implements HeroesComponentModel, OnInit {
 
   initializeStatesService: InitializeStatesService;
   heroesRepository: HeroesRepository;
+  id: string = "heroes";
 
 
   constructor(initializeStatesService: InitializeStatesService, heroesRepository: HeroesRepository) {
@@ -21,5 +22,6 @@ export class HeroesComponent implements HeroesComponentModel, OnInit {
   ngOnInit(): void {
     this.initializeStatesService.run(this)
   }
+
 }
 

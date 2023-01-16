@@ -2,7 +2,6 @@ package com.kodekonveyor.authentication;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -19,27 +18,22 @@ import com.kodekonveyor.annotations.InterfaceClass;
 
 @InterfaceClass
 @ExcludeFromCodeCoverage("interface to underlying framework")
-public class RemoteAuthenticationFilter extends GenericFilterBean
-    implements Filter {
+public class RemoteAuthenticationFilter extends GenericFilterBean {
 
   @Override
   public void doFilter(
       final ServletRequest request, final ServletResponse response,
-      final FilterChain filterChain
-  ) throws IOException, ServletException {
+      final FilterChain filterChain) throws IOException, ServletException {
 
-    final Logger loggerService =
-        LoggerFactory.getLogger(RemoteAuthenticationService.class);
-    final UserEntityRepository userEntityRepository =
-        getWebApplicationContext(request).getBean(UserEntityRepository.class);
+    final Logger loggerService = LoggerFactory.getLogger(RemoteAuthenticationService.class);
+    final UserEntityRepository userEntityRepository = getWebApplicationContext(request)
+        .getBean(UserEntityRepository.class);
 
     new RemoteAuthenticationService(
-        userEntityRepository, loggerService
-    ).call(request, response, filterChain);
+        userEntityRepository, loggerService).call(request, response, filterChain);
   }
 
-  private WebApplicationContext
-      getWebApplicationContext(final ServletRequest request) {
+  private WebApplicationContext getWebApplicationContext(final ServletRequest request) {
     return WebApplicationContextUtils
         .getWebApplicationContext(request.getServletContext());
   }

@@ -9,6 +9,8 @@ import { HeroListComponentModel } from './HeroListComponentModel';
 })
 export class HeroListComponent implements HeroListComponentModel {
   @Input() heroes?: Heroes;
+  @Input() id!: string;
+
   selectHeroesWithMatchingNamesService: SelectHeroesWithMatchingNamesService;
 
   filterForHeroitem(heroes: Heroes): Heroes {

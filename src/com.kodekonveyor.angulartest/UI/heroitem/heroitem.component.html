@@ -1,4 +1,4 @@
-<div class="heroitem" *ngIf="hero" [class.selected]="heroitemShownAsSelected()" (click)="heroitemOnClick()">
-  <div class="heroitem-badge">{{hero.id}}</div>
-  <div class="heroitem-name">{{hero.name}}</div>
+<div id="{{id}}" class="heroitem" *ngIf="hero" [class.selected]="heroitemShownAsSelected()" (click)="heroitemOnClick()">
+  <div id="{{id}}-badge" class="heroitem-badge">{{hero.id}}</div>
+  <div id="{{id}}-name" class="heroitem-name">{{hero.name}}</div>
 </div>

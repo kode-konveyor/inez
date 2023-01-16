@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { HeroFilterRepository } from '../../repositories/HeroFilterRepository';
 import { HeroFilterComponentModel } from './HeroFilterComponentModel';
 
@@ -9,6 +9,7 @@ import { HeroFilterComponentModel } from './HeroFilterComponentModel';
 export class HeroFilterComponent implements HeroFilterComponentModel {
 
   heroFilterRepository: HeroFilterRepository;
+  @Input() id!: string;
 
   constructor(heroFilterRepository: HeroFilterRepository,) {
     this.heroFilterRepository = heroFilterRepository;

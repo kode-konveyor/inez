@@ -18,12 +18,12 @@ public class AuthenticatedUserService {
   private UserEntityRepository userEntityRepository;
 
   public UserEntity call() {
-    final String login = getNameForUser();
+    final String loginName = getNameForUser();
     loggerService
-        .info(AuthenticationConstants.LOGIN, login);
-    checkCredential(login);
+        .info(AuthenticationConstants.LOGIN, loginName);
+    checkCredential(loginName);
     final List<UserEntity> userList =
-        userEntityRepository.findByLogin(login);
+        userEntityRepository.findByLogin(loginName);
     if (userList.isEmpty())
       throw new NotLoggedInException(
           AuthenticationConstants.THIS_SHOULD_NOT_HAPPEN

@@ -21,12 +21,17 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>ch.acanda.eclipse.pmd.builder.PMDBuilder</name>
+			<name>org.springframework.ide.eclipse.boot.validation.springbootbuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>ch.acanda.eclipse.pmd.builder.PMDBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -39,12 +44,30 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1673597948574</id>
+			<id>1673881924722</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
 				<id>org.eclipse.core.resources.regexFilterMatcher</id>
-				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+				<arguments>1.0-name-matches-false-true-1.0-name-matches-false-true-1.0-name-matches-false-true-node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1673881924728</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-projectRelativePath-matches-false-true-platforms/.*</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1673881924732</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-projectRelativePath-matches-false-false-node_modules/*</arguments>
 			</matcher>
 		</filter>
 	</filteredResources>

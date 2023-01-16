@@ -11,6 +11,7 @@ import { SelectHeroForEditingService } from '../../services/SelectHeroForEditing
 export class HeroitemComponent implements HeroItemComponentModel {
 
   @Input() hero!: Hero;
+  @Input() id!: string;
 
   isThisHeroSelectedForEditingService: IsThisHeroSelectedForEditingService;
   selectHeroForEditingService: SelectHeroForEditingService;

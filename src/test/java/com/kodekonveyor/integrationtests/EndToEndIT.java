@@ -1,12 +1,10 @@
 package com.kodekonveyor.integrationtests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.IOException;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
@@ -18,33 +16,44 @@ import com.kodekonveyor.authentication.UserEntityTestData;
 @Tag("IntegrationTest")
 class EndToEndIT {
 
-  @Test
-  void seleniumTest() {
-    final String user = UserEntityTestData.LOGIN;
-    final String pass = UserEntityTestData.PASSWORD;
-    final WebDriver driver = SeleniumTestHelper.getDriver();
-    driver.get(
-        IntegrationtestsConstants.HTTPS_LOCALHOST_1443_SERVER_MEMBER_LOGIN_NEXT_SERVER_MEMBER_USER
-    );
-    final WebElement githubLoginButton =
-        SeleniumTestHelper
-            .waitFor(IntegrationtestsConstants.AUTH0_LOCK_SOCIAL_BUTTON_TEXT);
-    githubLoginButton.click();
-    final WebElement loginField =
-        SeleniumTestHelper.waitFor(IntegrationtestsConstants.LOGIN_FIELD);
-    loginField.sendKeys(user);
-    final WebElement passwordField =
-        SeleniumTestHelper.waitFor(IntegrationtestsConstants.PASSWORD_FIELD);
-    passwordField.sendKeys(pass);
-    final WebElement loginButton =
-        SeleniumTestHelper.waitFor(IntegrationtestsConstants.LOGIN_BUTTON);
-    loginButton.click();
-    final WebElement name =
-        SeleniumTestHelper.waitFor(IntegrationtestsConstants.OBJECT_BOX_STRING);
-    final String myName = name.getText();
-    assertEquals(
-        String.format(IntegrationtestsConstants.QUOTED_FORMAT, user), myName
-    );
-  }
+	private static final String ANGULARTEST_SSL_URI = "https://localhost:1443/angulartest";
+
+	@Test
+	void seleniumTest() throws IOException {
+		final SeleniumTestHelper helper = new SeleniumTestHelper();
+		login(helper);
+		final String resultingText = IntegrationtestsConstants.HERO_NAME 
+				+ IntegrationtestsConstants.ADDED_TEXT;
+
+		helper.goToPage(ANGULARTEST_SSL_URI)
+				.lookAtElement(IntegrationtestsConstants.HERO_SELECTOR)
+				.checkText(IntegrationtestsConstants.HERO_NAME)
+				.click()
+				.lookAtElement(IntegrationtestsConstants.INPUT_SELECTOR).click()
+				.checkText(IntegrationtestsConstants.HERO_NAME)
+				.enter(IntegrationtestsConstants.ADDED_TEXT)
+				.checkText(resultingText)
+				.lookAtElement(IntegrationtestsConstants.HERO_SELECTOR)
+				.checkText(resultingText);
+	}
+
+	private void login(final SeleniumTestHelper helper) throws IOException {
+		final String user = UserEntityTestData.LOGIN;
+		final String pass = UserEntityTestData.PASSWORD;
+
+		helper.goToPage(
+				IntegrationtestsConstants.HTTPS_LOCALHOST_1443_SERVER_MEMBER_LOGIN_NEXT_SERVER_MEMBER_USER)
+				.lookAtElement(
+						IntegrationtestsConstants.AUTH0_LOCK_SOCIAL_BUTTON_TEXT)
+				.click()
+				.lookAtElement(IntegrationtestsConstants.LOGIN_FIELD)
+				.enter(user)
+				.lookAtElement(IntegrationtestsConstants.PASSWORD_FIELD)
+				.enter(pass)
+				.lookAtElement(IntegrationtestsConstants.LOGIN_BUTTON).click()
+				.lookAtElement(IntegrationtestsConstants.OBJECT_BOX_STRING)
+				.checkText(String
+						.format(IntegrationtestsConstants.QUOTED_FORMAT, user));
+	}
 
 }

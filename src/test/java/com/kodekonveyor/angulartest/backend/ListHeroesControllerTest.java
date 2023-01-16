@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,12 +25,7 @@ import com.kodekonveyor.annotations.TestedService;
 class ListHeroesControllerTest
     extends ListHeroesControllerTestBase {
 
-  @BeforeEach
-  @Override
-  void setUp() {
-    super.setUp();
-  }
-
+	
   @Test
   @DisplayName("returns a list")
   void test() {
@@ -43,6 +37,6 @@ class ListHeroesControllerTest
   @DisplayName("the list of heroes are from the database")
   void test1() {
     final List<HeroEntity> result = listHeroesController.call();
-    assertEquals(result.get(0).id, 12);
+    assertEquals(result.get(0).id, HeroTestData.HERO_ID);
   }
 }

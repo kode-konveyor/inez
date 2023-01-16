@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { SelectedHeroRepository } from 'src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository';
 import { HeroEditorComponentModel } from './HeroEditorComponentModel';
 
@@ -9,6 +9,8 @@ import { HeroEditorComponentModel } from './HeroEditorComponentModel';
 export class HeroeditorComponent implements HeroEditorComponentModel {
 
   selectedHeroRepository: SelectedHeroRepository;
+
+  @Input() id!: string;
 
   constructor(selectedHeroRepository: SelectedHeroRepository) {
     this.selectedHeroRepository = selectedHeroRepository;
