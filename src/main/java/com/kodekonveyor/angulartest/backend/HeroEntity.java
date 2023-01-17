@@ -5,14 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-@Data
 @Entity
-public class HeroEntity {
-
+@SuperBuilder(toBuilder=true)
+@NoArgsConstructor
+public class HeroEntity extends HeroDTO{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
-  String name;
 }

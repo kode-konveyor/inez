@@ -102,7 +102,6 @@
 					<test>**/*Test.java</test>
 				</configuration>
 			</plugin>
-<!--
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<executions>
@@ -125,6 +124,9 @@
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<stopKey>foo</stopKey>
 					<stopPort>9999</stopPort>
+					<httpConnector>
+          					<port>9090</port>
+        				</httpConnector>
 					<systemProperties>
 						<systemProperty>
 							<name>com.kodekonveyor.repo.jdbcUri</name>
@@ -136,7 +138,7 @@
 						<value>org.hsqldb.jdbcDriver</value>
 					</systemProperty>
 					<webApp>
-						<contextPath>/server</contextPath>
+						<contextPath>/angulartest</contextPath><!-- project name -->
 					</webApp>
 				</configuration>
 				<dependencies>
@@ -168,7 +170,6 @@
 					</execution>
 				</executions>
 			</plugin>
--->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

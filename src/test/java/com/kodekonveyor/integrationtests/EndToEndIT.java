@@ -1,7 +1,5 @@
 package com.kodekonveyor.integrationtests;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
@@ -16,44 +14,47 @@ import com.kodekonveyor.authentication.UserEntityTestData;
 @Tag("IntegrationTest")
 class EndToEndIT {
 
-	private static final String ANGULARTEST_SSL_URI = "https://localhost:1443/angulartest";
+	private static final String ANGULARTEST_SSL_URI = "https://localhost:1443/angulartest/";
 
 	@Test
-	void seleniumTest() throws IOException {
+	void seleniumTest() throws Exception {
 		final SeleniumTestHelper helper = new SeleniumTestHelper();
 		login(helper);
-		final String resultingText = IntegrationtestsConstants.HERO_NAME 
+		final String resultingText = IntegrationtestsConstants.HERO_NAME
 				+ IntegrationtestsConstants.ADDED_TEXT;
 
-		helper.goToPage(ANGULARTEST_SSL_URI)
+		helper
 				.lookAtElement(IntegrationtestsConstants.HERO_SELECTOR)
-				.checkText(IntegrationtestsConstants.HERO_NAME)
+				.checkText("Find your hero.", IntegrationtestsConstants.HERO_NAME)
 				.click()
-				.lookAtElement(IntegrationtestsConstants.INPUT_SELECTOR).click()
-				.checkText(IntegrationtestsConstants.HERO_NAME)
-				.enter(IntegrationtestsConstants.ADDED_TEXT)
-				.checkText(resultingText)
+				.lookAtElement(IntegrationtestsConstants.INPUT_SELECTOR)
+				.click("Click at the name input at the hero editor")
+				.checkText("It is alredy filled in",
+						IntegrationtestsConstants.HERO_NAME)
+				.enter("Enter some text", IntegrationtestsConstants.ADDED_TEXT)
+				.checkText(
+						"It is added to the name, of course you can edit it as you like",
+						resultingText)
 				.lookAtElement(IntegrationtestsConstants.HERO_SELECTOR)
-				.checkText(resultingText);
+				.checkText("he name of the hero is modified at the list",
+						resultingText);
 	}
 
-	private void login(final SeleniumTestHelper helper) throws IOException {
+	private void login(final SeleniumTestHelper helper) throws Exception {
 		final String user = UserEntityTestData.LOGIN;
 		final String pass = UserEntityTestData.PASSWORD;
 
 		helper.goToPage(
+				"If you are not logged in, you will be redirected to the login page",
 				IntegrationtestsConstants.HTTPS_LOCALHOST_1443_SERVER_MEMBER_LOGIN_NEXT_SERVER_MEMBER_USER)
-				.lookAtElement(
-						IntegrationtestsConstants.AUTH0_LOCK_SOCIAL_BUTTON_TEXT)
-				.click()
 				.lookAtElement(IntegrationtestsConstants.LOGIN_FIELD)
-				.enter(user)
+				.enter("Enter your username", user)
 				.lookAtElement(IntegrationtestsConstants.PASSWORD_FIELD)
-				.enter(pass)
-				.lookAtElement(IntegrationtestsConstants.LOGIN_BUTTON).click()
-				.lookAtElement(IntegrationtestsConstants.OBJECT_BOX_STRING)
-				.checkText(String
-						.format(IntegrationtestsConstants.QUOTED_FORMAT, user));
+				.enter("Enter your password", pass)
+				.lookAtElement(IntegrationtestsConstants.LOGIN_BUTTON)
+				.click("Click on the login button")
+				.lookAtElement(IntegrationtestsConstants.FILTER_INPUT_SELECTOR)
+				.checkText("You are redirected to the hero page", "");
 	}
 
 }

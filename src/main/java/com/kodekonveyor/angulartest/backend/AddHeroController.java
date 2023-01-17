@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kodekonveyor.webapp.UrlMapConstants;
+
 @RestController
 public class AddHeroController {
 
 	@Autowired
 	  HeroRepository heroRepository;
 
-	  @PostMapping(path = "/hero/add/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-	  public HeroEntity call(final @RequestBody String name) {
-	    HeroEntity addedHero = new HeroEntity();
-	    addedHero.name = name;
+	  @PostMapping(path = UrlMapConstants.ADD_HERO_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+	  public HeroEntity call(final @RequestBody HeroDTO heroToAdd) {
+	  	final HeroEntity addedHero = HeroEntity.builder().name(heroToAdd.name).build();
 	    heroRepository.save(addedHero);
 	    return addedHero;
 	  }

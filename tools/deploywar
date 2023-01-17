@@ -1,8 +1,9 @@
 #!/bin/bash
 set -xe
 export REPO_NAME=$(repofullname | sed 'sA.*/AA')
-export VERSION=$(git describe --tags)
+export VERSION=$(cat VERSION)
 sudo cp target/${REPO_NAME}-server-${VERSION}.war /var/lib/tomcat9/webapps/${REPO_NAME}.war
+sudo cp etc/context.xml /etc/tomcat9/Catalina/localhost/${REPO_NAME}.xml
 while ! test -d /var/lib/tomcat9/webapps/${REPO_NAME}
 do
   echo waiting for tomcat
