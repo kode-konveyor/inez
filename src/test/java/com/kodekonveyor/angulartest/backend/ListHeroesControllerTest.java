@@ -37,6 +37,6 @@ class ListHeroesControllerTest
   @DisplayName("the list of heroes are from the database")
   void test1() {
     final List<HeroEntity> result = listHeroesController.call();
-    assertEquals(result.get(0).id, HeroTestData.HERO_ID);
+    assertEquals(result.get(0).id, HeroDTOTestData.HERO_ID);
   }
 }

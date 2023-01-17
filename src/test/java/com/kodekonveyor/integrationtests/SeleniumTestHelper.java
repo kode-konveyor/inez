@@ -102,11 +102,11 @@ class SeleniumTestHelper {
 		try {
 			final WebElement element = waitFor(cssSelector);
 			return new SeleniumTestHelper(this, element);
-		} catch (final Exception e) {
+		} catch (final Exception exception) {
 			final String reason = "Could not find " + cssSelector;
 			this.cssSelector = null;
 			takeScreenshot(reason);
-			throw (e);
+			throw (exception);
 		}
 	}
 
