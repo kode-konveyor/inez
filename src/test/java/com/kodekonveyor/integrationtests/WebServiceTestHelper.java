@@ -13,51 +13,54 @@ import com.kodekonveyor.webapp.WebappConstants;
 
 public class WebServiceTestHelper {
 
-  private static ObjectMapper mapper;
+	private static ObjectMapper mapper;
 
 	static {
-	    mapper = new ObjectMapper();
+		mapper = new ObjectMapper();
 	}
-	public static Object httpGet(final URL url, final String login, final Class<?> klazz)
+
+	public static Object httpGet(final URL url, final String login,
+			final Class<?> klazz)
 			throws IOException, JsonParseException, JsonMappingException {
 		final Object reply;
-		final HttpURLConnection connection =
-        (HttpURLConnection) url.openConnection();
+		final HttpURLConnection connection = (HttpURLConnection) url
+				.openConnection();
 		connection
-        .setRequestProperty(
-            IntegrationtestsConstants.OIDC_CLAIM_NICKNAME,
-            login
-        );
+				.setRequestProperty(
+						IntegrationtestsConstants.OIDC_CLAIM_NICKNAME,
+						login);
 		reply = mapper
-        .readValue((InputStream) connection.getContent(), klazz);
+				.readValue((InputStream) connection.getContent(), klazz);
 		return reply;
 	}
 
-	public static Object httpPost(final URL url, final String login, final Object request, final Class<?> replyClass)
+	public static Object httpPost(final URL url, final String login,
+			final Object request, final Class<?> replyClass)
 			throws IOException, JsonParseException, JsonMappingException {
 		final Object reply;
-		final HttpURLConnection connection =
-        (HttpURLConnection) url.openConnection();
+		final HttpURLConnection connection = (HttpURLConnection) url
+				.openConnection();
 		connection.setRequestMethod(WebappConstants.POST);
-		connection.setRequestProperty(WebappConstants.CONTENT_TYPE, WebappConstants.APPLICATION_JSON);
-		connection.setRequestProperty(WebappConstants.ACCEPT, WebappConstants.APPLICATION_JSON);
+		connection.setRequestProperty(WebappConstants.CONTENT_TYPE,
+				WebappConstants.APPLICATION_JSON);
+		connection.setRequestProperty(WebappConstants.ACCEPT,
+				WebappConstants.APPLICATION_JSON);
 		connection.setDoOutput(true);
 		connection.setRequestProperty(
-            IntegrationtestsConstants.OIDC_CLAIM_NICKNAME,
-            login
-        );
+				IntegrationtestsConstants.OIDC_CLAIM_NICKNAME,
+				login);
 		final String requestString = mapper.writeValueAsString(request);
-		try(OutputStream outputStream = connection.getOutputStream()) {
-	    final byte[] requestAsBytes = requestString.getBytes(WebappConstants.UTF_8);
-	    outputStream.write(requestAsBytes, 0, requestAsBytes.length);			
-	}
-		 String contentString;
-		 try( InputStream content = (InputStream) connection.getContent()) {
-			 contentString = new String(content.readAllBytes());
-		 }
-		 System.out.println("content:"+contentString);
+		try (OutputStream outputStream = connection.getOutputStream()) {
+			final byte[] requestAsBytes = requestString
+					.getBytes(WebappConstants.UTF_8);
+			outputStream.write(requestAsBytes, 0, requestAsBytes.length);
+		}
+		String contentString;
+		try (InputStream content = (InputStream) connection.getContent()) {
+			contentString = new String(content.readAllBytes());
+		}
 		reply = mapper
-        .readValue(contentString, replyClass);
+				.readValue(contentString, replyClass);
 		return reply;
 	}
 

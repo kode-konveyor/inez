@@ -7,10 +7,12 @@ import javax.persistence.Id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @Entity
 @NoArgsConstructor
+@SuperBuilder(toBuilder = true)
 public class HeroEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

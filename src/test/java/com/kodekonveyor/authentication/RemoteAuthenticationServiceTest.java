@@ -19,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
@@ -30,109 +31,98 @@ import com.kodekonveyor.logging.LoggingMarkerConstants;
 @TestedBehaviour("Puts the remote user into the Authentication object")
 @TestedService("RemoteAuthenticationFilter")
 class RemoteAuthenticationServiceTest
-    extends RemoteAuthenticationServiceTestBase {
+		extends RemoteAuthenticationServiceTestBase {
 
-  private void assertRemoteUserIsCorrectlySetAndCleared(final String login) {
-    verify(
-        AuthenticationStubs.securityContext,
-        times(
-            RemoteAuthenticationFilterTestData.EXPECTED_SET_AUTHENTICATION_CALLS
-        )
-    )
-        .setAuthentication(newAuthentication.capture());
-    final List<Authentication> capturedValues =
-        newAuthentication.getAllValues();
-    assertEquals(
-        login, capturedValues.get(0).getCredentials()
-    );
-    assertEquals(null, capturedValues.get(1));
-  }
+	private void assertRemoteUserIsCorrectlySetAndCleared(
+			final SecurityContext securityContext, final String login) {
+		verify(
+				securityContext,
+				times(
+						RemoteAuthenticationFilterTestData.EXPECTED_SET_AUTHENTICATION_CALLS))
+				.setAuthentication(newAuthentication.capture());
+		final List<Authentication> capturedValues = newAuthentication
+				.getAllValues();
+		assertEquals(
+				login, capturedValues.get(0).getCredentials());
+		assertEquals(null, capturedValues.get(1));
+	}
 
-  @DisplayName("if authenticated, calls the filter chain")
-  @Test
-  void test01() throws IOException, ServletException {
-    AuthenticationStubs.authenticated();
-    final HttpServletRequest request =
-        RemoteAuthenticationFilterTestData.getRequestUser();
-    remoteAuthenticationService
-        .call(
-            request, res, filterChain
-        );
-    verify(filterChain).doFilter(
-        request, res
-    );
-  }
+	@DisplayName("if authenticated, calls the filter chain")
+	@Test
+	void test01() throws IOException, ServletException {
+		AuthenticationStubs.authenticated();
+		final HttpServletRequest request = RemoteAuthenticationFilterTestData
+				.getRequestUser();
+		remoteAuthenticationService
+				.call(
+						request, res, filterChain);
+		verify(filterChain).doFilter(
+				request, res);
+	}
 
-  @DisplayName("logs the authenticated user")
-  @Test
-  void test03() throws IOException, ServletException {
-    AuthenticationStubs.nullAuthentication();
-    remoteAuthenticationService
-        .call(
-            RemoteAuthenticationFilterTestData.getRequestUser(), res,
-            filterChain
-        );
-    verify(loggerService)
-        .info(
-            LoggingMarkerConstants.AUTHENTICATION,
-            RemoteAuthenticationFilterTestData.SUCCESSFULLY_LOGGED_IN,
-            UserEntityTestData.LOGIN
-        );
-  }
+	@DisplayName("logs the authenticated user")
+	@Test
+	void test03() throws IOException, ServletException {
+		AuthenticationStubs.nullAuthentication();
+		remoteAuthenticationService
+				.call(
+						RemoteAuthenticationFilterTestData.getRequestUser(), res,
+						filterChain);
+		verify(loggerService)
+				.info(
+						LoggingMarkerConstants.AUTHENTICATION,
+						RemoteAuthenticationFilterTestData.SUCCESSFULLY_LOGGED_IN,
+						UserEntityTestData.LOGIN);
+	}
 
-  @DisplayName(
-    "if Authentication is null, sets the remote user as authenticated, and clears it after the request is processed"
-  )
-  @Test
-  void test1() throws IOException, ServletException {
-    AuthenticationStubs.nullAuthentication();
-    remoteAuthenticationService
-        .call(
-            RemoteAuthenticationFilterTestData.getRequestUser(), res,
-            filterChain
-        );
-    assertRemoteUserIsCorrectlySetAndCleared(UserEntityTestData.LOGIN);
-  }
+	@DisplayName("if Authentication is null, sets the remote user as authenticated, and clears it after the request is processed")
+	@Test
+	void test1() throws IOException, ServletException {
+		final SecurityContext securityContext = AuthenticationStubs
+				.nullAuthentication();
+		remoteAuthenticationService
+				.call(
+						RemoteAuthenticationFilterTestData.getRequestUser(), res,
+						filterChain);
+		assertRemoteUserIsCorrectlySetAndCleared(securityContext,
+				UserEntityTestData.LOGIN);
+	}
 
-  @DisplayName(
-    "if Authentication is anonymous, sets the remote user as authenticated, and clears it after the request is processed"
-  )
-  @Test
-  void test2() throws IOException, ServletException {
-    AuthenticationStubs.anonymous();
-    remoteAuthenticationService
-        .call(
-            RemoteAuthenticationFilterTestData.getRequestUser(), res,
-            filterChain
-        );
-    assertRemoteUserIsCorrectlySetAndCleared(UserEntityTestData.LOGIN);
-  }
+	@DisplayName("if Authentication is anonymous, sets the remote user as authenticated, and clears it after the request is processed")
+	@Test
+	void test2() throws IOException, ServletException {
+		final SecurityContext securityContext = AuthenticationStubs.anonymous();
+		remoteAuthenticationService
+				.call(
+						RemoteAuthenticationFilterTestData.getRequestUser(), res,
+						filterChain);
+		assertRemoteUserIsCorrectlySetAndCleared(securityContext,
+				UserEntityTestData.LOGIN);
+	}
 
-  @DisplayName(
-    "if Authentication is null and the remote user exists, sets the remote user as authenticated, and clears it after the request is processed"
-  )
-  @Test
-  void test3() throws IOException, ServletException {
-    AuthenticationStubs.nullAuthentication();
-    remoteAuthenticationService
-        .call(
-            RemoteAuthenticationFilterTestData.getRequestUser(), res,
-            filterChain
-        );
-    assertRemoteUserIsCorrectlySetAndCleared(UserEntityTestData.LOGIN);
-  }
+	@DisplayName("if Authentication is null and the remote user exists, sets the remote user as authenticated, and clears it after the request is processed")
+	@Test
+	void test3() throws IOException, ServletException {
+		final SecurityContext securityContext = AuthenticationStubs
+				.nullAuthentication();
+		remoteAuthenticationService
+				.call(
+						RemoteAuthenticationFilterTestData.getRequestUser(), res,
+						filterChain);
+		assertRemoteUserIsCorrectlySetAndCleared(securityContext,
+				UserEntityTestData.LOGIN);
+	}
 
-  @DisplayName(
-    "if Authentication is null and the remote user does not exists, creates an authenticated user, and clears authentication after the request is processed"
-  )
-  @Test
-  void test4() throws IOException, ServletException {
-    AuthenticationStubs.nullAuthentication();
-    remoteAuthenticationService.call(
-        RemoteAuthenticationFilterTestData.getRequestUserUnknown(), res,
-        filterChain
-    );
-    assertRemoteUserIsCorrectlySetAndCleared(UserEntityTestData.LOGIN_BAD);
-  }
+	@DisplayName("if Authentication is null and the remote user does not exists, creates an authenticated user, and clears authentication after the request is processed")
+	@Test
+	void test4() throws IOException, ServletException {
+		final SecurityContext securityContext = AuthenticationStubs
+				.nullAuthentication();
+		remoteAuthenticationService.call(
+				RemoteAuthenticationFilterTestData.getRequestUserUnknown(), res,
+				filterChain);
+		assertRemoteUserIsCorrectlySetAndCleared(securityContext,
+				UserEntityTestData.LOGIN_BAD);
+	}
 
 }

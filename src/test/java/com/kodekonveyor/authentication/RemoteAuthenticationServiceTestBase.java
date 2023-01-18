@@ -11,28 +11,29 @@ import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.springframework.security.core.Authentication;
 
+@SuppressWarnings("PMD.MoreThanOneLogger")
 class RemoteAuthenticationServiceTestBase {
 
-  Logger loggerService = Mockito.mock(Logger.class);
+	Logger loggerService = Mockito.mock(Logger.class);
 
-  @Captor
-  ArgumentCaptor<Authentication> newAuthentication;
+	@Captor
+	ArgumentCaptor<Authentication> newAuthentication;
 
-  ServletResponse res = Mockito.mock(ServletResponse.class);
+	ServletResponse res = Mockito.mock(ServletResponse.class);
 
-  ServletRequest req = Mockito.mock(ServletRequest.class);
+	ServletRequest req = Mockito.mock(ServletRequest.class);
 
-  FilterChain filterChain = Mockito.mock(FilterChain.class);
+	FilterChain filterChain = Mockito.mock(FilterChain.class);
 
-  UserEntityRepository userRepository =
-      Mockito.mock(UserEntityRepository.class);
+	UserEntityRepository userRepository = Mockito
+			.mock(UserEntityRepository.class);
 
-  RemoteAuthenticationService remoteAuthenticationService =
-      new RemoteAuthenticationService(userRepository, loggerService);
+	RemoteAuthenticationService remoteAuthenticationService = new RemoteAuthenticationService(
+			userRepository, loggerService);
 
-  @BeforeEach
-  void setUp() {
-    UserEntityRepositoryStubs.behaviour(userRepository);
-  }
+	@BeforeEach
+	void setUp() {
+		UserEntityRepositoryStubs.behaviour(userRepository);
+	}
 
 }

@@ -6,14 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.io.IOException;
 import java.net.URL;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kodekonveyor.angulartest.backend.HeroDTO;
-import com.kodekonveyor.angulartest.backend.HeroDTOTestData;
 import com.kodekonveyor.angulartest.backend.HeroEntity;
+import com.kodekonveyor.angulartest.backend.HeroRepository;
+import com.kodekonveyor.angulartest.backend.HeroesEntity;
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
 import com.kodekonveyor.authentication.UserDTO;
@@ -28,11 +30,20 @@ import net.minidev.json.parser.ParseException;
 @Tag("IntegrationTest")
 class WebservicesIT {
 
+	@Autowired
+	HeroRepository heroRepository;
+
+	String serverURI = IntegrationtestsConstants.LOCAL_SERVER_URI;
+
+	@BeforeEach
+	void setUp() {
+	}
+
 	@Test
 	@DisplayName("A user can get its data at member/user")
 	void test1() throws IOException, ParseException {
 		final UserDTO marketUser = (UserDTO) WebServiceTestHelper.httpGet(
-				new URL(IntegrationtestsConstants.LOCAL_SERVER_URI
+				new URL(serverURI
 						+ UrlMapConstants.SHOW_USER_PATH),
 				UserEntityTestData.LOGIN,
 				UserDTO.class);
@@ -42,9 +53,9 @@ class WebservicesIT {
 	@Test
 	@DisplayName("A user can add a Hero")
 	void test2() throws IOException, ParseException {
-		final HeroDTO addedHero = HeroDTOTestData.get();
+		final HeroEntity addedHero = HeroEntityTestData.get();
 		final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
-				new URL(IntegrationtestsConstants.LOCAL_SERVER_URI
+				new URL(serverURI
 						+ UrlMapConstants.ADD_HERO_PATH),
 				UserEntityTestData.LOGIN,
 				addedHero,
@@ -55,16 +66,39 @@ class WebservicesIT {
 	@Test
 	@DisplayName("The id of the added Hero will be changed")
 	void test3() throws IOException, ParseException {
-		final HeroDTO addedHero = HeroDTOTestData.get();
+		final HeroEntity addedHero = HeroEntityTestData.get();
 		final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
-				new URL(IntegrationtestsConstants.LOCAL_SERVER_URI
+				new URL(serverURI
 						+ UrlMapConstants.ADD_HERO_PATH),
 				UserEntityTestData.LOGIN,
 				addedHero,
 				HeroEntity.class);
-		System.out.println("reply=" + reply);
-		assertNotEquals(null, reply.getId());
 		assertNotEquals(addedHero.getId(), reply.getId());
+	}
+
+	@Test
+	@DisplayName("The id of the added Hero is not null")
+	void test5() throws IOException, ParseException {
+		final HeroEntity addedHero = HeroEntityTestData.get();
+		final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
+				new URL(serverURI
+						+ UrlMapConstants.ADD_HERO_PATH),
+				UserEntityTestData.LOGIN,
+				addedHero,
+				HeroEntity.class);
+		assertNotEquals(null, reply.getId());
+	}
+
+	@Test
+	@DisplayName("A user can list heroes")
+	void test4() throws IOException, ParseException {
+		final HeroesEntity reply = (HeroesEntity) WebServiceTestHelper.httpGet(
+				new URL(serverURI
+						+ UrlMapConstants.LIST_HEROES_PATH),
+				UserEntityTestData.LOGIN,
+				HeroesEntity.class);
+		assertEquals(HeroEntityTestData.get().name,
+				reply.getHeros().iterator().next().name);
 	}
 
 }

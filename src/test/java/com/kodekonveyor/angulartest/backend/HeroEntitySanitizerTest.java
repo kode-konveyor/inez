@@ -1,7 +1,6 @@
 package com.kodekonveyor.angulartest.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,27 +13,35 @@ import org.mockito.quality.Strictness;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
+import com.kodekonveyor.exception.ThrowableTester;
 import com.kodekonveyor.integrationtests.HeroEntityTestData;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 @RunWith(MockitoJUnitRunner.class)
 @TestedBehaviour("Data access")
-@TestedService("ListHeroesController")
-class ListHeroesControllerTest
-		extends ListHeroesControllerTestBase {
+@TestedService("Name Sanitizer")
+class HeroEntitySanitizerTest {
 
 	@Test
-	@DisplayName("returns a Heroes entity")
+	@DisplayName("A simple English name is okay")
 	void test() {
-		final HeroesEntity result = listHeroesController.call();
-		assertNotNull(result);
+		assertEquals(HeroEntityTestData.get().toBuilder().id(null).build(),
+				HeroEntitySanitizer.sanitize(HeroEntityTestData.get()));
 	}
 
 	@Test
-	@DisplayName("the list of heroes are from the database")
+	@DisplayName("The id is null")
+	void test2() {
+		assertEquals(null,
+				HeroEntitySanitizer.sanitize(HeroEntityTestData.get()).id);
+	}
+
+	@Test
+	@DisplayName("Little Bobby Tables throws ValidationException")
 	void test1() {
-		final HeroesEntity result = listHeroesController.call();
-		assertEquals(result.heros.iterator().next().id, HeroEntityTestData.HERO_ID);
+		ThrowableTester.assertThrows(
+				() -> HeroEntitySanitizer
+						.sanitize(HeroEntityTestData.getLittleBobbyTables()));
 	}
 }

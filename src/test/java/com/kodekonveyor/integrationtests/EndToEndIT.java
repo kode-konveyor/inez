@@ -14,8 +14,6 @@ import com.kodekonveyor.authentication.UserEntityTestData;
 @Tag("IntegrationTest")
 class EndToEndIT {
 
-	private static final String ANGULARTEST_SSL_URI = "https://localhost:1443/angulartest/";
-
 	@Test
 	void seleniumTest() throws Exception {
 		final SeleniumTestHelper helper = new SeleniumTestHelper();

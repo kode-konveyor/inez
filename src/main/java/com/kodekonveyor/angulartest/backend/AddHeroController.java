@@ -17,7 +17,7 @@ public class AddHeroController {
 	HeroRepository heroRepository;
 
 	@PostMapping(path = UrlMapConstants.ADD_HERO_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-	public HeroEntity call(final @RequestBody HeroDTO heroToAdd)
+	public HeroEntity call(final @RequestBody HeroEntity heroToAdd)
 			throws IOException {
 		HeroEntity addedHero = new HeroEntity();
 		addedHero.name = heroToAdd.name;

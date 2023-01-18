@@ -9,55 +9,53 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class AuthenticationStubs {
 
-  static Authentication authentication;
-  static SecurityContext securityContext;
+	public static SecurityContext anonymous() {
+		final SecurityContext securityContext = mock(SecurityContext.class);
+		final Authentication authentication = mock(Authentication.class);
+		doReturn(false).when(authentication).isAuthenticated();
+		doReturn(authentication).when(securityContext).getAuthentication();
+		SecurityContextHolder.setContext(securityContext);
+		return securityContext;
+	}
 
-  public static void anonymous() {
-    createSecurityContext();
-    authentication = mock(Authentication.class);
-    doReturn(false).when(authentication).isAuthenticated();
-    doReturn(authentication).when(securityContext).getAuthentication();
-    SecurityContextHolder.setContext(securityContext);
-  }
+	public static SecurityContext authenticated() {
+		final SecurityContext securityContext = mock(SecurityContext.class);
+		final Authentication authentication = mock(Authentication.class);
+		doReturn(true).when(authentication).isAuthenticated();
+		doReturn(authentication).when(securityContext).getAuthentication();
+		doReturn(UserEntityTestData.LOGIN).when(authentication).getCredentials();
+		doReturn(UserEntityTestData.LOGIN).when(authentication).getName();
+		SecurityContextHolder.setContext(securityContext);
+		return securityContext;
+	}
 
-  public static void authenticated() {
-    createSecurityContext();
-    authentication = mock(Authentication.class);
-    doReturn(true).when(authentication).isAuthenticated();
-    doReturn(authentication).when(securityContext).getAuthentication();
-    doReturn(UserEntityTestData.LOGIN).when(authentication).getCredentials();
-    doReturn(UserEntityTestData.LOGIN).when(authentication).getName();
-    SecurityContextHolder.setContext(securityContext);
-  }
+	public static SecurityContext badAuthenticated() {
+		final SecurityContext securityContext = mock(SecurityContext.class);
+		final Authentication authentication = mock(Authentication.class);
+		doReturn(true).when(authentication).isAuthenticated();
+		doReturn(authentication).when(securityContext).getAuthentication();
+		doReturn(UserEntityTestData.LOGIN_BAD).when(authentication)
+				.getCredentials();
+		doReturn(UserEntityTestData.LOGIN_BAD).when(authentication).getName();
+		SecurityContextHolder.setContext(securityContext);
+		return securityContext;
+	}
 
-  public static void badAuthenticated() {
-    createSecurityContext();
-    authentication = mock(Authentication.class);
-    doReturn(true).when(authentication).isAuthenticated();
-    doReturn(authentication).when(securityContext).getAuthentication();
-    doReturn(UserEntityTestData.LOGIN_BAD).when(authentication)
-        .getCredentials();
-    doReturn(UserEntityTestData.LOGIN_BAD).when(authentication).getName();
-    SecurityContextHolder.setContext(securityContext);
-  }
+	public static SecurityContext nullAuthentication() {
+		final SecurityContext securityContext = mock(SecurityContext.class);
+		doReturn(null).when(securityContext).getAuthentication();
+		SecurityContextHolder.setContext(securityContext);
+		return securityContext;
+	}
 
-  private static void createSecurityContext() {
-    securityContext = mock(SecurityContext.class);
-  }
-
-  public static void nullAuthentication() {
-    createSecurityContext();
-    doReturn(null).when(securityContext).getAuthentication();
-    SecurityContextHolder.setContext(securityContext);
-  }
-
-  public static void nullCredential() {
-    createSecurityContext();
-    authentication = mock(Authentication.class);
-    doReturn(true).when(authentication).isAuthenticated();
-    doReturn(authentication).when(securityContext).getAuthentication();
-    doReturn(null).when(authentication).getCredentials();
-    SecurityContextHolder.setContext(securityContext);
-  }
+	public static SecurityContext nullCredential() {
+		final SecurityContext securityContext = mock(SecurityContext.class);
+		final Authentication authentication = mock(Authentication.class);
+		doReturn(true).when(authentication).isAuthenticated();
+		doReturn(authentication).when(securityContext).getAuthentication();
+		doReturn(null).when(authentication).getCredentials();
+		SecurityContextHolder.setContext(securityContext);
+		return securityContext;
+	}
 
 }

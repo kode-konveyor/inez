@@ -9,6 +9,7 @@ import java.text.MessageFormat;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -19,6 +20,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 class SeleniumTestHelper {
 
+	private static final String NOTE_BORDER_COLOR = "red";
+	private static final String NOTE_BORDER_STYLE = "solid";
+	private static final String NOTE_BORDER_WIDTH = "5px";
+	private static final String COULD_NOT_FIND = "Could not find ";
+	private static final String NO_CSS_SELECTOR = "";
+	private static final String RESTORE_BORDER_JS = "document.querySelector(''{0}'').style.border=''{1} {2} {3}''";
+//final String script = "document.querySelector('" + cssSelector
+//+ "').style.border='" + origWidth + " " + origStyle + " " + origColor
+//+ "'";
+	private static final String SSREENSHOT_FILE_NAME = "target/{0}_{1}.png";
+	private static final String BORDER_STYLE = "border-style";
+	private static final String BORDER_COLOR = "border-color";
+	private static final String BORDER_WIDTH = "border-width";
 	private static final String VALUE = "value";
 	private static final String INPUT = "input";
 	private final FirefoxDriver driver;
@@ -61,7 +75,7 @@ class SeleniumTestHelper {
 
 	public SeleniumTestHelper goToPage(final String reason, final String url)
 			throws Exception {
-		cssSelector = null;
+		cssSelector = NO_CSS_SELECTOR;
 		driver.get(url);
 		takeScreenshot(reason);
 		return this;
@@ -72,42 +86,43 @@ class SeleniumTestHelper {
 		String origColor = null;
 		String origStyle = null;
 
-		if (null != cssSelector) {
-			origWidth = element.getCssValue("border-width");
-			origColor = element.getCssValue("border-color");
-			origStyle = element.getCssValue("border-style");
-			driver.executeScript("document.querySelector('" + cssSelector
-					+ "').style.border='5px solid red'");
+		if (!NO_CSS_SELECTOR.equals(cssSelector)) {
+			origWidth = element.getCssValue(BORDER_WIDTH);
+			origColor = element.getCssValue(BORDER_COLOR);
+			origStyle = element.getCssValue(BORDER_STYLE);
+			driver.executeScript(MessageFormat.format(
+					RESTORE_BORDER_JS,
+					cssSelector, NOTE_BORDER_WIDTH, NOTE_BORDER_STYLE,
+					NOTE_BORDER_COLOR));
 		}
 		final File screenshot = driver.getScreenshotAs(OutputType.FILE);
 		final Integer stepNumber = step++;
 		final File destFile = new File(MessageFormat.format(
-				"target/{0}_{1}.png",
+				SSREENSHOT_FILE_NAME,
 				stepNumber.toString(),
 				reason));
 		FileUtils.copyFile(screenshot, destFile);
-		System.out.println(destFile.getAbsolutePath());
-		if (null != cssSelector) {
-			final String script = "document.querySelector('" + cssSelector
-					+ "').style.border='" + origWidth + " " + origStyle + " " + origColor
-					+ "'";
-			System.out.println(script);
-			driver.executeScript(script);
+		if (!NO_CSS_SELECTOR.equals(cssSelector)) {
+			driver.executeScript(MessageFormat.format(
+					RESTORE_BORDER_JS,
+					cssSelector, origWidth, origStyle, origColor));
 		}
 	}
 
 	public SeleniumTestHelper lookAtElement(final String cssSelector)
 			throws Exception {
+
 		this.cssSelector = cssSelector;
 		try {
 			final WebElement element = waitFor(cssSelector);
 			return new SeleniumTestHelper(this, element);
-		} catch (final Exception exception) {
-			final String reason = "Could not find " + cssSelector;
-			this.cssSelector = null;
+		} catch (final TimeoutException exception) {
+			final String reason = COULD_NOT_FIND + cssSelector;
+			this.cssSelector = NO_CSS_SELECTOR;
 			takeScreenshot(reason);
-			throw (exception);
+			throw exception;
 		}
+
 	}
 
 	public SeleniumTestHelper checkText(final String reason, final String text)
