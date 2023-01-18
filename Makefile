@@ -56,6 +56,7 @@ target/typescript_dependencies:
 target/typescript_build: target/version_updated target/typescript_qa
 	npm run build
 	cp -r www target/public
+	cp  www/* src/main/webapp
 	touch target/typescript_build
 
 target/deploy_war: target/runApache target/war_built
