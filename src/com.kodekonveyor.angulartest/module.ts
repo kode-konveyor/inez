@@ -7,7 +7,6 @@ import { HeroesComponent } from './UI/heroes/heroes.component'
 import { HeroeditorComponent } from './UI/heroeditor/heroeditor.component'
 import { SelectedHeroRepository } from './repositories/SelectedHeroRepository'
 import { HeroitemComponent } from './UI/heroitem/heroitem.component'
-import { HeroesRepository } from 'src/com.kodekonveyor.angulartest/repositories/HeroesRepository'
 import { HeroListComponent } from './UI/herolist/herolist.component'
 import { GetTheActualListOfHeroesService } from './services/GetTheActualListOfHeroesService'
 import { IsThisHeroSelectedForEditingService } from './services/IsThisHeroSelectedForEditingService'
@@ -16,6 +15,9 @@ import { HeroFilterRepository } from './repositories/HeroFilterRepository'
 import { HeroFilterComponent } from './UI/herofilter/herofilter.component'
 import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService'
 import { SelectHeroesWithMatchingNamesService } from 'src/com.kodekonveyor.angulartest/services/SelectHeroesWithMatchingNamesService'
+import { StoreModule } from '@ngrx/store'
+import { appReducer } from './repositories/appReducer'
+
 
 @NgModule({
   declarations: [
@@ -28,11 +30,12 @@ import { SelectHeroesWithMatchingNamesService } from 'src/com.kodekonveyor.angul
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    StoreModule.forRoot({ heroes: appReducer })
   ],
   providers: [
     SelectedHeroRepository,
-    HeroesRepository,
     HeroFilterRepository,
     GetTheActualListOfHeroesService,
     IsThisHeroSelectedForEditingService,

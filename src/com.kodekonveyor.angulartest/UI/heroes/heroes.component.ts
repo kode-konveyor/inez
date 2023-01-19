@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppStore } from 'src/com.kodekonveyor.angulartest/repositories/AppStore';
 import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService';
-import { HeroesRepository } from '../../repositories/HeroesRepository';
+import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
 import { HeroesComponentModel } from './HeroesComponentModel';
 
 @Component({
@@ -10,13 +13,13 @@ import { HeroesComponentModel } from './HeroesComponentModel';
 export class HeroesComponent implements HeroesComponentModel, OnInit {
 
   initializeStatesService: InitializeStatesService;
-  heroesRepository: HeroesRepository;
   id: string = "heroes";
+  heroes: Observable<Heroes>;
 
 
-  constructor(initializeStatesService: InitializeStatesService, heroesRepository: HeroesRepository) {
+  constructor(initializeStatesService: InitializeStatesService, private readonly store: Store<AppStore>) {
     this.initializeStatesService = initializeStatesService;
-    this.heroesRepository = heroesRepository;
+    this.heroes = store.select('heroes')
   }
 
   ngOnInit(): void {

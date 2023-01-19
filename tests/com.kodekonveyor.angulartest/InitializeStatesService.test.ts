@@ -1,6 +1,8 @@
 import { mock } from "jest-mock-extended";
+import { of } from "rxjs";
 import { GetTheActualListOfHeroesService } from "src/com.kodekonveyor.angulartest/services/GetTheActualListOfHeroesService";
 import { InitializeStatesService } from "src/com.kodekonveyor.angulartest/services/InitializeStatesService";
+import { HEROES } from "src/legacy/mock-heroes";
 
 describe("Initialize states", () => {
   let getTheActualListOfHeroesService: GetTheActualListOfHeroesService;
@@ -11,7 +13,7 @@ describe("Initialize states", () => {
   });
 
   test("gets the actual list of heroes", () => {
-    sut.run(getTheActualListOfHeroesService);
+    sut.run({ heroes: of(HEROES) });
     expect(getTheActualListOfHeroesService.run).toBeCalled();
   });
 });

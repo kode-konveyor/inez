@@ -1,5 +1,6 @@
-import { HeroesRepository } from '../../repositories/HeroesRepository';
+import { Observable } from 'rxjs';
+import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
 
 export interface HeroesComponentModel {
-  heroesRepository: HeroesRepository;
+  heroes: Observable<Heroes>;
 }
