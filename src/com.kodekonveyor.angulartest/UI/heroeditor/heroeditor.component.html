@@ -1,4 +1,4 @@
-<div id="{{id}}" class="heroeditor" *ngIf="selectedHero">
+<div id="{{id}}" class="heroeditor" *ngIf="(selectedHero.id || createMode)">
   <div id="{{id}}-id" class="heroeditor-id">{{selectedHero.id}}</div>
   <div id="{{id}}-name" class="heroedit{{or-name">
     <input id="{{id}}-name-input" class="heroeditor-name-input" [(ngModel)]="selectedHero.name" (change)="onInput()">

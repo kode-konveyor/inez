@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { setSelectedHero } from '../repositories/actions';
+import { setCreateMode, setSelectedHero } from '../repositories/actions';
 import { AppStore } from '../repositories/AppStore';
 import { Hero } from '../types/Hero';
 
@@ -14,6 +14,7 @@ export class SelectHeroForEditingService {
   }
 
   run(hero: Hero): void {
+    this.store.dispatch(setCreateMode({ createMode: false }))
     this.store.dispatch(setSelectedHero({ hero }))
   }
 }

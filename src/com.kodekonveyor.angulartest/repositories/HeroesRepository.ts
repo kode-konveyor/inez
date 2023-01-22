@@ -7,7 +7,7 @@ const heroesInitialState: Heroes = []
 
 function addHeroTransition(state: Heroes, hero: { hero: Hero }): Heroes {
   const newstate = state.concat([hero.hero])
-  console.log("heroes:", newstate)
+
   return newstate;
 }
 

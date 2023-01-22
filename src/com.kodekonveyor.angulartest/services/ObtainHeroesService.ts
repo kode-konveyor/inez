@@ -11,7 +11,7 @@ export class ObtainHeroesService {
   constructor(private readonly httpClient: HttpClient) { }
 
   public run(): Observable<Heroes> {
-    console.log("ObtainHeroesService");
+
     return this.httpClient.get<Heroes>(this.REST_API_URL);
   }
 }

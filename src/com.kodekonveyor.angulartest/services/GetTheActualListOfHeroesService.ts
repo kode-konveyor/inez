@@ -15,13 +15,13 @@ export class GetTheActualListOfHeroesService {
   obtainHeroesService: ObtainHeroesService;
 
   run(): void {
-    console.log("GetTheActualListOfHeroesService")
+
     this.obtainHeroesService.run().subscribe(
       (heroes: Heroes) => {
-        console.log("got heroes:", heroes)
+
         if (heroes != null) {
           heroes.forEach((hero: Hero) => {
-            console.log("adding", hero)
+
             this.store.dispatch(addHero({ hero }));
           })
         }

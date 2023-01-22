@@ -19,7 +19,9 @@ import { ObtainHeroesService } from './services/ObtainHeroesService';
 import { SynchronizeService } from './services/SynchronizeService';
 import { selectedHeroReducer } from './repositories/SelectedHeroRepository';
 import { heroFilterReducer } from './repositories/HeroFilterRepository';
-import { createModeReducer } from './repositories/showSaveButtonRepository';
+import { createModeReducer } from './repositories/CreateModeRepository';
+import { CreateHeroService } from './services/CreateHeroService';
+import { ModifyHeroService } from './services/ModifyHeroService';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { createModeReducer } from './repositories/showSaveButtonRepository';
     InitializeStatesService,
     ObtainHeroesService,
     SynchronizeService,
+    CreateHeroService,
+    ModifyHeroService,
   ],
   bootstrap: [HeroesComponent]
 })

@@ -39,7 +39,7 @@ export class HeroesComponent implements HeroesComponentModel, OnInit {
 
   plusbuttonOnClick(): void {
 
-    this.store.dispatch(setCreateMode());
+    this.store.dispatch(setCreateMode({ createMode: true }));
     this.store.dispatch(clearSelectedHero());
   }
 
