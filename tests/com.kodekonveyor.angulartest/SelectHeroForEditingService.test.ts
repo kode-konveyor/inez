@@ -1,14 +1,30 @@
+import { Store } from "@ngrx/store";
+import { mock, mockFn } from "jest-mock-extended";
+import { AppStore } from "src/com.kodekonveyor.angulartest/repositories/AppStore";
 import { SelectHeroForEditingService } from "src/com.kodekonveyor.angulartest/services/SelectHeroForEditingService";
-import { HERO, HERO_OTHER } from "./testdata/HeroTestData";
+import { HERO } from "./testdata/HeroTestData";
 
 describe("Select hero for editing", () => {
 
-  let sut: SelectHeroForEditingService;
+  const dispatch = mockFn<any, any>()
+  const store = mock<Store<AppStore>>()
+  store.dispatch = dispatch;
+  const sut = new SelectHeroForEditingService(store);
+  sut.run(HERO);
 
-  beforeEach(() => {
+  test("turns on Create Mode", () => {
+    expect(store.dispatch).toBeCalledWith({
+      "createMode": false,
+      "type": "set create mode",
+    })
   });
   test("The selected hero will be the hero from the heroitem", () => {
-    sut.run(HERO);
-    expect(HERO_OTHER).toBe(HERO)
+    expect(store.dispatch).toBeCalledWith({
+      "hero": {
+        "id": 1,
+        "name": "Test Hero",
+      },
+      "type": "set selected hero",
+    })
   });
 });
