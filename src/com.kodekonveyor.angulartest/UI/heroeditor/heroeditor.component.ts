@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core'
+import { createModeInitialState } from 'src/com.kodekonveyor.angulartest/repositories/CreateModeRepository';
+import { selectedHeroInitialState } from 'src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository';
 import { CreateHeroService } from 'src/com.kodekonveyor.angulartest/services/CreateHeroService';
 import { ModifyHeroService } from 'src/com.kodekonveyor.angulartest/services/ModifyHeroService';
 import { SynchronizeService } from 'src/com.kodekonveyor.angulartest/services/SynchronizeService';
@@ -13,8 +15,8 @@ export class HeroeditorComponent {
 
 
   @Input() id!: string;
-  createMode: boolean = false;
-  selectedHero!: Hero;
+  createMode: Boolean = createModeInitialState;
+  selectedHero: Hero = selectedHeroInitialState;
 
 
   constructor(synchronizeService: SynchronizeService,
@@ -28,9 +30,6 @@ export class HeroeditorComponent {
       synchronizeService.synchronizeCopyTo(this, 'selectedHero'))
   }
 
-
-  REST_API_URL: string = "/angulartest/hero/add";
-
   createButtonClick(): void {
     this.createHeroService.run(this.selectedHero);
   }
@@ -39,5 +38,3 @@ export class HeroeditorComponent {
     this.modifyHeroService.run(this.selectedHero);
   }
 }
-
-

@@ -9,7 +9,6 @@ import { HeroeditorComponent } from './UI/heroeditor/heroeditor.component'
 import { HeroitemComponent } from './UI/heroitem/heroitem.component'
 import { HeroListComponent } from './UI/herolist/herolist.component'
 import { GetTheActualListOfHeroesService } from './services/GetTheActualListOfHeroesService'
-import { IsThisHeroSelectedForEditingService } from './services/IsThisHeroSelectedForEditingService'
 import { SelectHeroForEditingService } from './services/SelectHeroForEditingService'
 import { HeroFilterComponent } from './UI/herofilter/herofilter.component'
 import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService'
@@ -22,6 +21,7 @@ import { heroFilterReducer } from './repositories/HeroFilterRepository';
 import { createModeReducer } from './repositories/CreateModeRepository';
 import { CreateHeroService } from './services/CreateHeroService';
 import { ModifyHeroService } from './services/ModifyHeroService';
+import { ChangeToCreateModeService } from './services/ChangeToCreateModeService';
 
 
 @NgModule({
@@ -46,13 +46,13 @@ import { ModifyHeroService } from './services/ModifyHeroService';
   ],
   providers: [
     GetTheActualListOfHeroesService,
-    IsThisHeroSelectedForEditingService,
     SelectHeroForEditingService,
     InitializeStatesService,
     ObtainHeroesService,
     SynchronizeService,
     CreateHeroService,
     ModifyHeroService,
+    ChangeToCreateModeService,
   ],
   bootstrap: [HeroesComponent]
 })

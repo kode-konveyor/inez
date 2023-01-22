@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { setCreateMode } from "./actions";
 
-const createModeInitialState: Boolean = false;
+export const createModeInitialState: Boolean = false;
 
 function setCreateModeTransition(
   state: Boolean,

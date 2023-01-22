@@ -1,25 +1,8 @@
 import { Component, Input } from '@angular/core'
 import { combineLatest, map } from 'rxjs';
+import { heroItemFilter } from 'src/com.kodekonveyor.angulartest/filters/heroItemFilter';
 import { SynchronizeService } from 'src/com.kodekonveyor.angulartest/services/SynchronizeService';
-import { Hero } from 'src/com.kodekonveyor.angulartest/types/Hero';
 import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
-
-function filterForHeroitem(params: [heroes: Heroes, filterString: String]): Heroes {
-
-  const r: Heroes = []
-  const heroes: Heroes = params[0]
-  const filterString = params[1]
-  heroes.forEach(
-    (h: Hero) => {
-
-      if (h.name.match(filterString as string) != null) {
-        r.push(h)
-      }
-    }
-  );
-
-  return r;
-}
 
 @Component({
   selector: 'herolist',
@@ -29,16 +12,16 @@ export class HeroListComponent {
   @Input() id!: string;
 
   heroes: Heroes = [];
-  synchronizeService: SynchronizeService
 
-
-  constructor(synchronizeService: SynchronizeService) {
-    this.synchronizeService = synchronizeService
+  constructor(
+    private readonly synchronizeService: SynchronizeService
+  ) {
     combineLatest([
       synchronizeService.fromStore<Heroes>('heroes'),
       synchronizeService.fromStore<String>('heroFilter')]
-    ).pipe(
-      map<[Heroes, String], Heroes>(filterForHeroitem))
+    ).pipe(map<[Heroes, String], Heroes>(
+      heroItemFilter
+    ))
       .subscribe(synchronizeService.synchronizeTo(this, 'heroes'));
   }
 }

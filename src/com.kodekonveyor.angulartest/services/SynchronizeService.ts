@@ -16,14 +16,12 @@ export class SynchronizeService {
 
   synchronizeTo<T>(self: any, fieldName: string) {
     return (value: T) => {
-
       self[fieldName] = value
     };
   }
 
   synchronizeCopyTo<T>(self: any, fieldName: string) {
     return (value: T) => {
-
       self[fieldName] = { ...value }
     };
   }

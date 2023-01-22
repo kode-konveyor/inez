@@ -11,12 +11,10 @@ export class HeroFilterComponent {
 
   @Input() id!: string;
   heroFilter: String = "";
-  store: Store<AppStore>;
 
   constructor(
-    store: Store<AppStore>) {
-    this.store = store;
-  }
+    private readonly store: Store<AppStore>
+  ) { }
 
   onInput(): void {
     this.store.dispatch(setHeroFilter({ heroFilter: this.heroFilter }))
