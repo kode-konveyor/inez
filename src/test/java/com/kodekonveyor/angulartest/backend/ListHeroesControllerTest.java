@@ -22,19 +22,19 @@ import com.kodekonveyor.integrationtests.HeroEntityTestData;
 @TestedBehaviour("Data access")
 @TestedService("ListHeroesController")
 class ListHeroesControllerTest
-		extends ListHeroesControllerTestBase {
+    extends ListHeroesControllerTestBase {
 
-	@Test
-	@DisplayName("returns a Heroes entity")
-	void test() {
-		final HeroesEntity result = listHeroesController.call();
-		assertNotNull(result);
-	}
+  @Test
+  @DisplayName("returns a Heroes entity")
+  void test() {
+    final HeroesEntity result = listHeroesController.call();
+    assertNotNull(result);
+  }
 
-	@Test
-	@DisplayName("the list of heroes are from the database")
-	void test1() {
-		final HeroesEntity result = listHeroesController.call();
-		assertEquals(result.heros.iterator().next().id, HeroEntityTestData.HERO_ID);
-	}
+  @Test
+  @DisplayName("the list of heroes are from the database")
+  void test1() {
+    final HeroesEntity result = listHeroesController.call();
+    assertEquals(result.iterator().next().id, HeroEntityTestData.HERO_ID);
+  }
 }

@@ -1,18 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Store, StoreModule } from '@ngrx/store';
-import { obtainHeroesService } from '../../legacy/ObtainHeroesService';
+import { Store } from '@ngrx/store';
+import { ObtainHeroesService } from 'src/com.kodekonveyor.angulartest/services/ObtainHeroesService';
 import { addHero } from '../repositories/actions';
-import { appReducer } from '../repositories/appReducer';
 import { AppStore } from '../repositories/AppStore';
-
-declare global {
-  // eslint-disable-next-line no-var
-  var store: Store<AppStore>;
-  // eslint-disable-next-line no-var
-  var addHero: any;
-  // eslint-disable-next-line no-var
-  var appReducer: any;
-}
+import { Hero } from '../types/Hero';
+import { Heroes } from '../types/Heroes';
 
 
 @Injectable()
@@ -20,18 +12,25 @@ export class GetTheActualListOfHeroesService {
 
   store: Store<AppStore>;
 
+  obtainHeroesService: ObtainHeroesService;
+
   run(): void {
-    obtainHeroesService().forEach(hero => {
-      this.store.dispatch(addHero(hero))
-    }
-    )
+    console.log("GetTheActualListOfHeroesService")
+    this.obtainHeroesService.run().subscribe(
+      (heroes: Heroes) => {
+        console.log("got heroes:", heroes)
+        if (heroes != null) {
+          heroes.forEach((hero: Hero) => {
+            console.log("adding", hero)
+            this.store.dispatch(addHero({ hero }));
+          })
+        }
+      })
   };
 
-  constructor(appStore: Store<AppStore>) {
+  constructor(appStore: Store<AppStore>, obtainHeroesService: ObtainHeroesService) {
     this.store = appStore;
-    globalThis.store = appStore;
-    globalThis.addHero = addHero;
-    globalThis.appReducer = appReducer;
+    this.obtainHeroesService = obtainHeroesService;
   }
 
 }

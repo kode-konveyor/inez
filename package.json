@@ -1,12 +1,12 @@
 {
   "name": "angulartest",
-  "version": "1.0-7-g7b75f98",
+  "version": "1.0-9-g2aac99b",
   "main": "index.js",
   "scripts": {
     "all": "npx eslint . && npm run test && npm run mutate && npm run build && cordova build android",
-    "qa": "npx eslint . && npm run test && npm run mutate",
+    "qa": "npx eslint . && npm run test && echo npm run mutate",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config=proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --verbose",
@@ -48,6 +48,13 @@
     "modulePaths": [
       "<rootDir>"
     ]
+  },
+  "serve": {
+    "builder": "@angular-devkit/build-angular:dev-server",
+    "options": {
+      "browserTarget": "angulartest:build",
+      "proxyConfig": "/proxy.conf.json"
+    }
   },
   "devDependencies": {
     "@angular-builders/jest": "^15.0.0",

@@ -7,6 +7,7 @@ export class InitializeStatesService {
   getTheActualListOfHeroesService: GetTheActualListOfHeroesService;
 
   run(self: HeroesComponentModel): void {
+    console.log("InitializeStatesService")
     this.getTheActualListOfHeroesService.run()
   }
 

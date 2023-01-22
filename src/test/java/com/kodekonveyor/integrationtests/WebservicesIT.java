@@ -30,75 +30,75 @@ import net.minidev.json.parser.ParseException;
 @Tag("IntegrationTest")
 class WebservicesIT {
 
-	@Autowired
-	HeroRepository heroRepository;
+  @Autowired
+  HeroRepository heroRepository;
 
-	String serverURI = IntegrationtestsConstants.LOCAL_SERVER_URI;
+  String serverURI = IntegrationtestsConstants.LOCAL_SERVER_URI;
 
-	@BeforeEach
-	void setUp() {
-	}
+  @BeforeEach
+  void setUp() {
+  }
 
-	@Test
-	@DisplayName("A user can get its data at member/user")
-	void test1() throws IOException, ParseException {
-		final UserDTO marketUser = (UserDTO) WebServiceTestHelper.httpGet(
-				new URL(serverURI
-						+ UrlMapConstants.SHOW_USER_PATH),
-				UserEntityTestData.LOGIN,
-				UserDTO.class);
-		assertEquals(UserEntityTestData.LOGIN, marketUser.getLogin());
-	}
+  @Test
+  @DisplayName("A user can get its data at member/user")
+  void test1() throws IOException, ParseException {
+    final UserDTO marketUser = (UserDTO) WebServiceTestHelper.httpGet(
+        new URL(serverURI
+            + UrlMapConstants.SHOW_USER_PATH),
+        UserEntityTestData.LOGIN,
+        UserDTO.class);
+    assertEquals(UserEntityTestData.LOGIN, marketUser.getLogin());
+  }
 
-	@Test
-	@DisplayName("A user can add a Hero")
-	void test2() throws IOException, ParseException {
-		final HeroEntity addedHero = HeroEntityTestData.get();
-		final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
-				new URL(serverURI
-						+ UrlMapConstants.ADD_HERO_PATH),
-				UserEntityTestData.LOGIN,
-				addedHero,
-				HeroEntity.class);
-		assertEquals(addedHero.getName(), reply.getName());
-	}
+  @Test
+  @DisplayName("A user can add a Hero")
+  void test2() throws IOException, ParseException {
+    final HeroEntity addedHero = HeroEntityTestData.get();
+    final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
+        new URL(serverURI
+            + UrlMapConstants.ADD_HERO_PATH),
+        UserEntityTestData.LOGIN,
+        addedHero,
+        HeroEntity.class);
+    assertEquals(addedHero.getName(), reply.getName());
+  }
 
-	@Test
-	@DisplayName("The id of the added Hero will be changed")
-	void test3() throws IOException, ParseException {
-		final HeroEntity addedHero = HeroEntityTestData.get();
-		final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
-				new URL(serverURI
-						+ UrlMapConstants.ADD_HERO_PATH),
-				UserEntityTestData.LOGIN,
-				addedHero,
-				HeroEntity.class);
-		assertNotEquals(addedHero.getId(), reply.getId());
-	}
+  @Test
+  @DisplayName("The id of the added Hero will be changed")
+  void test3() throws IOException, ParseException {
+    final HeroEntity addedHero = HeroEntityTestData.get();
+    final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
+        new URL(serverURI
+            + UrlMapConstants.ADD_HERO_PATH),
+        UserEntityTestData.LOGIN,
+        addedHero,
+        HeroEntity.class);
+    assertNotEquals(addedHero.getId(), reply.getId());
+  }
 
-	@Test
-	@DisplayName("The id of the added Hero is not null")
-	void test5() throws IOException, ParseException {
-		final HeroEntity addedHero = HeroEntityTestData.get();
-		final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
-				new URL(serverURI
-						+ UrlMapConstants.ADD_HERO_PATH),
-				UserEntityTestData.LOGIN,
-				addedHero,
-				HeroEntity.class);
-		assertNotEquals(null, reply.getId());
-	}
+  @Test
+  @DisplayName("The id of the added Hero is not null")
+  void test5() throws IOException, ParseException {
+    final HeroEntity addedHero = HeroEntityTestData.get();
+    final HeroEntity reply = (HeroEntity) WebServiceTestHelper.httpPost(
+        new URL(serverURI
+            + UrlMapConstants.ADD_HERO_PATH),
+        UserEntityTestData.LOGIN,
+        addedHero,
+        HeroEntity.class);
+    assertNotEquals(null, reply.getId());
+  }
 
-	@Test
-	@DisplayName("A user can list heroes")
-	void test4() throws IOException, ParseException {
-		final HeroesEntity reply = (HeroesEntity) WebServiceTestHelper.httpGet(
-				new URL(serverURI
-						+ UrlMapConstants.LIST_HEROES_PATH),
-				UserEntityTestData.LOGIN,
-				HeroesEntity.class);
-		assertEquals(HeroEntityTestData.get().name,
-				reply.getHeros().iterator().next().name);
-	}
+  @Test
+  @DisplayName("A user can list heroes")
+  void test4() throws IOException, ParseException {
+    final HeroesEntity reply = (HeroesEntity) WebServiceTestHelper.httpGet(
+        new URL(serverURI
+            + UrlMapConstants.LIST_HEROES_PATH),
+        UserEntityTestData.LOGIN,
+        HeroesEntity.class);
+    assertEquals(HeroEntityTestData.get().name,
+        reply.iterator().next().name);
+  }
 
 }

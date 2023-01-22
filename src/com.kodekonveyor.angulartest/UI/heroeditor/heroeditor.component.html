@@ -1,6 +1,7 @@
-<div id="{{id}}" class="heroeditor" *ngIf="selectedHeroRepository.selectedHero">
-  <div id="{{id}}-id" class="heroeditor-id">{{selectedHeroRepository.selectedHero.id}}</div>
-  <div id="{{id}}-name" class="heroeditor-name">
-    <input id="{{id}}-name-input" class="heroeditor-name-input" [(ngModel)]="selectedHeroRepository.selectedHero.name">
+<div id="{{id}}" class="heroeditor" *ngIf="selectedHero">
+  <div id="{{id}}-id" class="heroeditor-id">{{selectedHero.id}}</div>
+  <div id="{{id}}-name" class="heroedit{{or-name">
+    <input id="{{id}}-name-input" class="heroeditor-name-input" [(ngModel)]="selectedHero.name" (change)="onInput()">
   </div>
+  <div id="{{id}}-create" class="heroeditor-create" *ngIf="createMode" (click)="createButtonClick()">Create</div>
 </div>

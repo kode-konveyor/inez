@@ -1,5 +1,6 @@
 <div id="{{id}}" class=" heroes" *ngIf="heroes">
   <heroeditor id="{{id}}-heroeditor" class="heroes-heroeditor"></heroeditor>
   <herofilter id="{{id}}-herofilter"></herofilter>
-  <herolist id="{{id}}-herolist" class="heroes-herolist" [heroes]="heroes"></herolist>
+  <herolist id="{{id}}-herolist" class="heroes-herolist"></herolist>
+  <div id="{{id}}-plusbutton" class="heroes-plusbutton" (click)="plusbuttonOnClick()">+</div>
 </div>

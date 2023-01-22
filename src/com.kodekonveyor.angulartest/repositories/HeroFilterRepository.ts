@@ -1,9 +1,20 @@
-import { Injectable } from '@angular/core';
-import { HeroFilter } from 'src/com.kodekonveyor.angulartest/types/HeroFilter';
+import { createReducer, on } from '@ngrx/store';
+import { setHeroFilter } from './actions';
 
 
-@Injectable()
-export class HeroFilterRepository {
-  public readonly heroFilter: HeroFilter = { filterString: '' };
+export const heroFilterInitialState: String = "";
+
+
+function setHeroFilterTransition(
+  state: String,
+  newFilter: { heroFilter: String }): String {
+
+
+  return newFilter.heroFilter;
 }
+
+export const heroFilterReducer = createReducer(
+  heroFilterInitialState,
+  on(setHeroFilter, setHeroFilterTransition),
+);
 

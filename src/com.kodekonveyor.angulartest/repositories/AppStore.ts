@@ -3,6 +3,7 @@ import { Heroes } from '../types/Heroes';
 
 export interface AppStore {
   heroes: Heroes;
-  filterString: string;
-  selectedHero?: Hero;
+  heroFilter: String;
+  selectedHero: Hero;
+  createMode: boolean;
 }

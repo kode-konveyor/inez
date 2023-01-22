@@ -1,18 +1,10 @@
 import { Injectable } from '@angular/core';
-import { SelectedHeroRepository } from 'src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository';
-import { HeroItemComponentModel } from '../UI/heroitem/HeroItemComponentModel';
+import { Hero } from '../types/Hero';
 
 @Injectable()
 export class IsThisHeroSelectedForEditingService {
-
-  selectedHeroRepository: SelectedHeroRepository;
-
-  run(self: HeroItemComponentModel): boolean {
-    return self.hero === this.selectedHeroRepository.selectedHero;
+  run(thisHero: Hero, selectedHero: Hero): Boolean {
+    return thisHero === selectedHero
   }
-
-  constructor(selectedHeroRepository: SelectedHeroRepository) {
-    this.selectedHeroRepository = selectedHeroRepository;
-  }
-
 }
+
