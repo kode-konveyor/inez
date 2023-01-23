@@ -1,7 +1,6 @@
 set -x
 . /usr/local/toolchain/tools/environment
-xfile=$(echo /tmp/.X11-unix/X$(echo $DISPLAY|sed 's/://'))
-if [ -e $xfile ]
+if xlsclients
 then
 	echo skipping X server
 else
