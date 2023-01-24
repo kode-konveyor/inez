@@ -13,3 +13,5 @@ export const setSelectedHero =
   createAction('set selected hero', props<{ payload: Hero }>());
 export const setHeroFilter =
   createAction('set hero filter', props<{ payload: String }>());
+export const setBaseUrl =
+  createAction('set base url', props<{ payload: String }>());

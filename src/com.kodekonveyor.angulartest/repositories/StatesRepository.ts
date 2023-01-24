@@ -1,10 +1,11 @@
 import { createReducer, on } from "@ngrx/store";
-import { clearSelectedHero, setCreateMode, setHeroFilter, setSelectedHero } from "./actions";
+import { clearSelectedHero, setBaseUrl, setCreateMode, setHeroFilter, setSelectedHero } from "./actions";
 import { clearSelectedHeroTransition } from "../transitions/clearSelectedHeroTransition";
 import { setCreateModeTransition } from "../transitions/setCreateModeTransition";
 import { setHeroFilterTransition } from "../transitions/setHeroFilterTransition";
 import { setSelectedHeroTransition } from "../transitions/setSelectedHeroTransition";
 import { States } from "../types/States";
+import { setBaseUrlTransition } from "../transitions/setBaseUrlTransition";
 
 export const statesInitialState: States =
 {
@@ -13,7 +14,8 @@ export const statesInitialState: States =
   selectedHero: {
     id: null,
     name: ""
-  }
+  },
+  baseURL: ""
 }
 
 export const statesReducer = createReducer(
@@ -22,4 +24,5 @@ export const statesReducer = createReducer(
   on(setHeroFilter, setHeroFilterTransition),
   on(clearSelectedHero, clearSelectedHeroTransition),
   on(setSelectedHero, setSelectedHeroTransition),
+  on(setBaseUrl, setBaseUrlTransition),
 );

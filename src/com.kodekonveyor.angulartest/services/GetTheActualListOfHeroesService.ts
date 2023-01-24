@@ -21,7 +21,6 @@ export class GetTheActualListOfHeroesService {
 
         if (heroes != null) {
           heroes.forEach((hero: Hero) => {
-
             this.store.dispatch(addHero({ payload: hero }));
           })
         }

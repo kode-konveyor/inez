@@ -23,7 +23,6 @@ public class ResponseFilter implements Filter {
   private static final String ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
   private static final String VALUE = "*";
   private static final String CORS_HEADER = "Access-Control-Allow-Origin";
-  // Access-Control-Allow-Headers: Content-Type
 
   @Override
   public void doFilter(final ServletRequest request, final ServletResponse response,

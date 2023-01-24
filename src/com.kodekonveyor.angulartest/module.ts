@@ -21,6 +21,7 @@ import { ModifyHeroService } from './services/ModifyHeroService';
 import { ChangeToCreateModeService } from './services/ChangeToCreateModeService';
 import { statesReducer } from './repositories/StatesRepository';
 import { SetHeroFilterService } from './services/SetHeroFilterService';
+import { ObtainUrlBaseService } from './services/ObtainUrlBaseService';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { SetHeroFilterService } from './services/SetHeroFilterService';
     CreateHeroService,
     ModifyHeroService,
     ChangeToCreateModeService,
-    SetHeroFilterService
+    SetHeroFilterService,
+    ObtainUrlBaseService
   ],
   bootstrap: [HeroesComponent]
 })
