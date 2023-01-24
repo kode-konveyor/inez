@@ -46,10 +46,12 @@ export class HeroeditorComponent {
   }
 
   createButtonClick(): void {
+    console.log("creating", this.selectedHeroName)
     this.createHeroService.run({ id: null, name: this.selectedHeroName });
   }
 
   onInput(newValue: String): void {
+    this.selectedHeroName = newValue;
     const hero = { id: this.selectedHeroId, name: newValue };
     this.modifyHeroService.run(hero);
   }
