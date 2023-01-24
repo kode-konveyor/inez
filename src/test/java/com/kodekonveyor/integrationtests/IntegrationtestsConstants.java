@@ -16,7 +16,10 @@ public class IntegrationtestsConstants {
 	public static final String HERO_SELECTOR = "#heroes-herolist-heroitem-17-name";
 	public static final String INPUT_SELECTOR = "#heroes-heroeditor-name-input";
 	public static final String FILTER_INPUT_SELECTOR = "#heroes-herofilter-filterstring-input";
-	public static final String HERO_NAME = "Dynama";
 	public static final String ADDED_TEXT = "Hello";
+	public static final String HERO_NAME = "Superman";
+	public static final String HEROITEM_SELECTOR_TEMPLATE = "#heroes-herolist-heroitem-{0}-name";
+	public static final String HEROEDITOR_CREATE_SELECTOR = "#heroes-heroeditor-create";
+	public static final String HEROES_PLUSBUTTON_SELECTOR = "#heroes-plusbutton";
 
 }

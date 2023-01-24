@@ -26,9 +26,6 @@ class SeleniumTestHelper {
 	private static final String COULD_NOT_FIND = "Could not find ";
 	private static final String NO_CSS_SELECTOR = "";
 	private static final String RESTORE_BORDER_JS = "document.querySelector(''{0}'').style.border=''{1} {2} {3}''";
-//final String script = "document.querySelector('" + cssSelector
-//+ "').style.border='" + origWidth + " " + origStyle + " " + origColor
-//+ "'";
 	private static final String SSREENSHOT_FILE_NAME = "target/{0}_{1}.png";
 	private static final String BORDER_STYLE = "border-style";
 	private static final String BORDER_COLOR = "border-color";
@@ -134,6 +131,15 @@ class SeleniumTestHelper {
 			assertEquals(text, element.getText());
 		}
 		return this;
+	}
+	public String getText(final String reason)
+			throws IOException {
+		takeScreenshot(reason);
+		if (INPUT.equals(element.getTagName())) {
+			return element.getAttribute(VALUE);
+		} else {
+			return element.getText();
+		}
 	}
 
 	public SeleniumTestHelper enter(final String reason, final String text)

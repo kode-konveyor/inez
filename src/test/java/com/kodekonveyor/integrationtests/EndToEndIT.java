@@ -1,8 +1,11 @@
 package com.kodekonveyor.integrationtests;
 
+import java.text.MessageFormat;
+
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
+import org.openqa.selenium.Keys;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
@@ -10,29 +13,38 @@ import com.kodekonveyor.authentication.UserEntityTestData;
 
 @TestedBehaviour("roles")
 @TestedService("ListLeadController")
-// @Testable
-// @Tag("IntegrationTest")
+@Testable
+@Tag("IntegrationTest")
 class EndToEndIT {
 
+
+	@Test
   void seleniumTest() throws Exception {
-    final SeleniumTestHelper helper = new SeleniumTestHelper();
+     SeleniumTestHelper helper = new SeleniumTestHelper();
     login(helper);
     final String resultingText = IntegrationtestsConstants.HERO_NAME
         + IntegrationtestsConstants.ADDED_TEXT;
 
-    helper
-        .lookAtElement(IntegrationtestsConstants.HERO_SELECTOR)
+     helper = helper
+    .lookAtElement(IntegrationtestsConstants.HEROES_PLUSBUTTON_SELECTOR)
+    .click("click the plus button to add a Hero")
+    .lookAtElement(IntegrationtestsConstants.INPUT_SELECTOR)
+    .enter("Enter the name of the new hero", IntegrationtestsConstants.HERO_NAME)
+    .lookAtElement(IntegrationtestsConstants.HEROEDITOR_CREATE_SELECTOR)
+    .click("Click the create button")
+    .lookAtElement("#heroes-heroeditor-id");
+    String newId = helper.getText("The hero got saved into the database, and have an ID");
+        
+    String newHeroSelector = MessageFormat.format(IntegrationtestsConstants.HEROITEM_SELECTOR_TEMPLATE,newId);
+	helper
+        .lookAtElement(newHeroSelector)
         .checkText("Find your hero.", IntegrationtestsConstants.HERO_NAME)
-        .click()
         .lookAtElement(IntegrationtestsConstants.INPUT_SELECTOR)
-        .click("Click at the name input at the hero editor")
-        .checkText("It is alredy filled in",
-            IntegrationtestsConstants.HERO_NAME)
-        .enter("Enter some text", IntegrationtestsConstants.ADDED_TEXT)
+        .enter("Enter some text and press enter", IntegrationtestsConstants.ADDED_TEXT+Keys.RETURN)
         .checkText(
             "It is added to the name, of course you can edit it as you like",
             resultingText)
-        .lookAtElement(IntegrationtestsConstants.HERO_SELECTOR)
+        .lookAtElement(newHeroSelector)
         .checkText("he name of the hero is modified at the list",
             resultingText);
   }
