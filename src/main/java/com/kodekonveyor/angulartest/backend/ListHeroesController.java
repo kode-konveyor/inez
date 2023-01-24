@@ -18,6 +18,7 @@ public class ListHeroesController {
     final HeroesEntity heroes = new HeroesEntity();
     for (final HeroEntity hero : heroRepository.findAll())
       heroes.add(hero);
+
     return heroes;
   }
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.servlet.Filter;
 import javax.sql.DataSource;
 
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
@@ -25,10 +27,12 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.kodekonveyor.annotations.ExcludeFromCodeCoverage;
 import com.kodekonveyor.annotations.InterfaceClass;
+import com.kodekonveyor.webapp.ResponseFilter;
 import com.kodekonveyor.webapp.WebappConstants;
 
 @EnableScheduling
 @SpringBootApplication
+@ServletComponentScan
 @InterfaceClass
 @ExcludeFromCodeCoverage("interface to underlaying framework")
 public class SpringConfig extends SpringBootServletInitializer {
@@ -58,15 +62,19 @@ public class SpringConfig extends SpringBootServletInitializer {
   }
 
   @Bean
-  public FilterRegistrationBean<CharacterEncodingFilter>
-      filterRegistrationBean() {
-    final FilterRegistrationBean<CharacterEncodingFilter> registrationBean =
-        new FilterRegistrationBean<>();
-    final CharacterEncodingFilter characterEncodingFilter =
-        new CharacterEncodingFilter();
+  public FilterRegistrationBean<CharacterEncodingFilter> filterRegistrationBean() {
+    final FilterRegistrationBean<CharacterEncodingFilter> registrationBean = new FilterRegistrationBean<>();
+    final CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
     characterEncodingFilter.setForceEncoding(true);
     characterEncodingFilter.setEncoding(WebappConstants.UTF_8);
     registrationBean.setFilter(characterEncodingFilter);
+    return registrationBean;
+  }
+
+  @Bean
+  public FilterRegistrationBean<Filter> responseFilterRegistrationBean() {
+    final FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+    registrationBean.setFilter(new ResponseFilter());
     return registrationBean;
   }
 
@@ -78,9 +86,7 @@ public class SpringConfig extends SpringBootServletInitializer {
             .<Class<?>>map(MethodParameter::getContainingClass)
             .orElseGet(() -> Optional.ofNullable(injectionPoint.getField())
                 .map(Field::getDeclaringClass)
-                .orElseThrow(IllegalArgumentException::new)
-            )
-    );
+                .orElseThrow(IllegalArgumentException::new)));
   }
 
   @Bean
@@ -89,7 +95,7 @@ public class SpringConfig extends SpringBootServletInitializer {
   }
 
   @Bean(destroyMethod = "shutdown")
-  public ExecutorService executorService(){//NOPMD
+  public ExecutorService executorService() {// NOPMD
     return Executors.newFixedThreadPool(maxThreadCount);
   }
 
