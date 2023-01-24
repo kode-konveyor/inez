@@ -22,11 +22,8 @@ export class Synchronizer {
 
   synchronizeCopyTo<T>(self: any, fieldName: string) {
     return (value: T) => {
-      console.log("syncing to ", fieldName)
       const serialized = JSON.stringify(value);
-      console.log(serialized)
       const clone = JSON.parse(serialized);
-      console.log(clone)
       self[fieldName] = clone
     };
   }

@@ -22,7 +22,6 @@ export class ObtainUrlBaseService {
       .subscribe(
         (result: Config) => {
           this.store.dispatch(setBaseUrl({ payload: result.baseUrl }));
-          console.log("new base url ", result)
           subject.next(true)
         });
     return subject;

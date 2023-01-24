@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core'
 import { map } from 'rxjs';
-import { statesInitialState } from 'src/com.kodekonveyor.angulartest/repositories/StatesRepository';
 import { CreateHeroService } from 'src/com.kodekonveyor.angulartest/services/CreateHeroService';
 import { ModifyHeroService } from 'src/com.kodekonveyor.angulartest/services/ModifyHeroService';
 import { Synchronizer } from 'src/com.kodekonveyor.angulartest/services/Synchronizer';
@@ -15,32 +14,44 @@ export class HeroeditorComponent {
 
 
   @Input() id!: string;
-  states: States = statesInitialState;
+  createMode: Boolean = false;
+  selectedHeroId: number | null = null;
+  selectedHeroName: String = "";
+
   show: Boolean = false;
 
-  constructor(synchronizer: Synchronizer,
+  constructor(
+    private readonly synchronizer: Synchronizer,
     private readonly createHeroService: CreateHeroService,
     private readonly modifyHeroService: ModifyHeroService
   ) {
     synchronizer
-      .fromStore<States>('states')
-      .subscribe(
-        synchronizer.synchronizeCopyTo(this, 'states'))
+      .fromStore<States>('states').subscribe(
+        (x: States) => {
+          this.selectedHeroName = x.selectedHero.name
+          this.selectedHeroId = x.selectedHero.id
+          this.createMode = x.createMode
+        }
+      )
     synchronizer
       .fromStore<States>('states')
       .pipe<boolean>(map(
         shouldEditorBeShownOperator
       ))
       .subscribe(
-        synchronizer.synchronizeCopyTo(this, 'show'))
+        x => {
+          this.show = x
+        }
+      )
   }
 
   createButtonClick(): void {
-    this.createHeroService.run(this.states.selectedHero);
+    this.createHeroService.run({ id: null, name: this.selectedHeroName });
   }
 
-  onInput(): void {
-    this.modifyHeroService.run(this.states.selectedHero);
+  onInput(newValue: String): void {
+    const hero = { id: this.selectedHeroId, name: newValue };
+    this.modifyHeroService.run(hero);
   }
 }
 

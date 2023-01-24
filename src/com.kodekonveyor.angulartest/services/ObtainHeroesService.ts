@@ -20,7 +20,6 @@ export class ObtainHeroesService {
   }
 
   public run(): Observable<Heroes> {
-    console.log("Base URL:", this.states.baseURL);
     return this.httpClient.get<Heroes>(this.states.baseURL.concat(UrlMapConstants.GET_HEROES_URL));
   }
 }
