@@ -2,9 +2,11 @@ package com.kodekonveyor.integrationtests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -97,8 +99,12 @@ class WebservicesIT {
             + UrlMapConstants.LIST_HEROES_PATH),
         UserEntityTestData.LOGIN,
         HeroesEntity.class);
-    assertEquals(HeroEntityTestData.get().name,
-        reply.iterator().next().name);
+     HeroEntity elementFound = reply.stream().reduce((result,element) -> {
+    	if(element.name.equals(HeroEntityTestData.get().name))
+    		return element;
+    	return result    ;				
+    }).get();
+     assertEquals(elementFound.name, HeroEntityTestData.get().name);
   }
 
 }
