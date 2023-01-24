@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { Hero } from 'src/com.kodekonveyor.angulartest/types/Hero';
-import { isThisHeroSelectedForEditingFilter } from '../../filters/IsThisHeroSelectedForEditingFilter';
-import { SelectHeroForEditingService } from '../../services/SelectHeroForEditingService';
 import { combineLatest, map, of } from 'rxjs';
-import { SynchronizeService } from 'src/com.kodekonveyor.angulartest/services/SynchronizeService';
+import { Synchronizer } from 'src/com.kodekonveyor.angulartest/services/Synchronizer';
 import { Store } from '@ngrx/store';
-import { AppStore } from 'src/com.kodekonveyor.angulartest/repositories/AppStore';
+import { AppStore } from 'src/com.kodekonveyor.angulartest/types/AppStore';
+import { isThisHeroSelectedForEditingOperator } from 'src/com.kodekonveyor.angulartest/operators/IsThisHeroSelectedForEditingOperator';
+import { SelectHeroForEditingService } from 'src/com.kodekonveyor.angulartest/services/SelectHeroForEditingService';
+import { States } from 'src/com.kodekonveyor.angulartest/types/States';
 
 @Component({
   selector: 'heroitem',
@@ -18,7 +19,7 @@ export class HeroitemComponent implements OnInit {
   selected?: Boolean;
 
   constructor(
-    private readonly synchronizeService: SynchronizeService,
+    private readonly synchronizeService: Synchronizer,
     private readonly selectHeroForEditingService: SelectHeroForEditingService,
     private readonly store: Store<AppStore>
   ) {
@@ -27,10 +28,10 @@ export class HeroitemComponent implements OnInit {
   ngOnInit(): void {
     combineLatest([
       of(this.hero),
-      this.synchronizeService.fromStore<Hero>('selectedHero')
+      this.synchronizeService.fromStore<States>('states')
     ])
-      .pipe(map<[Hero, Hero], Boolean>(
-        isThisHeroSelectedForEditingFilter
+      .pipe(map<[Hero, States], Boolean>(
+        isThisHeroSelectedForEditingOperator
       ))
       .subscribe(
         this.synchronizeService.synchronizeTo(this, 'selected'))
@@ -40,5 +41,4 @@ export class HeroitemComponent implements OnInit {
     this.selectHeroForEditingService.run(this.hero)
   }
 }
-
 

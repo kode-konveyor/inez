@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { ChangeToCreateModeService } from 'src/com.kodekonveyor.angulartest/services/ChangeToCreateModeService';
 
 import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService';
-import { SynchronizeService } from 'src/com.kodekonveyor.angulartest/services/SynchronizeService';
 
 
 @Component({
@@ -14,7 +13,6 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     private readonly initializeStatesService: InitializeStatesService,
-    private readonly synchronizeService: SynchronizeService,
     private readonly changeToCreateModeService: ChangeToCreateModeService
   ) { }
 

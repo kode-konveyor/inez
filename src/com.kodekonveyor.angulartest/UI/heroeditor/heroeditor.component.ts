@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core'
-import { createModeInitialState } from 'src/com.kodekonveyor.angulartest/repositories/CreateModeRepository';
-import { selectedHeroInitialState } from 'src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository';
+import { map } from 'rxjs';
+import { statesInitialState } from 'src/com.kodekonveyor.angulartest/repositories/StatesRepository';
 import { CreateHeroService } from 'src/com.kodekonveyor.angulartest/services/CreateHeroService';
 import { ModifyHeroService } from 'src/com.kodekonveyor.angulartest/services/ModifyHeroService';
-import { SynchronizeService } from 'src/com.kodekonveyor.angulartest/services/SynchronizeService';
-import { Hero } from 'src/com.kodekonveyor.angulartest/types/Hero';
+import { Synchronizer } from 'src/com.kodekonveyor.angulartest/services/Synchronizer';
+import { States } from 'src/com.kodekonveyor.angulartest/types/States';
+import { shouldEditorBeShownOperator } from '../../operators/shouldEditorBeShownOperator';
 
 @Component({
   selector: 'heroeditor',
@@ -15,26 +15,32 @@ export class HeroeditorComponent {
 
 
   @Input() id!: string;
-  createMode: Boolean = createModeInitialState;
-  selectedHero: Hero = selectedHeroInitialState;
+  states: States = statesInitialState;
+  show: Boolean = false;
 
-
-  constructor(synchronizeService: SynchronizeService,
+  constructor(synchronizer: Synchronizer,
     private readonly createHeroService: CreateHeroService,
-    private readonly httpClient: HttpClient,
     private readonly modifyHeroService: ModifyHeroService
   ) {
-    synchronizeService.fromStore<boolean>('createMode').subscribe(
-      synchronizeService.synchronizeTo(this, 'createMode'))
-    synchronizeService.fromStore<Hero>('selectedHero').subscribe(
-      synchronizeService.synchronizeCopyTo(this, 'selectedHero'))
+    synchronizer
+      .fromStore<States>('states')
+      .subscribe(
+        synchronizer.synchronizeCopyTo(this, 'states'))
+    synchronizer
+      .fromStore<States>('states')
+      .pipe<boolean>(map(
+        shouldEditorBeShownOperator
+      ))
+      .subscribe(
+        synchronizer.synchronizeCopyTo(this, 'show'))
   }
 
   createButtonClick(): void {
-    this.createHeroService.run(this.selectedHero);
+    this.createHeroService.run(this.states.selectedHero);
   }
 
   onInput(): void {
-    this.modifyHeroService.run(this.selectedHero);
+    this.modifyHeroService.run(this.states.selectedHero);
   }
 }
+

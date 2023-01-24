@@ -1,6 +1,6 @@
 import { Store } from "@ngrx/store";
 import { mock, mockFn } from "jest-mock-extended";
-import { AppStore } from "src/com.kodekonveyor.angulartest/repositories/AppStore";
+import { AppStore } from "src/com.kodekonveyor.angulartest/types/AppStore";
 import { SelectHeroForEditingService } from "src/com.kodekonveyor.angulartest/services/SelectHeroForEditingService";
 import { HERO } from "./testdata/HeroTestData";
 

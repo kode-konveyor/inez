@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { Store } from '@ngrx/store';
-import { setHeroFilter } from 'src/com.kodekonveyor.angulartest/repositories/actions';
-import { AppStore } from 'src/com.kodekonveyor.angulartest/repositories/AppStore';
+import { SetHeroFilterService } from 'src/com.kodekonveyor.angulartest/services/SetHeroFilterService';
 
 @Component({
   selector: 'herofilter',
@@ -13,12 +11,13 @@ export class HeroFilterComponent {
   heroFilter: String = "";
 
   constructor(
-    private readonly store: Store<AppStore>
+    private readonly setHeroFilterService: SetHeroFilterService
   ) { }
 
   onInput(): void {
-    this.store.dispatch(setHeroFilter({ heroFilter: this.heroFilter }))
+    this.setHeroFilterService.run(this.heroFilter);
   }
+
 }
 
 

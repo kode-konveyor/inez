@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { createFeatureSelector, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { AppStore } from "../repositories/AppStore";
+import { AppStore } from "../types/AppStore";
 
 @Injectable()
-export class SynchronizeService {
+export class Synchronizer {
 
   constructor(private readonly store: Store<AppStore>) {
   }
@@ -22,7 +22,12 @@ export class SynchronizeService {
 
   synchronizeCopyTo<T>(self: any, fieldName: string) {
     return (value: T) => {
-      self[fieldName] = { ...value }
+      console.log("syncing to ", fieldName)
+      const serialized = JSON.stringify(value);
+      console.log(serialized)
+      const clone = JSON.parse(serialized);
+      console.log(clone)
+      self[fieldName] = clone
     };
   }
 }

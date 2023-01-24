@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core'
 import { combineLatest, map } from 'rxjs';
-import { heroItemFilter } from 'src/com.kodekonveyor.angulartest/filters/heroItemFilter';
-import { SynchronizeService } from 'src/com.kodekonveyor.angulartest/services/SynchronizeService';
+import { heroItemOperator } from 'src/com.kodekonveyor.angulartest/operators/heroItemOperator';
+import { Synchronizer } from 'src/com.kodekonveyor.angulartest/services/Synchronizer';
 import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
+import { States } from 'src/com.kodekonveyor.angulartest/types/States';
 
 @Component({
   selector: 'herolist',
@@ -14,13 +15,13 @@ export class HeroListComponent {
   heroes: Heroes = [];
 
   constructor(
-    private readonly synchronizeService: SynchronizeService
+    private readonly synchronizeService: Synchronizer
   ) {
     combineLatest([
       synchronizeService.fromStore<Heroes>('heroes'),
-      synchronizeService.fromStore<String>('heroFilter')]
-    ).pipe(map<[Heroes, String], Heroes>(
-      heroItemFilter
+      synchronizeService.fromStore<States>('states')]
+    ).pipe(map<[Heroes, States], Heroes>(
+      heroItemOperator
     ))
       .subscribe(synchronizeService.synchronizeTo(this, 'heroes'));
   }

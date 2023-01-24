@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { clearSelectedHero, setCreateMode } from '../repositories/actions';
-import { AppStore } from '../repositories/AppStore';
+import { AppStore } from '../types/AppStore';
 
 @Injectable()
 export class ChangeToCreateModeService {
@@ -11,7 +11,7 @@ export class ChangeToCreateModeService {
   ) { }
 
   public run(): void {
-    this.store.dispatch(setCreateMode({ createMode: true }));
+    this.store.dispatch(setCreateMode({ payload: true }));
     this.store.dispatch(clearSelectedHero());
   }
 }

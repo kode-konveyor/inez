@@ -15,13 +15,12 @@ import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/servic
 import { StoreModule } from '@ngrx/store'
 import { heroesReducer } from './repositories/HeroesRepository'
 import { ObtainHeroesService } from './services/ObtainHeroesService';
-import { SynchronizeService } from './services/SynchronizeService';
-import { selectedHeroReducer } from './repositories/SelectedHeroRepository';
-import { heroFilterReducer } from './repositories/HeroFilterRepository';
-import { createModeReducer } from './repositories/CreateModeRepository';
+import { Synchronizer } from './services/Synchronizer';
 import { CreateHeroService } from './services/CreateHeroService';
 import { ModifyHeroService } from './services/ModifyHeroService';
 import { ChangeToCreateModeService } from './services/ChangeToCreateModeService';
+import { statesReducer } from './repositories/StatesRepository';
+import { SetHeroFilterService } from './services/SetHeroFilterService';
 
 
 @NgModule({
@@ -39,9 +38,7 @@ import { ChangeToCreateModeService } from './services/ChangeToCreateModeService'
     HttpClientModule,
     StoreModule.forRoot({
       heroes: heroesReducer,
-      selectedHero: selectedHeroReducer,
-      heroFilter: heroFilterReducer,
-      createMode: createModeReducer,
+      states: statesReducer,
     })
   ],
   providers: [
@@ -49,10 +46,11 @@ import { ChangeToCreateModeService } from './services/ChangeToCreateModeService'
     SelectHeroForEditingService,
     InitializeStatesService,
     ObtainHeroesService,
-    SynchronizeService,
+    Synchronizer,
     CreateHeroService,
     ModifyHeroService,
     ChangeToCreateModeService,
+    SetHeroFilterService
   ],
   bootstrap: [HeroesComponent]
 })

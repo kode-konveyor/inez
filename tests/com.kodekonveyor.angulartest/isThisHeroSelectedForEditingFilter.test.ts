@@ -1,4 +1,4 @@
-import { isThisHeroSelectedForEditingFilter } from "src/com.kodekonveyor.angulartest/filters/IsThisHeroSelectedForEditingFilter";
+import { isThisHeroSelectedForEditingFilter } from "src/com.kodekonveyor.angulartest/operators/IsThisHeroSelectedForEditingFilter";
 import { HERO, HERO_OTHER } from "./testdata/HeroTestData";
 
 describe("Is this hero selected for editing?", () => {

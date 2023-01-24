@@ -2,14 +2,14 @@ import { createAction, props } from '@ngrx/store';
 import { Hero } from '../types/Hero';
 
 export const addHero =
-  createAction('add Hero', props<{ hero: Hero }>());
+  createAction('add Hero', props<{ payload: Hero }>());
 export const modifyHero =
-  createAction('modify Hero', props<{ hero: Hero }>());
+  createAction('modify Hero', props<{ payload: Hero }>());
 export const setCreateMode =
-  createAction('set create mode', props<{ createMode: Boolean }>());
+  createAction('set create mode', props<{ payload: Boolean }>());
 export const clearSelectedHero =
   createAction('clear selected hero');
 export const setSelectedHero =
-  createAction('set selected hero', props<{ hero: Hero }>());
+  createAction('set selected hero', props<{ payload: Hero }>());
 export const setHeroFilter =
-  createAction('set hero filter', props<{ heroFilter: String }>());
+  createAction('set hero filter', props<{ payload: String }>());

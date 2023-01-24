@@ -1,12 +1,13 @@
 import { Hero } from "../types/Hero";
 import { Heroes } from "../types/Heroes";
+import { States } from "../types/States";
 
-export function heroItemFilter(params: [
+export function heroItemOperator(params: [
   Heroes,
-  String
+  States,
 ]): Heroes {
   const heroes = params[0]
-  const filterString = params[1]
+  const filterString = params[1].heroFilter
   const r: Heroes = []
   heroes.forEach(
     (h: Hero) => {
