@@ -21,7 +21,7 @@ describe("Get the actual list of heroes", () => {
   test("we actually load a hero", async () => {
     sut.run();
     expect(store.dispatch).toBeCalledWith(
-      addHero({ hero: HEROES[0] })
+      addHero({ payload: HEROES[0] })
     );
   });
 })

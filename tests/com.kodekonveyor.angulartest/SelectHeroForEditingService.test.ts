@@ -14,13 +14,13 @@ describe("Select hero for editing", () => {
 
   test("turns on Create Mode", () => {
     expect(store.dispatch).toBeCalledWith({
-      "createMode": false,
+      "payload": false,
       "type": "set create mode",
     })
   });
   test("The selected hero will be the hero from the heroitem", () => {
     expect(store.dispatch).toBeCalledWith({
-      "hero": {
+      "payload": {
         "id": 1,
         "name": "Test Hero",
       },
