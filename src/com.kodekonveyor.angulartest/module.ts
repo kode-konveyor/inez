@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './routing'
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HeroesComponent } from './UI/heroes/heroes.component'
 import { HeroeditorComponent } from './UI/heroeditor/heroeditor.component'
@@ -22,6 +22,9 @@ import { ChangeToCreateModeService } from './services/ChangeToCreateModeService'
 import { statesReducer } from './repositories/StatesRepository';
 import { SetHeroFilterService } from './services/SetHeroFilterService';
 import { ObtainUrlBaseService } from './services/ObtainUrlBaseService';
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
+import { AuthButtonComponent } from './UI/AppAuthButton';
+import { UserProfileComponent } from './UI/UserProfileComponent';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { ObtainUrlBaseService } from './services/ObtainUrlBaseService';
     HeroeditorComponent,
     HeroitemComponent,
     HeroListComponent,
-    HeroFilterComponent
+    HeroFilterComponent,
+    AuthButtonComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,26 @@ import { ObtainUrlBaseService } from './services/ObtainUrlBaseService';
     StoreModule.forRoot({
       heroes: heroesReducer,
       states: statesReducer,
+    }),
+    AuthModule.forRoot({
+      domain: 'kode-konveyor.eu.auth0.com',
+      clientId: 'OqUGGMvs9Ch8yitD3sf2lm6mN61MZqPw',
+      authorizationParams: {
+        redirect_uri: window.location.href
+      },
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri: 'https://test.kodekonveyor.com/angulartest/*',
+            tokenOptions: {
+              authorizationParams: {
+                audience: 'https://test.kodekonveyor.com/angulartest',
+                scope: 'read:current_user'
+              }
+            }
+          }
+        ]
+      }
     })
   ],
   providers: [
@@ -52,8 +77,13 @@ import { ObtainUrlBaseService } from './services/ObtainUrlBaseService';
     ModifyHeroService,
     ChangeToCreateModeService,
     SetHeroFilterService,
-    ObtainUrlBaseService
+    ObtainUrlBaseService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
-  bootstrap: [HeroesComponent]
+  bootstrap: [
+    AuthButtonComponent,
+    UserProfileComponent,
+    HeroesComponent
+  ]
 })
 export class Angulartest { }

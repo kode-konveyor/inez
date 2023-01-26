@@ -25,7 +25,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-							"src/config.json"
+              "src/config.json"
             ],
             "styles": [
               "src/styles.css"
@@ -66,7 +66,11 @@
               "browserTarget": "angulartest:build:production"
             },
             "development": {
-              "browserTarget": "angulartest:build:development"
+              "browserTarget": "angulartest:build:development",
+              "headers": {
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Origin": "*"
+              }
             }
           },
           "defaultConfiguration": "development"

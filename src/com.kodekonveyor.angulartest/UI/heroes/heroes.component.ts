@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { AuthService } from '@auth0/auth0-angular';
 import { ChangeToCreateModeService } from 'src/com.kodekonveyor.angulartest/services/ChangeToCreateModeService';
 
 import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService';
@@ -13,7 +14,8 @@ export class HeroesComponent implements OnInit {
 
   constructor(
     private readonly initializeStatesService: InitializeStatesService,
-    private readonly changeToCreateModeService: ChangeToCreateModeService
+    private readonly changeToCreateModeService: ChangeToCreateModeService,
+    public readonly auth: AuthService
   ) { }
 
   ngOnInit(): void {

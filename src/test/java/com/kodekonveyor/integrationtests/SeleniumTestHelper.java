@@ -40,8 +40,8 @@ class SeleniumTestHelper {
 	SeleniumTestHelper() {
 		final FirefoxProfile profile = new FirefoxProfile();
 		profile.setAcceptUntrustedCertificates(true);
-		final DesiredCapabilities caps = DesiredCapabilities.firefox();
-		caps.setCapability(FirefoxDriver.PROFILE, profile);
+//		final DesiredCapabilities caps = DesiredCapabilities.firefox();
+//		caps.setCapability(FirefoxDriver.PROFILE, profile);
 
 		profile.setAssumeUntrustedCertificateIssuer(false);
 

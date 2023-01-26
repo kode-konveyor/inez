@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AuthService } from '@auth0/auth0-angular';
+import { Subject } from 'rxjs';
 import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
 import { statesInitialState } from '../repositories/StatesRepository';
 import { States } from '../types/States';
@@ -14,12 +15,28 @@ export class ObtainHeroesService {
 
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly synchronizer: Synchronizer
+    private readonly synchronizer: Synchronizer,
+    public auth: AuthService
   ) {
     this.synchronizer.fromStore('states').subscribe(synchronizer.synchronizeCopyTo(this, 'states'))
   }
 
-  public run(): Observable<Heroes> {
-    return this.httpClient.get<Heroes>(this.states.baseURL.concat(UrlMapConstants.GET_HEROES_URL));
+  public run(): Subject<Heroes> {
+    const r = new Subject<Heroes>();
+    this.auth.user$.subscribe(
+      (user) => {
+        console.log("user", user)
+        if (user != null) {
+          console.log("getting")
+          this.httpClient.get<Heroes>(this.states.baseURL.concat(UrlMapConstants.GET_HEROES_URL)).subscribe(
+            (h) => {
+              console.log("got", h)
+              r.next(h)
+            }
+          )
+        }
+      }
+    )
+    return r;
   }
 }
