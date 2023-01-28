@@ -47,7 +47,7 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(
 						authz -> authz.antMatchers(HttpMethod.GET, "/heroes")
-								.hasAuthority("SCOPE_readss")
+								.hasAuthority("SCOPE_read:current_user")
 								.anyRequest().permitAll())
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt());
 
