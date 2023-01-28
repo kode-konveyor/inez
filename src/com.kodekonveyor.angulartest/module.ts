@@ -50,12 +50,23 @@ import { UserProfileComponent } from './UI/UserProfileComponent';
       domain: 'kode-konveyor.eu.auth0.com',
       clientId: 'OqUGGMvs9Ch8yitD3sf2lm6mN61MZqPw',
       authorizationParams: {
-        redirect_uri: window.location.href
+        redirect_uri: window.location.href,
+        audience: 'https://test.kodekonveyor.com/angulartest',
+        scope: 'read:current_user'
       },
       httpInterceptor: {
         allowedList: [
           {
             uri: 'https://test.kodekonveyor.com/angulartest/*',
+            tokenOptions: {
+              authorizationParams: {
+                audience: 'https://test.kodekonveyor.com/angulartest',
+                scope: 'read:current_user'
+              }
+            }
+          },
+          {
+            uri: 'https://localhost:9090/angulartest/*',
             tokenOptions: {
               authorizationParams: {
                 audience: 'https://test.kodekonveyor.com/angulartest',

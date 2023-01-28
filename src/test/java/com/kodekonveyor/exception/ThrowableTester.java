@@ -1,6 +1,7 @@
 package com.kodekonveyor.exception;
 
-import static org.junit.Assert.*;// NOPMD
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.platform.commons.util.ExceptionUtils;
 import org.springframework.stereotype.Service;
@@ -53,16 +54,16 @@ public class ThrowableTester {// NOPMD
     final String message = String.format(
         EXPECTED_S_BUT_GOT_S, klass, ExceptionUtils.readStackTrace(thrown)
     );
-    assertEquals(message, klass, thrown.getClass());
+    assertEquals(message, klass.toString(), thrown.getClass().toString());
     return this;
   }
 
   public ThrowableTester assertMessageContains(final String string) {
     assertTrue(
+            thrown.getMessage().contains(string),
         String.format(
             MESSAGE_DOES_NOT_CONTAIN_S_GOT_S, string, thrown.getMessage()
-        ),
-        thrown.getMessage().contains(string)
+        )
     );
     return this;
   }
@@ -75,11 +76,11 @@ public class ThrowableTester {// NOPMD
   public ThrowableTester assertMessageMatches(final String string) {
     assertNotNull(NO_MESSAGE_OF_THE_EXCEPTION, thrown.getMessage());
     assertTrue(
+        thrown.getMessage().matches(string),
         String.format(
-            MESSAGE_DOES_NOT_MATCH_EXPECTED_S_GOT_S, string,
-            thrown.getMessage()
-        ),
-        thrown.getMessage().matches(string)
+                MESSAGE_DOES_NOT_MATCH_EXPECTED_S_GOT_S, string,
+                thrown.getMessage()
+            )
     );
     return this;
   }

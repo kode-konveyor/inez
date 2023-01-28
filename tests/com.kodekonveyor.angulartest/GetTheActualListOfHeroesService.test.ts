@@ -5,7 +5,9 @@ import { GetTheActualListOfHeroesService } from "src/com.kodekonveyor.angulartes
 import { addHero } from 'src/com.kodekonveyor.angulartest/repositories/actions';
 import { HEROES } from "src/legacy/mock-heroes";
 import { ObtainHeroesService } from "src/com.kodekonveyor.angulartest/services/ObtainHeroesService";
-import { of } from "rxjs";
+import { Synchronizer } from "src/com.kodekonveyor.angulartest/services/Synchronizer";
+import { Observable, of } from "rxjs";
+import { States } from "src/com.kodekonveyor.angulartest/types/States";
 
 
 describe("Get the actual list of heroes", () => {
@@ -16,7 +18,13 @@ describe("Get the actual list of heroes", () => {
     const run = mockFn();
     run.mockReturnValue(of(HEROES));
     obtainHeroesService.run = run;
-    sut = new GetTheActualListOfHeroesService(store, obtainHeroesService);
+    const synchonizer = mock<Synchronizer>();
+    const fromStore = mockFn<any, any>();
+    synchonizer.fromStore = fromStore;
+    const statesObservable = mock<Observable<States>>();
+    statesObservable.subscribe = mockFn();
+    fromStore.mockReturnValue(statesObservable);
+    sut = new GetTheActualListOfHeroesService(obtainHeroesService, synchonizer, store);
   });
   test("we actually load a hero", async () => {
     sut.run();

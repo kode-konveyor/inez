@@ -2,12 +2,8 @@ package com.kodekonveyor.integrationtests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,8 +16,6 @@ import com.kodekonveyor.angulartest.backend.HeroRepository;
 import com.kodekonveyor.angulartest.backend.HeroesEntity;
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
-import com.kodekonveyor.authentication.UserDTO;
-import com.kodekonveyor.authentication.UserEntityTestData;
 import com.kodekonveyor.webapp.UrlMapConstants;
 
 import net.minidev.json.parser.ParseException;
@@ -30,7 +24,7 @@ import net.minidev.json.parser.ParseException;
 @TestedService("ListLeadController")
 @Testable
 @Tag("IntegrationTest")
-class WebservicesIT {
+public class WebservicesIT {
 
   @Autowired
   HeroRepository heroRepository;
@@ -39,17 +33,6 @@ class WebservicesIT {
 
   @BeforeEach
   void setUp() {
-  }
-
-  @Test
-  @DisplayName("A user can get its data at member/user")
-  void test1() throws IOException, ParseException {
-    final UserDTO marketUser = (UserDTO) WebServiceTestHelper.httpGet(
-        new URL(serverURI
-            + UrlMapConstants.SHOW_USER_PATH),
-        UserEntityTestData.LOGIN,
-        UserDTO.class);
-    assertEquals(UserEntityTestData.LOGIN, marketUser.getLogin());
   }
 
   @Test

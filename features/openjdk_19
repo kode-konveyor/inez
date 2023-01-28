@@ -1,0 +1,1 @@
+apt -y install openjdk-19-jdk

@@ -95,7 +95,7 @@ target/java_qa: target/mutation_check target/end_to_end_test target/test/javadoc
 	echo "java_qa NOTIMPLEMENTED">target/java_qa
 
 target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation
-	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
+	mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
 	cp target/pit-reports/$$(basename $$(ls -d target/pit-reports/*|tail -1))/mutations.xml target/mutations.xml
 	mkdir -p target/test
 	cp ./target/site/testapidocs/javadoc.xml target/test/javadoc.xml

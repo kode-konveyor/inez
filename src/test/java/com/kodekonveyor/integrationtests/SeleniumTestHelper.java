@@ -13,8 +13,6 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,13 +36,6 @@ class SeleniumTestHelper {
 	private String cssSelector;
 
 	SeleniumTestHelper() {
-		final FirefoxProfile profile = new FirefoxProfile();
-		profile.setAcceptUntrustedCertificates(true);
-//		final DesiredCapabilities caps = DesiredCapabilities.firefox();
-//		caps.setCapability(FirefoxDriver.PROFILE, profile);
-
-		profile.setAssumeUntrustedCertificateIssuer(false);
-
 		final FirefoxOptions firefoxOptions = new FirefoxOptions();
 		firefoxOptions.addArguments(IntegrationtestsConstants.HEADLESS);
 		firefoxOptions.addPreference("security.ssl.enable_ocsp_stapling", false);

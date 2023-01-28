@@ -9,13 +9,12 @@ import org.openqa.selenium.Keys;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
-import com.kodekonveyor.authentication.UserEntityTestData;
 
 @TestedBehaviour("roles")
 @TestedService("ListLeadController")
 @Testable
 @Tag("IntegrationTest")
-class EndToEndIT {
+public class EndToEndIT {
 
 
 	@Test

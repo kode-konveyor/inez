@@ -37,69 +37,63 @@ import com.kodekonveyor.webapp.WebappConstants;
 @ExcludeFromCodeCoverage("interface to underlaying framework")
 public class SpringConfig extends SpringBootServletInitializer {
 
-  @Value("${com.kodekonveyor.repo.jdbcDriver}")
-  private String jdbcDriver;
+	@Value("${com.kodekonveyor.repo.jdbcDriver}")
+	private String jdbcDriver;
 
-  @Value("${com.kodekonveyor.repo.jdbcUri}")
-  private String jdbcUri;
+	@Value("${com.kodekonveyor.repo.jdbcUri}")
+	private String jdbcUri;
 
-  @Value("${com.kodekonveyor.task.max-thread:10}")
-  private int maxThreadCount;
+	@Value("${com.kodekonveyor.task.max-thread:10}")
+	private int maxThreadCount;
 
-  @Value("${com.kodekonveyor.task.max-measurement-loops:10}")
-  private int maxMeasurementLoops;
+	public static void main(final String[] args) {
+		SpringApplication.run(SpringConfig.class, args);
+	}
 
-  public static void main(final String[] args) {
-    SpringApplication.run(SpringConfig.class, args);
-  }
+	@Bean
+	public DataSource dataSource() {
+		final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+		dataSourceBuilder.driverClassName(jdbcDriver);
+		dataSourceBuilder.url(jdbcUri);
+		return dataSourceBuilder.build();
+	}
 
-  @Bean
-  public DataSource dataSource() {
-    final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-    dataSourceBuilder.driverClassName(jdbcDriver);
-    dataSourceBuilder.url(jdbcUri);
-    return dataSourceBuilder.build();
-  }
+	@Bean
+	public FilterRegistrationBean<CharacterEncodingFilter> filterRegistrationBean() {
+		final FilterRegistrationBean<CharacterEncodingFilter> registrationBean = new FilterRegistrationBean<>();
+		final CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+		characterEncodingFilter.setForceEncoding(true);
+		characterEncodingFilter.setEncoding(WebappConstants.UTF_8);
+		registrationBean.setFilter(characterEncodingFilter);
+		return registrationBean;
+	}
 
-  @Bean
-  public FilterRegistrationBean<CharacterEncodingFilter> filterRegistrationBean() {
-    final FilterRegistrationBean<CharacterEncodingFilter> registrationBean = new FilterRegistrationBean<>();
-    final CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-    characterEncodingFilter.setForceEncoding(true);
-    characterEncodingFilter.setEncoding(WebappConstants.UTF_8);
-    registrationBean.setFilter(characterEncodingFilter);
-    return registrationBean;
-  }
+	@Bean
+	public FilterRegistrationBean<Filter> responseFilterRegistrationBean() {
+		final FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+		registrationBean.setFilter(new ResponseFilter());
+		return registrationBean;
+	}
 
-  @Bean
-  public FilterRegistrationBean<Filter> responseFilterRegistrationBean() {
-    final FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-    registrationBean.setFilter(new ResponseFilter());
-    return registrationBean;
-  }
+	@Bean
+	@Scope("prototype")
+	public Logger logger(final InjectionPoint injectionPoint) {
+		return LoggerFactory.getLogger(
+				Optional.ofNullable(injectionPoint.getMethodParameter())
+						.<Class<?>>map(MethodParameter::getContainingClass)
+						.orElseGet(() -> Optional.ofNullable(injectionPoint.getField())
+								.map(Field::getDeclaringClass)
+								.orElseThrow(IllegalArgumentException::new)));
+	}
 
-  @Bean
-  @Scope("prototype")
-  public Logger logger(final InjectionPoint injectionPoint) {
-    return LoggerFactory.getLogger(
-        Optional.ofNullable(injectionPoint.getMethodParameter())
-            .<Class<?>>map(MethodParameter::getContainingClass)
-            .orElseGet(() -> Optional.ofNullable(injectionPoint.getField())
-                .map(Field::getDeclaringClass)
-                .orElseThrow(IllegalArgumentException::new)));
-  }
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 
-  @Bean
-  public ModelMapper modelMapper() {
-    return new ModelMapper();
-  }
+	@Bean(destroyMethod = "shutdown")
+	public ExecutorService executorService() {// NOPMD
+		return Executors.newFixedThreadPool(maxThreadCount);
+	}
 
-  @Bean(destroyMethod = "shutdown")
-  public ExecutorService executorService() {// NOPMD
-    return Executors.newFixedThreadPool(maxThreadCount);
-  }
-
-  public int getMaxMeasurementLoops() {
-    return maxMeasurementLoops;
-  }
 }
