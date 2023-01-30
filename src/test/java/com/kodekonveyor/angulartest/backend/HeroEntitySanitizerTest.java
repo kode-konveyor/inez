@@ -16,21 +16,21 @@ public class HeroEntitySanitizerTest {
 
 	@Test
 	@DisplayName("A simple English name is okay")
-	public void test() {
+	void test() {
 		assertEquals(HeroEntityTestData.get().toBuilder().id(null).build(),
 				HeroEntitySanitizer.sanitize(HeroEntityTestData.get()));
 	}
 
 	@Test
 	@DisplayName("The id is null")
-	public void test2() {
+	void test2() {
 		assertEquals(null,
 				HeroEntitySanitizer.sanitize(HeroEntityTestData.get()).id);
 	}
 
 	@Test
 	@DisplayName("Little Bobby Tables throws ValidationException")
-	public void test1() {
+	void test1() {
 		ThrowableTester.assertThrows(
 				() -> HeroEntitySanitizer
 						.sanitize(HeroEntityTestData.getLittleBobbyTables()));

@@ -1,0 +1,1 @@
+sudo apt -y install --allow-downgrades zenta-tools=3.5.2.wrong-gb4ef18b.

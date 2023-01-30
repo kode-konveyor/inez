@@ -30,6 +30,7 @@ class SeleniumTestHelper {
 	private static final String BORDER_WIDTH = "border-width";
 	private static final String VALUE = "value";
 	private static final String INPUT = "input";
+	private static final String SSREENSHOT_PAGE_FILE_NAME = "target/{0}_{1}.html";
 	private final FirefoxDriver driver;
 	private static Integer step = 0;
 	private WebElement element;
@@ -78,10 +79,12 @@ class SeleniumTestHelper {
 			origWidth = element.getCssValue(BORDER_WIDTH);
 			origColor = element.getCssValue(BORDER_COLOR);
 			origStyle = element.getCssValue(BORDER_STYLE);
-			driver.executeScript(MessageFormat.format(
+			String script = MessageFormat.format(
 					RESTORE_BORDER_JS,
 					cssSelector, NOTE_BORDER_WIDTH, NOTE_BORDER_STYLE,
-					NOTE_BORDER_COLOR));
+					NOTE_BORDER_COLOR);
+			System.out.println(script);
+			driver.executeScript(script);
 		}
 		final File screenshot = driver.getScreenshotAs(OutputType.FILE);
 		final Integer stepNumber = step++;
@@ -123,6 +126,7 @@ class SeleniumTestHelper {
 		}
 		return this;
 	}
+
 	public String getText(final String reason)
 			throws IOException {
 		takeScreenshot(reason);

@@ -19,22 +19,18 @@ public class WebServiceTestHelper {
 		mapper = new ObjectMapper();
 	}
 
-	public static Object httpGet(final URL url, final String login,
+	public static Object httpGet(final URL url,
 			final Class<?> klazz)
 			throws IOException, JsonParseException, JsonMappingException {
 		final Object reply;
 		final HttpURLConnection connection = (HttpURLConnection) url
 				.openConnection();
-		connection
-				.setRequestProperty(
-						IntegrationtestsConstants.OIDC_CLAIM_NICKNAME,
-						login);
 		reply = mapper
 				.readValue((InputStream) connection.getContent(), klazz);
 		return reply;
 	}
 
-	public static Object httpPost(final URL url, final String login,
+	public static Object httpPost(final URL url,
 			final Object request, final Class<?> replyClass)
 			throws IOException, JsonParseException, JsonMappingException {
 		final Object reply;
@@ -46,9 +42,6 @@ public class WebServiceTestHelper {
 		connection.setRequestProperty(WebappConstants.ACCEPT,
 				WebappConstants.APPLICATION_JSON);
 		connection.setDoOutput(true);
-		connection.setRequestProperty(
-				IntegrationtestsConstants.OIDC_CLAIM_NICKNAME,
-				login);
 		final String requestString = mapper.writeValueAsString(request);
 		try (OutputStream outputStream = connection.getOutputStream()) {
 			final byte[] requestAsBytes = requestString
