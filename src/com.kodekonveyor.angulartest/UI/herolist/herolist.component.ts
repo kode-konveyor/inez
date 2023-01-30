@@ -1,22 +1,28 @@
 import { Component, Input } from '@angular/core'
-import { SelectHeroesWithMatchingNamesService } from 'src/com.kodekonveyor.angulartest/services/SelectHeroesWithMatchingNamesService';
+import { combineLatest, map } from 'rxjs';
+import { heroItemOperator } from 'src/com.kodekonveyor.angulartest/operators/heroItemOperator';
+import { Synchronizer } from 'src/com.kodekonveyor.angulartest/services/Synchronizer';
 import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
-import { HeroListComponentModel } from './HeroListComponentModel';
+import { States } from 'src/com.kodekonveyor.angulartest/types/States';
 
 @Component({
   selector: 'herolist',
   templateUrl: './herolist.component.html'
 })
-export class HeroListComponent implements HeroListComponentModel {
-  @Input() heroes?: Heroes;
-  selectHeroesWithMatchingNamesService: SelectHeroesWithMatchingNamesService;
+export class HeroListComponent {
+  @Input() id!: string;
 
-  filterForHeroitem(heroes: Heroes): Heroes {
-    return this.selectHeroesWithMatchingNamesService.run()
-  }
+  heroes: Heroes = [];
 
-  constructor(selectHeroesWithMatchingNamesService: SelectHeroesWithMatchingNamesService) {
-    this.selectHeroesWithMatchingNamesService = selectHeroesWithMatchingNamesService;
-
+  constructor(
+    private readonly synchronizeService: Synchronizer
+  ) {
+    combineLatest([
+      synchronizeService.fromStore<Heroes>('heroes'),
+      synchronizeService.fromStore<States>('states')]
+    ).pipe(map<[Heroes, States], Heroes>(
+      heroItemOperator
+    ))
+      .subscribe(synchronizeService.synchronizeTo(this, 'heroes'));
   }
 }

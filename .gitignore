@@ -21,7 +21,8 @@
 /node_modules
 /npm-debug.log
 /yarn-error.log
-
+/src/main/webapp/*
+!/src/main/webapp/WEB-INF
 # IDEs and editors
 /.idea/
 /.c9/
@@ -65,3 +66,6 @@ Thumbs.db
 /model.stubs
 /model.testdata
 /model/
+.sts4-cache/
+hs_err_pid*.log
+model.pics/

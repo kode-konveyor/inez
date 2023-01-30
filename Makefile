@@ -1,21 +1,26 @@
 export TOOLCHAINDIR = /usr/local/toolchain
 export GITHUB_ORGANIZATION=$(shell repofullname -d | sed 'sA/.*AA')
 export REPO_NAME=$(shell repofullname | sed 'sA.*/AA')
+export VERSION=$(shell git describe --tags)
 LANGUAGE=java
 #export MODEL_BASENAME=model
 #export REPO_NAME=angulartest
 #export GITHUB_ORGANIZATION=kode-konveyor
 #export CONSISTENCY_INPUTS=model.rich target/behaviours.xml
 
-all: $(BEFORE_ALL) target/deploy_dev target/deploy_repo $(AFTER_ALL)
+all: $(BEFORE_ALL) target/gather_deliverables $(AFTER_ALL)
 
-target/deploy_dev: target/gather_deliverables
-	echo "deploy_dev NOTIMPLEMENTED">target/deploy_dev
+foo:
+	echo $(REPO_NAME) $(GITHUB_ORGANIZATION) $(VERSION)
 
-target/deploy_repo: target/gather_deliverables
-	echo "deploy_repo NOTIMPLEMENTED">target/deploy_repo
+jetty:
+	rm -f target/typescript_build && make target/typescript_build && mvn jetty:run
 
-target/gather_deliverables: target/documentation target/android_app target/ios_app target/java_server
+target/version_updated:
+	updateversion
+	touch target/version_updated
+
+target/gather_deliverables: target/documentation target/android_app target/ios_app target/war_built
 	echo "gather_deliverables NOTIMPLEMENTED">target/gather_deliverables
 
 target/documentation: target/java_documentation target/typescript_documentation target/end_to_end_documentation target/model_documentation
@@ -23,7 +28,7 @@ target/documentation: target/java_documentation target/typescript_documentation 
 
 target/android_app: target/typescript_qa target/androidplatform
 	cordova telemetry off
-	cordova build android
+	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 cordova build android
 	mv platforms/android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
 
@@ -34,9 +39,6 @@ target/androidplatform:
 target/ios_app: target/typescript_qa
 	echo "ios_app NOTIMPLEMENTED">target/ios_app
 
-target/java_server: target/typescript_build target/java_qa
-	echo "java_server NOTIMPLEMENTED">target/java_server
-
 target/typescript_documentation: target/typescript_qa
 	echo "typescript_documentation NOTIMPLEMENTED">target/typescript_documentation
 
@@ -46,7 +48,7 @@ target/java_documentation: target/java_qa target/implementedBehaviours.xml
 target/end_to_end_documentation: target/end_to_end_test
 	echo "end_to_end_documentation NOTIMPLEMENTED">target/end_to_end_documentation
 
-target/typescript_qa: target/typescript_dependencies target/typescript_source_generation
+target/typescript_qa: target/version_updated target/typescript_dependencies target/typescript_source_generation
 	npm run qa
 	touch target/typescript_qa
 
@@ -54,21 +56,18 @@ target/typescript_dependencies:
 	npm install
 	touch target/typescript_dependencies
 
-target/java_qa: target/java_source_generation target/mutation_check
-	touch target/java_qa
-	
-
-target/typescript_build target/public: target/typescript_qa
+target/typescript_build: target/version_updated target/typescript_qa
 	npm run build
 	cp -r www target/public
+	cp  www/* src/main/webapp
 	touch target/typescript_build
 
-target/deploy_war: target/runApache
-	deploywar
+target/deploy_war: target/runApache target/war_built
+	deploywar $(REPO_NAME) $(VERSION)
 	touch target/deploy_war
 
-target/end_to_end_test: target/java_server target/runApache target/deploy_war
-	echo "end_to_end_test NOTIMPLEMENTED">target/end_to_end_test
+#target/end_to_end_test: target/runtomcat target/deploy_war
+#	echo "end_to_end_test NOTIMPLEMENTED">target/end_to_end_test
 
 target/typescript_source_generation: model.rich
 	echo "typescript_source_generation NOTIMPLEMENTED">target/typescript_source_generation
@@ -91,12 +90,21 @@ target/runApache:
 	runApache
 	touch target/runApache
 
-target/mutation_check target/test/javadoc.xml: inputs/codingrules target/public
-	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
-	cp target/pit-reports/$$(basename $$(ls -d target/pit-reports/*|tail -1))/mutations.xml target/mutations.xml
+#target/runtomcat: target/runApache target/deploy_war
+#	tomcat
+#	touch target/runtomcat
+
+target/java_qa: target/mutation_check target/end_to_end_test target/test/javadoc.xml
+	echo "java_qa NOTIMPLEMENTED">target/java_qa
+
+target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation
+	JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
+	cp target/pit-reports/mutations.xml target/mutations.xml
 	mkdir -p target/test
 	cp ./target/site/testapidocs/javadoc.xml target/test/javadoc.xml
 	touch target/mutation_check
+	touch target/end_to_end_test
+	touch target/war_built
 
 #export MODEL_BASENAME=model
 #export REPO_NAME=angulartest

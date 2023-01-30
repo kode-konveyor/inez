@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
-import { SelectedHeroRepository } from 'src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository';
-import { HeroItemComponentModel } from '../UI/heroitem/HeroItemComponentModel';
+import { Store } from '@ngrx/store';
+import { setCreateMode, setSelectedHero } from '../repositories/actions';
+import { AppStore } from '../types/AppStore';
+import { Hero } from '../types/Hero';
 
 @Injectable()
 export class SelectHeroForEditingService {
 
-  selectedHeroRepository: SelectedHeroRepository;
+  store: Store<AppStore>
 
-  constructor(selectedHeroRepository: SelectedHeroRepository) {
-    this.selectedHeroRepository = selectedHeroRepository;
+  constructor(store: Store<AppStore>) {
+    this.store = store;
   }
 
-  run(self: HeroItemComponentModel): void {
-    this.selectedHeroRepository.selectedHero = self.hero;
+  run(hero: Hero): void {
+    this.store.dispatch(setCreateMode({ payload: false }))
+    this.store.dispatch(setSelectedHero({ payload: hero }))
   }
 }
 

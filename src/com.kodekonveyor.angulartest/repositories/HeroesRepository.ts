@@ -1,7 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
+import { createReducer, on } from '@ngrx/store';
+import { Heroes } from '../types/Heroes';
+import { addHero, modifyHero } from './actions';
+import { addHeroTransition } from '../transitions/addHeroTransition';
+import { modifyHeroTransition } from '../transitions/modifyHeroTransition';
 
-@Injectable()
-export class HeroesRepository {
-  public readonly heroes: Heroes = [];
-}
+const heroesInitialState: Heroes = []
+
+export const heroesReducer = createReducer(
+  heroesInitialState,
+  on(addHero, addHeroTransition),
+  on(modifyHero, modifyHeroTransition),
+);

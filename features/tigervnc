@@ -1,0 +1,2 @@
+sudo apt-get -y --purge remove tightvncpasswd tightvncserver
+sudo apt -y install tigervnc-standalone-server fvwm xterm

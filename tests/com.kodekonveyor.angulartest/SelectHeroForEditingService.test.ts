@@ -1,22 +1,30 @@
-import { HeroItemComponentModel } from "src/com.kodekonveyor.angulartest/UI/heroitem/HeroItemComponentModel";
-import { SelectedHeroRepository } from "src/com.kodekonveyor.angulartest/repositories/SelectedHeroRepository";
+import { Store } from "@ngrx/store";
+import { mock, mockFn } from "jest-mock-extended";
+import { AppStore } from "src/com.kodekonveyor.angulartest/types/AppStore";
 import { SelectHeroForEditingService } from "src/com.kodekonveyor.angulartest/services/SelectHeroForEditingService";
-import { HERO, HERO_OTHER } from "./testdata/HeroTestData";
+import { HERO } from "./testdata/HeroTestData";
 
 describe("Select hero for editing", () => {
-  let selectedHeroRepository: SelectedHeroRepository;
 
-  let sut: SelectHeroForEditingService;
+  const dispatch = mockFn<any, any>()
+  const store = mock<Store<AppStore>>()
+  store.dispatch = dispatch;
+  const sut = new SelectHeroForEditingService(store);
+  sut.run(HERO);
 
-  let heroItemComponentModel: HeroItemComponentModel;
-  beforeEach(() => {
-    selectedHeroRepository = new SelectedHeroRepository();
-    selectedHeroRepository.selectedHero = HERO_OTHER;
-    sut = new SelectHeroForEditingService(selectedHeroRepository)
+  test("turns on Create Mode", () => {
+    expect(store.dispatch).toBeCalledWith({
+      "payload": false,
+      "type": "set create mode",
+    })
   });
   test("The selected hero will be the hero from the heroitem", () => {
-    heroItemComponentModel = { hero: HERO };
-    sut.run(heroItemComponentModel);
-    expect(selectedHeroRepository.selectedHero).toBe(HERO)
+    expect(store.dispatch).toBeCalledWith({
+      "payload": {
+        "id": 1,
+        "name": "Test Hero",
+      },
+      "type": "set selected hero",
+    })
   });
 });
