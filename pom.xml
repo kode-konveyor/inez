@@ -6,7 +6,7 @@
 
 	<groupId>com.kodekonveyor</groupId>
 	<artifactId>angulartest-server</artifactId><!-- project name -->
-	<version>1.0-30-g23e3b83</version><!--package version -->
+	<version>1.0-32-g34e0fce</version><!--package version -->
 	<packaging>war</packaging>
 	<name>angulartest</name><!-- project name -->
 	<description>Backend for angular test frontend</description>
@@ -308,14 +308,14 @@
 					<reportSet>
 						<id>production-javadoc</id>
 						<configuration>
-							<doclet>com.github.markusbernhardt.xmldoclet.XmlDoclet</doclet>
+							<doclet>com.kodekonveyor.xmldoclet.XmlDoclet</doclet>
 							<additionalparam>-d ${project.build.directory}/production
 								-filename javadoc.xml</additionalparam>
 							<useStandardDocletOptions>false</useStandardDocletOptions>
 							<docletArtifact>
-								<groupId>com.github.markusbernhardt</groupId>
+								<groupId>com.kodekonveyor</groupId>
 								<artifactId>xml-doclet</artifactId>
-								<version>1.0.6-SNAPSHOT</version>
+								<version>1.0.0-SNAPSHOT</version>
 							</docletArtifact>
 							<show>private</show>
 						</configuration>
@@ -326,14 +326,14 @@
 					<reportSet>
 						<id>test-javadoc</id>
 						<configuration>
-							<doclet>com.github.markusbernhardt.xmldoclet.XmlDoclet</doclet>
+							<doclet>com.kodekonveyor.xmldoclet.XmlDoclet</doclet>
 							<additionalparam> -d ${project.build.directory}/test -filename javadoc.xml
 							</additionalparam>
 							<useStandardDocletOptions>false</useStandardDocletOptions>
 							<docletArtifact>
-								<groupId>com.github.markusbernhardt</groupId>
+								<groupId>com.kodekonveyor</groupId>
 								<artifactId>xml-doclet</artifactId>
-								<version>1.0.6-SNAPSHOT</version>
+								<version>1.0.0-SNAPSHOT</version>
 							</docletArtifact>
 							<show>private</show>
 						</configuration>
@@ -393,25 +393,6 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-junit-jupiter</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.github.markusbernhardt</groupId>
-			<artifactId>xml-doclet</artifactId>
-			<version>1.0.6-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.xml.bind</groupId>
-					<artifactId>jaxb-api</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.xml.bind</groupId>
-					<artifactId>jaxb-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.activation</groupId>
-					<artifactId>javax.activation-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 <dependency>
     <groupId>jakarta.servlet</groupId>

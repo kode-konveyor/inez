@@ -6,7 +6,7 @@ then
 else
 	Xvnc -SecurityTypes None -geometry 2048x1536 :0&
 fi
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+export JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64/
 if [ -f requirements.txt ]
 then
     pip3 install -r requirements.txt

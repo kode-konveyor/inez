@@ -28,7 +28,7 @@ target/documentation: target/java_documentation target/typescript_documentation 
 
 target/android_app: target/typescript_qa target/androidplatform
 	cordova telemetry off
-	cordova build android
+	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 cordova build android
 	mv platforms/android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
 
