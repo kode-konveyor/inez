@@ -13,6 +13,9 @@ all: $(BEFORE_ALL) target/gather_deliverables $(AFTER_ALL)
 foo:
 	echo $(REPO_NAME) $(GITHUB_ORGANIZATION) $(VERSION)
 
+jetty:
+	rm -f target/typescript_build && make target/typescript_build && mvn jetty:run
+
 target/version_updated:
 	updateversion
 	touch target/version_updated

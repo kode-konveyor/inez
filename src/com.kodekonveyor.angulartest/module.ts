@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
-import { AppRoutingModule } from './routing'
-import { FormsModule } from '@angular/forms'
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './routing';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { HeroesComponent } from './UI/heroes/heroes.component'
-import { HeroeditorComponent } from './UI/heroeditor/heroeditor.component'
-import { HeroitemComponent } from './UI/heroitem/heroitem.component'
-import { HeroListComponent } from './UI/herolist/herolist.component'
-import { GetTheActualListOfHeroesService } from './services/GetTheActualListOfHeroesService'
-import { SelectHeroForEditingService } from './services/SelectHeroForEditingService'
-import { HeroFilterComponent } from './UI/herofilter/herofilter.component'
-import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService'
-import { StoreModule } from '@ngrx/store'
-import { heroesReducer } from './repositories/HeroesRepository'
+import { HeroesComponent } from './UI/heroes/heroes.component';
+import { HeroeditorComponent } from './UI/heroeditor/heroeditor.component';
+import { HeroitemComponent } from './UI/heroitem/heroitem.component';
+import { HeroListComponent } from './UI/herolist/herolist.component';
+import { GetTheActualListOfHeroesService } from './services/GetTheActualListOfHeroesService';
+import { SelectHeroForEditingService } from './services/SelectHeroForEditingService';
+import { HeroFilterComponent } from './UI/herofilter/herofilter.component';
+import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService';
+import { StoreModule } from '@ngrx/store';
+import { heroesReducer } from './repositories/HeroesRepository';
 import { ObtainHeroesService } from './services/ObtainHeroesService';
 import { Synchronizer } from './services/Synchronizer';
 import { CreateHeroService } from './services/CreateHeroService';
@@ -57,7 +57,7 @@ import { UserProfileComponent } from './UI/UserProfileComponent';
       httpInterceptor: {
         allowedList: [
           {
-            uri: 'https://test.kodekonveyor.com/angulartest/*',
+            uri: 'http://localhost:9090/angulartest/heroes',
             tokenOptions: {
               authorizationParams: {
                 audience: 'https://test.kodekonveyor.com/angulartest',
@@ -66,7 +66,7 @@ import { UserProfileComponent } from './UI/UserProfileComponent';
             }
           },
           {
-            uri: 'https://localhost:9090/angulartest/*',
+            uri: '/angulartest/api/v1/hero',
             tokenOptions: {
               authorizationParams: {
                 audience: 'https://test.kodekonveyor.com/angulartest',

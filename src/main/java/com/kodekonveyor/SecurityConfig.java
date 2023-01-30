@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @EnableWebSecurity
 public class SecurityConfig {
@@ -21,34 +22,17 @@ public class SecurityConfig {
 	@Autowired
 	Logger logger;
 
-	/*
-		@Bean
-		JwtDecoder jwtDecoder() {
-			logger.info("jwtDecoder");
-			NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders
-					.fromOidcIssuerLocation(issuer);
-	
-			OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(
-					audience);
-			OAuth2TokenValidator<Jwt> withIssuer = JwtValidators
-					.createDefaultWithIssuer(issuer);
-			OAuth2TokenValidator<Jwt> withAudience = new DelegatingOAuth2TokenValidator<>(
-					withIssuer, audienceValidator);
-	
-			jwtDecoder.setJwtValidator(withAudience);
-	
-			return jwtDecoder;
-		}
-		*/
-
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http
 				.authorizeHttpRequests(
-						authz -> authz.antMatchers(HttpMethod.GET, "/heroes")
+						authz -> authz.antMatchers(HttpMethod.GET, "/api/v1/hero")
 								.hasAuthority("SCOPE_read:current_user")
 								.anyRequest().permitAll())
+				.csrf()
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+				.and()
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt());
 
 		//http.authorizeHttpRequests().anyRequest().permitAll();

@@ -28,7 +28,9 @@ export class ObtainHeroesService {
         console.log("user", user)
         if (user != null) {
           console.log("getting")
-          this.httpClient.get<Heroes>(this.states.baseURL.concat(UrlMapConstants.GET_HEROES_URL)).subscribe(
+          const url = this.states.baseURL.concat(UrlMapConstants.GET_HEROES_URL)
+          console.log(url);
+          this.httpClient.get<Heroes>(url).subscribe(
             (h) => {
               console.log("got", h)
               r.next(h)
