@@ -33,10 +33,9 @@ public class SecurityConfig {
 						authz -> authz.antMatchers(HttpMethod.GET, "/api/v1/hero")
 								.hasAuthority("SCOPE_read:current_user")
 								.anyRequest().permitAll())
+				.oauth2ResourceServer(oauth2 -> oauth2.jwt())
 				.csrf()
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-				.and()
-				.oauth2ResourceServer(oauth2 -> oauth2.jwt());
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 		//http.authorizeHttpRequests().anyRequest().permitAll();
 		/*
