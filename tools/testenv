@@ -6,10 +6,10 @@ DEV_GID=$(id -g)
 IMAGE=${DOCKER_IMAGE:-$(cat toolchain_version)}
 
 VNCPORT=${VNCPORT:-5900}
-PORTMAP="-p $VNCPORT:5900"
-if [ $(hostname) = "mag-Librem-15-v4" ]
+if [ "x$CI" != "xtrue" ]
 then
-	PORTMAP="-p $VNCPORT:5900 -p1443:1443 -p8080:8080 "
+	PORTMAP="-p $VNCPORT:5900 -p1443:1443 -p9090:9090 "
+	MAPPINGS=" -v /tmp/.X11-unix:/tmp/.X11-unix "
 fi
 
 #using dash is a hack to make this script testable, and still not depend anything unusual, as it is copied over to the project
@@ -41,6 +41,7 @@ fi
 
 docker run --rm $PORTMAP -e issuetoken -e DISPLAY -e DEVUID=${DEV_UID} -e DEVGID=${DEV_GID} \
 	-e BUILD_NUMBER \
+	$MAPPINGS \
     -v $(pwd):/build -v ${DEVHOME}:/home/developer \
     -w /build $INTERACTIVE -t ${IMAGE} "$@"
 

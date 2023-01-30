@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ "x$1" = "x-d" ]
-then
-	git remote -v |grep "^origin.*fetch)$" |sed 's/\.git / /;sA^.*[/:]\([^/]*/[^/]*\) .*A\1A'
-else
-	git remote -v |grep "^origin.*fetch)$" |sed 's/\.git / /;sA^.*[/:]\([^/]*/[^/]*\) .*A\1A;s/-//'
-fi

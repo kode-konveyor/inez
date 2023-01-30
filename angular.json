@@ -6,7 +6,7 @@
     "analytics": false
   },
   "projects": {
-    "hello-app-world": {
+    "angulartest": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -24,7 +24,8 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/config.json"
             ],
             "styles": [
               "src/styles.css"
@@ -62,10 +63,14 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "hello-app-world:build:production"
+              "browserTarget": "angulartest:build:production"
             },
             "development": {
-              "browserTarget": "hello-app-world:build:development"
+              "browserTarget": "angulartest:build:development",
+              "headers": {
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Origin": "*"
+              }
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hello-app-world:build"
+            "browserTarget": "angulartest:build"
           }
         },
         "test": {

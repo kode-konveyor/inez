@@ -1,10 +1,6 @@
 package com.kodekonveyor.integrationtests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,12 +8,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kodekonveyor.angulartest.backend.HeroEntity;
+import com.kodekonveyor.angulartest.backend.HeroRepository;
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
-import com.kodekonveyor.authentication.UserDTO;
-import com.kodekonveyor.authentication.UserEntityTestData;
+import com.kodekonveyor.exception.ThrowableTester;
 import com.kodekonveyor.webapp.UrlMapConstants;
 
 import net.minidev.json.parser.ParseException;
@@ -26,33 +23,41 @@ import net.minidev.json.parser.ParseException;
 @TestedService("ListLeadController")
 @Testable
 @Tag("IntegrationTest")
-class WebservicesIT {
+public class WebservicesIT {
 
-  private ObjectMapper mapper;
+	@Autowired
+	HeroRepository heroRepository;
 
-  private String urlBase;
+	String serverURI = IntegrationtestsConstants.LOCAL_SERVER_URI;
 
-  @BeforeEach
-  void setUp() {
-    mapper = new ObjectMapper();
-    urlBase = IntegrationtestsConstants.LOCAL_SERVER_URI;
-  }
+	@BeforeEach
+	void setUp() {
+	}
 
-  @Test
-  @DisplayName("A user can get its data at member/user")
-  void test1() throws IOException, ParseException {
-    final URL url =
-        new URL(urlBase + UrlMapConstants.SHOW_USER_PATH);
-    final HttpURLConnection connection =
-        (HttpURLConnection) url.openConnection();
-    connection
-        .setRequestProperty(
-            IntegrationtestsConstants.OIDC_CLAIM_NICKNAME,
-            UserEntityTestData.LOGIN
-        );
-    final UserDTO marketUser = mapper
-        .readValue((InputStream) connection.getContent(), UserDTO.class);
-    assertEquals(UserEntityTestData.LOGIN, marketUser.getLogin());
-  }
+	@Test
+	@DisplayName("The addHero endpoint is protected")
+	void test2() throws IOException, ParseException {
+		final HeroEntity addedHero = HeroEntityTestData.get();
+		ThrowableTester.assertThrows(() -> {
+			WebServiceTestHelper.httpPost(
+					new URL(serverURI
+							+ UrlMapConstants.ADD_HERO_PATH),
+					addedHero,
+					HeroEntity.class);
+		})
+				.assertMessageContains("Server returned HTTP response code: 403");
+	}
+
+	@Test
+	@DisplayName("The listHeroes endpoint is protected")
+	void test3() throws IOException, ParseException {
+		ThrowableTester.assertThrows(() -> {
+			WebServiceTestHelper.httpGet(
+					new URL(serverURI
+							+ UrlMapConstants.LIST_HEROES_PATH),
+					HeroEntity.class);
+		})
+				.assertMessageContains("Server returned HTTP response code: 401");
+	}
 
 }

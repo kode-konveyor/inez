@@ -1,5 +1,5 @@
-<div class="herolist" *ngIf="heroes">
-  <div *ngFor="let hero of filterForHeroitem(heroes)">
-    <heroitem class="herolist-heroitem" [hero]="hero"></heroitem>
+<div id="{{id}}" class="herolist" *ngIf="heroes">
+  <div id="{{id}}-ngfor" *ngFor="let hero of heroes ">
+    <heroitem id="{{id}}-heroitem-{{hero.id}}" class="herolist-heroitem" [hero]="hero"></heroitem>
   </div>
 </div>

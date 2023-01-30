@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HeroesComponentModel } from 'src/com.kodekonveyor.angulartest/UI/heroes/HeroesComponentModel';
 import { GetTheActualListOfHeroesService } from './GetTheActualListOfHeroesService';
+import { ObtainUrlBaseService } from './ObtainUrlBaseService';
 
 @Injectable()
 export class InitializeStatesService {
-  getTheActualListOfHeroesService: GetTheActualListOfHeroesService;
 
-  run(self: HeroesComponentModel): void {
-    this.getTheActualListOfHeroesService.run()
+  run(): void {
+    this.obtainUrlBaseService.run().subscribe(
+      () => this.getTheActualListOfHeroesService.run())
   }
 
-  constructor(getTheActualListOfHeroesService: GetTheActualListOfHeroesService) {
-    this.getTheActualListOfHeroesService = getTheActualListOfHeroesService;
+  constructor(
+    private readonly getTheActualListOfHeroesService: GetTheActualListOfHeroesService,
+    private readonly obtainUrlBaseService: ObtainUrlBaseService
+  ) {
   }
 
 }

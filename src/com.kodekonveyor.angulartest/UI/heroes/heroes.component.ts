@@ -1,25 +1,30 @@
 import { Component, OnInit } from '@angular/core'
+import { AuthService } from '@auth0/auth0-angular';
+import { ChangeToCreateModeService } from 'src/com.kodekonveyor.angulartest/services/ChangeToCreateModeService';
+
 import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService';
-import { HeroesRepository } from '../../repositories/HeroesRepository';
-import { HeroesComponentModel } from './HeroesComponentModel';
+
 
 @Component({
   selector: 'heroes',
   templateUrl: './heroes.component.html',
 })
-export class HeroesComponent implements HeroesComponentModel, OnInit {
+export class HeroesComponent implements OnInit {
+  id: string = "heroes";
 
-  initializeStatesService: InitializeStatesService;
-  heroesRepository: HeroesRepository;
-
-
-  constructor(initializeStatesService: InitializeStatesService, heroesRepository: HeroesRepository) {
-    this.initializeStatesService = initializeStatesService;
-    this.heroesRepository = heroesRepository;
-  }
+  constructor(
+    private readonly initializeStatesService: InitializeStatesService,
+    private readonly changeToCreateModeService: ChangeToCreateModeService,
+    public readonly auth: AuthService
+  ) { }
 
   ngOnInit(): void {
-    this.initializeStatesService.run(this)
+    this.initializeStatesService.run()
   }
+
+  plusbuttonOnClick(): void {
+    this.changeToCreateModeService.run()
+  }
+
 }
 
