@@ -10,6 +10,8 @@ LANGUAGE=java
 
 all: $(BEFORE_ALL) target/gather_deliverables $(AFTER_ALL)
 
+ci: all
+
 foo:
 	echo $(REPO_NAME) $(GITHUB_ORGANIZATION) $(VERSION)
 
