@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addHero, setCreateMode, setSelectedHero } from '../repositories/actions';
 import { statesInitialState } from '../repositories/StatesRepository';
-import { AppStore } from '../types/AppStore';
+import { AppState } from '../types/AppState';
 import { Hero } from '../types/Hero';
 import { States } from '../types/States';
 import { Synchronizer } from './Synchronizer';
@@ -16,7 +16,7 @@ export class CreateHeroService {
 
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly store: Store<AppStore>,
+    private readonly store: Store<AppState>,
     private readonly synchronizer: Synchronizer
   ) {
     this.synchronizer.fromStore('states').subscribe(synchronizer.synchronizeCopyTo(this, 'states'))

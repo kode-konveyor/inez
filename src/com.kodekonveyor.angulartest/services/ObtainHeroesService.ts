@@ -1,44 +1,31 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
-import { Subject } from 'rxjs';
 import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
-import { statesInitialState } from '../repositories/StatesRepository';
-import { States } from '../types/States';
-import { Synchronizer } from './Synchronizer';
 import { UrlMapConstants } from './UrlMapConstants';
+import { Hero } from '../types/Hero';
+import { addHero } from '../repositories/actions';
+import { ObtainHeroesServiceBase } from '../servicebases/ObtainHeroesServiceBase';
 
 @Injectable()
-export class ObtainHeroesService {
+export class ObtainHeroesService extends ObtainHeroesServiceBase {
 
-  states: States = statesInitialState;
-
-  constructor(
-    private readonly httpClient: HttpClient,
-    private readonly synchronizer: Synchronizer,
-    public auth: AuthService
-  ) {
-    this.synchronizer.fromStore('states').subscribe(synchronizer.synchronizeCopyTo(this, 'states'))
-  }
-
-  public run(): Subject<Heroes> {
-    const r = new Subject<Heroes>();
+  public run(): void {
     this.auth.user$.subscribe(
-      (user) => {
-        console.log("user", user)
-        if (user != null) {
-          console.log("getting")
-          const url = this.states.baseURL.concat(UrlMapConstants.GET_HEROES_URL)
-          console.log(url);
+      user => {
+        if (this.baseURL != null) {
+          const url = this.baseURL.concat(UrlMapConstants.GET_HEROES_URL)
           this.httpClient.get<Heroes>(url).subscribe(
-            (h) => {
-              console.log("got", h)
-              r.next(h)
+            (heroes: Heroes) => {
+              if (heroes != null) {
+                heroes.forEach(
+                  (hero: Hero) => {
+                    this.store.dispatch(addHero({ payload: hero }));
+                  }
+                )
+              }
             }
           )
         }
       }
     )
-    return r;
   }
 }

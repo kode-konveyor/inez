@@ -1,7 +1,7 @@
 import { Heroes } from './Heroes';
 import { States } from './States';
 
-export interface AppStore {
+export interface AppState {
   heroes: Heroes;
   states: States;
 }

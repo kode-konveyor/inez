@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { modifyHero } from '../repositories/actions';
-import { AppStore } from '../types/AppStore';
+import { AppState } from '../types/AppState';
 import { Hero } from '../types/Hero';
 
 @Injectable()
 export class ModifyHeroService {
 
   constructor(
-    private readonly store: Store<AppStore>
+    private readonly store: Store<AppState>
   ) {
   }
 

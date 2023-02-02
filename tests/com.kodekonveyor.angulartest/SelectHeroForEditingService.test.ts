@@ -1,18 +1,18 @@
 import { Store } from "@ngrx/store";
 import { mock, mockFn } from "jest-mock-extended";
-import { AppStore } from "src/com.kodekonveyor.angulartest/types/AppStore";
+import { AppState } from "src/com.kodekonveyor.angulartest/types/AppState";
 import { SelectHeroForEditingService } from "src/com.kodekonveyor.angulartest/services/SelectHeroForEditingService";
 import { HERO } from "./testdata/HeroTestData";
 
 describe("Select hero for editing", () => {
 
   const dispatch = mockFn<any, any>()
-  const store = mock<Store<AppStore>>()
+  const store = mock<Store<AppState>>()
   store.dispatch = dispatch;
   const sut = new SelectHeroForEditingService(store);
   sut.run(HERO);
 
-  test("turns on Create Mode", () => {
+  test("turns off Create Mode", () => {
     expect(store.dispatch).toBeCalledWith({
       "payload": false,
       "type": "set create mode",

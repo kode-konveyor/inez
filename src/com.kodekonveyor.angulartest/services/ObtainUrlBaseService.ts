@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { first, Subject } from 'rxjs';
 import { setBaseUrl } from '../repositories/actions';
-import { AppStore } from '../types/AppStore';
+import { AppState } from '../types/AppState';
 import { Config } from '../types/Config';
 import { UrlMapConstants } from './UrlMapConstants';
 
@@ -12,7 +12,7 @@ export class ObtainUrlBaseService {
 
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly store: Store<AppStore>
+    private readonly store: Store<AppState>
   ) { }
 
   public run(): Subject<boolean> {

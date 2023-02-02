@@ -16,7 +16,7 @@ foo:
 	echo $(REPO_NAME) $(GITHUB_ORGANIZATION) $(VERSION)
 
 jetty:
-	rm -f target/typescript_build && make target/typescript_build && mvn jetty:run
+	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn jetty:run
 
 target/version_updated:
 	updateversion
