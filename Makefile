@@ -15,6 +15,9 @@ ci: all
 foo:
 	echo $(REPO_NAME) $(GITHUB_ORGANIZATION) $(VERSION)
 
+clean:
+	git clean -fdx && rm -rf inputs/codingrules
+
 jetty:
 	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn jetty:run
 

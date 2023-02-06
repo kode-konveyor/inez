@@ -10,24 +10,25 @@ if [ "x$CI" != "xtrue" ]
 then
 	PORTMAP="-p $VNCPORT:5900 -p1443:1443 -p9090:9090 "
 	MAPPINGS=" -v /tmp/.X11-unix:/tmp/.X11-unix "
-fi
 
-#using dash is a hack to make this script testable, and still not depend anything unusual, as it is copied over to the project
-if dash -c "test -t 0" 
-then
-    INTERACTIVE="-i"
-
-    DOCKER_IMAGE_DEVELOPER_TAG=$(echo $IMAGE | sed 's/:/:developer-/g')
-    if [ -z ${DOCKER_IMAGE} ] && 
-        (
-            [ -n "$(docker images -q $DOCKER_IMAGE_DEVELOPER_TAG)" ] || 
-            [ -n "$(docker manifest inspect $DOCKER_IMAGE_DEVELOPER_TAG)" ]
-        )
+    #using dash is a hack to make this script testable, and still not depend anything unusual, as it is copied over to the project
+    if dash -c "test -t 0" 
     then
-	    IMAGE=$DOCKER_IMAGE_DEVELOPER_TAG
+        INTERACTIVE="-i"
+
+        DOCKER_IMAGE_DEVELOPER_TAG=$(echo $IMAGE | sed 's/:/:developer-/g')
+        if [ -z ${DOCKER_IMAGE} ] && 
+            (
+                [ -n "$(docker images -q $DOCKER_IMAGE_DEVELOPER_TAG)" ] || 
+                [ -n "$(docker manifest inspect $DOCKER_IMAGE_DEVELOPER_TAG)" ]
+            )
+        then
+            IMAGE=$DOCKER_IMAGE_DEVELOPER_TAG
+        fi
+    else
+        INTERACTIVE=""
     fi
-else
-    INTERACTIVE=""
+
 fi
 
 
