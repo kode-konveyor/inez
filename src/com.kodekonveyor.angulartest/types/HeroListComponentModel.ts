@@ -1,6 +1,5 @@
 import { IdType } from "src/com.kodekonveyor.common/IdType";
 
-export interface Hero {
-  id: IdType,
-  name: string
+export interface HeroListComponentModel {
+  heroids: IdType[];
 }

@@ -26,6 +26,7 @@
     "@angular/router": "^15.0.0",
     "@auth0/auth0-angular": "^2.0.1",
     "@ngrx/store": "^15.1.0",
+    "@ngrx/effects": "^15.1.0",
     "@stryker-mutator/jest-runner": "^6.3.1",
     "rxjs": "~7.8.0",
     "stryker-cli": "^1.0.2",

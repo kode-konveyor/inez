@@ -1,10 +1,16 @@
-import { States } from "../types/States";
+import { AppState } from "../types/AppState";
 
 export function setHeroFilterTransition(
-  state: States,
-  action: { payload: String; }): States {
+  state: AppState,
+  action: { payload: String; }): AppState {
   return {
     ...state,
-    heroFilter: action.payload
+    componentstates: {
+      ...state.componentstates,
+      herofilter: {
+        ...state.componentstates.herofilter,
+        heroFilter: action.payload
+      }
+    }
   };
 }

@@ -1,28 +1,19 @@
 import { Component, Input } from '@angular/core'
-import { combineLatest, map } from 'rxjs';
-import { heroItemOperator } from 'src/com.kodekonveyor.angulartest/operators/heroItemOperator';
-import { Synchronizer } from 'src/com.kodekonveyor.angulartest/services/Synchronizer';
-import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
-import { States } from 'src/com.kodekonveyor.angulartest/types/States';
+import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
+import { HeroListComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroListComponentModel';
+import { IdType } from 'src/com.kodekonveyor.common/IdType';
 
 @Component({
   selector: 'herolist',
   templateUrl: './herolist.component.html'
 })
-export class HeroListComponent {
+export class HeroListComponent implements HeroListComponentModel {
   @Input() id!: string;
-
-  heroes: Heroes = [];
+  heroids!: IdType[];
 
   constructor(
-    private readonly synchronizeService: Synchronizer
+    private readonly synchronizer: Synchronizer
   ) {
-    combineLatest([
-      synchronizeService.fromStore<Heroes>('heroes'),
-      synchronizeService.fromStore<States>('states')]
-    ).pipe(map<[Heroes, States], Heroes>(
-      heroItemOperator
-    ))
-      .subscribe(synchronizeService.synchronizeTo(this, 'heroes'));
+    synchronizer.fillFields(this, "herolist");
   }
 }

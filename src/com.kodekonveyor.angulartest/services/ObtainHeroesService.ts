@@ -1,31 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Heroes } from 'src/com.kodekonveyor.angulartest/types/Heroes';
 import { UrlMapConstants } from './UrlMapConstants';
-import { Hero } from '../types/Hero';
-import { addHero } from '../repositories/actions';
-import { ObtainHeroesServiceBase } from '../servicebases/ObtainHeroesServiceBase';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { changeUser, storeConfig } from '../repositories/actions';
+import { ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument';
 
 @Injectable()
-export class ObtainHeroesService extends ObtainHeroesServiceBase {
+export class ObtainHeroesService {
 
-  public run(): void {
-    this.auth.user$.subscribe(
-      user => {
-        if (this.baseURL != null) {
-          const url = this.baseURL.concat(UrlMapConstants.GET_HEROES_URL)
-          this.httpClient.get<Heroes>(url).subscribe(
-            (heroes: Heroes) => {
-              if (heroes != null) {
-                heroes.forEach(
-                  (hero: Hero) => {
-                    this.store.dispatch(addHero({ payload: hero }));
-                  }
-                )
-              }
-            }
-          )
-        }
-      }
-    )
+
+  constructor(
+    readonly httpClient: HttpClient,
+  ) {
   }
+
+  run = (args: [ActionArgument<typeof changeUser>, ActionArgument<typeof storeConfig>], index: number): Observable<Heroes> => {
+    const user = args[0].payload;
+    if (user == null)
+      return of();
+    const baseURL = args[1].payload.baseUrl
+    return this.httpClient.get<Heroes>(baseURL.concat(UrlMapConstants.GET_HEROES_URL))
+  };
+
 }

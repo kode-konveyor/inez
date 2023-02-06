@@ -1,7 +1,9 @@
 {
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
   "mutate": [
-    "src/**/services/**/*.ts"
+    "src/**/services/**/*.ts",
+    "src/**/operators/**/*.ts",
+    "src/**/transitions/**/*.ts"
   ],
   "ignoreStatic": true,
   "testRunner": "jest",

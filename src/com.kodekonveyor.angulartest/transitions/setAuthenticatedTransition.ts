@@ -1,13 +1,14 @@
-import { initialState } from "../repositories/Repository";
 import { AppState } from "../types/AppState";
 
-export function clearSelectedHeroTransition(
+export function setAuthenticatedTransition(
   state: AppState): AppState {
   return {
     ...state,
     componentstates: {
       ...state.componentstates,
-      heroeditor: initialState.componentstates.heroeditor
+      heroes: {
+        authenticated: true
+      }
     }
   };
 }
