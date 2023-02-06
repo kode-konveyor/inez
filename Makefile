@@ -24,6 +24,11 @@ jetty:
 IT:
 	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn integration-test
 
+target/zentaworkaround:
+	mkdir -p ~/.zenta/.metadata/.plugins/org.eclipse.e4.workbench/
+	cp etc/workbench.xmi ~/.zenta/.metadata/.plugins/org.eclipse.e4.workbench/
+	touch target/zentaworkaround
+
 target/version_updated:
 	updateversion
 	touch target/version_updated
@@ -229,7 +234,7 @@ target/implementedBehaviours.xml target/implementedBehaviours.docbook target/imp
 #checkdoc: $(MODEL_BASENAME).consistencycheck
 #	checkDocErrors
 #
-inputs/issues.xml:
+inputs/issues.xml: target/zentaworkaround
 	echo "repo: $(GITHUB_ORGANIZATION)/$(REPO_NAME)"
 	mkdir -p inputs
 	getGithubIssues >inputs/issues.xml.in
