@@ -22,8 +22,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ChangeUserEffect } from './effects/ChangeUserEffect';
 import { SaveHeroService } from './services/SaveHeroService';
 import { CreateHeroEffect } from './effects/CreateHeroEfffect';
-import { GenericErrorHandlerServiceEmmitter } from 'src/com.kodekonveyor.common/GenericErrorHandlerServiceEmitter';
 import { StoreHeroesEffect } from './effects/StoreHeroesEffect';
+import { StoreHeroesService } from './services/StoreHeroesService';
 
 @NgModule({
   declarations: [
@@ -76,10 +76,10 @@ import { StoreHeroesEffect } from './effects/StoreHeroesEffect';
   ],
   providers: [
     GenericErrorHandlerService,
-    GenericErrorHandlerServiceEmmitter,
     ObtainHeroesService,
     SaveHeroService,
     Synchronizer,
+    StoreHeroesService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
   bootstrap: [

@@ -11,15 +11,14 @@ export class SaveHeroService {
 
   constructor(
     readonly httpClient: HttpClient,
-  ) {
-  }
+  ) { }
 
   run = (
-    arg: [ActionArgument<typeof createHero>, { baseURL: string; }],
-    index: number
+    createEvent: ActionArgument<typeof createHero>,
+    data: { baseURL: string; }
   ): Observable<Hero> => {
-    const baseURL = arg[1].baseURL;
-    const hero: Hero = { id: "", name: arg[0].payload };
+    const baseURL = data.baseURL;
+    const hero: Hero = { id: "", name: createEvent.payload };
     return this.httpClient.post<Hero>(baseURL.concat(UrlMapConstants.ADD_HERO_URL), hero)
   };
 

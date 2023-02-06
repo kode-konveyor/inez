@@ -18,6 +18,9 @@ foo:
 jetty:
 	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn jetty:run
 
+IT:
+	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn integration-test
+
 target/version_updated:
 	updateversion
 	touch target/version_updated

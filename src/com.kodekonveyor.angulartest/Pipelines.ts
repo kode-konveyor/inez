@@ -19,7 +19,8 @@ export class Pipelines {
     httpClient.get<Config>(UrlMapConstants.CONFIG_URL)
       .subscribe({
         next: synchronizer.dispatcher(storeConfig),
-        error: genericErrorHandlerService.run
+        error: genericErrorHandlerService.run,
+        complete: () => { }
       });
 
     authService.user$.subscribe(

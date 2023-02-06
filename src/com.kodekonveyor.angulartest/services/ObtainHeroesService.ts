@@ -15,11 +15,11 @@ export class ObtainHeroesService {
   ) {
   }
 
-  run = (args: [ActionArgument<typeof changeUser>, ActionArgument<typeof storeConfig>], index: number): Observable<Heroes> => {
-    const user = args[0].payload;
+  run = (changeUserAction: ActionArgument<typeof changeUser>, storeConfigAction: ActionArgument<typeof storeConfig>): Observable<Heroes> => {
+    const user = changeUserAction.payload;
     if (user == null)
       return of();
-    const baseURL = args[1].payload.baseUrl
+    const baseURL = storeConfigAction.payload.baseUrl
     return this.httpClient.get<Heroes>(baseURL.concat(UrlMapConstants.GET_HEROES_URL))
   };
 
