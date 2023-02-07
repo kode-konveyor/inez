@@ -52,7 +52,8 @@ public class SpringConfig extends SpringBootServletInitializer {
 
 	@Bean
 	public DataSource dataSource() {
-		final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+		final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder
+				.create();
 		dataSourceBuilder.driverClassName(jdbcDriver);
 		dataSourceBuilder.url(jdbcUri);
 		return dataSourceBuilder.build();
@@ -81,7 +82,8 @@ public class SpringConfig extends SpringBootServletInitializer {
 		return LoggerFactory.getLogger(
 				Optional.ofNullable(injectionPoint.getMethodParameter())
 						.<Class<?>>map(MethodParameter::getContainingClass)
-						.orElseGet(() -> Optional.ofNullable(injectionPoint.getField())
+						.orElseGet(() -> Optional
+								.ofNullable(injectionPoint.getField())
 								.map(Field::getDeclaringClass)
 								.orElseThrow(IllegalArgumentException::new)));
 	}

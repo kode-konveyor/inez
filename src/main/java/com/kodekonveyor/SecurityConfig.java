@@ -27,27 +27,17 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
 		http
 				.authorizeHttpRequests(
-						authz -> authz.antMatchers(HttpMethod.GET, "/api/v1/hero")
+						authz -> authz
+								.antMatchers(HttpMethod.GET, "/api/v1/hero")
 								.hasAuthority("SCOPE_read:current_user")
 								.anyRequest().permitAll())
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt())
 				.csrf()
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+				.csrfTokenRepository(
+						CookieCsrfTokenRepository.withHttpOnlyFalse());
 
-		//http.authorizeHttpRequests().anyRequest().permitAll();
-		/*
-		http.authorizeHttpRequests()
-				.requestMatchers("/api/**").permitAll();
-		.requestMatchers("/private").
-		hasAuthority(
-		"SCOPE_read:messages")
-		.and().cors()
-		.and().oauth2ResourceServer()
-		.jwt();
-		 */
 		return http.build();
 
 	}

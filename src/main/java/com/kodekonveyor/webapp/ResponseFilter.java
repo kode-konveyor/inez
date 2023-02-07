@@ -19,28 +19,28 @@ import com.kodekonveyor.annotations.InterfaceClass;
 @WebFilter()
 public class ResponseFilter implements Filter {
 
-  private static final String ALLOWED_HEADERS = "Content-Type, Authorization";
-  private static final String ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
-  private static final String ALLOWED_ORIGINS = "*";
-  private static final String CORS_HEADER = "Access-Control-Allow-Origin";
+	private static final String ALLOWED_HEADERS = "Content-Type, Authorization";
+	private static final String ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
+	private static final String ALLOWED_ORIGINS = "*";
+	private static final String CORS_HEADER = "Access-Control-Allow-Origin";
 
-  @Override
-  public void doFilter(final ServletRequest request,
-      final ServletResponse response,
-      final FilterChain chain) throws IOException, ServletException {
-    HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-    httpServletResponse.setHeader(
-        CORS_HEADER, ALLOWED_ORIGINS);
-    httpServletResponse.setHeader(
-        ACCESS_CONTROL_ALLOW_HEADERS, ALLOWED_HEADERS);
-    chain.doFilter(request, response);
-  }
+	@Override
+	public void doFilter(final ServletRequest request,
+			final ServletResponse response,
+			final FilterChain chain) throws IOException, ServletException {
+		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+		httpServletResponse.setHeader(
+				CORS_HEADER, ALLOWED_ORIGINS);
+		httpServletResponse.setHeader(
+				ACCESS_CONTROL_ALLOW_HEADERS, ALLOWED_HEADERS);
+		chain.doFilter(request, response);
+	}
 
-  @Override
-  public void init(final FilterConfig filterConfig) throws ServletException {
-  }
+	@Override
+	public void init(final FilterConfig filterConfig) throws ServletException {
+	}
 
-  @Override
-  public void destroy() {
-  }
+	@Override
+	public void destroy() {
+	}
 }
