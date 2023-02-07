@@ -2,6 +2,7 @@ export TOOLCHAINDIR = /usr/local/toolchain
 export GITHUB_ORGANIZATION=$(shell repofullname -d | sed 'sA/.*AA')
 export REPO_NAME=$(shell repofullname | sed 'sA.*/AA')
 export VERSION=$(shell git describe --tags)
+export ANDROID_SDK_ROOT=/opt/Android/Sdk
 LANGUAGE=java
 #export MODEL_BASENAME=model
 #export REPO_NAME=angulartest
