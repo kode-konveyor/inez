@@ -1,19 +1,37 @@
 import { HttpClient } from "@angular/common/http";
 import { SaveHeroService } from "src/com.kodekonveyor.angulartest/services/SaveHeroService";
 import { mock, mockFn } from "jest-mock-extended";
+import { UrlMapConstants } from "src/com.kodekonveyor.angulartest/services/UrlMapConstants";
+import { Hero } from "src/com.kodekonveyor.angulartest/types/Hero";
+import { Observable } from "rxjs";
+import { ServicesTestdata } from "./ServicesTestData";
 
 describe("Save Hero", () => {
 
   const httpClient: HttpClient = mock<HttpClient>();
   const post = mockFn();
   httpClient.post = post;
+  const ret = mock<Observable<Hero>>();
+  post.mockReturnValue(ret);
   const sut = new SaveHeroService(httpClient);
-  const createEvent = { type: "c", payload: "joe" }
-  const data = { baseURL: "BASE_URL" }
 
-  test("the hero is posted to the right place", () => {
-    sut.run(createEvent, data);
-    expect(post.mock.calls[0][0]).toBe("BASE_URL/api/v1/hero")
+  test("the api URl is computed from the base URL and the url of the endpoint.", () => {
+    sut.run(ServicesTestdata.createHeroAction, ServicesTestdata.storeConfigAction);
+    expect(post.mock.calls[0][0]).toBe("BASE_URL" + UrlMapConstants.ADD_HERO_URL)
+  });
+
+  test("the name of the hero is copied from the payload", () => {
+    sut.run(ServicesTestdata.createHeroAction, ServicesTestdata.storeConfigAction);
+    expect(post.mock.calls[0][1].name).toBe("joe")
+  });
+
+  test("the id of the hero is empty string, will be assigned by the API", () => {
+    sut.run(ServicesTestdata.createHeroAction, ServicesTestdata.storeConfigAction);
+    expect(post.mock.calls[0][1].id).toBe("")
+  });
+
+  test("returns the result given by the server", () => {
+    expect(sut.run(ServicesTestdata.createHeroAction, ServicesTestdata.storeConfigAction)).toBe(ret);
   });
 })
 

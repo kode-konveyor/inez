@@ -4,10 +4,8 @@ import { Action } from '@ngrx/store';
 import { combineLatest, Observable, of } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
 import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
-import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 import { wrapForMerge } from 'src/com.kodekonveyor.common/wrapForMerge';
-import { clearSelectedHero, createHero, storeHero } from '../repositories/actions';
-import { states } from '../repositories/Repository';
+import { clearSelectedHero, createHero, storeConfig, storeHero } from '../repositories/actions';
 import { SaveHeroService } from '../services/SaveHeroService';
 import { Hero } from '../types/Hero';
 
@@ -17,7 +15,6 @@ export class CreateHeroEffect {
     private readonly actions$: Actions,
     private readonly saveHeroService: SaveHeroService,
     private readonly genericErrorHandlerService: GenericErrorHandlerService,
-    private readonly synchronizer: Synchronizer
   ) { }
 
   private readonly actionMapping = (hero: Hero): Observable<Action> => {
@@ -31,9 +28,8 @@ export class CreateHeroEffect {
     combineLatest([
       this.actions$.pipe(
         ofType(createHero.type)),
-      this.synchronizer.getStoreView({
-        baseURL: states.states.baseURL
-      }),
+      this.actions$.pipe(
+        ofType(storeConfig.type)),
     ]).pipe(
       exhaustMap(wrapForMerge(this.saveHeroService.run)),
       exhaustMap(this.actionMapping),

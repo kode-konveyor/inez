@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { storeHero } from '../repositories/actions';
-import { Heroes } from '../types/Heroes';
+import { ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument';
+import { storeHero, storeHeroes } from '../repositories/actions';
 
 @Injectable()
 export class StoreHeroesService {
 
-  run = (action: { payload: Heroes }): Observable<Action> => {
-    const actions = []
+  run = (action: ActionArgument<typeof storeHeroes>): Observable<ReturnType<typeof storeHero>> => {
+    const actions: Array<ReturnType<typeof storeHero>> = []
     for (const hero of action.payload) {
       actions.push(storeHero({ payload: hero }))
     }
