@@ -6,7 +6,7 @@ import { ObtainHeroesService } from "src/com.kodekonveyor.angulartest/services/O
 import { User } from "@auth0/auth0-angular";
 import { Heroes } from "src/com.kodekonveyor.angulartest/types/Heroes";
 import { changeUser } from "src/com.kodekonveyor.angulartest/repositories/actions";
-import { ServicesTestdata } from "./ServicesTestData";
+import { ServicesTestData } from "./ServicesTestData";
 
 describe("Save Hero", () => {
 
@@ -20,16 +20,16 @@ describe("Save Hero", () => {
   const changeUserAction = changeUser({ payload: user })
 
   test("the api URl is computed from the base URL and the url of the endpoint.", () => {
-    sut.run(changeUserAction, ServicesTestdata.storeConfigAction);
+    sut.run(changeUserAction, ServicesTestData.storeConfigAction);
     expect(get.mock.calls[0][0]).toBe("BASE_URL" + UrlMapConstants.GET_HEROES_URL)
   });
 
   test("Returns the result from the API", () => {
-    expect(sut.run(changeUserAction, ServicesTestdata.storeConfigAction)).toBe(ret)
+    expect(sut.run(changeUserAction, ServicesTestData.storeConfigAction)).toBe(ret)
   });
 
   test("Does not call the API if there is no authenticated user", (done) => {
-    const result = sut.run(changeUser({ payload: null }), ServicesTestdata.storeConfigAction);
+    const result = sut.run(changeUser({ payload: null }), ServicesTestData.storeConfigAction);
     result.pipe(isEmpty()).subscribe((res) => {
       expect(res).toEqual(true)
       done()
