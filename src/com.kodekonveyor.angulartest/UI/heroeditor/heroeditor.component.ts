@@ -1,59 +1,42 @@
 import { Component, Input } from '@angular/core'
-import { map } from 'rxjs';
-import { CreateHeroService } from 'src/com.kodekonveyor.angulartest/services/CreateHeroService';
-import { ModifyHeroService } from 'src/com.kodekonveyor.angulartest/services/ModifyHeroService';
-import { Synchronizer } from 'src/com.kodekonveyor.angulartest/services/Synchronizer';
-import { States } from 'src/com.kodekonveyor.angulartest/types/States';
-import { shouldEditorBeShownOperator } from '../../operators/shouldEditorBeShownOperator';
+import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
+import { HeroEditorComponentModel } from "src/com.kodekonveyor.angulartest/types/HeroEditorComponentModel";
+import { createHero, modifyHero } from 'src/com.kodekonveyor.angulartest/repositories/actions';
 
 @Component({
   selector: 'heroeditor',
   templateUrl: './heroeditor.component.html'
 })
-export class HeroeditorComponent {
-
+export class HeroeditorComponent implements HeroEditorComponentModel {
 
   @Input() id!: string;
-  createMode: Boolean = false;
-  selectedHeroId: number | null = null;
-  selectedHeroName: String = "";
-
-  show: Boolean = false;
+  createMode = false;
+  selectedHeroId = "";
+  selectedHeroName = "";
+  show = false;
 
   constructor(
-    private readonly synchronizer: Synchronizer,
-    private readonly createHeroService: CreateHeroService,
-    private readonly modifyHeroService: ModifyHeroService
+    readonly synchronizer: Synchronizer,
   ) {
-    synchronizer
-      .fromStore<States>('states').subscribe(
-        (x: States) => {
-          this.selectedHeroName = x.selectedHero.name
-          this.selectedHeroId = x.selectedHero.id
-          this.createMode = x.createMode
-        }
-      )
-    synchronizer
-      .fromStore<States>('states')
-      .pipe<boolean>(map(
-        shouldEditorBeShownOperator
-      ))
-      .subscribe(
-        x => {
-          this.show = x
-        }
-      )
+    synchronizer.fillFields(this, "heroeditor");
   }
 
   createButtonClick(): void {
-    console.log("creating", this.selectedHeroName)
-    this.createHeroService.run({ id: null, name: this.selectedHeroName });
+    this.synchronizer.dispatch(createHero({
+      payload: this.selectedHeroName
+    }))
+
   }
 
-  onInput(newValue: String): void {
-    this.selectedHeroName = newValue;
-    const hero = { id: this.selectedHeroId, name: newValue };
-    this.modifyHeroService.run(hero);
+  onInput(newValue: string): void {
+    if (this.createMode)
+      return;
+    this.synchronizer.dispatch(modifyHero({
+      payload: {
+        id: this.selectedHeroId,
+        name: newValue
+      }
+    }))
   }
 }
 

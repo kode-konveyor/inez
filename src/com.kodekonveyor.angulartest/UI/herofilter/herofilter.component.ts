@@ -1,21 +1,25 @@
 import { Component, Input } from '@angular/core'
-import { SetHeroFilterService } from 'src/com.kodekonveyor.angulartest/services/SetHeroFilterService';
+import { setHeroFilter } from 'src/com.kodekonveyor.angulartest/repositories/actions';
+import { HeroFilterComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroFilterComponentModel';
+import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 
 @Component({
   selector: 'herofilter',
   templateUrl: './herofilter.component.html'
 })
-export class HeroFilterComponent {
+export class HeroFilterComponent implements HeroFilterComponentModel {
 
   @Input() id!: string;
   heroFilter: String = "";
 
   constructor(
-    private readonly setHeroFilterService: SetHeroFilterService
-  ) { }
+    readonly synchronizer: Synchronizer,
+  ) {
+    synchronizer.fillFields(this, "herofilter")
+  }
 
   onInput(): void {
-    this.setHeroFilterService.run(this.heroFilter);
+    this.synchronizer.dispatch(setHeroFilter({ payload: this.heroFilter }))
   }
 
 }

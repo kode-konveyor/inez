@@ -8,24 +8,23 @@ import { HeroesComponent } from './UI/heroes/heroes.component';
 import { HeroeditorComponent } from './UI/heroeditor/heroeditor.component';
 import { HeroitemComponent } from './UI/heroitem/heroitem.component';
 import { HeroListComponent } from './UI/herolist/herolist.component';
-import { GetTheActualListOfHeroesService } from './services/GetTheActualListOfHeroesService';
-import { SelectHeroForEditingService } from './services/SelectHeroForEditingService';
 import { HeroFilterComponent } from './UI/herofilter/herofilter.component';
-import { InitializeStatesService } from 'src/com.kodekonveyor.angulartest/services/InitializeStatesService';
 import { StoreModule } from '@ngrx/store';
-import { heroesReducer } from './repositories/HeroesRepository';
 import { ObtainHeroesService } from './services/ObtainHeroesService';
-import { Synchronizer } from './services/Synchronizer';
-import { CreateHeroService } from './services/CreateHeroService';
-import { ModifyHeroService } from './services/ModifyHeroService';
-import { ChangeToCreateModeService } from './services/ChangeToCreateModeService';
-import { statesReducer } from './repositories/StatesRepository';
-import { SetHeroFilterService } from './services/SetHeroFilterService';
-import { ObtainUrlBaseService } from './services/ObtainUrlBaseService';
+import { Synchronizer } from '../com.kodekonveyor.common/Synchronizer';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './UI/AppAuthButton';
 import { UserProfileComponent } from './UI/UserProfileComponent';
-
+import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
+import { repository } from './repositories/Repository';
+import { EffectsModule } from '@ngrx/effects';
+import { ChangeUserEffect } from './effects/ChangeUserEffect';
+import { SaveHeroService } from './services/SaveHeroService';
+import { CreateHeroEffect } from './effects/CreateHeroEfffect';
+import { StoreHeroesEffect } from './effects/StoreHeroesEffect';
+import { StoreHeroesService } from './services/StoreHeroesService';
+import { ObtainConfigEffect } from './effects/ObtainConfigEffect';
+import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedStateEffect';
 
 @NgModule({
   declarations: [
@@ -38,14 +37,12 @@ import { UserProfileComponent } from './UI/UserProfileComponent';
     UserProfileComponent
   ],
   imports: [
+    EffectsModule.forRoot([ChangeUserEffect, CreateHeroEffect, FollowAuthenticatedStateEffect, ObtainConfigEffect, StoreHeroesEffect]),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({
-      heroes: heroesReducer,
-      states: statesReducer,
-    }),
+    StoreModule.forRoot({ r: repository }),
     AuthModule.forRoot({
       domain: 'kode-konveyor.eu.auth0.com',
       clientId: 'OqUGGMvs9Ch8yitD3sf2lm6mN61MZqPw',
@@ -57,7 +54,7 @@ import { UserProfileComponent } from './UI/UserProfileComponent';
       httpInterceptor: {
         allowedList: [
           {
-            uri: 'http://localhost:9090/angulartest/heroes',
+            uri: 'http://localhost:9090/angulartest/api/v1/hero',
             tokenOptions: {
               authorizationParams: {
                 audience: 'https://test.kodekonveyor.com/angulartest',
@@ -79,16 +76,11 @@ import { UserProfileComponent } from './UI/UserProfileComponent';
     })
   ],
   providers: [
-    GetTheActualListOfHeroesService,
-    SelectHeroForEditingService,
-    InitializeStatesService,
+    GenericErrorHandler,
     ObtainHeroesService,
+    SaveHeroService,
     Synchronizer,
-    CreateHeroService,
-    ModifyHeroService,
-    ChangeToCreateModeService,
-    SetHeroFilterService,
-    ObtainUrlBaseService,
+    StoreHeroesService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
   bootstrap: [

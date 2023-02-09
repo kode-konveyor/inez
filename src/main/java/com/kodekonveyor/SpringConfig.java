@@ -1,17 +1,13 @@
 package com.kodekonveyor;
 
-import java.lang.reflect.Field;
-import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.servlet.Filter;
 import javax.sql.DataSource;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InjectionPoint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,9 +16,12 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.kodekonveyor.annotations.ExcludeFromCodeCoverage;
@@ -30,11 +29,14 @@ import com.kodekonveyor.annotations.InterfaceClass;
 import com.kodekonveyor.webapp.ResponseFilter;
 import com.kodekonveyor.webapp.WebappConstants;
 
+import jakarta.servlet.Filter;
+
 @EnableScheduling
 @SpringBootApplication
 @ServletComponentScan
 @InterfaceClass
 @ExcludeFromCodeCoverage("interface to underlaying framework")
+@EnableWebSecurity
 public class SpringConfig extends SpringBootServletInitializer {
 
 	@Value("${com.kodekonveyor.repo.jdbcDriver}")
@@ -46,13 +48,44 @@ public class SpringConfig extends SpringBootServletInitializer {
 	@Value("${com.kodekonveyor.task.max-thread:10}")
 	private int maxThreadCount;
 
+
+	@Value("${auth0.audience}")
+	private String audience;
+
+	@Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}")
+	private String issuer;
+
+	@Autowired
+	private Logger logger;
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http
+				.authorizeHttpRequests(
+						authz -> authz
+						
+								.requestMatchers(HttpMethod.GET, "/api/v1/hero")
+								.hasAuthority("SCOPE_read:current_user")
+								.anyRequest()
+								.permitAll())
+				.oauth2ResourceServer(oauth2 -> oauth2.jwt())
+				.csrf()
+				.csrfTokenRepository(
+						CookieCsrfTokenRepository.withHttpOnlyFalse())
+				;
+
+		return http.build();
+
+	}
+
 	public static void main(final String[] args) {
 		SpringApplication.run(SpringConfig.class, args);
 	}
 
 	@Bean
 	public DataSource dataSource() {
-		final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
+		final DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder
+				.create();
 		dataSourceBuilder.driverClassName(jdbcDriver);
 		dataSourceBuilder.url(jdbcUri);
 		return dataSourceBuilder.build();
@@ -73,17 +106,6 @@ public class SpringConfig extends SpringBootServletInitializer {
 		final FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
 		registrationBean.setFilter(new ResponseFilter());
 		return registrationBean;
-	}
-
-	@Bean
-	@Scope("prototype")
-	public Logger logger(final InjectionPoint injectionPoint) {
-		return LoggerFactory.getLogger(
-				Optional.ofNullable(injectionPoint.getMethodParameter())
-						.<Class<?>>map(MethodParameter::getContainingClass)
-						.orElseGet(() -> Optional.ofNullable(injectionPoint.getField())
-								.map(Field::getDeclaringClass)
-								.orElseThrow(IllegalArgumentException::new)));
 	}
 
 	@Bean

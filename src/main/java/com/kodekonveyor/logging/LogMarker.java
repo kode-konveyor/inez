@@ -14,51 +14,51 @@ import lombok.Getter;
 @ExcludeFromCodeCoverage("interface")
 class LogMarker implements Marker {
 
-  private static final long serialVersionUID = 1L;
-  private final String name;
+	private static final long serialVersionUID = 1L;
+	private final String name;
 
-  LogMarker(final String name) {
-    this.name = name;
-  }
+	LogMarker(final String name) {
+		this.name = name;
+	}
 
-  @Override
-  public void add(final Marker reference) {
-  }
+	@Override
+	public void add(final Marker reference) {
+	}
 
-  @Override
-  public boolean contains(final Marker other) {
-    return false;
-  }
+	@Override
+	public boolean contains(final Marker other) {
+		return false;
+	}
 
-  @Override
-  public boolean contains(final String name) {
-    return false;
-  }
+	@Override
+	public boolean contains(final String name) {
+		return false;
+	}
 
-  @SuppressWarnings("deprecation")
-  @Override
-  public boolean hasChildren() {
-    return false;
-  }
+	@SuppressWarnings("deprecation")
+	@Override
+	public boolean hasChildren() {
+		return false;
+	}
 
-  @Override
-  public boolean hasReferences() {
-    return false;
-  }
+	@Override
+	public boolean hasReferences() {
+		return false;
+	}
 
-  @Override
-  public Iterator<Marker> iterator() {
-    return null;
-  }
+	@Override
+	public Iterator<Marker> iterator() {
+		return null;
+	}
 
-  @Override
-  public boolean remove(final Marker reference) {
-    return false;
-  }
+	@Override
+	public boolean remove(final Marker reference) {
+		return false;
+	}
 
-  @Override
-  public String toString() {
-    return name;
-  }
+	@Override
+	public String toString() {
+		return name;
+	}
 
 }
