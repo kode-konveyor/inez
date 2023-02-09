@@ -1,9 +1,17 @@
 {
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
   "mutate": [
-    "src/**/services/**/*.ts"
+    "src/**/*Service.ts",
+    "src/**/*Transition.ts"
   ],
-  "ignoreStatic": true,
+  "thresholds": {
+    "low": 100,
+    "high": 100
+  },
+  "ignoreStatic": false,
+  "warnings": {
+    "slow": false
+  },
   "testRunner": "jest",
   "reporters": [
     "progress",

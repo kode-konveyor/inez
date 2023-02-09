@@ -2,26 +2,26 @@ package com.kodekonveyor.webapp;
 
 import java.io.IOException;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletResponse;
-
 import com.kodekonveyor.annotations.ExcludeFromCodeCoverage;
 import com.kodekonveyor.annotations.InterfaceClass;
+
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletResponse;
 
 @InterfaceClass
 @ExcludeFromCodeCoverage("interface to underlying framework")
 @WebFilter()
 public class ResponseFilter implements Filter {
 
-	private static final String CONTENT_TYPE = "Content-Type";
+	private static final String ALLOWED_HEADERS = "Content-Type, Authorization";
 	private static final String ACCESS_CONTROL_ALLOW_HEADERS = "Access-Control-Allow-Headers";
-	private static final String VALUE = "*";
+	private static final String ALLOWED_ORIGINS = "*";
 	private static final String CORS_HEADER = "Access-Control-Allow-Origin";
 
 	@Override
@@ -30,9 +30,9 @@ public class ResponseFilter implements Filter {
 			final FilterChain chain) throws IOException, ServletException {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		httpServletResponse.setHeader(
-				CORS_HEADER, VALUE);
+				CORS_HEADER, ALLOWED_ORIGINS);
 		httpServletResponse.setHeader(
-				ACCESS_CONTROL_ALLOW_HEADERS, CONTENT_TYPE);
+				ACCESS_CONTROL_ALLOW_HEADERS, ALLOWED_HEADERS);
 		chain.doFilter(request, response);
 	}
 

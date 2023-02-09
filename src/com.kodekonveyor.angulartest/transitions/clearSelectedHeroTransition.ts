@@ -1,10 +1,11 @@
-import { States } from "../types/States";
-import { statesInitialState } from "../repositories/StatesRepository";
+import produce from "immer";
+import { initialState } from "../repositories/Repository";
+import { AppState } from "../types/AppState";
 
 export function clearSelectedHeroTransition(
-  state: States): States {
-  return {
-    ...state,
-    selectedHero: statesInitialState.selectedHero
-  };
+  state: AppState
+): AppState {
+  return produce(state, draft => {
+    draft.componentstates.heroeditor = initialState.componentstates.heroeditor;
+  })
 }

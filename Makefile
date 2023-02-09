@@ -2,6 +2,7 @@ export TOOLCHAINDIR = /usr/local/toolchain
 export GITHUB_ORGANIZATION=$(shell repofullname -d | sed 'sA/.*AA')
 export REPO_NAME=$(shell repofullname | sed 'sA.*/AA')
 export VERSION=$(shell git describe --tags)
+export ANDROID_SDK_ROOT=/opt/Android/Sdk
 LANGUAGE=java
 #export MODEL_BASENAME=model
 #export REPO_NAME=angulartest
@@ -10,11 +11,25 @@ LANGUAGE=java
 
 all: $(BEFORE_ALL) target/gather_deliverables $(AFTER_ALL)
 
+ci: all
+
 foo:
 	echo $(REPO_NAME) $(GITHUB_ORGANIZATION) $(VERSION)
 
+clean:
+	git clean -fdx && rm -rf inputs/codingrules
+
 jetty:
-	rm -f target/typescript_build && make target/typescript_build && mvn jetty:run
+	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn jetty:run
+
+IT:
+	rm -f target/*.png
+	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn integration-test
+
+target/zentaworkaround:
+	mkdir -p ~/.zenta/.metadata/.plugins/org.eclipse.e4.workbench/
+	cp etc/workbench.xmi ~/.zenta/.metadata/.plugins/org.eclipse.e4.workbench/
+	touch target/zentaworkaround
 
 target/version_updated:
 	updateversion
@@ -27,6 +42,8 @@ target/documentation: target/java_documentation target/typescript_documentation 
 	echo "documentation NOTIMPLEMENTED">target/documentation
 
 target/android_app: target/typescript_qa target/androidplatform
+	echo ANDROID_SDH ROOT is $(ANDROID_SDK_ROOT)
+	ls $(ANDROID_SDK_ROOT)
 	cordova telemetry off
 	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 cordova build android
 	mv platforms/android/app/build/outputs/apk/debug/app-debug.apk target
@@ -221,7 +238,7 @@ target/implementedBehaviours.xml target/implementedBehaviours.docbook target/imp
 #checkdoc: $(MODEL_BASENAME).consistencycheck
 #	checkDocErrors
 #
-inputs/issues.xml:
+inputs/issues.xml: target/zentaworkaround
 	echo "repo: $(GITHUB_ORGANIZATION)/$(REPO_NAME)"
 	mkdir -p inputs
 	getGithubIssues >inputs/issues.xml.in
