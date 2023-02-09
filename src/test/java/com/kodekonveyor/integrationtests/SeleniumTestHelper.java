@@ -24,7 +24,7 @@ class SeleniumTestHelper {
   private static final String COULD_NOT_FIND = "Could not find ";
   private static final String NO_CSS_SELECTOR = "";
   private static final String RESTORE_BORDER_JS = "document.querySelector(''{0}'').style.border=''{1} {2} {3}''";
-  private static final String SSREENSHOT_FILE_NAME = "target/{0}_{1}.png";
+  private static final String SSREENSHOT_FILE_NAME = "target/step_{0}.png";
   private static final String BORDER_STYLE = "border-style";
   private static final String BORDER_COLOR = "border-color";
   private static final String BORDER_WIDTH = "border-width";
@@ -61,6 +61,13 @@ class SeleniumTestHelper {
         ExpectedConditions.elementToBeClickable(By.cssSelector(cssSelector)));
   }
 
+  public WebElement waitForXpath(final String cssSelector) {
+    final WebDriverWait wait = new WebDriverWait(driver,
+        IntegrationtestsConstants.WAIT_TIME);
+    return wait.until(
+        ExpectedConditions.elementToBeClickable(By.xpath(cssSelector)));
+  }
+
   public SeleniumTestHelper goToPage(final String reason, final String url)
       throws Exception {
     cssSelector = NO_CSS_SELECTOR;
@@ -88,8 +95,7 @@ class SeleniumTestHelper {
     final Integer stepNumber = step++;
     final File destFile = new File(MessageFormat.format(
         SSREENSHOT_FILE_NAME,
-        stepNumber.toString(),
-        reason));
+        stepNumber.toString()));
     FileUtils.copyFile(screenshot, destFile);
     if (!NO_CSS_SELECTOR.equals(cssSelector)) {
       driver.executeScript(MessageFormat.format(
@@ -107,6 +113,21 @@ class SeleniumTestHelper {
       return new SeleniumTestHelper(this, element);
     } catch (final TimeoutException exception) {
       final String reason = COULD_NOT_FIND + cssSelector;
+      this.cssSelector = NO_CSS_SELECTOR;
+      takeScreenshot(reason);
+      throw exception;
+    }
+
+  }
+
+  public SeleniumTestHelper lookAtElementXpath(final String xpath)
+      throws Exception {
+    try {
+      final WebElement element = waitForXpath(xpath);
+      this.cssSelector = "#" + element.getDomAttribute("id");
+      return new SeleniumTestHelper(this, element);
+    } catch (final TimeoutException exception) {
+      final String reason = COULD_NOT_FIND + xpath;
       this.cssSelector = NO_CSS_SELECTOR;
       takeScreenshot(reason);
       throw exception;

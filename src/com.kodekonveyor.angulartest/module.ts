@@ -15,8 +15,7 @@ import { Synchronizer } from '../com.kodekonveyor.common/Synchronizer';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './UI/AppAuthButton';
 import { UserProfileComponent } from './UI/UserProfileComponent';
-import { Pipelines } from './Pipelines';
-import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
+import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
 import { repository } from './repositories/Repository';
 import { EffectsModule } from '@ngrx/effects';
 import { ChangeUserEffect } from './effects/ChangeUserEffect';
@@ -24,6 +23,8 @@ import { SaveHeroService } from './services/SaveHeroService';
 import { CreateHeroEffect } from './effects/CreateHeroEfffect';
 import { StoreHeroesEffect } from './effects/StoreHeroesEffect';
 import { StoreHeroesService } from './services/StoreHeroesService';
+import { ObtainConfigEffect } from './effects/ObtainConfigEffect';
+import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedStateEffect';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { StoreHeroesService } from './services/StoreHeroesService';
     UserProfileComponent
   ],
   imports: [
-    EffectsModule.forRoot([ChangeUserEffect, CreateHeroEffect, Pipelines, StoreHeroesEffect]),
+    EffectsModule.forRoot([ChangeUserEffect, CreateHeroEffect, FollowAuthenticatedStateEffect, ObtainConfigEffect, StoreHeroesEffect]),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -75,7 +76,7 @@ import { StoreHeroesService } from './services/StoreHeroesService';
     })
   ],
   providers: [
-    GenericErrorHandlerService,
+    GenericErrorHandler,
     ObtainHeroesService,
     SaveHeroService,
     Synchronizer,

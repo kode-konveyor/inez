@@ -4,7 +4,7 @@ import { mock, mockFn } from "jest-mock-extended";
 import { UrlMapConstants } from "src/com.kodekonveyor.angulartest/services/UrlMapConstants";
 import { Hero } from "src/com.kodekonveyor.angulartest/types/Hero";
 import { Observable } from "rxjs";
-import { ServicesTestData } from "./ServicesTestData";
+import { ServicesTestData } from "../testdata/ServicesTestData";
 
 describe("Save Hero", () => {
 

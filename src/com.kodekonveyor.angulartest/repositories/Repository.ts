@@ -13,7 +13,6 @@ import { setAuthenticatedTransition } from "../transitions/setAuthenticatedTrans
 import { IdType } from "src/com.kodekonveyor.common/IdType";
 
 export const initialState: AppState = {
-  heroes: [],
   states: {
     baseURL: ""
   },
@@ -39,14 +38,6 @@ export const initialState: AppState = {
 
 export const states = {
   _: (state: StoreState) => state.r,
-  heroes: {
-    _: (state: StoreState) => state.r.heroes,
-    nTh: {
-      _: (n: number) => (state: StoreState) => state.r.heroes[n],
-      id: (n: number) => (state: StoreState) => state.r.heroes[n].id,
-      name: (n: number) => (state: StoreState) => state.r.heroes[n].name
-    }
-  },
   states: {
     _: (state: StoreState) => state.r.states,
     baseURL: (state: StoreState) => state.r.states.baseURL,

@@ -6,7 +6,7 @@ import { ObtainHeroesService } from "src/com.kodekonveyor.angulartest/services/O
 import { User } from "@auth0/auth0-angular";
 import { Heroes } from "src/com.kodekonveyor.angulartest/types/Heroes";
 import { changeUser } from "src/com.kodekonveyor.angulartest/repositories/actions";
-import { ServicesTestData } from "./ServicesTestData";
+import { ServicesTestData } from "../testdata/ServicesTestData";
 
 describe("Save Hero", () => {
 

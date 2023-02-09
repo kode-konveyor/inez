@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, catchError } from 'rxjs/operators';
-import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
+import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 import { storeHeroes } from '../repositories/actions';
 import { StoreHeroesService } from '../services/StoreHeroesService';
@@ -10,7 +10,7 @@ import { StoreHeroesService } from '../services/StoreHeroesService';
 export class StoreHeroesEffect {
   constructor(
     private readonly actions$: Actions,
-    private readonly genericErrorHandlerService: GenericErrorHandlerService,
+    private readonly genericErrorHandlerService: GenericErrorHandler,
     private readonly storeHeroesService: StoreHeroesService,
     private readonly synchronizer: Synchronizer
   ) { }

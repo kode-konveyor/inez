@@ -1,14 +1,9 @@
+import produce from "immer";
 import { AppState } from "../types/AppState";
 
 export function setAuthenticatedTransition(
   state: AppState): AppState {
-  return {
-    ...state,
-    componentstates: {
-      ...state.componentstates,
-      heroes: {
-        authenticated: true
-      }
-    }
-  };
+  return produce(state, draft => {
+    draft.componentstates.heroes.authenticated = true;
+  });
 }

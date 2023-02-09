@@ -1,7 +1,5 @@
 package com.kodekonveyor.integrationtests;
 
-import java.text.MessageFormat;
-
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.annotation.Testable;
@@ -23,23 +21,15 @@ public class EndToEndIT {
     final String resultingText = IntegrationtestsConstants.HERO_NAME
         + IntegrationtestsConstants.ADDED_TEXT;
 
-    helper = helper
+    helper
         .lookAtElement(IntegrationtestsConstants.HEROES_PLUSBUTTON_SELECTOR)
         .click("click the plus button to add a Hero")
         .lookAtElement(IntegrationtestsConstants.INPUT_SELECTOR)
         .enter("Enter the name of the new hero",
             IntegrationtestsConstants.HERO_NAME)
         .lookAtElement(IntegrationtestsConstants.HEROEDITOR_CREATE_SELECTOR)
-        .click("Click the create button");
-
-    String jsScript = "return document.evaluate(\"//div[@class='heroitem-name' and text()='Superman']\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.id";
-
-    String newId = (String) helper.getDriver().executeScript(jsScript);
-    System.out.println("new id:" + newId);
-    String newHeroSelector = MessageFormat
-        .format(IntegrationtestsConstants.HEROITEM_SELECTOR_TEMPLATE, newId);
-    helper
-        .lookAtElement(newHeroSelector)
+        .click("Click the create button")
+        .lookAtElementXpath(IntegrationtestsConstants.SUPERMAN_XPATH)
         .checkText("Find your hero.", IntegrationtestsConstants.HERO_NAME)
         .click("click to further edit")
         .lookAtElement(IntegrationtestsConstants.INPUT_SELECTOR)
@@ -48,7 +38,7 @@ public class EndToEndIT {
         .checkText(
             "It is added to the name, of course you can edit it as you like",
             resultingText)
-        .lookAtElement(newHeroSelector)
+        .lookAtElementXpath(IntegrationtestsConstants.SUPERMAN_HELLO_XPATH)
         .checkText("he name of the hero is modified at the list",
             resultingText);
   }

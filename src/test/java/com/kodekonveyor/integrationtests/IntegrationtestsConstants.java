@@ -1,5 +1,6 @@
 package com.kodekonveyor.integrationtests;
 
+import java.text.MessageFormat;
 import java.time.Duration;
 
 public class IntegrationtestsConstants {
@@ -20,9 +21,12 @@ public class IntegrationtestsConstants {
   public static final String FILTER_INPUT_SELECTOR = "#heroes-herofilter-filterstring-input";
   public static final String ADDED_TEXT = "Hello";
   public static final String HERO_NAME = "Superman";
-  public static final String HEROITEM_SELECTOR_TEMPLATE = "#{0}";
+  public static final String HEROITEM_XPATH_TEMPLATE = "//div[@class=''heroitem-name'' and contains(text(),''{0}'')]";
+  public static final String SUPERMAN_XPATH = MessageFormat.format(HEROITEM_XPATH_TEMPLATE, HERO_NAME);
   public static final String HEROEDITOR_CREATE_SELECTOR = "#heroes-heroeditor-create";
   public static final String HEROES_PLUSBUTTON_SELECTOR = "#heroes-plusbutton";
   public static final String AUTH0_LOGIN_BUTTON = ".auth0-label-submit";
+  public static final String SUPERMAN_HELLO_XPATH = MessageFormat.format(HEROITEM_XPATH_TEMPLATE,
+      HERO_NAME + ADDED_TEXT);
 
 }
