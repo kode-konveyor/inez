@@ -54,6 +54,15 @@ import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedSta
       httpInterceptor: {
         allowedList: [
           {
+            uri: 'https://test.kodekonveyor.com/angulartest/api/v1/hero',
+            tokenOptions: {
+              authorizationParams: {
+                audience: 'https://test.kodekonveyor.com/angulartest',
+                scope: 'read:current_user'
+              }
+            }
+          },
+          {
             uri: 'http://localhost:9090/angulartest/api/v1/hero',
             tokenOptions: {
               authorizationParams: {
