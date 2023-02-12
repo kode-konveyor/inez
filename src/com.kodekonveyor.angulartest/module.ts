@@ -26,6 +26,8 @@ import { StoreHeroesService } from './services/StoreHeroesService';
 import { ObtainConfigEffect } from './effects/ObtainConfigEffect';
 import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedStateEffect';
 
+export const REDIRECT_URI = 'com.kodekonveyor.angulartest://kode-konveyor.eu.auth0.com/capacitor/com.kodekonveyor.angulartest/callback';
+
 @NgModule({
   declarations: [
     HeroesComponent,
@@ -47,7 +49,7 @@ import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedSta
       domain: 'kode-konveyor.eu.auth0.com',
       clientId: 'OqUGGMvs9Ch8yitD3sf2lm6mN61MZqPw',
       authorizationParams: {
-        redirect_uri: window.location.href,
+        redirect_uri: REDIRECT_URI,
         audience: 'https://test.kodekonveyor.com/angulartest',
         scope: 'read:current_user'
       },
