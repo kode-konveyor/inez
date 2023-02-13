@@ -6,7 +6,7 @@
 
 	<groupId>com.kodekonveyor</groupId>
 	<artifactId>angulartest-server</artifactId><!-- project name -->
-	<version>1.0-12-g952509d</version><!--package version -->
+	<version>1.0-14-g2611a63</version><!--package version -->
 	<packaging>war</packaging>
 	<name>angulartest</name><!-- project name -->
 	<description>Backend for angular test frontend</description>

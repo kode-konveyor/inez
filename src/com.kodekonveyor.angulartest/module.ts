@@ -25,6 +25,8 @@ import { StoreHeroesEffect } from './effects/StoreHeroesEffect';
 import { StoreHeroesService } from './services/StoreHeroesService';
 import { ObtainConfigEffect } from './effects/ObtainConfigEffect';
 import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedStateEffect';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { RouteReuseStrategy } from '@angular/router';
 
 export const REDIRECT_URI = 'com.kodekonveyor.angulartest://kode-konveyor.eu.auth0.com/capacitor/com.kodekonveyor.angulartest/callback';
 
@@ -41,6 +43,7 @@ export const REDIRECT_URI = 'com.kodekonveyor.angulartest://kode-konveyor.eu.aut
   imports: [
     EffectsModule.forRoot([ChangeUserEffect, CreateHeroEffect, FollowAuthenticatedStateEffect, ObtainConfigEffect, StoreHeroesEffect]),
     BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -92,6 +95,7 @@ export const REDIRECT_URI = 'com.kodekonveyor.angulartest://kode-konveyor.eu.aut
     SaveHeroService,
     Synchronizer,
     StoreHeroesService,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
   bootstrap: [
