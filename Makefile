@@ -41,17 +41,10 @@ target/gather_deliverables: target/documentation target/android_app target/ios_a
 target/documentation: target/java_documentation target/typescript_documentation target/end_to_end_documentation target/model_documentation
 	echo "documentation NOTIMPLEMENTED">target/documentation
 
-target/android_app: target/typescript_qa target/androidplatform
-	echo ANDROID_SDH ROOT is $(ANDROID_SDK_ROOT)
-	ls $(ANDROID_SDK_ROOT)
-	cordova telemetry off
-	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 cordova build android
-	mv platforms/android/app/build/outputs/apk/debug/app-debug.apk target
+target/android_app: target/typescript_build
+	rm -rf android ; npx cap add android&& cp etc/AndroidManifest.xml android/app/src/main/AndroidManifest.xml &&cd android && ./gradlew build
+	mv /android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
-
-target/androidplatform:
-	mkdir -p www && cordova platform rm android && cordova platform add android && cordova prepare android
-	touch target/androidplatform
 
 target/ios_app: target/typescript_qa
 	echo "ios_app NOTIMPLEMENTED">target/ios_app

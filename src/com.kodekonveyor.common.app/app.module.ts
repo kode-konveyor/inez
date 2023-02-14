@@ -10,7 +10,6 @@ import { authConfig } from 'src/auth.config';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
-import { repository } from 'src/com.kodekonveyor.angulartest/repositories/Repository';
 import { EffectsModule } from '@ngrx/effects';
 
 
@@ -23,7 +22,7 @@ import { EffectsModule } from '@ngrx/effects';
     IonicModule.forRoot(),
     AuthModule.forRoot(authConfig),
     AppRoutingModule,
-    StoreModule.forRoot({ r: repository }),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([])
   ],
   providers: [

@@ -14,6 +14,38 @@ export class AppComponent implements OnInit {
   constructor(public auth: AuthService, private readonly ngZone: NgZone) { }
 
   ngOnInit(): void {
+    console.log("ngOnInit")
+    void App.addListener('appUrlOpen', ({ url }) => {
+      console.log("listening to", url)
+      this.ngZone.run(() => {
+        console.log("in zone, comparing to", callbackUri)
+        if (url?.startsWith(callbackUri)) {
+          console.log("url start checked")
+          if (
+            url.includes('state=') &&
+            (url.includes('error=') || url.includes('code='))
+          ) {
+            console.log("url parameters checked")
+            this.auth
+              .handleRedirectCallback(url)
+              // eslint-disable-next-line @typescript-eslint/promise-function-async
+              .pipe(mergeMap(() => Browser.close()))
+              .subscribe(() => {
+                console.log("in subscriber for browser close")
+              });
+          } else {
+            console.log("closing browser 1")
+            void Browser.close();
+          }
+        } else {
+          console.log("closing browser 2")
+          void Browser.close();
+        }
+      });
+    });
+  }
+
+  ngOnInitOld(): void {
     void App.addListener('appUrlOpen', ({ url }) => {
       this.ngZone.run(() => {
         if (url?.startsWith(callbackUri)) {
