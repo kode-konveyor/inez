@@ -3,13 +3,12 @@ import { showEditor } from 'src/com.kodekonveyor.angulartest/repositories/action
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 import { HeroesComponentModel } from '../../types/HeroesComponentModel';
 
-
 @Component({
   selector: 'heroes',
   templateUrl: './heroes.component.html',
 })
 
-export class HeroesComponent implements HeroesComponentModel, OnInit {
+export class HeroesComponent implements HeroesComponentModel {
   id: string = "heroes";
 
   authenticated!: Boolean;
@@ -24,8 +23,5 @@ export class HeroesComponent implements HeroesComponentModel, OnInit {
     this.synchronizer.dispatch(showEditor())
   }
 
-
-  ngOnInit(): void {
-  }
 }
 
