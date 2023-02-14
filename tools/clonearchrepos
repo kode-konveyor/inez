@@ -1,8 +1,0 @@
-#!/bin/bash
-set -x
-zenta-xslt-runner -xsl:xslt/delink.xslt -s:.zentasources -im:prepare|sed 's/^.*?>//' >inputs/lines.txt
-readarray lines <inputs/lines.txt
-for line in "${lines[@]}" 
- do ssh-agent bash -c "ssh-add /tmp/ssh/kodekonveyor ; $line" 
-done
-

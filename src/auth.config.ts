@@ -11,7 +11,7 @@ const iosOrAndroid = isPlatform('ios') || isPlatform('android');
 
 export const callbackUri: string = iosOrAndroid
   ? `${applicationId}://${auth0Domain}/capacitor/${applicationId}/callback`
-  : 'http://localhost:4200';
+  : window.location.toString();
 
 
 export const authConfig: AuthConfig = {

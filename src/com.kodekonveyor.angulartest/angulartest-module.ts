@@ -22,8 +22,6 @@ import { ObtainConfigEffect } from './effects/ObtainConfigEffect';
 import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedStateEffect';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { RouteReuseStrategy } from '@angular/router';
-import { AuthModule } from '@auth0/auth0-angular';
-import { authConfig } from 'src/auth.config';
 import { LoginButtonComponent } from './login-button.component';
 import { LogoutButtonComponent } from './logout-button.component';
 import { PageComponent } from './page.component';
@@ -48,7 +46,6 @@ import { CommonModule } from '@angular/common';
     IonicModule.forRoot(),
     FormsModule,
     HttpClientModule,
-    AuthModule.forRoot(authConfig),
     AngulartestRoutingModule,
     StoreModule.forFeature("r", repository),
   ],

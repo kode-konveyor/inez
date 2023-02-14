@@ -43,7 +43,7 @@ target/documentation: target/java_documentation target/typescript_documentation 
 
 target/android_app: target/typescript_build
 	rm -rf android ; npx cap add android&& cp etc/AndroidManifest.xml android/app/src/main/AndroidManifest.xml &&cd android && ./gradlew build
-	mv /android/app/build/outputs/apk/debug/app-debug.apk target
+	mv android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
 
 target/ios_app: target/typescript_qa
@@ -86,7 +86,7 @@ target/java_source_generation: model.rich
 	echo "java_source_generation NOTIMPLEMENTED">target/java_source_generation
 
 target/x_runs:
-	tools/prepare
+	prepare
 	touch target/x_runs
 
 target/model_documentation: target/x_runs model.compiled

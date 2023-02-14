@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { showEditor } from 'src/com.kodekonveyor.angulartest/repositories/actions';
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 import { HeroesComponentModel } from '../../types/HeroesComponentModel';

@@ -4,7 +4,7 @@ import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-login-button',
-  template: `<ion-button (click)="login()">Log in</ion-button>`,
+  template: `<ion-button id="login_button" (click)="login()">Log in</ion-button>`,
 })
 export class LoginButtonComponent {
   constructor(public auth: AuthService) { }
