@@ -6,7 +6,6 @@ import org.junit.platform.commons.annotation.Testable;
 
 import com.kodekonveyor.annotations.TestedBehaviour;
 import com.kodekonveyor.annotations.TestedService;
-import com.kodekonveyor.integrationtests.helper.AndroidTestPlatform;
 import com.kodekonveyor.integrationtests.helper.FirefoxTestPlatform;
 
 @TestedBehaviour("android")
@@ -14,11 +13,13 @@ import com.kodekonveyor.integrationtests.helper.FirefoxTestPlatform;
 @Testable
 @Tag("IntegrationTest")
 public class FirefoxIT {
-	
+
 	@Test
 	void test() throws Exception {
-		FirefoxTestPlatform platform = new FirefoxTestPlatform(IntegrationtestsConstants.APP_URL);
-		EndToEndStory story = new EndToEndStory(platform);
+		final FirefoxTestPlatform platform = new FirefoxTestPlatform(
+				IntegrationtestsConstants.APP_URL,
+				"web");
+		final EndToEndStory story = new EndToEndStory(platform);
 		story.play();
 	}
 }

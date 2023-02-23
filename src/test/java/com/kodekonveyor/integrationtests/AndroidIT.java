@@ -16,7 +16,7 @@ public class AndroidIT {
 	
 	@Test
 	void test() throws Exception {
-		AndroidTestPlatform platform = new AndroidTestPlatform();
+		AndroidTestPlatform platform = new AndroidTestPlatform("android");
 		EndToEndStory story = new EndToEndStory(platform);
 		story.play();
 	}
