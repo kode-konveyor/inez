@@ -1,6 +1,6 @@
 {
   "name": "angulartest",
-  "version": "1.0-38-ge394c74",
+  "version": "1.0-39-gd78e2d9",
   "main": "index.js",
   "scripts": {
     "all": "npx eslint . && npm run test && npm run mutate && npm run build && cordova build android",

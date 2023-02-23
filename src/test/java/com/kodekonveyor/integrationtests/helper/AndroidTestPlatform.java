@@ -23,7 +23,18 @@ import io.appium.java_client.android.AndroidDriver;
 @InterfaceClass
 public class AndroidTestPlatform implements TestPlatform {
 
-    private static final int TIMEOUT = 10;
+    private static final String ADB_EXEC_TIMEOUT = "adbExecTimeout";
+	private static final String AUTO_WEBVIEW_TIMEOUT = "autoWebviewTimeout";
+	private static final String AVD_READY_TIMEOUT = "avdReadyTimeout";
+	private static final String AVD_LAUNCH_TIMEOUT = "avdLaunchTimeout";
+	private static final String ANDROID_INSTALL_TIMEOUT = "androidInstallTimeout";
+	private static final String ANDROID_DEVICE_READY_TIMEOUT = "androidDeviceReadyTimeout";
+	private static final String DEVICE_READY_TIMEOUT = "deviceReadyTimeout";
+	private static final String APP_WAIT_DURATION = "appWaitDuration";
+	private static final String NEW_COMMAND_TIMEOUT = "newCommandTimeout";
+	private static final int TIMEOUT_IN_MILLISEC = 60000;
+	private static final int TIMEOUT_IN_SEC = 60;
+	private static final int TIMEOUT = 10;
 	private static final int MAX_TRIES = 3;
 	private static final String HTTP_127_0_0_1_4723_WD_HUB = "http://127.0.0.1:4723/wd/hub";
 	private static final String EXTRACT_CHROME_ANDROID_PACKAGE_FROM_CONTEXT_NAME = "extractChromeAndroidPackageFromContextName";
@@ -61,6 +72,15 @@ public class AndroidTestPlatform implements TestPlatform {
         caps.setCapability(APP_PACKAGE, COM_KODEKONVEYOR_ANGULARTEST);
         caps.setCapability(APP_ACTIVITY, COM_KODEKONVEYOR_ANGULARTEST_MAIN_ACTIVITY);
         caps.setCapability(EXTRACT_CHROME_ANDROID_PACKAGE_FROM_CONTEXT_NAME, true);
+        caps.setCapability(NEW_COMMAND_TIMEOUT, TIMEOUT_IN_SEC);
+        caps.setCapability(APP_WAIT_DURATION, TIMEOUT_IN_MILLISEC);
+        caps.setCapability(DEVICE_READY_TIMEOUT, TIMEOUT_IN_SEC);
+        caps.setCapability(ANDROID_DEVICE_READY_TIMEOUT, TIMEOUT_IN_SEC);
+        caps.setCapability(ANDROID_INSTALL_TIMEOUT, TIMEOUT_IN_MILLISEC);
+        caps.setCapability(AVD_LAUNCH_TIMEOUT, TIMEOUT_IN_MILLISEC);
+        caps.setCapability(AVD_READY_TIMEOUT, TIMEOUT_IN_MILLISEC);
+        caps.setCapability(AUTO_WEBVIEW_TIMEOUT, TIMEOUT_IN_MILLISEC);
+        caps.setCapability(ADB_EXEC_TIMEOUT, TIMEOUT_IN_MILLISEC);
         driver = new AndroidDriver(new URL(HTTP_127_0_0_1_4723_WD_HUB), caps);
         return driver;
 	}
