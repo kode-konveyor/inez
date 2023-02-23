@@ -23,7 +23,9 @@ import io.appium.java_client.android.AndroidDriver;
 @InterfaceClass
 public class AndroidTestPlatform implements TestPlatform {
 
-    private static final String ADB_EXEC_TIMEOUT = "adbExecTimeout";
+    private static final String UI_AUTOMATOR2 = "UiAutomator2";
+	private static final String AUTOMATION_NAME = "automationName";
+	private static final String ADB_EXEC_TIMEOUT = "adbExecTimeout";
 	private static final String AUTO_WEBVIEW_TIMEOUT = "autoWebviewTimeout";
 	private static final String AVD_READY_TIMEOUT = "avdReadyTimeout";
 	private static final String AVD_LAUNCH_TIMEOUT = "avdLaunchTimeout";
@@ -67,6 +69,7 @@ public class AndroidTestPlatform implements TestPlatform {
 	@Override
 	public WebDriver makeDriver() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability(AUTOMATION_NAME, UI_AUTOMATOR2);
         caps.setCapability(PLATFORM_NAME, ANDROID);
         caps.setCapability(APP, TARGET_APP_DEBUG_APK);
         caps.setCapability(APP_PACKAGE, COM_KODEKONVEYOR_ANGULARTEST);
