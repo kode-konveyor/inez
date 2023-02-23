@@ -62,7 +62,10 @@ target/typescript_qa: target/version_updated target/typescript_dependencies targ
 	npm run qa
 	touch target/typescript_qa
 
-target/typescript_dependencies:
+node_modules/ts-jest/README.md:
+	cp -r /usr/local/src/angulartest/node_modules .
+
+target/typescript_dependencies: node_modules/ts-jest/README.md
 	npm install
 	touch target/typescript_dependencies
 
