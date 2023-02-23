@@ -38,7 +38,11 @@ target/documentation: target/java_documentation target/typescript_documentation 
 	echo "documentation NOTIMPLEMENTED">target/documentation
 
 target/android_app: target/typescript_build
-	rm -rf android ; npx cap add android&& cp etc/AndroidManifest.xml android/app/src/main/AndroidManifest.xml &&cd android && ./gradlew build
+	rm -rf android
+	npx cap add android
+	cp etc/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+	copy_build_gradle
+	cd android && ./gradlew build
 	mv android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
 

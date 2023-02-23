@@ -1,0 +1,2 @@
+#!/bin/bash
+cat etc/build.gradle |sed "s/PASSWORD/$KEYSTORE_PASSWORD/;s/VERSIONCODE/$(date +%s)/">android/app/build.gradle

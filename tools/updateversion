@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+VERSION=$(git describe --tags)
+echo $VERSION >VERSION
+sed -i 'sB<version.*package versionB<version>'"$VERSION"'</version><!--package versionB' $(find -name pom.xml)
+sed -i 's/"version":.*/"version": "'$VERSION'",/' package.json
+sed -i 's~\(<widget.* version="\)[^"]*"\(.*\)$~\1'$(cat VERSION)'"\2~' config.xml
+sed -i 's/versionName ".*"/versionName "'$VERSION'"/' etc/build.gradle
