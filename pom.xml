@@ -6,7 +6,7 @@
 
 	<groupId>com.kodekonveyor</groupId>
 	<artifactId>angulartest-server</artifactId><!-- project name -->
-	<version>1.0-34-g376f3cb</version><!--package version -->
+	<version>1.0-35-g4ad5aeb</version><!--package version -->
 	<packaging>war</packaging>
 	<name>angulartest</name><!-- project name -->
 	<description>Backend for angular test frontend</description>
@@ -454,6 +454,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
+			<version>4.8.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -487,6 +488,11 @@
                 <artifactId>spring-boot-starter-tomcat</artifactId>
             </exclusion>
         </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.appium</groupId>
+      <artifactId>java-client</artifactId>
+      <version>8.2.1</version>
     </dependency>
 	</dependencies>
 </project>

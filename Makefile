@@ -4,10 +4,6 @@ export REPO_NAME=$(shell repofullname | sed 'sA.*/AA')
 export VERSION=$(shell git describe --tags)
 export ANDROID_SDK_ROOT=/opt/Android/Sdk
 LANGUAGE=java
-#export MODEL_BASENAME=model
-#export REPO_NAME=angulartest
-#export GITHUB_ORGANIZATION=kode-konveyor
-#export CONSISTENCY_INPUTS=model.rich target/behaviours.xml
 
 all: $(BEFORE_ALL) target/gather_deliverables $(AFTER_ALL)
 
@@ -76,9 +72,6 @@ target/deploy_war: target/runApache target/war_built
 	deploywar $(REPO_NAME) $(VERSION)
 	touch target/deploy_war
 
-#target/end_to_end_test: target/runtomcat target/deploy_war
-#	echo "end_to_end_test NOTIMPLEMENTED">target/end_to_end_test
-
 target/typescript_source_generation: model.rich
 	echo "typescript_source_generation NOTIMPLEMENTED">target/typescript_source_generation
 
@@ -100,14 +93,14 @@ target/runApache:
 	runApache
 	touch target/runApache
 
-#target/runtomcat: target/runApache target/deploy_war
-#	tomcat
-#	touch target/runtomcat
-
 target/java_qa: target/mutation_check target/end_to_end_test target/test/javadoc.xml
 	echo "java_qa NOTIMPLEMENTED">target/java_qa
 
-target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation
+target/android_testbed: target/android_app target/x_runs
+	runAndroid
+	touch target/android_testbed
+
+target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation target/android_testbed
 	JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
 	cp target/pit-reports/mutations.xml target/mutations.xml
 	mkdir -p target/test

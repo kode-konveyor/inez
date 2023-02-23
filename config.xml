@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.kodekonveyor.androidtest" version="1.0-34-g376f3cb" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.kodekonveyor.androidtest" version="1.0-35-g4ad5aeb" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>angulartest</name>
     <description>angular test for Kode Konveyor environment</description>
     <author email="m4gw4s@gmail.com" href="https://kodekonveyor.com">

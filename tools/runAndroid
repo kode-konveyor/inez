@@ -1,1 +1,7 @@
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 /opt/Android/Sdk/tools/emulator -avd testAVD
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 /opt/Android/Sdk/tools/emulator -avd testAVD&
+while [ ! -e /opt/androidhome/avd/running/*.ini ]
+do
+  echo waiting for emulator
+	sleep 1
+done
+appium --chromedriver-executable /opt/chromedriver&

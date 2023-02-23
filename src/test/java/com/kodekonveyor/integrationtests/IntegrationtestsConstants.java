@@ -28,5 +28,8 @@ public class IntegrationtestsConstants {
   public static final String AUTH0_LOGIN_BUTTON = ".auth0-label-submit";
   public static final String SUPERMAN_HELLO_XPATH = MessageFormat.format(HEROITEM_XPATH_TEMPLATE,
       HERO_NAME + ADDED_TEXT);
+  public static final String CHROME_CONTEXT = "WEBVIEW_org.chromium.webview_shell";
+  public static final String APP_CONTEXT = "WEBVIEW_com.kodekonveyor.angulartest";
+  public static final String LOGOUT_BUTTON = "#logout_button";
 
 }

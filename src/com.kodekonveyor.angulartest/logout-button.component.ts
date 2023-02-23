@@ -5,7 +5,7 @@ import { callbackUri } from '../auth.config';
 
 @Component({
   selector: 'app-logout-button',
-  template: `<ion-button (click)="logout()">Log out</ion-button>`,
+  template: `<ion-button id="logout_button" (click)="logout()">Log out</ion-button>`,
 })
 export class LogoutButtonComponent {
   constructor(public auth: AuthService) { }

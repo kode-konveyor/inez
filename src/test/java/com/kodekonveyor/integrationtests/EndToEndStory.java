@@ -1,22 +1,20 @@
 package com.kodekonveyor.integrationtests;
 
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.annotation.Testable;
 import org.openqa.selenium.Keys;
 
-import com.kodekonveyor.annotations.TestedBehaviour;
-import com.kodekonveyor.annotations.TestedService;
+import com.kodekonveyor.integrationtests.helper.SeleniumTestHelper;
+import com.kodekonveyor.integrationtests.helper.TestPlatform;
 
-@TestedBehaviour("roles")
-@TestedService("ListLeadController")
-@Testable
-@Tag("IntegrationTest")
-public class EndToEndIT {
+public class EndToEndStory {
 
-  @Test
-  void seleniumTest() throws Exception {
-    SeleniumTestHelper helper = new SeleniumTestHelper();
+	private TestPlatform platform;
+
+	public EndToEndStory(final TestPlatform platform) {
+		this.platform = platform;
+	}
+	
+  public void play() throws Exception {
+    SeleniumTestHelper helper = new SeleniumTestHelper(platform);
     login(helper);
     final String resultingText = IntegrationtestsConstants.HERO_NAME
         + IntegrationtestsConstants.ADDED_TEXT;
@@ -40,24 +38,28 @@ public class EndToEndIT {
             resultingText)
         .lookAtElementXpath(IntegrationtestsConstants.SUPERMAN_HELLO_XPATH)
         .checkText("he name of the hero is modified at the list",
-            resultingText);
+            resultingText)
+        .lookAtElement(IntegrationtestsConstants.LOGOUT_BUTTON)
+        .click("Log out")
+        ;
   }
 
   private void login(final SeleniumTestHelper helper) throws Exception {
     final String user = UserEntityTestData.LOGIN;
     final String pass = UserEntityTestData.PASSWORD;
 
-    helper.goToPage(
-        "If you are not logged in, you will be redirected to the login page",
-        IntegrationtestsConstants.APP_URL)
+    helper
+    	.switchToContext(IntegrationtestsConstants.APP_CONTEXT)
         .lookAtElement(IntegrationtestsConstants.LOGIN_BUTTON)
         .click()
+        .switchToContext(IntegrationtestsConstants.CHROME_CONTEXT)
         .lookAtElement(IntegrationtestsConstants.LOGIN_FIELD)
         .enter("Enter your username", user)
         .lookAtElement(IntegrationtestsConstants.PASSWORD_FIELD)
         .enter("Enter your password", pass)
         .lookAtElement(IntegrationtestsConstants.AUTH0_LOGIN_BUTTON)
         .click("Click on the login button")
+        .switchToContext(IntegrationtestsConstants.APP_CONTEXT)
         .lookAtElement(IntegrationtestsConstants.FILTER_INPUT_SELECTOR)
         .checkText("You are redirected to the hero page", "");
   }
