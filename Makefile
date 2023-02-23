@@ -42,7 +42,7 @@ target/android_app: target/typescript_build
 	npx cap add android
 	cp etc/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
 	copy_build_gradle
-	cd android && ./gradlew build
+	cd android && JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 ./gradlew assembleDebug
 	mv android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
 
