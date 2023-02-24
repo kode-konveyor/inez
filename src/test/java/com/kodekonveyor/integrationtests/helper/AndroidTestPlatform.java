@@ -30,8 +30,8 @@ public class AndroidTestPlatform implements TestPlatform {
 	private static final String DEVICE_READY_TIMEOUT = "deviceReadyTimeout";
 	private static final String APP_WAIT_DURATION = "appWaitDuration";
 	private static final String NEW_COMMAND_TIMEOUT = "newCommandTimeout";
-	private static final int TIMEOUT_IN_MILLISEC = 600000;
-	private static final int TIMEOUT_IN_SEC = 600;
+	private static final int TIMEOUT_IN_MILLISEC = 60000;
+	private static final int TIMEOUT_IN_SEC = 60;
 	private static final int CONTEXT_SWITCH_TRY_DELAY = 10;
 	private static final int CONTEXT_SWITCH_MAX_TRIES = 3;
 	private static final String APPIUM_SERVER_URL = "http://127.0.0.1:4723/wd/hub";
