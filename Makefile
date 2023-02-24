@@ -4,10 +4,6 @@ export REPO_NAME=$(shell repofullname | sed 'sA.*/AA')
 export VERSION=$(shell git describe --tags)
 export ANDROID_SDK_ROOT=/opt/Android/Sdk
 LANGUAGE=java
-#export MODEL_BASENAME=model
-#export REPO_NAME=angulartest
-#export GITHUB_ORGANIZATION=kode-konveyor
-#export CONSISTENCY_INPUTS=model.rich target/behaviours.xml
 
 all: $(BEFORE_ALL) target/gather_deliverables $(AFTER_ALL)
 
@@ -22,7 +18,7 @@ clean:
 jetty:
 	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn jetty:run
 
-IT:
+IT: target/android_testbed
 	rm -f target/*.png
 	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn integration-test
 
@@ -41,17 +37,14 @@ target/gather_deliverables: target/documentation target/android_app target/ios_a
 target/documentation: target/java_documentation target/typescript_documentation target/end_to_end_documentation target/model_documentation
 	echo "documentation NOTIMPLEMENTED">target/documentation
 
-target/android_app: target/typescript_qa target/androidplatform
-	echo ANDROID_SDH ROOT is $(ANDROID_SDK_ROOT)
-	ls $(ANDROID_SDK_ROOT)
-	cordova telemetry off
-	JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 cordova build android
-	mv platforms/android/app/build/outputs/apk/debug/app-debug.apk target
+target/android_app: target/typescript_build
+	rm -rf android
+	npx cap add android
+	cp etc/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+	copy_build_gradle
+	cd android && JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 ./gradlew assembleDebug
+	mv android/app/build/outputs/apk/debug/app-debug.apk target
 	touch target/android_app
-
-target/androidplatform:
-	mkdir -p www && cordova platform rm android && cordova platform add android && cordova prepare android
-	touch target/androidplatform
 
 target/ios_app: target/typescript_qa
 	echo "ios_app NOTIMPLEMENTED">target/ios_app
@@ -69,8 +62,13 @@ target/typescript_qa: target/version_updated target/typescript_dependencies targ
 	npm run qa
 	touch target/typescript_qa
 
-target/typescript_dependencies:
+node_modules/ts-jest/README.md:
+	cp -r /usr/local/src/angulartest/node_modules .
+
+target/typescript_dependencies: node_modules/ts-jest/README.md
 	npm install
+	rm -rf node_modules/\@stryker-mutator/instrumenter
+	cp -r ../stryker-js/packages/instrumenter/ node_modules/\@stryker-mutator
 	touch target/typescript_dependencies
 
 target/typescript_build: target/version_updated target/typescript_qa
@@ -83,9 +81,6 @@ target/deploy_war: target/runApache target/war_built
 	deploywar $(REPO_NAME) $(VERSION)
 	touch target/deploy_war
 
-#target/end_to_end_test: target/runtomcat target/deploy_war
-#	echo "end_to_end_test NOTIMPLEMENTED">target/end_to_end_test
-
 target/typescript_source_generation: model.rich
 	echo "typescript_source_generation NOTIMPLEMENTED">target/typescript_source_generation
 
@@ -93,7 +88,7 @@ target/java_source_generation: model.rich
 	echo "java_source_generation NOTIMPLEMENTED">target/java_source_generation
 
 target/x_runs:
-	tools/prepare
+	prepare
 	touch target/x_runs
 
 target/model_documentation: target/x_runs model.compiled
@@ -107,14 +102,14 @@ target/runApache:
 	runApache
 	touch target/runApache
 
-#target/runtomcat: target/runApache target/deploy_war
-#	tomcat
-#	touch target/runtomcat
-
 target/java_qa: target/mutation_check target/end_to_end_test target/test/javadoc.xml
 	echo "java_qa NOTIMPLEMENTED">target/java_qa
 
-target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation
+target/android_testbed: target/android_app target/x_runs
+	runAndroid
+	touch target/android_testbed
+
+target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation target/android_testbed
 	JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
 	cp target/pit-reports/mutations.xml target/mutations.xml
 	mkdir -p target/test

@@ -42,6 +42,8 @@ fi
 
 docker run --rm $PORTMAP -e issuetoken -e DISPLAY -e DEVUID=${DEV_UID} -e DEVGID=${DEV_GID} \
 	-e BUILD_NUMBER \
+	--device=/dev/kvm\
+	--device=/dev/dri\
 	$MAPPINGS \
     -v $(pwd):/build -v ${DEVHOME}:/home/developer \
     -w /build $INTERACTIVE -t ${IMAGE} "$@"

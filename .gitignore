@@ -13,6 +13,7 @@
 /target
 /shippable
 /runapache
+/android
 #delink have problems
 #/model.zenta
 *.bak

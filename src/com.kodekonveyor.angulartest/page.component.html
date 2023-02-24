@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Angulartest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Angulartest!</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <app-login-button *ngIf="(auth.isAuthenticated$ | async) === false"></app-login-button>
+  <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
+
+  <div id="container">
+
+    <heroes *ngIf="auth.isAuthenticated$ | async"></heroes>
+
+  </div>
+</ion-content>
