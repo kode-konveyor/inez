@@ -67,6 +67,8 @@ node_modules/ts-jest/README.md:
 
 target/typescript_dependencies: node_modules/ts-jest/README.md
 	npm install
+	rm -rf node_modules/\@stryker-mutator/instrumenter
+	cp -r ../stryker-js/packages/instrumenter/ node_modules/\@stryker-mutator
 	touch target/typescript_dependencies
 
 target/typescript_build: target/version_updated target/typescript_qa
@@ -108,7 +110,9 @@ target/android_testbed: target/android_app target/x_runs
 	touch target/android_testbed
 
 target/mutation_check target/test/javadoc.xml target/war_built target/end_to_end_test: target/version_updated inputs/codingrules target/typescript_build target/runApache target/java_source_generation target/android_testbed
-	JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
+	- JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn -B javadoc:javadoc javadoc:test-javadoc org.jacoco:jacoco-maven-plugin:prepare-agent site install org.pitest:pitest-maven:mutationCoverage
+	/opt/Android/Sdk/platform-tools/adb logcat -d >target/android.log
+	exit 1
 	cp target/pit-reports/mutations.xml target/mutations.xml
 	mkdir -p target/test
 	cp ./target/site/testapidocs/javadoc.xml target/test/javadoc.xml
