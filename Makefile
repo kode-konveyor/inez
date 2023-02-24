@@ -18,7 +18,7 @@ clean:
 jetty:
 	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn jetty:run
 
-IT:
+IT: target/android_testbed
 	rm -f target/*.png
 	rm -f target/typescript_build && make target/typescript_build && JAVA_HOME=/usr/lib/jvm/java-19-openjdk-amd64 mvn integration-test
 

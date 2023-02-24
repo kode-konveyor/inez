@@ -1,0 +1,9 @@
+#!/bin/bash
+set -x
+cd /
+git clone https://github.com/kode-konveyor/appium-adb.git
+cd appium-adb
+npm install
+npm run build
+rm -rf /usr/lib/node_modules/appium/node_modules/appium-adb/
+cp -r /appium-adb /usr/lib/node_modules/appium/node_modules/
