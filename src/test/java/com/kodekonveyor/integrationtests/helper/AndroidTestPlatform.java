@@ -18,6 +18,7 @@ import lombok.Getter;
 @InterfaceClass
 public class AndroidTestPlatform implements TestPlatform {
 
+	private static final String UIAUTOMATOR2_SERVER_INSTALL_TIMEOUT = "uiautomator2ServerInstallTimeout";
 	private static final String UI_AUTOMATOR2 = "UiAutomator2";
 	private static final String AUTOMATION_NAME = "automationName";
 	private static final String ADB_EXEC_TIMEOUT = "adbExecTimeout";
@@ -29,17 +30,17 @@ public class AndroidTestPlatform implements TestPlatform {
 	private static final String DEVICE_READY_TIMEOUT = "deviceReadyTimeout";
 	private static final String APP_WAIT_DURATION = "appWaitDuration";
 	private static final String NEW_COMMAND_TIMEOUT = "newCommandTimeout";
-	private static final int TIMEOUT_IN_MILLISEC = 60000;
-	private static final int TIMEOUT_IN_SEC = 60;
-	private static final int TIMEOUT = 10;
-	private static final int MAX_TRIES = 3;
-	private static final String HTTP_127_0_0_1_4723_WD_HUB = "http://127.0.0.1:4723/wd/hub";
+	private static final int TIMEOUT_IN_MILLISEC = 600000;
+	private static final int TIMEOUT_IN_SEC = 600;
+	private static final int CONTEXT_SWITCH_TRY_DELAY = 10;
+	private static final int CONTEXT_SWITCH_MAX_TRIES = 3;
+	private static final String APPIUM_SERVER_URL = "http://127.0.0.1:4723/wd/hub";
 	private static final String EXTRACT_CHROME_ANDROID_PACKAGE_FROM_CONTEXT_NAME = "extractChromeAndroidPackageFromContextName";
-	private static final String COM_KODEKONVEYOR_ANGULARTEST_MAIN_ACTIVITY = "com.kodekonveyor.angulartest.MainActivity";
+	private static final String ACTIVITY_NAME = "com.kodekonveyor.angulartest.MainActivity";
 	private static final String APP_ACTIVITY = "appActivity";
-	private static final String COM_KODEKONVEYOR_ANGULARTEST = "com.kodekonveyor.angulartest";
+	private static final String APP_PACKAGE_NAME = "com.kodekonveyor.angulartest";
 	private static final String APP_PACKAGE = "appPackage";
-	private static final String TARGET_APP_DEBUG_APK = "target/app-debug.apk";
+	private static final String APK_PATH = "target/app-debug.apk";
 	private static final String APP = "app";
 	private static final String ANDROID = "Android";
 	private static final String PLATFORM_NAME = "platformName";
@@ -59,10 +60,10 @@ public class AndroidTestPlatform implements TestPlatform {
 		final DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability(AUTOMATION_NAME, UI_AUTOMATOR2);
 		caps.setCapability(PLATFORM_NAME, ANDROID);
-		caps.setCapability(APP, TARGET_APP_DEBUG_APK);
-		caps.setCapability(APP_PACKAGE, COM_KODEKONVEYOR_ANGULARTEST);
+		caps.setCapability(APP, APK_PATH);
+		caps.setCapability(APP_PACKAGE, APP_PACKAGE_NAME);
 		caps.setCapability(APP_ACTIVITY,
-				COM_KODEKONVEYOR_ANGULARTEST_MAIN_ACTIVITY);
+				ACTIVITY_NAME);
 		caps.setCapability(EXTRACT_CHROME_ANDROID_PACKAGE_FROM_CONTEXT_NAME, true);
 		caps.setCapability(NEW_COMMAND_TIMEOUT, TIMEOUT_IN_SEC);
 		caps.setCapability(APP_WAIT_DURATION, TIMEOUT_IN_MILLISEC);
@@ -73,7 +74,8 @@ public class AndroidTestPlatform implements TestPlatform {
 		caps.setCapability(AVD_READY_TIMEOUT, TIMEOUT_IN_MILLISEC);
 		caps.setCapability(AUTO_WEBVIEW_TIMEOUT, TIMEOUT_IN_MILLISEC);
 		caps.setCapability(ADB_EXEC_TIMEOUT, TIMEOUT_IN_MILLISEC);
-		driver = new AndroidDriver(new URL(HTTP_127_0_0_1_4723_WD_HUB), caps);
+		caps.setCapability(UIAUTOMATOR2_SERVER_INSTALL_TIMEOUT, TIMEOUT_IN_MILLISEC);
+		driver = new AndroidDriver(new URL(APPIUM_SERVER_URL), caps);
 		return driver;
 	}
 
@@ -82,14 +84,14 @@ public class AndroidTestPlatform implements TestPlatform {
 			throws InterruptedException {
 		int tries = 0;
 		while (true) {
-			if (tries > MAX_TRIES) {
+			if (tries > CONTEXT_SWITCH_MAX_TRIES) {
 				fail(COULD_NOT_WAIT_FOR_CONTEXT + appContext);
 			}
 			final Set<String> contextNames = driver.getContextHandles();
 			if (contextNames.contains(appContext)) {
 				break;
 			}
-			TimeUnit.SECONDS.sleep(TIMEOUT);
+			TimeUnit.SECONDS.sleep(CONTEXT_SWITCH_TRY_DELAY);
 			tries++;
 		}
 		driver.context(appContext);
