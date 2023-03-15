@@ -14,5 +14,6 @@
   },
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "onFocusChange",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -6,6 +6,8 @@ import { Observable, of } from 'rxjs';
 import { changeUser, storeConfig } from '../repositories/actions';
 import { ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument';
 
+export type ObtainHeroesServiceType = (changeUserAction: ActionArgument<typeof changeUser>, storeConfigAction: ActionArgument<typeof storeConfig>) => Observable<Heroes>
+
 @Injectable()
 export class ObtainHeroesService {
 

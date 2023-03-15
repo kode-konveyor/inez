@@ -1,6 +1,6 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -14,11 +14,13 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES5",
     "module": "CommonJS",
     "useDefineForClassFields": false,
+    "esModuleInterop": true,
     "lib": [
       "ES2022",
       "dom"
