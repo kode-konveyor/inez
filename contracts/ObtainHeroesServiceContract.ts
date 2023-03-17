@@ -10,10 +10,16 @@ import { Heroes } from "../src/com.kodekonveyor.angulartest/types/Heroes";
 import { ServicesTestData } from "../tests/com.kodekonveyor.angulartest/testdata/ServicesTestData";
 
 const ret = mock<Observable<Heroes>>();
-const HttpClientGetContract = new Contract<HttpClient["get"]>()
+type GetType = typeof HttpClient.prototype.get
+
+function getUrl():string {
+    return ("BASE_URL" + UrlMapConstants.GET_HEROES_URL);
+}
+
+const HttpClientGetContract = new Contract<GetType>()
     .setTitle("get method of Angular http client")
-    .ifCalledWith(()=>"BASE_URL" + UrlMapConstants.GET_HEROES_URL)
-    .thenReturn("For the URL of heroes endpoint, returns an observable of the heroes", ()=> ret);
+    .ifCalledWith(getUrl)
+    .thenReturn("For the URL of heroes endpoint, returns an observable of the heroes", () => ret);
 
 export const httpClient: HttpClient = mock<HttpClient>();
 httpClient.get = HttpClientGetContract.getStub()
@@ -23,7 +29,6 @@ const changeUserAction = changeUser({ payload: user })
 
 
 export const ObtainHeroesServiceContract = new Contract<ObtainHeroesServiceType>()
-//    .setTitle("Obtain heroes service")
-//    .ifCalledWith(() => changeUserAction, ServicesTestData.storeConfigAction)
+    .setTitle("Obtain heroes service")
     .ifCalledWith(() => changeUserAction, () => ServicesTestData.storeConfigAction)
-//    .thenReturn("returns a Heroes observable", ()=> ret)
+    .thenReturn("returns a Heroes observable", () => ret)

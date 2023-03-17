@@ -1,6 +1,6 @@
 {
   "name": "angulartest",
-  "version": "1.0-42-g27a2ce4",
+  "version": "1.0-14-gc1d00db",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
@@ -38,7 +38,6 @@
     "@ngrx/effects": "^15.1.0",
     "@ngrx/store": "^15.1.0",
     "@stryker-mutator/jest-runner": "^6.3.1",
-    "cdd-ts": "1.0.10",
     "immer": "^9.0.19",
     "rxjs": "~7.8.0",
     "stryker-cli": "^1.0.2",
@@ -81,6 +80,7 @@
     "@types/jest": "^28.0.8",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "android": "^0.0.8",
+    "cdd-ts": "^1.0.11",
     "cordova-android": "^10.1.2",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
@@ -93,6 +93,6 @@
     "jest-mock-extended": "^3.0.1",
     "jest-preset-angular": "^12.2.6",
     "ts-jest": "^28.0.8",
-    "typescript": "~4.8.2"
+    "typescript": "~4.9.5"
   }
 }
