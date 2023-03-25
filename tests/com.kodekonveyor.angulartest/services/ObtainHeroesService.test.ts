@@ -1,11 +1,11 @@
-import { HttpClient } from "@angular/common/http";
-import { mock, mockFn } from "jest-mock-extended";
-import { UrlMapConstants } from "src/com.kodekonveyor.angulartest/services/UrlMapConstants";
-import { isEmpty, Observable } from "rxjs";
-import { ObtainHeroesService } from "src/com.kodekonveyor.angulartest/services/ObtainHeroesService";
+import { HttpClient } from "@angular/common/http/index";
 import { User } from "@auth0/auth0-angular";
-import { Heroes } from "src/com.kodekonveyor.angulartest/types/Heroes";
-import { changeUser } from "src/com.kodekonveyor.angulartest/repositories/actions";
+import { mock, mockFn } from "jest-mock-extended";
+import { Observable, isEmpty } from "rxjs";
+import { changeUser } from "../../../src/com.kodekonveyor.angulartest/repositories/actions";
+import { ObtainHeroesService } from "../../../src/com.kodekonveyor.angulartest/services/ObtainHeroesService";
+import { UrlMapConstants } from "../../../src/com.kodekonveyor.angulartest/services/UrlMapConstants";
+import { Heroes } from "../../../src/com.kodekonveyor.angulartest/types/Heroes";
 import { ServicesTestData } from "../testdata/ServicesTestData";
 
 describe("Save Hero", () => {

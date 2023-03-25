@@ -1,3 +1,4 @@
 {
-  "jsDir": "dist/out-tsc"
+  "moduleResolution": "ES",
+  "jsDir": "dist/"
 }

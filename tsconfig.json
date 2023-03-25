@@ -17,7 +17,7 @@
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES5",
+    "target": "ESNext",
     "module": "CommonJS",
     "useDefineForClassFields": false,
     "esModuleInterop": true,
