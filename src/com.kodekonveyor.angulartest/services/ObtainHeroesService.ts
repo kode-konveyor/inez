@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { ActionArgument } from '../../com.kodekonveyor.common/ActionArgument';
-import { changeUser, storeConfig } from '../repositories/actions';
-import { Heroes } from '../types/Heroes';
+import { type Observable, of } from 'rxjs';
+import { type ActionArgument } from '../../com.kodekonveyor.common/ActionArgument';
+import { type changeUser, type storeConfig } from '../repositories/actions';
+import { type Heroes } from '../types/Heroes';
 import { UrlMapConstants } from './UrlMapConstants';
 
 export type ObtainHeroesServiceType = (changeUserAction: ActionArgument<typeof changeUser>, storeConfigAction: ActionArgument<typeof storeConfig>) => Observable<Heroes>

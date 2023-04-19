@@ -70,3 +70,4 @@ Thumbs.db
 .sts4-cache/
 hs_err_pid*.log
 model.pics/
+etc/.gradle

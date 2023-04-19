@@ -1,4 +1,4 @@
 
 export interface States {
-  baseURL: String;
+  baseURL: string;
 }

@@ -1,15 +1,15 @@
-import { HttpClient } from "@angular/common/http/index";
-import { User } from "@auth0/auth0-angular";
+import { type HttpClient } from "@angular/common/http/index";
+import { type User } from "@auth0/auth0-angular";
 import { Observable } from "rxjs";
 import { changeUser } from "../src/com.kodekonveyor.angulartest/repositories/actions";
-import { ObtainHeroesService, ObtainHeroesServiceType } from "../src/com.kodekonveyor.angulartest/services/ObtainHeroesService";
+import { ObtainHeroesService, type ObtainHeroesServiceType } from "../src/com.kodekonveyor.angulartest/services/ObtainHeroesService";
 import { UrlMapConstants } from "../src/com.kodekonveyor.angulartest/services/UrlMapConstants";
-import { Heroes } from "../src/com.kodekonveyor.angulartest/types/Heroes";
+import { type Heroes } from "../src/com.kodekonveyor.angulartest/types/Heroes";
 import { ServicesTestData } from "../tests/com.kodekonveyor.angulartest/testdata/ServicesTestData";
 import { Contract } from "cdd-ts/dist/src/contract/Contract"
 
 console.log("a")
-const ret:Observable<Heroes> = new Observable()
+const ret = new Observable<Heroes>()
 
 type GetType = typeof HttpClient.prototype.get
 

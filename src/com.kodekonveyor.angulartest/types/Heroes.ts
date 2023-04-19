@@ -1,3 +1,3 @@
-import { Hero } from './Hero';
+import { type Hero } from './Hero';
 
 export type Heroes = Hero[];

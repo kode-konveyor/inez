@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { combineLatest, Observable, of } from 'rxjs';
+import { type Action } from '@ngrx/store';
+import { combineLatest, type Observable, of } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
 import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
 import { wrapForMerge } from 'src/com.kodekonveyor.common/wrapForMerge';
 import { clearSelectedHero, createHero, storeConfig, storeHero } from '../repositories/actions';
 import { SaveHeroService } from '../services/SaveHeroService';
-import { Hero } from '../types/Hero';
+import { type Hero } from '../types/Hero';
 
 @Injectable()
 export class CreateHeroEffect {

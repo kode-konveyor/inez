@@ -1,4 +1,4 @@
-import { AuthConfig } from "@auth0/auth0-angular";
+import { type AuthConfig } from "@auth0/auth0-angular";
 import { isPlatform } from "@ionic/angular";
 import config from "capacitor.config";
 

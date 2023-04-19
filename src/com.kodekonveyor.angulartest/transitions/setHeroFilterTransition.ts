@@ -1,10 +1,11 @@
-import produce from "immer";
-import { AppState } from "../types/AppState";
+import { produce } from 'immer';
+import { type AppState } from '../types/AppState';
 
 export function setHeroFilterTransition(
   state: AppState,
-  action: { payload: String; }): AppState {
-  return produce(state, draft => {
-    draft.componentstates.herofilter.heroFilter = action.payload
+  action: { payload: string }
+): AppState {
+  return produce(state, (draft) => {
+    draft.componentstates.herofilter.heroFilter = action.payload;
   });
 }

@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { Hero } from 'src/com.kodekonveyor.angulartest/types/Hero';
+import { Component, Input, type OnInit } from '@angular/core'
+import { type Hero } from 'src/com.kodekonveyor.angulartest/types/Hero';
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 import { setSelectedHero } from 'src/com.kodekonveyor.angulartest/repositories/actions';
-import { HeroitemComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroitemComponentModel';
+import { type HeroitemComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroitemComponentModel';
 
 @Component({
   selector: 'heroitem',
@@ -12,7 +12,7 @@ export class HeroitemComponent implements HeroitemComponentModel, OnInit {
 
   @Input() id!: string;
   hero!: Hero;
-  selected!: Boolean;
+  selected!: boolean;
 
   constructor(
     private readonly synchronizeService: Synchronizer,

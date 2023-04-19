@@ -1,4 +1,4 @@
-import { IdType } from "src/com.kodekonveyor.common/IdType";
+import { type IdType } from "src/com.kodekonveyor.common/IdType";
 
 export interface Hero {
   id: IdType,

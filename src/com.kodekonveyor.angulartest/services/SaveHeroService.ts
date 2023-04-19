@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { UrlMapConstants } from './UrlMapConstants';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Hero } from '../types/Hero';
-import { createHero, storeConfig } from '../repositories/actions';
-import { ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument';
+import { type Observable } from 'rxjs';
+import { type Hero } from '../types/Hero';
+import { type createHero, type storeConfig } from '../repositories/actions';
+import { type ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument';
 
 @Injectable()
 export class SaveHeroService {

@@ -1,4 +1,4 @@
 
 export interface HeroesComponentModel {
-    authenticated?: Boolean;
+    authenticated?: boolean;
 }

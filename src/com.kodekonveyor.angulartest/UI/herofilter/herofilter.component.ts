@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { setHeroFilter } from 'src/com.kodekonveyor.angulartest/repositories/actions';
-import { HeroFilterComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroFilterComponentModel';
+import { type HeroFilterComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroFilterComponentModel';
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 
 @Component({
@@ -10,7 +10,7 @@ import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 export class HeroFilterComponent implements HeroFilterComponentModel {
 
   @Input() id!: string;
-  heroFilter: String = "";
+  heroFilter: string = "";
 
   constructor(
     readonly synchronizer: Synchronizer,

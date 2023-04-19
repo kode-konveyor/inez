@@ -1,15 +1,15 @@
-import { User } from '@auth0/auth0-angular';
+import { type User } from '@auth0/auth0-angular';
 import { createAction, props } from '@ngrx/store';
-import { Config } from '../types/Config';
-import { Hero } from '../types/Hero';
-import { Heroes } from '../types/Heroes';
+import { type Config } from '../types/Config';
+import { type Hero } from '../types/Hero';
+import { type Heroes } from '../types/Heroes';
 
 export const modifyHero =
   createAction('modify Hero', props<{ payload: Hero }>());
 export const showEditor =
   createAction('show editor');
 export const setHeroFilter =
-  createAction('set hero filter', props<{ payload: String }>());
+  createAction('set hero filter', props<{ payload: string }>());
 export const setSelectedHero =
   createAction('set selected hero', props<{ payload: Hero }>());
 export const changeUser =

@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { Action, ActionCreator, createSelector, Store } from "@ngrx/store";
-import { Observable } from "rxjs";
+import { type Action, type ActionCreator, createSelector, Store } from "@ngrx/store";
+import { type Observable } from "rxjs";
 import { states } from "src/com.kodekonveyor.angulartest/repositories/Repository";
-import { Selector, TypedAction } from "@ngrx/store/src/models";
+import { type Selector, type TypedAction } from "@ngrx/store/src/models";
 import { multiComponents } from "src/com.kodekonveyor.angulartest/types/ComponentModels";
-import { StoreState } from "src/com.kodekonveyor.angulartest/types/StoreState";
+import { type StoreState } from "src/com.kodekonveyor.angulartest/types/StoreState";
 
 
 type Selectors = Record<string, Selector<StoreState, any>>;
@@ -34,7 +34,7 @@ export class Synchronizer {
   baz = this.store.select(
     (state) => state
   ).subscribe(
-    e => console.log("state", e)
+    e => { console.log("state", e); }
   )
 
 

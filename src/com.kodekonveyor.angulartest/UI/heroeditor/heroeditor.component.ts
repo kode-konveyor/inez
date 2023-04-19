@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
-import { HeroEditorComponentModel } from "src/com.kodekonveyor.angulartest/types/HeroEditorComponentModel";
+import { type HeroEditorComponentModel } from "src/com.kodekonveyor.angulartest/types/HeroEditorComponentModel";
 import { createHero, modifyHero } from 'src/com.kodekonveyor.angulartest/repositories/actions';
 
 @Component({

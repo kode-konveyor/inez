@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
-import { HeroListComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroListComponentModel';
-import { IdType } from 'src/com.kodekonveyor.common/IdType';
+import { type HeroListComponentModel } from 'src/com.kodekonveyor.angulartest/types/HeroListComponentModel';
+import { type IdType } from 'src/com.kodekonveyor.common/IdType';
 
 @Component({
   selector: 'herolist',

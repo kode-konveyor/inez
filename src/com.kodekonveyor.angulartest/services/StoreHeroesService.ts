@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument';
-import { storeHero, storeHeroes } from '../repositories/actions';
+import { type Observable, of } from 'rxjs';
+import { type ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument';
+import { storeHero, type storeHeroes } from '../repositories/actions';
 
 @Injectable()
 export class StoreHeroesService {

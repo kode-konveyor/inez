@@ -1,5 +1,5 @@
-import { ComponentModels } from './ComponentModels';
-import { States } from './States';
+import { type ComponentModels } from './ComponentModels';
+import { type States } from './States';
 
 export interface AppState {
   states: States;

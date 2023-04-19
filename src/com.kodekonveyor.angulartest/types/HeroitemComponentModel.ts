@@ -1,6 +1,6 @@
-import { Hero } from './Hero';
+import { type Hero } from './Hero';
 
 export interface HeroitemComponentModel {
   hero: Hero;
-  selected: Boolean;
+  selected: boolean;
 }

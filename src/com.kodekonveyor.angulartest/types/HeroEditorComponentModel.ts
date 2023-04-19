@@ -1,8 +1,8 @@
-import { IdType } from "src/com.kodekonveyor.common/IdType";
+import { type IdType } from "src/com.kodekonveyor.common/IdType";
 
 export interface HeroEditorComponentModel {
-  createMode: Boolean;
-  show: Boolean;
+  createMode: boolean;
+  show: boolean;
   selectedHeroId: IdType;
   selectedHeroName: string;
 }

@@ -1,8 +1,8 @@
-import { HeroEditorComponentModel } from './HeroEditorComponentModel';
-import { HeroesComponentModel } from './HeroesComponentModel';
-import { HeroFilterComponentModel } from './HeroFilterComponentModel';
-import { HeroitemComponentModel } from './HeroitemComponentModel';
-import { HeroListComponentModel } from './HeroListComponentModel';
+import { type HeroEditorComponentModel } from './HeroEditorComponentModel';
+import { type HeroesComponentModel } from './HeroesComponentModel';
+import { type HeroFilterComponentModel } from './HeroFilterComponentModel';
+import { type HeroitemComponentModel } from './HeroitemComponentModel';
+import { type HeroListComponentModel } from './HeroListComponentModel';
 
 export const emptyComponents = []
 export const multiComponents = ["heroitem"]

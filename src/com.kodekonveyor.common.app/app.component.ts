@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, type OnInit, NgZone } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 
 import { mergeMap } from 'rxjs/operators';
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
           ) {
             this.auth
               .handleRedirectCallback(url)
-              .pipe(mergeMap(async () => await Browser.close()))
+              .pipe(mergeMap(async () => { await Browser.close(); }))
           } else {
             void Browser.close();
           }

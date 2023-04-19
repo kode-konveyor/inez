@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { combineLatest, Observable, of } from 'rxjs';
+import { type Action } from '@ngrx/store';
+import { combineLatest, type Observable, of } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
 import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
 import { wrapForMerge } from 'src/com.kodekonveyor.common/wrapForMerge';
 import { changeUser, setAuthenticated, storeConfig, storeHeroes } from '../repositories/actions';
 import { ObtainHeroesService } from '../services/ObtainHeroesService';
-import { Heroes } from '../types/Heroes';
+import { type Heroes } from '../types/Heroes';
 
 
 @Injectable()
@@ -26,7 +26,7 @@ export class ChangeUserEffect {
   };
 
   bar = this.actions$.subscribe(
-    e => console.log("action", e)
+    e => { console.log("action", e); }
   )
 
   changeUsereffect$ = createEffect(() =>

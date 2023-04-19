@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 import { UrlMapConstants } from 'src/com.kodekonveyor.angulartest/services/UrlMapConstants';
-import { Config } from 'src/com.kodekonveyor.angulartest/types/Config';
+import { type Config } from 'src/com.kodekonveyor.angulartest/types/Config';
 import { GenericErrorHandler } from '../../com.kodekonveyor.common/GenericErrorHandler';
 import { storeConfig } from 'src/com.kodekonveyor.angulartest/repositories/actions';
 

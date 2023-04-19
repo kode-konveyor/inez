@@ -1,4 +1,4 @@
 
 export interface HeroFilterComponentModel {
-  heroFilter: String;
+  heroFilter: string;
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { showEditor } from 'src/com.kodekonveyor.angulartest/repositories/actions';
 import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
-import { HeroesComponentModel } from '../../types/HeroesComponentModel';
+import { type HeroesComponentModel } from '../../types/HeroesComponentModel';
 
 @Component({
   selector: 'heroes',
@@ -11,7 +11,7 @@ import { HeroesComponentModel } from '../../types/HeroesComponentModel';
 export class HeroesComponent implements HeroesComponentModel {
   id: string = "heroes";
 
-  authenticated!: Boolean;
+  authenticated!: boolean;
 
   constructor(
     readonly synchronizer: Synchronizer,

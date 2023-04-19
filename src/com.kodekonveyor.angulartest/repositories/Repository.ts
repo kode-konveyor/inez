@@ -4,13 +4,13 @@ import { modifyHeroTransition } from "../transitions/modifyHeroTransition";
 import { showEditorTransition } from "../transitions/showEditorTransition";
 import { setHeroFilterTransition } from "../transitions/setHeroFilterTransition";
 import { setSelectedHeroTransition } from "../transitions/setSelectedHeroTransition";
-import { AppState } from "../types/AppState";
+import { type AppState } from "../types/AppState";
 import { storeConfigTransition } from "../transitions/storeConfigTransition";
 import { clearSelectedHero, modifyHero, storeConfig, setHeroFilter, setSelectedHero, showEditor, storeHero, setAuthenticated } from "./actions";
 import { storeHeroTransition } from "../transitions/storeHeroTransition";
-import { StoreState } from "../types/StoreState";
+import { type StoreState } from "../types/StoreState";
 import { setAuthenticatedTransition } from "../transitions/setAuthenticatedTransition";
-import { IdType } from "src/com.kodekonveyor.common/IdType";
+import { type IdType } from "src/com.kodekonveyor.common/IdType";
 
 export const initialState: AppState = {
   states: {
