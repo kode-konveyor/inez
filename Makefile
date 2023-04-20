@@ -67,8 +67,8 @@ node_modules/ts-jest/README.md:
 
 target/typescript_dependencies: node_modules/ts-jest/README.md
 	npm install
-	rm -rf node_modules/\@stryker-mutator/instrumenter
-	cp -r ../stryker-js/packages/instrumenter/ node_modules/\@stryker-mutator
+#	rm -rf node_modules/\@stryker-mutator/instrumenter
+#	cp -r ../stryker-js/packages/instrumenter/ node_modules/\@stryker-mutator
 	touch target/typescript_dependencies
 
 target/typescript_build: target/version_updated target/typescript_qa

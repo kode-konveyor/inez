@@ -4,14 +4,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "all": "npx eslint . && npm run test && npm run mutate && npm run build && cordova build android",
-    "qa": "npx eslint . && npm run test && npm run mutate",
+    "all": "npm run qa && npm run build && cordova build android",
+    "qa": "eslint . && npm run test && npm run mutate",
     "ng": "ng",
     "start": "ng serve --proxy-config=proxy.conf.json",
     "build": "ng build",
-    "contractbuild": "for i in contracts/*; do esbuild $i --format=esm --bundle --platform=node  --external:espree --external:eslint --external:colors --external:commander --external:debug --external:@typescript-eslint/parser --outfile=dist/contracts/$(basename $i .ts ).js --sourcemap=inline; done",
+    "contractbuild": "for i in contracts/*/*; do esbuild $i --format=esm --bundle --platform=node  --external:espree --external:eslint --external:colors --external:commander --external:debug --external:@typescript-eslint/parser --outfile=dist/$(dirname $i)/$(basename $i .ts ).js --sourcemap=inline; done",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --verbose",
+    "test": "npm run contractbuild && runContracts",
     "mutate": "tsc -b && stryker run"
   },
   "keywords": [
@@ -75,8 +75,6 @@
     "@angular/compiler": "latest",
     "@angular/compiler-cli": "latest",
     "@capacitor/cli": "latest",
-    "@types/jasmine": "latest",
-    "@types/jest": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "android": "latest",
     "cdd-ts": "latest",
@@ -87,13 +85,8 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-n": "latest",
     "eslint-plugin-promise": "latest",
-    "jasmine-core": "latest",
-    "jest": "latest",
-    "jest-mock-extended": "latest",
-    "jest-preset-angular": "latest",
-    "stryker-cli": "latest",
-    "@stryker-mutator/jest-runner": "latest",
-   "ts-jest": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "@stryker-mutator/core": "latest",
+    "colors": "latest"
   }
 }

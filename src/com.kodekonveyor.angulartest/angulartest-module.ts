@@ -20,6 +20,7 @@ import { StoreHeroesEffect } from './effects/StoreHeroesEffect';
 import { StoreHeroesService } from './services/StoreHeroesService';
 import { ObtainConfigEffect } from './effects/ObtainConfigEffect';
 import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedStateEffect';
+import { Effects } from './effects/Effects';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { RouteReuseStrategy } from '@angular/router';
 import { LoginButtonComponent } from './login-button.component';
@@ -27,7 +28,7 @@ import { LogoutButtonComponent } from './logout-button.component';
 import { PageComponent } from './page.component';
 import { AngulartestRoutingModule } from './angulartest-routing.module';
 import { CommonModule } from '@angular/common';
-
+import { LoggingEffect } from './effects/LoggingEffect';
 
 @NgModule({
   declarations: [
@@ -41,23 +42,27 @@ import { CommonModule } from '@angular/common';
     LogoutButtonComponent,
   ],
   imports: [
-    EffectsModule.forFeature([ChangeUserEffect, CreateHeroEffect, FollowAuthenticatedStateEffect, ObtainConfigEffect, StoreHeroesEffect]),
+    EffectsModule.forFeature([Effects, LoggingEffect]),
     CommonModule,
     IonicModule.forRoot(),
     FormsModule,
     HttpClientModule,
     AngulartestRoutingModule,
-    StoreModule.forFeature("r", repository),
+    StoreModule.forFeature('r', repository),
   ],
   providers: [
     GenericErrorHandler,
+    FollowAuthenticatedStateEffect,
+    ObtainConfigEffect,
+    ChangeUserEffect,
+    CreateHeroEffect,
+    StoreHeroesEffect,
     ObtainHeroesService,
     SaveHeroService,
     Synchronizer,
     StoreHeroesService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
-export class AngulartestModule { }
+export class AngulartestModule {}

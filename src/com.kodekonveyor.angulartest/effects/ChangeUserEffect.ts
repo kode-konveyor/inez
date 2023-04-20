@@ -1,47 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, ofType } from '@ngrx/effects';
 import { type Action } from '@ngrx/store';
-import { combineLatest, type Observable, of } from 'rxjs';
+import { combineLatest, type Observable } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
 import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
 import { wrapForMerge } from 'src/com.kodekonveyor.common/wrapForMerge';
-import { changeUser, setAuthenticated, storeConfig, storeHeroes } from '../repositories/actions';
+import {
+  changeUser,
+  setAuthenticated,
+  storeConfig,
+  storeHeroes,
+} from '../repositories/actions';
 import { ObtainHeroesService } from '../services/ObtainHeroesService';
-import { type Heroes } from '../types/Heroes';
-
+import { mapToActions } from '../../com.kodekonveyor.common/mapToActions';
 
 @Injectable()
 export class ChangeUserEffect {
   constructor(
     private readonly actions$: Actions,
     private readonly obtainHeroesService: ObtainHeroesService,
-    private readonly genericErrorHandlerService: GenericErrorHandler,
-  ) { }
+    private readonly genericErrorHandlerService: GenericErrorHandler
+  ) {
+    this.changeUserEffect = this.changeUserEffect.bind(this);
+  }
 
-  private readonly actionMapping = (heroes: Heroes): Observable<Action> => {
-    return of(
-      storeHeroes({ payload: heroes }),
-      setAuthenticated(),
-    );
-  };
-
-  bar = this.actions$.subscribe(
-    e => { console.log("action", e); }
-  )
-
-  changeUsereffect$ = createEffect(() =>
-
-    combineLatest([
-      this.actions$.pipe(
-        ofType(changeUser.type)),
-      this.actions$.pipe(
-        ofType(storeConfig.type)),
+  changeUserEffect(): Observable<Action> {
+    return combineLatest([
+      this.actions$.pipe(ofType(changeUser.type)),
+      this.actions$.pipe(ofType(storeConfig.type)),
     ]).pipe(
       exhaustMap(wrapForMerge(this.obtainHeroesService.run)),
-      exhaustMap(this.actionMapping),
-      catchError(this.genericErrorHandlerService.run),
-    ),
-    { dispatch: true }
-  )
+      mapToActions(
+        (heroes) => storeHeroes({ payload: heroes }),
+        setAuthenticated
+      ),
+      catchError(this.genericErrorHandlerService.run)
+    );
+  }
 }
-

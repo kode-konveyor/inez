@@ -12,7 +12,10 @@
   "warnings": {
     "slow": false
   },
-  "testRunner": "jest",
+  "commandRunner": {
+    "command": "runContracts"
+  },
+  "buildCommand": "npm run contractbuild",
   "reporters": [
     "progress",
     "clear-text",

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, ofType } from '@ngrx/effects';
+import { type Action } from '@ngrx/store';
+import { type Observable } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
 import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
-import { Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
 import { storeHeroes } from '../repositories/actions';
 import { StoreHeroesService } from '../services/StoreHeroesService';
 
@@ -11,17 +12,16 @@ export class StoreHeroesEffect {
   constructor(
     private readonly actions$: Actions,
     private readonly genericErrorHandlerService: GenericErrorHandler,
-    private readonly storeHeroesService: StoreHeroesService,
-    private readonly synchronizer: Synchronizer
-  ) { }
+    private readonly storeHeroesService: StoreHeroesService
+  ) {
+    this.storeHeroeseffect = this.storeHeroeseffect.bind(this);
+  }
 
-  changeUsereffect$ = createEffect(() =>
-    this.actions$.pipe(
+  storeHeroeseffect(): Observable<Action> {
+    return this.actions$.pipe(
       ofType(storeHeroes.type),
       exhaustMap(this.storeHeroesService.run),
-      catchError(this.genericErrorHandlerService.run),
-    ),
-    { dispatch: true }
-  )
+      catchError(this.genericErrorHandlerService.run)
+    );
+  }
 }
-
