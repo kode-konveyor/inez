@@ -30,6 +30,7 @@ import { AngulartestRoutingModule } from './angulartest-routing.module';
 import { CommonModule } from '@angular/common';
 import { LoggingEffectService } from './effects/LoggingEffectService';
 
+const STORE_FEATURE_NAME = 'r';
 @NgModule({
   declarations: [
     HeroesComponent,
@@ -48,7 +49,7 @@ import { LoggingEffectService } from './effects/LoggingEffectService';
     FormsModule,
     HttpClientModule,
     AngulartestRoutingModule,
-    StoreModule.forFeature('r', repository),
+    StoreModule.forFeature(STORE_FEATURE_NAME, repository),
   ],
   providers: [
     GenericErrorHandler,

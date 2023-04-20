@@ -6,59 +6,39 @@ import { Browser } from '@capacitor/browser';
 import { App } from '@capacitor/app';
 import { callbackUri } from 'src/auth.config';
 
+const STATE_IS = 'state=';
+const ERROR_IS = 'error=';
+const CODE_IS = 'code=';
+
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnInit {
-  constructor(public auth: AuthService, private readonly ngZone: NgZone) { }
+  constructor(public auth: AuthService, private readonly ngZone: NgZone) {}
 
   ngOnInit(): void {
-    console.log("ngOnInit")
-    void App.addListener('appUrlOpen', ({ url }) => {
-      console.log("listening to", url)
+    const APP_URL_OPEN = 'appUrlOpen';
+    void App.addListener(APP_URL_OPEN, ({ url }) => {
       this.ngZone.run(() => {
-        console.log("in zone, comparing to", callbackUri)
         if (url?.startsWith(callbackUri)) {
-          console.log("url start checked")
           if (
-            url.includes('state=') &&
-            (url.includes('error=') || url.includes('code='))
+            url.includes(STATE_IS) &&
+            (url.includes(ERROR_IS) || url.includes(CODE_IS))
           ) {
-            console.log("url parameters checked")
             this.auth
               .handleRedirectCallback(url)
-              // eslint-disable-next-line @typescript-eslint/promise-function-async
-              .pipe(mergeMap(() => Browser.close()))
-              .subscribe(() => {
-                console.log("in subscriber for browser close")
-              });
+              .pipe(
+                mergeMap(async () => {
+                  await Browser.close();
+                })
+              )
+              .subscribe(() => {});
           } else {
-            console.log("closing browser 1")
             void Browser.close();
           }
         } else {
-          console.log("closing browser 2")
           void Browser.close();
-        }
-      });
-    });
-  }
-
-  ngOnInitOld(): void {
-    void App.addListener('appUrlOpen', ({ url }) => {
-      this.ngZone.run(() => {
-        if (url?.startsWith(callbackUri)) {
-          if (
-            url.includes('state=') &&
-            (url.includes('error=') || url.includes('code='))
-          ) {
-            this.auth
-              .handleRedirectCallback(url)
-              .pipe(mergeMap(async () => { await Browser.close(); }))
-          } else {
-            void Browser.close();
-          }
         }
       });
     });

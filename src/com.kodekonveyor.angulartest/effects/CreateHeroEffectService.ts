@@ -29,7 +29,7 @@ export class CreateHeroEffectService {
       this.actions$.pipe(ofType(createHero.type)),
       this.actions$.pipe(ofType(storeConfig.type)),
     ]).pipe(
-      exhaustMap(wrapForMerge(this.saveHeroService.run)),
+      exhaustMap(wrapForMerge(this.saveHeroService.saveHero)),
       mapToActions((hero) => storeHero({ payload: hero }), clearSelectedHero),
       catchError(this.genericErrorHandlerService.run)
     );

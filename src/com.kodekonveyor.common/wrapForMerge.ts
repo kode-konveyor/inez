@@ -7,7 +7,7 @@ export function wrapForMerge<P1, P2, P3, T>(
 ): (args: [P1, P2, P3]) => T;
 
 export function wrapForMerge<
-  A extends unknown[],
+  A extends Array<unknown>,
   T extends (...args: A) => any
 >(fun: T): (args: A) => ReturnType<T> {
   return (args: A) => fun(...args);

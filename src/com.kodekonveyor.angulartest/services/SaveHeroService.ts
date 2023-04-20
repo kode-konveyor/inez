@@ -8,18 +8,19 @@ import { type ActionArgument } from 'src/com.kodekonveyor.common/ActionArgument'
 
 @Injectable()
 export class SaveHeroService {
+  constructor(readonly httpClient: HttpClient) {
+    this.saveHero = this.saveHero.bind(this);
+  }
 
-  constructor(
-    readonly httpClient: HttpClient,
-  ) { }
-
-  run = (
+  saveHero(
     createEvent: ActionArgument<typeof createHero>,
     configEvent: ActionArgument<typeof storeConfig>
-  ): Observable<Hero> => {
+  ): Observable<Hero> {
     const baseURL = configEvent.payload.baseUrl;
-    const hero: Hero = { id: "", name: createEvent.payload };
-    return this.httpClient.post<Hero>(baseURL.concat(UrlMapConstants.ADD_HERO_URL), hero)
-  };
-
+    const hero: Hero = { id: '', name: createEvent.payload };
+    return this.httpClient.post<Hero>(
+      baseURL.concat(UrlMapConstants.ADD_HERO_URL),
+      hero
+    );
+  }
 }

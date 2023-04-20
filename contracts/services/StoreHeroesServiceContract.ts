@@ -8,10 +8,12 @@ import {
 } from 'testdata/ObservableTestData';
 import { emitsvalues } from 'testdata/helpers/emitsvalues';
 
-export const StoreHeroesServiceContractParties = [new StoreHeroesService().run];
+export const StoreHeroesServiceContractParties = [
+  new StoreHeroesService().storeHeroes,
+];
 
 export const StoreHeroesServiceContract = new Contract<
-  StoreHeroesService['run']
+  StoreHeroesService['storeHeroes']
 >()
   .setTitle('emits the actions to store all the heroes')
 

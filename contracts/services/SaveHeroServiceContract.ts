@@ -5,9 +5,11 @@ import { ExternalServices } from 'testdata/ExternalServices';
 import { ObservableTestData } from 'testdata/ObservableTestData';
 
 export const SaveHeroServiceContractParties = [
-  new SaveHeroService(ExternalServices.httpClient).run,
+  new SaveHeroService(ExternalServices.httpClient).saveHero,
 ];
-export const SaveHeroServiceContract = new Contract<SaveHeroService['run']>()
+export const SaveHeroServiceContract = new Contract<
+  SaveHeroService['saveHero']
+>()
   .setTitle('saves the hero on the server')
   .ifCalledWith(
     ActionTestData.createHeroAction,

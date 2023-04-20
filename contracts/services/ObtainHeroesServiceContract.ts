@@ -1,5 +1,5 @@
 import { ObtainHeroesService } from '../../src/com.kodekonveyor.angulartest/services/ObtainHeroesService';
-import { bound, Contract } from 'cdd-ts';
+import { Contract } from 'cdd-ts';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { ActionTestData } from 'testdata/ActionTestData';
 import { ObservableTestData } from 'testdata/ObservableTestData';
@@ -8,7 +8,7 @@ import { emitsvalues } from 'testdata/helpers/emitsvalues';
 import { ExternalServices } from 'testdata/ExternalServices';
 
 export const ObtainHeroesServiceContractParties = [
-  bound(ObtainHeroesService, ExternalServices.httpClient),
+  new ObtainHeroesService(ExternalServices.httpClient).obtainHeroes,
 ];
 
 export const ObtainHeroesServiceContract = new Contract<

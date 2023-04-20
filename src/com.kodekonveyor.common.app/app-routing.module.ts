@@ -4,20 +4,24 @@ import { PreloadAllModules, RouterModule, type Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    // eslint-disable-next-line @typescript-eslint/promise-function-async
-    loadChildren: () => import('src/com.kodekonveyor.angulartest/angulartest-module').then(m => m.AngulartestModule)
+    loadChildren: async () => {
+      const m = await import(
+        'src/com.kodekonveyor.angulartest/angulartest-module'
+      );
+      return m.AngulartestModule;
+    },
   },
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

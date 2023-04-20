@@ -1,3 +1,4 @@
+/* eslint-disable kodekonveyor/no-literals */
 import { type User } from '@auth0/auth0-angular';
 import { createAction, props } from '@ngrx/store';
 import { type Config } from '../types/Config';

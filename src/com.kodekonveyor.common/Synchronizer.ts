@@ -23,12 +23,6 @@ export class Synchronizer {
     return storeView;
   }
 
-  baz = this.store
-    .select((state) => state)
-    .subscribe((e) => {
-      console.log('state', e);
-    });
-
   fillFieldsSubscriber(
     context: any
   ): (value: { foo: Record<string, unknown> }) => void {

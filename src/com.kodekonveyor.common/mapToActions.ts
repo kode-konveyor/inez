@@ -5,7 +5,7 @@ export function mapToActions<T>(
   ...actionCreators: Array<(v: T) => Action>
 ): OperatorFunction<T, Action> {
   return exhaustMap((arg: T) => {
-    const actions: Action[] = [];
+    const actions: Array<Action> = [];
     for (const creator of actionCreators) {
       actions.push(creator(arg));
     }

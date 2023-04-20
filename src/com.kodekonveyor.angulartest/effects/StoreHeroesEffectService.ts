@@ -20,7 +20,7 @@ export class StoreHeroesEffectService {
   storeHeroesEffect(): Observable<Action> {
     return this.actions$.pipe(
       ofType(storeHeroes.type),
-      exhaustMap(this.storeHeroesService.run),
+      exhaustMap(this.storeHeroesService.storeHeroes),
       catchError(this.genericErrorHandlerService.run)
     );
   }

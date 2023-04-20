@@ -25,9 +25,6 @@
       "ES2022",
       "dom"
     ],
-    "types": [
-      "jest"
-    ]
   },
   "exclude": [
     "node_modules"

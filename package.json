@@ -1,6 +1,6 @@
 {
   "name": "angulartest",
-  "version": "1.0-14-gc1d00db",
+  "version": "1.0-19-gb4930bb",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -71,7 +71,6 @@
     }
   },
   "devDependencies": {
-    "@angular-builders/jest": "latest",
     "@angular-devkit/build-angular": "latest",
     "@angular/cli": "latest",
     "@angular/compiler": "latest",
