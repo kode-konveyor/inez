@@ -1,12 +1,15 @@
 import { Contract } from 'cdd-ts';
-import { storeConfigTransition } from 'src/com.kodekonveyor.angulartest/transitions/storeConfigTransition';
-import { ActionTestData } from 'testdata/TestData';
+import { bindTransition } from 'src/bindTransition';
+import { StoreConfigTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/StoreConfigTransitionService';
+import { ActionTestData } from 'testdata/ActionTestData';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
-export const storeConfigTransitionContractParties = [storeConfigTransition];
+export const storeConfigTransitionContractParties = [
+  bindTransition(StoreConfigTransitionService),
+];
 
 export const storeConfigTransitionContract = new Contract<
-  typeof storeConfigTransition
+  StoreConfigTransitionService['storeConfigTransition']
 >()
   .setTitle('store config from the event')
 

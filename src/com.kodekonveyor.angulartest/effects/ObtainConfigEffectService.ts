@@ -9,16 +9,16 @@ import { exhaustMap, catchError, type Observable } from 'rxjs';
 import { type Action } from '@ngrx/store';
 
 @Injectable()
-export class ObtainConfigEffect {
+export class ObtainConfigEffectService {
   constructor(
     private readonly httpClient: HttpClient,
     private readonly genericErrorHandlerService: GenericErrorHandler,
     private readonly synchronizer: Synchronizer
   ) {
-    this.obtainConfig = this.obtainConfig.bind(this);
+    this.obtainConfigEffect = this.obtainConfigEffect.bind(this);
   }
 
-  obtainConfig(): Observable<Action> {
+  obtainConfigEffect(): Observable<Action> {
     return this.httpClient
       .get<Config>(UrlMapConstants.CONFIG_URL)
       .pipe(

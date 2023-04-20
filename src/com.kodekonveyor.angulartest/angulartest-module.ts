@@ -11,16 +11,16 @@ import { StoreModule } from '@ngrx/store';
 import { ObtainHeroesService } from './services/ObtainHeroesService';
 import { Synchronizer } from '../com.kodekonveyor.common/Synchronizer';
 import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
-import { repository } from './repositories/Repository';
+import { repository } from './Repository';
 import { EffectsModule } from '@ngrx/effects';
-import { ChangeUserEffect } from './effects/ChangeUserEffect';
+import { ChangeUserEffectService } from './effects/ChangeUserEffectService';
 import { SaveHeroService } from './services/SaveHeroService';
-import { CreateHeroEffect } from './effects/CreateHeroEfffect';
-import { StoreHeroesEffect } from './effects/StoreHeroesEffect';
+import { CreateHeroEffectService } from './effects/CreateHeroEffectService';
+import { StoreHeroesEffectService } from './effects/StoreHeroesEffectService';
 import { StoreHeroesService } from './services/StoreHeroesService';
-import { ObtainConfigEffect } from './effects/ObtainConfigEffect';
-import { FollowAuthenticatedStateEffect } from './effects/FollowAuthenticatedStateEffect';
-import { Effects } from './effects/Effects';
+import { ObtainConfigEffectService } from './effects/ObtainConfigEffectService';
+import { FollowAuthenticatedStateEffectService } from './effects/FollowAuthenticatedStateEffectService';
+import { Effects } from './Effects';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { RouteReuseStrategy } from '@angular/router';
 import { LoginButtonComponent } from './login-button.component';
@@ -28,7 +28,7 @@ import { LogoutButtonComponent } from './logout-button.component';
 import { PageComponent } from './page.component';
 import { AngulartestRoutingModule } from './angulartest-routing.module';
 import { CommonModule } from '@angular/common';
-import { LoggingEffect } from './effects/LoggingEffect';
+import { LoggingEffectService } from './effects/LoggingEffectService';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { LoggingEffect } from './effects/LoggingEffect';
     LogoutButtonComponent,
   ],
   imports: [
-    EffectsModule.forFeature([Effects, LoggingEffect]),
+    EffectsModule.forFeature([Effects]),
     CommonModule,
     IonicModule.forRoot(),
     FormsModule,
@@ -52,11 +52,12 @@ import { LoggingEffect } from './effects/LoggingEffect';
   ],
   providers: [
     GenericErrorHandler,
-    FollowAuthenticatedStateEffect,
-    ObtainConfigEffect,
-    ChangeUserEffect,
-    CreateHeroEffect,
-    StoreHeroesEffect,
+    FollowAuthenticatedStateEffectService,
+    ObtainConfigEffectService,
+    ChangeUserEffectService,
+    CreateHeroEffectService,
+    StoreHeroesEffectService,
+    LoggingEffectService,
     ObtainHeroesService,
     SaveHeroService,
     Synchronizer,

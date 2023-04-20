@@ -6,19 +6,16 @@ import { type changeUser, type storeConfig } from '../repositories/actions';
 import { type Heroes } from '../types/Heroes';
 import { UrlMapConstants } from './UrlMapConstants';
 
-export type ObtainHeroesServiceType = (
-  changeUserAction: ActionArgument<typeof changeUser>,
-  storeConfigAction: ActionArgument<typeof storeConfig>
-) => Observable<Heroes>;
-
 @Injectable()
 export class ObtainHeroesService {
-  constructor(readonly httpClient: HttpClient) {}
+  constructor(readonly httpClient: HttpClient) {
+    this.obtainHeroes = this.obtainHeroes.bind(this);
+  }
 
-  run = (
+  obtainHeroes(
     changeUserAction: ActionArgument<typeof changeUser>,
     storeConfigAction: ActionArgument<typeof storeConfig>
-  ): Observable<Heroes> => {
+  ): Observable<Heroes> {
     const user = changeUserAction.payload;
     if (user == null) return of();
     const baseURL = storeConfigAction.payload.baseUrl;
@@ -26,5 +23,5 @@ export class ObtainHeroesService {
       baseURL.concat(UrlMapConstants.GET_HEROES_URL)
     );
     return returnValue;
-  };
+  }
 }

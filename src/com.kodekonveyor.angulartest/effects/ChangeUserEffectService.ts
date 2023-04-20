@@ -6,31 +6,34 @@ import { exhaustMap, catchError } from 'rxjs/operators';
 import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
 import { wrapForMerge } from 'src/com.kodekonveyor.common/wrapForMerge';
 import {
-  clearSelectedHero,
-  createHero,
+  changeUser,
+  setAuthenticated,
   storeConfig,
-  storeHero,
+  storeHeroes,
 } from '../repositories/actions';
-import { SaveHeroService } from '../services/SaveHeroService';
+import { ObtainHeroesService } from '../services/ObtainHeroesService';
 import { mapToActions } from '../../com.kodekonveyor.common/mapToActions';
 
 @Injectable()
-export class CreateHeroEffect {
+export class ChangeUserEffectService {
   constructor(
     private readonly actions$: Actions,
-    private readonly saveHeroService: SaveHeroService,
+    private readonly obtainHeroesService: ObtainHeroesService,
     private readonly genericErrorHandlerService: GenericErrorHandler
   ) {
-    this.createHeroEffect = this.createHeroEffect.bind(this);
+    this.changeUserEffect = this.changeUserEffect.bind(this);
   }
 
-  createHeroEffect(): Observable<Action> {
+  changeUserEffect(): Observable<Action> {
     return combineLatest([
-      this.actions$.pipe(ofType(createHero.type)),
+      this.actions$.pipe(ofType(changeUser.type)),
       this.actions$.pipe(ofType(storeConfig.type)),
     ]).pipe(
-      exhaustMap(wrapForMerge(this.saveHeroService.run)),
-      mapToActions((hero) => storeHero({ payload: hero }), clearSelectedHero),
+      exhaustMap(wrapForMerge(this.obtainHeroesService.obtainHeroes)),
+      mapToActions(
+        (heroes) => storeHeroes({ payload: heroes }),
+        setAuthenticated
+      ),
       catchError(this.genericErrorHandlerService.run)
     );
   }

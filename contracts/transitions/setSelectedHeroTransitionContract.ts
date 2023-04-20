@@ -1,14 +1,15 @@
 import { Contract } from 'cdd-ts';
-import { setSelectedHeroTransition } from 'src/com.kodekonveyor.angulartest/transitions/setSelectedHeroTransition';
-import { ActionTestData } from 'testdata/TestData';
+import { bindTransition } from 'src/bindTransition';
+import { SetSelectedHeroTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/SetSelectedHeroTransitionService';
+import { ActionTestData } from 'testdata/ActionTestData';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
 export const setSelectedHeroTransitionContractParties = [
-  setSelectedHeroTransition,
+  bindTransition(SetSelectedHeroTransitionService),
 ];
 
 export const setSelectedHeroTransitionContract = new Contract<
-  typeof setSelectedHeroTransition
+  SetSelectedHeroTransitionService['setSelectedHeroTransition']
 >()
   .setTitle('Sets selected hero')
   .ifCalledWith(TransitionTestData.initialState, ActionTestData.setSelectedHero)

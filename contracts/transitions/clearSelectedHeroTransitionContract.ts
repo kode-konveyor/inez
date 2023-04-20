@@ -1,12 +1,13 @@
 import { Contract } from 'cdd-ts';
-import { clearSelectedHeroTransition } from 'src/com.kodekonveyor.angulartest/transitions/clearSelectedHeroTransition';
+import { bindTransition } from 'src/bindTransition';
+import { ClearSelectedHeroTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/ClearSelectedHeroTransitionService';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
 export const clearSelectedHeroTransitionContractParties = [
-  clearSelectedHeroTransition,
+  bindTransition(ClearSelectedHeroTransitionService),
 ];
 export const clearSelectedHeroTransitionContract = new Contract<
-  typeof clearSelectedHeroTransition
+  ClearSelectedHeroTransitionService['clearSelectedHeroTransition']
 >()
   .setTitle('clears the selected hero state')
   .ifCalledWith(TransitionTestData.initialStateHeroEditorChanged)

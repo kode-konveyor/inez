@@ -1,52 +1,19 @@
-import { initialState } from 'src/com.kodekonveyor.angulartest/repositories/Repository';
 import { type AppState } from 'src/com.kodekonveyor.angulartest/types/AppState';
 
 import { MakeTestDataService } from 'cdd-ts';
 import { HEROITEM_ID_PREFIX } from 'src/com.kodekonveyor.angulartest/transitions/TransitionConstants';
 import { type TestDataDescriptor } from 'cdd-ts/dist/src/types/TestDataDescriptor';
-import { baseUrl, HeroTestData } from './TestData';
+import { HeroTestData } from './HeroTestData';
+import { UrlTestData } from './UrlTestData';
+import { HeroEditorTestdata } from './HeroEditorTestdata';
+import { initialState } from 'src/com.kodekonveyor.angulartest/states/initialState';
 
-const HeroEditorTestdata = {
-  changed: {
-    createMode: true,
-    show: true,
-    selectedHeroId: 'foo',
-    selectedHeroName: 'bar',
-  },
-
-  heroSelected: {
-    createMode: false,
-    show: true,
-    selectedHeroId: HeroTestData.withId().id,
-    selectedHeroName: HeroTestData.withId().name,
-  },
-  nonInitialState: {
-    createMode: true,
-    show: true,
-    selectedHeroId: '1',
-    selectedHeroName: 'negynegynegy',
-  },
-  initialState: {
-    createMode: false,
-    show: false,
-    selectedHeroId: '',
-    selectedHeroName: '',
-  },
-  shown: {
-    createMode: true,
-    show: true,
-    selectedHeroId: '',
-    selectedHeroName: '',
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export const TransitionTestDataDescriptor = {
   initialState,
 
   nonInitialState: {
     states: {
-      baseURL: baseUrl,
+      baseURL: UrlTestData.baseUrl(),
     },
     componentstates: {
       heroeditor: HeroEditorTestdata.nonInitialState,
@@ -75,7 +42,7 @@ export const TransitionTestDataDescriptor = {
   initialStateConfigured: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
-      draft.states.baseURL = baseUrl;
+      draft.states.baseURL = UrlTestData.baseUrl();
     },
   },
 

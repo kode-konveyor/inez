@@ -1,13 +1,14 @@
 import { Contract } from 'cdd-ts';
-import { setAuthenticatedTransition } from 'src/com.kodekonveyor.angulartest/transitions/setAuthenticatedTransition';
+import { bindTransition } from 'src/bindTransition';
+import { SetAuthenticatedTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/SetAuthenticatedTransitionService';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
 export const setAuthenticatedTransitionContractParties = [
-  setAuthenticatedTransition,
+  bindTransition(SetAuthenticatedTransitionService),
 ];
 
 export const setAuthenticatedTransitionContract = new Contract<
-  typeof setAuthenticatedTransition
+  SetAuthenticatedTransitionService['setAuthenticatedTransition']
 >()
   .setTitle('records that the user is authenticated')
 

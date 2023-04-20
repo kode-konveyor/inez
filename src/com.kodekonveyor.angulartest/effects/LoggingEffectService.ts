@@ -4,7 +4,7 @@ import { type Action } from '@ngrx/store';
 import { exhaustMap, type Observable, of } from 'rxjs';
 
 @Injectable()
-export class LoggingEffect {
+export class LoggingEffectService {
   constructor(private readonly actions$: Actions) {
     this.loggingEffect = this.loggingEffect.bind(this);
   }

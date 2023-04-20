@@ -7,16 +7,17 @@ import { catchError, exhaustMap, type Observable } from 'rxjs';
 import { type Action } from '@ngrx/store';
 
 @Injectable()
-export class FollowAuthenticatedStateEffect {
+export class FollowAuthenticatedStateEffectService {
   constructor(
     private readonly authService: AuthService,
     private readonly genericErrorHandlerService: GenericErrorHandler,
     private readonly synchronizer: Synchronizer
   ) {
-    this.followAuthenticatedState = this.followAuthenticatedState.bind(this);
+    this.followAuthenticatedStateEffect =
+      this.followAuthenticatedStateEffect.bind(this);
   }
 
-  followAuthenticatedState(): Observable<Action> {
+  followAuthenticatedStateEffect(): Observable<Action> {
     return this.authService.user$.pipe(
       exhaustMap(this.synchronizer.dispatcher(changeUser)),
       catchError(this.genericErrorHandlerService.run)

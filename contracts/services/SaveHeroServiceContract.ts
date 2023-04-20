@@ -1,10 +1,8 @@
 import { Contract } from 'cdd-ts';
 import { SaveHeroService } from 'src/com.kodekonveyor.angulartest/services/SaveHeroService';
-import {
-  ActionTestData,
-  ExternalServices,
-  ObservableTestData,
-} from 'testdata/TestData';
+import { ActionTestData } from 'testdata/ActionTestData';
+import { ExternalServices } from 'testdata/ExternalServices';
+import { ObservableTestData } from 'testdata/ObservableTestData';
 
 export const SaveHeroServiceContractParties = [
   new SaveHeroService(ExternalServices.httpClient).run,

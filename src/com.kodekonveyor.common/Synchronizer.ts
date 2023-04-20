@@ -6,29 +6,17 @@ import {
   Store,
 } from '@ngrx/store';
 import { of, type Observable } from 'rxjs';
-import { states } from 'src/com.kodekonveyor.angulartest/repositories/Repository';
 import { type Selector, type TypedAction } from '@ngrx/store/src/models';
 import { multiComponents } from 'src/com.kodekonveyor.angulartest/types/ComponentModels';
 import { type StoreState } from 'src/com.kodekonveyor.angulartest/types/StoreState';
 import { storedItem } from 'src/com.kodekonveyor.angulartest/repositories/actions';
+import { states } from 'src/com.kodekonveyor.angulartest/states/states';
 
 type Selectors = Record<string, Selector<StoreState, any>>;
-/*
-type Observables<Type> = Observable<{
-  [Key in keyof Type]: Type[Key] extends Selector<AppState, infer R> ? R : never
-}>;
-*/
 
 @Injectable()
 export class Synchronizer {
   constructor(private readonly store: Store<StoreState>) {}
-  /*
-    getStoreViewNew<T extends Selectors>(operators: T): Observables<T> {
-      const selector = createSelector(operators);
-      const storeView = this.store.select(selector);
-      return storeView;
-    }
-  */
   getStoreView(operators: Selectors): Observable<any> {
     const selector = createSelector(operators);
     const storeView = this.store.select(selector);

@@ -1,12 +1,15 @@
 import { Contract } from 'cdd-ts';
-import { storeHeroTransition } from 'src/com.kodekonveyor.angulartest/transitions/storeHeroTransition';
-import { ActionTestData } from 'testdata/TestData';
+import { bindTransition } from 'src/bindTransition';
+import { StoreHeroTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/StoreHeroTransitionService';
+import { ActionTestData } from 'testdata/ActionTestData';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
-export const storeHeroTransitionContractParties = [storeHeroTransition];
+export const storeHeroTransitionContractParties = [
+  bindTransition(StoreHeroTransitionService),
+];
 
 export const storeHeroTransitionContract = new Contract<
-  typeof storeHeroTransition
+  StoreHeroTransitionService['storeHeroTransition']
 >()
   .setTitle('store hero')
 

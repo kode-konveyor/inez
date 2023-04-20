@@ -8,16 +8,16 @@ import { storeHeroes } from '../repositories/actions';
 import { StoreHeroesService } from '../services/StoreHeroesService';
 
 @Injectable()
-export class StoreHeroesEffect {
+export class StoreHeroesEffectService {
   constructor(
     private readonly actions$: Actions,
     private readonly genericErrorHandlerService: GenericErrorHandler,
     private readonly storeHeroesService: StoreHeroesService
   ) {
-    this.storeHeroeseffect = this.storeHeroeseffect.bind(this);
+    this.storeHeroesEffect = this.storeHeroesEffect.bind(this);
   }
 
-  storeHeroeseffect(): Observable<Action> {
+  storeHeroesEffect(): Observable<Action> {
     return this.actions$.pipe(
       ofType(storeHeroes.type),
       exhaustMap(this.storeHeroesService.run),

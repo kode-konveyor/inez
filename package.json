@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "all": "npm run qa && npm run build && cordova build android",
-    "qa": "eslint . && npm run test && npm run mutate",
+    "qa": "npm run lint && npm run test && npm run mutate",
     "ng": "ng",
+    "lint": "eslint .",
     "start": "ng serve --proxy-config=proxy.conf.json",
     "build": "ng build",
     "contractbuild": "for i in contracts/*/*; do esbuild $i --format=esm --bundle --platform=node  --external:espree --external:eslint --external:colors --external:commander --external:debug --external:@typescript-eslint/parser --outfile=dist/$(dirname $i)/$(basename $i .ts ).js --sourcemap=inline; done",
@@ -38,6 +39,7 @@
     "@ionic/angular": "latest",
     "@ngrx/effects": "latest",
     "@ngrx/store": "latest",
+    "eslint-plugin-kodekonveyor": "^1.0.5",
     "immer": "latest",
     "rxjs": "latest",
     "tslib": "latest",
@@ -75,9 +77,11 @@
     "@angular/compiler": "latest",
     "@angular/compiler-cli": "latest",
     "@capacitor/cli": "latest",
+    "@stryker-mutator/core": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "android": "latest",
     "cdd-ts": "latest",
+    "colors": "latest",
     "cordova-android": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "latest",
@@ -85,8 +89,6 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-n": "latest",
     "eslint-plugin-promise": "latest",
-    "typescript": "latest",
-    "@stryker-mutator/core": "latest",
-    "colors": "latest"
+    "typescript": "latest"
   }
 }

@@ -1,11 +1,14 @@
 import { Contract } from 'cdd-ts';
-import { showEditorTransition } from 'src/com.kodekonveyor.angulartest/transitions/showEditorTransition';
+import { bindTransition } from 'src/bindTransition';
+import { ShowEditorTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/ShowEditorTransitionService';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
-export const showEditorTransitionContractParties = [showEditorTransition];
+export const showEditorTransitionContractParties = [
+  bindTransition(ShowEditorTransitionService),
+];
 
 export const showEditorTransitionContract = new Contract<
-  typeof showEditorTransition
+  ShowEditorTransitionService['showEditorTransition']
 >()
   .setTitle('show editor')
 

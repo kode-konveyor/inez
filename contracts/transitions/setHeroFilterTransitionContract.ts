@@ -1,12 +1,15 @@
 import { Contract } from 'cdd-ts';
-import { setHeroFilterTransition } from 'src/com.kodekonveyor.angulartest/transitions/setHeroFilterTransition';
-import { ActionTestData } from 'testdata/TestData';
+import { bindTransition } from 'src/bindTransition';
+import { SetHeroFilterTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/SetHeroFilterTransitionService';
+import { ActionTestData } from 'testdata/ActionTestData';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
-export const setHeroFilterTransitionContractParties = [setHeroFilterTransition];
+export const setHeroFilterTransitionContractParties = [
+  bindTransition(SetHeroFilterTransitionService),
+];
 
 export const setHeroFilterTransitionContract = new Contract<
-  typeof setHeroFilterTransition
+  SetHeroFilterTransitionService['setHeroFilterTransition']
 >()
   .setTitle('sets the hero filter')
 

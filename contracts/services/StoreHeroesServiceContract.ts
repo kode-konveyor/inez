@@ -1,12 +1,12 @@
 import { Contract } from 'cdd-ts';
 import { StoreHeroesService } from 'src/com.kodekonveyor.angulartest/services/StoreHeroesService';
+import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
+import { ActionTestData } from 'testdata/ActionTestData';
 import {
-  ActionTestData,
-  emitsvalues,
   ObservableTestData,
-  returnsEmptyObservable,
   storeHeroForAll,
-} from 'testdata/TestData';
+} from 'testdata/ObservableTestData';
+import { emitsvalues } from 'testdata/helpers/emitsvalues';
 
 export const StoreHeroesServiceContractParties = [new StoreHeroesService().run];
 
