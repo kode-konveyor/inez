@@ -3,7 +3,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { type Action } from '@ngrx/store';
 import { type Observable } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
-import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
+import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
 import { storeHeroes } from '../repositories/actions';
 import { StoreHeroesService } from '../services/StoreHeroesService';
 
@@ -11,7 +11,7 @@ import { StoreHeroesService } from '../services/StoreHeroesService';
 export class StoreHeroesEffectService {
   constructor(
     private readonly actions$: Actions,
-    private readonly genericErrorHandlerService: GenericErrorHandler,
+    private readonly genericErrorHandlerService: GenericErrorHandlerService,
     private readonly storeHeroesService: StoreHeroesService
   ) {
     this.storeHeroesEffect = this.storeHeroesEffect.bind(this);
@@ -21,7 +21,7 @@ export class StoreHeroesEffectService {
     return this.actions$.pipe(
       ofType(storeHeroes.type),
       exhaustMap(this.storeHeroesService.storeHeroes),
-      catchError(this.genericErrorHandlerService.run)
+      catchError(this.genericErrorHandlerService.genericErrorHandler)
     );
   }
 }

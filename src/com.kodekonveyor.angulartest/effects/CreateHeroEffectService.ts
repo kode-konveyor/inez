@@ -3,7 +3,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { type Action } from '@ngrx/store';
 import { combineLatest, type Observable } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
-import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
+import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
 import { wrapForMerge } from 'src/com.kodekonveyor.common/wrapForMerge';
 import {
   clearSelectedHero,
@@ -19,7 +19,7 @@ export class CreateHeroEffectService {
   constructor(
     private readonly actions$: Actions,
     private readonly saveHeroService: SaveHeroService,
-    private readonly genericErrorHandlerService: GenericErrorHandler
+    private readonly genericErrorHandlerService: GenericErrorHandlerService
   ) {
     this.createHeroEffect = this.createHeroEffect.bind(this);
   }
@@ -31,7 +31,7 @@ export class CreateHeroEffectService {
     ]).pipe(
       exhaustMap(wrapForMerge(this.saveHeroService.saveHero)),
       mapToActions((hero) => storeHero({ payload: hero }), clearSelectedHero),
-      catchError(this.genericErrorHandlerService.run)
+      catchError(this.genericErrorHandlerService.genericErrorHandler)
     );
   }
 }

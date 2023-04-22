@@ -10,7 +10,7 @@ import { HeroFilterComponent } from './UI/herofilter/herofilter.component';
 import { StoreModule } from '@ngrx/store';
 import { ObtainHeroesService } from './services/ObtainHeroesService';
 import { Synchronizer } from '../com.kodekonveyor.common/Synchronizer';
-import { GenericErrorHandler } from 'src/com.kodekonveyor.common/GenericErrorHandler';
+import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
 import { repository } from './Repository';
 import { EffectsModule } from '@ngrx/effects';
 import { ChangeUserEffectService } from './effects/ChangeUserEffectService';
@@ -52,7 +52,7 @@ const STORE_FEATURE_NAME = 'r';
     StoreModule.forFeature(STORE_FEATURE_NAME, repository),
   ],
   providers: [
-    GenericErrorHandler,
+    GenericErrorHandlerService,
     FollowAuthenticatedStateEffectService,
     ObtainConfigEffectService,
     ChangeUserEffectService,

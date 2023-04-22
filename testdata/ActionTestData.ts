@@ -1,14 +1,12 @@
-import { type TypedAction } from '@ngrx/store/src/models';
-import { MakeTestDataService } from 'cdd-ts';
-import { type TestDataDescriptor } from 'cdd-ts/dist/src/types/TestDataDescriptor';
 import { HeroesTestData } from './HeroesTestData';
 import { HeroTestData } from './HeroTestData';
 import { UrlTestData } from './UrlTestData';
 import { type User } from '@auth0/auth0-angular';
+import { MakeTestDataService } from 'cdd-ts';
 
-const user: User = {};
+const user: User = { name: 'joe' };
 
-const ActionTestDataDescriptor = {
+export const ActionTestDataDescriptor = {
   createHeroAction: {
     type: 'create hero',
     payload: HeroTestData.default().name,
@@ -21,11 +19,11 @@ const ActionTestDataDescriptor = {
     type: 'store config',
     payload: { baseUrl: 'BASE_URL' },
   },
-  nullUserAction: { type: 'change user' },
-  changeUserAction: { __from: 'nullUserAction', payload: user },
+  nullUserAction: { type: 'change user', payload: undefined },
+  changeUserAction: { type: 'change user', payload: user },
   storeHeroesEmpty: { type: 'store heroes', payload: [] },
   storeHeroesAll: {
-    __from: 'storeHeroesEmpty',
+    type: 'store heroes',
     payload: HeroesTestData.default,
   },
   setHeroFilter: { type: 'set hero filter', payload: 'e' },
@@ -37,9 +35,13 @@ const ActionTestDataDescriptor = {
     type: 'store config',
     payload: { baseUrl: UrlTestData.baseUrl() },
   },
-} satisfies TestDataDescriptor<TypedAction<string> & { payload: unknown }>;
+  setAuthenticated: { type: 'set Authenticated' },
+};
 
-export const ActionTestData = new MakeTestDataService<
-  TypedAction<string>,
-  typeof ActionTestDataDescriptor
->().makeTestData(ActionTestDataDescriptor);
+type Foo<T extends Record<string, unknown>> = {
+  [K in keyof T]: () => T[K];
+};
+
+export const ActionTestData = new MakeTestDataService().makeTestData(
+  ActionTestDataDescriptor
+) as Foo<typeof ActionTestDataDescriptor>;

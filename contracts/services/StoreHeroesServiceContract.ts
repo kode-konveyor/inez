@@ -18,18 +18,13 @@ export const StoreHeroesServiceContract = new Contract<
   .setTitle('emits the actions to store all the heroes')
 
   .ifCalledWith(ActionTestData.storeHeroesEmpty)
-  .thenReturn(
-    'for an empty hero list returns an empty observable',
-    ObservableTestData.empty
-  )
-  .suchThat('the observable is empty', returnsEmptyObservable)
+  .thenReturn('for an empty hero list returns an empty observable', {
+    default: ObservableTestData.empty,
+    check: returnsEmptyObservable,
+  })
 
   .ifCalledWith(ActionTestData.storeHeroesAll)
-  .thenReturn(
-    'an observable emitting storeHero action for each heroes',
-    ObservableTestData.storeHeroForAll
-  )
-  .suchThat(
-    'the observable emits all the heroes in turn',
-    emitsvalues(storeHeroForAll)
-  );
+  .thenReturn('an observable emitting storeHero action for each heroes', {
+    default: ObservableTestData.storeHeroForAll,
+    check: emitsvalues(storeHeroForAll),
+  });
