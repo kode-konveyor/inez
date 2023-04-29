@@ -4,9 +4,9 @@ import {
   changeUser,
   setAuthenticated,
   storeConfig,
-  storeHeroes,
+  storeSelbris,
 } from '../repositories/actions';
-import { ObtainHeroesService } from '../services/ObtainHeroesService';
+import { ObtainSelbrisService } from '../services/ObtainSelbrisService';
 import { mapToActions } from '../../com.kodekonveyor.common/mapToActions';
 import { Injectable } from '@angular/core';
 import { combineLatest, exhaustMap, catchError, type Observable } from 'rxjs';
@@ -16,7 +16,7 @@ import { type Action } from '@ngrx/store';
 export class ChangeUserEffectService {
   constructor(
     private readonly actions$: Actions,
-    private readonly obtainHeroesService: ObtainHeroesService,
+    private readonly obtainSelbrisService: ObtainSelbrisService,
     private readonly genericErrorHandlerService: GenericErrorHandlerService
   ) {
     this.changeUserEffect = this.changeUserEffect.bind(this);
@@ -27,9 +27,9 @@ export class ChangeUserEffectService {
       changeUserAction: this.actions$.pipe(ofType(changeUser.type)),
       storeConfigAction: this.actions$.pipe(ofType(storeConfig.type)),
     }).pipe(
-      exhaustMap(this.obtainHeroesService.obtainHeroes),
+      exhaustMap(this.obtainSelbrisService.obtainSelbris),
       mapToActions(
-        (heroes) => storeHeroes({ payload: heroes }),
+        (selbris) => storeSelbris({ payload: selbris }),
         setAuthenticated
       ),
       catchError(this.genericErrorHandlerService.genericErrorHandler)

@@ -1,24 +1,24 @@
 import { type TypedAction } from '@ngrx/store/src/models';
 import { type Observable, of } from 'rxjs';
-import { storeHero } from 'src/com.kodekonveyor.angulartest/repositories/actions';
-import { type Hero } from 'src/com.kodekonveyor.angulartest/types/Hero';
+import { storeSelbri } from 'src/com.kodekonveyor.angulartest/repositories/actions';
+import { type Selbri } from 'src/com.kodekonveyor.angulartest/types/Selbri';
 import { observableOf } from './helpers/observableOf';
-import { HeroesTestData } from './HeroesTestData';
-import { HeroTestData } from './HeroTestData';
+import { SelbrisTestData } from './SelbrisTestData';
+import { SelbriTestData } from './SelbriTestData';
 
 const emptyObservable = of();
 (emptyObservable as unknown as { _name: string })._name = 'of()';
 
-export const storeHeroForAll = HeroesTestData.default.map((h) =>
-  storeHero({ payload: h })
+export const storeSelbriForAll = SelbrisTestData.default.map((h) =>
+  storeSelbri({ payload: h })
 );
 
 export const ObservableTestData = {
-  heroes: () => observableOf(HeroesTestData.default),
+  selbris: () => observableOf(SelbrisTestData.default),
   empty: () => emptyObservable,
-  idedHero: () => observableOf(HeroTestData.withId()),
-  storeHeroForAll: () =>
-    observableOf(storeHeroForAll) as unknown as Observable<
-      { payload: Hero } & TypedAction<'store Hero'>
+  idedSelbri: () => observableOf(SelbriTestData.withId()),
+  storeSelbriForAll: () =>
+    observableOf(storeSelbriForAll) as unknown as Observable<
+      { payload: Selbri } & TypedAction<'store Selbri'>
     >,
 };

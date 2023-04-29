@@ -2,22 +2,16 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { HeroesComponent } from './UI/heroes/heroes.component';
-import { HeroeditorComponent } from './UI/heroeditor/heroeditor.component';
-import { HeroitemComponent } from './UI/heroitem/heroitem.component';
-import { HeroListComponent } from './UI/herolist/herolist.component';
-import { HeroFilterComponent } from './UI/herofilter/herofilter.component';
+import { SelbrisComponent } from './UI/selbris/selbris.component';
 import { StoreModule } from '@ngrx/store';
-import { ObtainHeroesService } from './services/ObtainHeroesService';
+import { ObtainSelbrisService } from './services/ObtainSelbrisService';
 import { Synchronizer } from '../com.kodekonveyor.common/Synchronizer';
 import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
 import { repository } from './Repository';
 import { EffectsModule } from '@ngrx/effects';
 import { ChangeUserEffectService } from './effects/ChangeUserEffectService';
-import { SaveHeroService } from './services/SaveHeroService';
-import { CreateHeroEffectService } from './effects/CreateHeroEffectService';
-import { StoreHeroesEffectService } from './effects/StoreHeroesEffectService';
-import { StoreHeroesService } from './services/StoreHeroesService';
+import { StoreSelbrisEffectService } from './effects/StoreSelbrisEffectService';
+import { StoreSelbrisService } from './services/StoreSelbrisService';
 import { ObtainConfigEffectService } from './effects/ObtainConfigEffectService';
 import { FollowAuthenticatedStateEffectService } from './effects/FollowAuthenticatedStateEffectService';
 import { Effects } from './Effects';
@@ -29,15 +23,21 @@ import { PageComponent } from './page.component';
 import { AngulartestRoutingModule } from './angulartest-routing.module';
 import { CommonModule } from '@angular/common';
 import { LoggingEffectService } from './effects/LoggingEffectService';
+import { CreateSelbriEffectService } from './effects/CreateSelbriEffectService';
+import { SaveSelbriService } from './services/SaveSelbriService';
+import { SelbriEditorComponent } from './UI/selbrieditor/selbrieditor.component';
+import { SelbriFilterComponent } from './UI/selbrifilter/selbrifilter.component';
+import { SelbriitemComponent } from './UI/selbriitem/selbriitem.component';
+import { SelbriListComponent } from './UI/selbrilist/selbrilist.component';
 
 const STORE_FEATURE_NAME = 'r';
 @NgModule({
   declarations: [
-    HeroesComponent,
-    HeroeditorComponent,
-    HeroitemComponent,
-    HeroListComponent,
-    HeroFilterComponent,
+    SelbrisComponent,
+    SelbriEditorComponent,
+    SelbriitemComponent,
+    SelbriListComponent,
+    SelbriFilterComponent,
     PageComponent,
     LoginButtonComponent,
     LogoutButtonComponent,
@@ -56,13 +56,13 @@ const STORE_FEATURE_NAME = 'r';
     FollowAuthenticatedStateEffectService,
     ObtainConfigEffectService,
     ChangeUserEffectService,
-    CreateHeroEffectService,
-    StoreHeroesEffectService,
+    CreateSelbriEffectService,
+    StoreSelbrisEffectService,
     LoggingEffectService,
-    ObtainHeroesService,
-    SaveHeroService,
+    ObtainSelbrisService,
+    SaveSelbriService,
     Synchronizer,
-    StoreHeroesService,
+    StoreSelbrisService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

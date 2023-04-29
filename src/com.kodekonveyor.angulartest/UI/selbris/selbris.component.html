@@ -1,0 +1,6 @@
+<div id="{{id}}" class="selbris" *ngIf="authenticated">
+  <selbrieditor id="{{id}}-selbrieditor" class="selbris-selbrieditor"></selbrieditor>
+  <selbrifilter id="{{id}}-selbrifilter"></selbrifilter>
+  <selbrilist id="{{id}}-selbrilist" class="selbris-selbrilist"></selbrilist>
+  <div id="{{id}}-plusbutton" class="selbris-plusbutton" (click)="plusbuttonOnClick()">+</div>
+</div>

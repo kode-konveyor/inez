@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { createEffect } from '@ngrx/effects';
 import { ChangeUserEffectService } from './effects/ChangeUserEffectService';
-import { CreateHeroEffectService } from './effects/CreateHeroEffectService';
+import { CreateSelbriEffectService } from './effects/CreateSelbriEffectService';
 import { FollowAuthenticatedStateEffectService } from './effects/FollowAuthenticatedStateEffectService';
 import { LoggingEffectService } from './effects/LoggingEffectService';
 import { ObtainConfigEffectService } from './effects/ObtainConfigEffectService';
-import { StoreHeroesEffectService } from './effects/StoreHeroesEffectService';
+import { StoreSelbrisEffectService } from './effects/StoreSelbrisEffectService';
 
 @Injectable()
 export class Effects {
@@ -13,8 +13,8 @@ export class Effects {
     private readonly followAuthenticatedStateEffect: FollowAuthenticatedStateEffectService,
     private readonly obtainConfigEffect: ObtainConfigEffectService,
     private readonly changeUserEffect: ChangeUserEffectService,
-    private readonly createHeroEffect: CreateHeroEffectService,
-    private readonly storeHeroeseffect: StoreHeroesEffectService,
+    private readonly createSelbriEffect: CreateSelbriEffectService,
+    private readonly storeSelbriseffect: StoreSelbrisEffectService,
     private readonly loggingEffect: LoggingEffectService
   ) {}
 
@@ -31,11 +31,11 @@ export class Effects {
     dispatch: true,
   });
 
-  createHeroEffect$ = createEffect(this.createHeroEffect.createHeroEffect, {
+  createSelbriEffect$ = createEffect(this.createSelbriEffect.createSelbriEffect, {
     dispatch: true,
   });
 
-  storeHeroeseffect$ = createEffect(this.storeHeroeseffect.storeHeroesEffect, {
+  storeSelbriseffect$ = createEffect(this.storeSelbriseffect.storeSelbrisEffect, {
     dispatch: true,
   });
 

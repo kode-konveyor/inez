@@ -5,20 +5,20 @@ export const initialState: AppState = {
     baseURL: '',
   },
   componentstates: {
-    heroeditor: {
+    selbrieditor: {
       createMode: false,
       show: false,
-      selectedHeroId: '',
-      selectedHeroName: '',
+      selectedSelbriId: '',
+      selectedSelbriName: '',
     },
-    herofilter: {
-      heroFilter: '',
+    selbrifilter: {
+      selbriFilter: '',
     },
-    heroitem: {},
-    herolist: {
-      heroids: [],
+    selbriitem: {},
+    selbrilist: {
+      selbriids: [],
     },
-    heroes: {
+    selbris: {
       authenticated: false,
     },
   },

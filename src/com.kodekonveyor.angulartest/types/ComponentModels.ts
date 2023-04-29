@@ -1,16 +1,16 @@
-import { type HeroEditorComponentModel } from './HeroEditorComponentModel';
-import { type HeroesComponentModel } from './HeroesComponentModel';
-import { type HeroFilterComponentModel } from './HeroFilterComponentModel';
-import { type HeroitemComponentModel } from './HeroitemComponentModel';
-import { type HeroListComponentModel } from './HeroListComponentModel';
+import { type SelbriEditorComponentModel } from './SelbriEditorComponentModel';
+import { type SelbrisComponentModel } from './SelbrisComponentModel';
+import { type SelbriFilterComponentModel } from './SelbriFilterComponentModel';
+import { type SelbriitemComponentModel } from './SelbriitemComponentModel';
+import { type SelbriListComponentModel } from './SelbriListComponentModel';
 
 export const emptyComponents = []
-export const multiComponents = ["heroitem"]
+export const multiComponents = ["selbriitem"]
 
 export interface ComponentModels {
-  heroeditor: HeroEditorComponentModel;
-  herofilter: HeroFilterComponentModel;
-  heroitem: Record<string, HeroitemComponentModel>;
-  herolist: HeroListComponentModel;
-  heroes: HeroesComponentModel
+  selbrieditor: SelbriEditorComponentModel;
+  selbrifilter: SelbriFilterComponentModel;
+  selbriitem: Record<string, SelbriitemComponentModel>;
+  selbrilist: SelbriListComponentModel;
+  selbris: SelbrisComponentModel
 }

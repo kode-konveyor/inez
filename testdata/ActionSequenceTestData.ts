@@ -7,8 +7,8 @@ export const ActionSequenceTestData = {
     ActionTestData.changeUserAction(),
     ActionTestData.storeConfigAction(),
   ],
-  storeHeroesAndSetAuthenticated: () => [
-    ActionTestData.storeHeroesAll(),
+  storeSelbrisAndSetAuthenticated: () => [
+    ActionTestData.storeSelbrisAll(),
     ActionTestData.setAuthenticated(),
   ],
 } satisfies Record<string, () => Array<Action>>;

@@ -1,8 +1,0 @@
-<div id="{{id}}" class="heroeditor" *ngIf="show">
-  <div id="{{id}}-id" class="heroeditor-id">{{selectedHeroId}}</div>
-  <div id="{{id}}-name" class="heroedit{{or-name">
-    <input id="{{id}}-name-input" class="heroeditor-name-input" [(ngModel)]="selectedHeroName"
-      (ngModelChange)="onInput($event)">
-  </div>
-  <div id="{{id}}-create" class="heroeditor-create" *ngIf="createMode" (click)="createButtonClick()">Create</div>
-</div>

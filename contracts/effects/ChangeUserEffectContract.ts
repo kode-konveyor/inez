@@ -1,24 +1,24 @@
 import { Contract } from 'cdd-ts';
-import { ObtainHeroesServiceContract } from 'contracts/services/ObtainHeroesServiceContract';
+import { ObtainSelbrisServiceContract } from 'contracts/services/ObtainSelbrisServiceContract';
 import { of } from 'rxjs';
 import { ChangeUserEffectService } from 'src/com.kodekonveyor.angulartest/effects/ChangeUserEffectService';
-import { type ObtainHeroesService } from 'src/com.kodekonveyor.angulartest/services/ObtainHeroesService';
+import { type ObtainSelbrisService } from 'src/com.kodekonveyor.angulartest/services/ObtainSelbrisService';
 import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
 import { emitsvalues } from 'testdata/helpers/emitsvalues';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { ActionSequenceTestData } from '../../testdata/ActionSequenceTestData';
 import { ActionFeeder } from '../../testdata/helpers/ActionFeeder';
 
-const obtainHeroesService: ObtainHeroesService = {
-  obtainHeroes: ObtainHeroesServiceContract.getStub(),
-} as unknown as ObtainHeroesService;
+const obtainSelbrisService: ObtainSelbrisService = {
+  obtainSelbris: ObtainSelbrisServiceContract.getStub(),
+} as unknown as ObtainSelbrisService;
 
 const genericErrorHandler = new GenericErrorHandlerService();
 
 export const ChangeUserEffectContractParties = [
   new ChangeUserEffectService(
     ActionFeeder.actions,
-    obtainHeroesService,
+    obtainSelbrisService,
     genericErrorHandler
   ).changeUserEffect,
 ];
@@ -38,7 +38,7 @@ export const ChangeUserEffectContract = new Contract()
     new ActionFeeder('changeuserAndStoreConfig')
   )
   .ifCalledWith()
-  .thenReturn('a storeHeroes and  setAuthenticated are emitted', {
-    default: ActionSequenceTestData.storeHeroesAndSetAuthenticated,
-    check: emitsvalues(ActionSequenceTestData.storeHeroesAndSetAuthenticated()),
+  .thenReturn('a storeSelbris and  setAuthenticated are emitted', {
+    default: ActionSequenceTestData.storeSelbrisAndSetAuthenticated,
+    check: emitsvalues(ActionSequenceTestData.storeSelbrisAndSetAuthenticated()),
   });

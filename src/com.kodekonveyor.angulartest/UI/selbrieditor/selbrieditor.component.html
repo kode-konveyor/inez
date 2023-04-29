@@ -1,0 +1,8 @@
+<div id="{{id}}" class="selbrieditor" *ngIf="show">
+  <div id="{{id}}-id" class="selbrieditor-id">{{selectedSelbriId}}</div>
+  <div id="{{id}}-name" class="selbrieditor-name">
+    <input id="{{id}}-name-input" class="selbrieditor-name-input" [(ngModel)]="selectedSelbriName"
+      (ngModelChange)="onInput($event)">
+  </div>
+  <div id="{{id}}-create" class="selbrieditor-create" *ngIf="createMode" (click)="createButtonClick()">Create</div>
+</div>

@@ -52,7 +52,7 @@ button:disabled {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.heroeditor {
+.selbrieditor {
   display: block;
   cursor: pointer;
   position: relative;
@@ -64,11 +64,11 @@ button:disabled {
   margin-bottom: 5px;
 }
 
-.heroes {
+.selbris {
   display: inline-block;
 }
 
-.heroitem {
+.selbriitem {
   flex: 1;
   cursor: pointer;
   position: relative;
@@ -82,33 +82,33 @@ button:disabled {
   height: 1.8em;
 }
 
-.heroitem:hover {
+.selbriitem:hover {
   color: #2c3a41;
   background-color: #e6e6e6;
   left: .1em;
 }
 
-.heroitem:active {
+.selbriitem:active {
   background-color: #525252;
   color: #fafafa;
 }
 
-.heroitem.selected {
+.selbriitem.selected {
   background-color: black;
   color: white;
 }
 
-.heroitem.selected:hover {
+.selbriitem.selected:hover {
   background-color: #505050;
   color: white;
 }
 
-.heroitem.selected:active {
+.selbriitem.selected:active {
   background-color: black;
   color: white;
 }
 
-.heroitem-badge {
+.selbriitem-badge {
   display: inline-block;
   font-size: small;
   color: white;
@@ -119,19 +119,19 @@ button:disabled {
   border-radius: 4px 0 0 4px;
 }
 
-.heroitem-name {
+.selbriitem-name {
   align-self: center;
   display: inline;
   float: left;
 }
 
-.heroitem-id {
+.selbriitem-id {
   align-self: center;
   float: left;
   display: inline;
 }
 
-.heroeditor {
+.selbrieditor {
   font-size: x-large;
 }
 
@@ -139,18 +139,18 @@ button:disabled {
   border: 5px outset red;
 }
 
-.foo .heroeditor-id::before {
+.foo .selbrieditor-id::before {
   content: "id: ";
 }
 
-.foo .heroeditor-name::before {
+.foo .selbrieditor-name::before {
   content: "name: ";
 }
 
-.language-hu .heroeditor-id::before {
+.language-hu .selbrieditor-id::before {
   content: "ídé: ";
 }
 
-.language-hu .heroeditor-name::before {
+.language-hu .selbrieditor-name::before {
   content: "név: ";
 }

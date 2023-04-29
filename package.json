@@ -13,7 +13,12 @@
     "contractbuild": "for i in contracts/*/*; do esbuild $i --format=esm --bundle --platform=node  --external:espree --external:eslint --external:colors --external:commander --external:debug --external:@typescript-eslint/parser --outfile=dist/$(dirname $i)/$(basename $i .ts ).js --sourcemap=inline; done",
     "watch": "ng build --watch --configuration development",
     "test": "npm run contractbuild && runContracts",
-    "mutate": "tsc -b && stryker run"
+    "mutate": "tsc -b && stryker run",
+    "startserver": "mkdir -p tmp&& node --unhandled-rejections=strict node_modules/zenta2-server/dist/app.js",
+    "stopserver": "kill $(cat tmp/server.pid)",
+    "startMongo": "docker run -p 27017:27017 -d mongo",
+    "stopMongo": "docker kill $(docker ps |grep mongo|awk '{print $1}')"
+
   },
   "keywords": [
     "ecosystem:cordova"
@@ -51,18 +56,6 @@
       "android"
     ]
   },
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupFilesAfterEnv": [
-      "<rootDir>/setup-jest.ts"
-    ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/dist/"
-    ],
-    "modulePaths": [
-      "<rootDir>"
-    ]
-  },
   "serve": {
     "builder": "@angular-devkit/build-angular:dev-server",
     "options": {
@@ -77,6 +70,7 @@
     "@angular/compiler-cli": "latest",
     "@capacitor/cli": "latest",
     "@stryker-mutator/core": "latest",
+    "@types/sinon": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "android": "latest",
     "cdd-ts": "latest",
@@ -88,6 +82,7 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-n": "latest",
     "eslint-plugin-promise": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "zenta2-server": "latest"
   }
 }

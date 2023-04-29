@@ -4,11 +4,11 @@ import { type AppState } from '../types/AppState';
 export class ShowEditorTransitionService {
   showEditorTransition(state: AppState): AppState {
     return produce(state, (draft) => {
-      draft.componentstates.heroeditor = {
+      draft.componentstates.selbrieditor = {
         createMode: true,
         show: true,
-        selectedHeroId: '',
-        selectedHeroName: '',
+        selectedSelbriId: '',
+        selectedSelbriName: '',
       };
     });
   }

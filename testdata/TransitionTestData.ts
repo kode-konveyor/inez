@@ -3,9 +3,9 @@ import { type AppState } from 'src/com.kodekonveyor.angulartest/types/AppState';
 import { MakeTestDataService } from 'cdd-ts';
 import { HEROITEM_ID_PREFIX } from 'src/com.kodekonveyor.angulartest/transitions/TransitionConstants';
 import { type TestDataDescriptor } from 'cdd-ts/dist/src/types/TestDataDescriptor';
-import { HeroTestData } from './HeroTestData';
+import { SelbriTestData } from './SelbriTestData';
 import { UrlTestData } from './UrlTestData';
-import { HeroEditorTestdata } from './HeroEditorTestdata';
+import { SelbriEditorTestdata } from './SelbriEditorTestdata';
 import { initialState } from 'src/com.kodekonveyor.angulartest/states/initialState';
 
 export const TransitionTestDataDescriptor = {
@@ -16,24 +16,24 @@ export const TransitionTestDataDescriptor = {
       baseURL: UrlTestData.baseUrl(),
     },
     componentstates: {
-      heroeditor: HeroEditorTestdata.nonInitialState,
-      herofilter: {
-        heroFilter: '^T',
+      selbrieditor: SelbriEditorTestdata.nonInitialState,
+      selbrifilter: {
+        selbriFilter: '^T',
       },
-      heroitem: {
-        heroitem_1: {
-          hero: HeroTestData.withId(),
+      selbriitem: {
+        selbriitem_1: {
+          selbri: SelbriTestData.withId(),
           selected: false,
         },
-        heroitem_2: {
-          hero: HeroTestData.another(),
+        selbriitem_2: {
+          selbri: SelbriTestData.another(),
           selected: true,
         },
       },
-      herolist: {
-        heroids: ['1'],
+      selbrilist: {
+        selbriids: ['1'],
       },
-      heroes: {
+      selbris: {
         authenticated: true,
       },
     },
@@ -46,105 +46,105 @@ export const TransitionTestDataDescriptor = {
     },
   },
 
-  initialStateHeroEditorChanged: {
+  initialStateSelbriEditorChanged: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroeditor = HeroEditorTestdata.changed;
+      draft.componentstates.selbrieditor = SelbriEditorTestdata.changed;
     },
   },
 
-  initialStateHeroStored: {
+  initialStateSelbriStored: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroitem[
-        HEROITEM_ID_PREFIX + HeroTestData.withId().id
+      draft.componentstates.selbriitem[
+        HEROITEM_ID_PREFIX + SelbriTestData.withId().id
       ] = {
-        hero: HeroTestData.withId(),
+        selbri: SelbriTestData.withId(),
         selected: false,
       };
-      draft.componentstates.herolist.heroids.push(HeroTestData.withId().id);
+      draft.componentstates.selbrilist.selbriids.push(SelbriTestData.withId().id);
     },
   },
 
-  nonInitialStateHeroStored: {
+  nonInitialStateSelbriStored: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroitem[
-        HEROITEM_ID_PREFIX + HeroTestData.withId().id
+      draft.componentstates.selbriitem[
+        HEROITEM_ID_PREFIX + SelbriTestData.withId().id
       ] = {
-        hero: HeroTestData.withId(),
+        selbri: SelbriTestData.withId(),
         selected: true,
       };
-      draft.componentstates.herolist.heroids.push(HeroTestData.withId().id);
+      draft.componentstates.selbrilist.selbriids.push(SelbriTestData.withId().id);
     },
   },
-  nonInitialStateHeroEditorReset: {
+  nonInitialStateSelbriEditorReset: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroeditor = HeroEditorTestdata.initialState;
+      draft.componentstates.selbrieditor = SelbriEditorTestdata.initialState;
     },
   },
 
-  nonInitialStateHeroModified: {
+  nonInitialStateSelbriModified: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
       // eslint-disable-next-line @typescript-eslint/dot-notation
-      draft.componentstates.heroitem['heroitem_1'].hero =
-        HeroTestData.modified();
+      draft.componentstates.selbriitem['selbriitem_1'].selbri =
+        SelbriTestData.modified();
     },
   },
 
   initalStateAuthenticated: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroes.authenticated = true;
+      draft.componentstates.selbris.authenticated = true;
     },
   },
 
   nonInitalStateAuthenticated: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroes.authenticated = true;
+      draft.componentstates.selbris.authenticated = true;
     },
   },
 
-  initialStateHerofilterE: {
+  initialStateSelbrifilterE: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.herofilter.heroFilter = 'e';
+      draft.componentstates.selbrifilter.selbriFilter = 'e';
     },
   },
 
-  nonInitialStateHerofilterE: {
+  nonInitialStateSelbrifilterE: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.herofilter.heroFilter = 'e';
+      draft.componentstates.selbrifilter.selbriFilter = 'e';
     },
   },
 
-  initialStateSelectedHero: {
+  initialStateSelectedSelbri: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroeditor = HeroEditorTestdata.heroSelected;
+      draft.componentstates.selbrieditor = SelbriEditorTestdata.selbriSelected;
     },
   },
 
-  nonInitialStateHeroEditorShown: {
+  nonInitialStateSelbriEditorShown: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroeditor = HeroEditorTestdata.shown;
+      draft.componentstates.selbrieditor = SelbriEditorTestdata.shown;
     },
   },
 
-  nonInitialStateSelectedHero: {
+  nonInitialStateSelectedSelbri: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.heroeditor = HeroEditorTestdata.heroSelected;
-      draft.componentstates.heroitem[
-        HEROITEM_ID_PREFIX + HeroTestData.withId().id
+      draft.componentstates.selbrieditor = SelbriEditorTestdata.selbriSelected;
+      draft.componentstates.selbriitem[
+        HEROITEM_ID_PREFIX + SelbriTestData.withId().id
       ].selected = true;
-      draft.componentstates.heroitem[
-        HEROITEM_ID_PREFIX + HeroTestData.another().id
+      draft.componentstates.selbriitem[
+        HEROITEM_ID_PREFIX + SelbriTestData.another().id
       ].selected = false;
     },
   },

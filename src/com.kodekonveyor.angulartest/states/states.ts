@@ -9,33 +9,33 @@ export const states = {
   },
   componentstates: {
     _: (state: StoreState) => state.r.componentstates,
-    heroeditor: {
-      _: (state: StoreState) => state.r.componentstates.heroeditor,
+    selbrieditor: {
+      _: (state: StoreState) => state.r.componentstates.selbrieditor,
       createMode: (state: StoreState) =>
-        state.r.componentstates.heroeditor.createMode,
-      selectedHeroId: (state: StoreState) =>
-        state.r.componentstates.heroeditor.selectedHeroId,
-      selectedHeroName: (state: StoreState) =>
-        state.r.componentstates.heroeditor.selectedHeroName,
-      show: (state: StoreState) => state.r.componentstates.heroeditor.show,
+        state.r.componentstates.selbrieditor.createMode,
+      selectedSelbriId: (state: StoreState) =>
+        state.r.componentstates.selbrieditor.selectedSelbriId,
+      selectedSelbriName: (state: StoreState) =>
+        state.r.componentstates.selbrieditor.selectedSelbriName,
+      show: (state: StoreState) => state.r.componentstates.selbrieditor.show,
     },
-    herofilter: {
-      _: (state: StoreState) => state.r.componentstates.herofilter,
-      heroFilter: (state: StoreState) =>
-        state.r.componentstates.herofilter.heroFilter,
+    selbrifilter: {
+      _: (state: StoreState) => state.r.componentstates.selbrifilter,
+      selbriFilter: (state: StoreState) =>
+        state.r.componentstates.selbrifilter.selbriFilter,
     },
-    heroitem: {
+    selbriitem: {
       _: (n: IdType) => (state: StoreState) =>
-        state.r.componentstates.heroitem[n],
+        state.r.componentstates.selbriitem[n],
     },
-    herolist: {
-      _: (state: StoreState) => state.r.componentstates.herolist,
-      heroids: (state: StoreState) => state.r.componentstates.herolist.heroids,
+    selbrilist: {
+      _: (state: StoreState) => state.r.componentstates.selbrilist,
+      selbriids: (state: StoreState) => state.r.componentstates.selbrilist.selbriids,
     },
-    heroes: {
-      _: (state: StoreState) => state.r.componentstates.heroes,
+    selbris: {
+      _: (state: StoreState) => state.r.componentstates.selbris,
       authenticated: (state: StoreState) =>
-        state.r.componentstates.heroes.authenticated,
+        state.r.componentstates.selbris.authenticated,
     },
   },
 };

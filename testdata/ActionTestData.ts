@@ -1,19 +1,19 @@
-import { HeroesTestData } from './HeroesTestData';
-import { HeroTestData } from './HeroTestData';
+import { SelbrisTestData } from './SelbrisTestData';
 import { UrlTestData } from './UrlTestData';
 import { type User } from '@auth0/auth0-angular';
 import { MakeTestDataService } from 'cdd-ts';
+import { SelbriTestData } from './SelbriTestData';
 
 const user: User = { name: 'joe' };
 
 export const ActionTestDataDescriptor = {
-  createHeroAction: {
-    type: 'create hero',
-    payload: HeroTestData.default().name,
+  createSelbriAction: {
+    type: 'create selbri',
+    payload: SelbriTestData.default().representation,
   },
-  storeHero: {
-    type: 'store hero',
-    payload: HeroTestData.withId(),
+  storeSelbri: {
+    type: 'store selbri',
+    payload: SelbriTestData.withId(),
   },
   storeConfigAction: {
     type: 'store config',
@@ -21,15 +21,15 @@ export const ActionTestDataDescriptor = {
   },
   nullUserAction: { type: 'change user', payload: undefined },
   changeUserAction: { type: 'change user', payload: user },
-  storeHeroesEmpty: { type: 'store heroes', payload: [] },
-  storeHeroesAll: {
-    type: 'store heroes',
-    payload: HeroesTestData.default,
+  storeSelbrisEmpty: { type: 'store selbris', payload: [] },
+  storeSelbrisAll: {
+    type: 'store selbris',
+    payload: SelbrisTestData.default,
   },
-  setHeroFilter: { type: 'set hero filter', payload: 'e' },
-  setSelectedHero: {
-    type: 'set selected hero',
-    payload: HeroTestData.withId(),
+  setSelbriFilter: { type: 'set selbri filter', payload: 'e' },
+  setSelectedSelbri: {
+    type: 'set selected selbri',
+    payload: SelbriTestData.withId(),
   },
   storeConfig: {
     type: 'store config',

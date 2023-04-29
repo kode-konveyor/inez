@@ -14,6 +14,6 @@ export const showEditorTransitionContract = new Contract<
 
   .ifCalledWith(TransitionTestData.nonInitialState)
   .thenReturn(
-    'sets cratemode and show to true, and the id and name of the selected hero to empty',
-    TransitionTestData.nonInitialStateHeroEditorShown
+    'sets cratemode and show to true, and the id and name of the selected selbri to empty',
+    TransitionTestData.nonInitialStateSelbriEditorShown
   );

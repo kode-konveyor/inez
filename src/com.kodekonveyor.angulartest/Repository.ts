@@ -1,33 +1,33 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  clearSelectedHero,
-  modifyHero,
+  clearSelectedSelbri,
+  modifySelbri,
   storeConfig,
-  setHeroFilter,
-  setSelectedHero,
+  setSelbriFilter,
+  setSelectedSelbri,
   showEditor,
-  storeHero,
+  storeSelbri,
   setAuthenticated,
 } from './repositories/actions';
 import { SetAuthenticatedTransitionService } from './transitions/SetAuthenticatedTransitionService';
-import { ClearSelectedHeroTransitionService } from './transitions/ClearSelectedHeroTransitionService';
-import { ModifyHeroTransitionService } from './transitions/ModifyHeroTransitionService';
-import { ShowEditorTransitionService } from './transitions/ShowEditorTransitionService';
-import { SetHeroFilterTransitionService } from './transitions/SetHeroFilterTransitionService';
-import { SetSelectedHeroTransitionService } from './transitions/SetSelectedHeroTransitionService';
-import { StoreConfigTransitionService } from './transitions/StoreConfigTransitionService';
-import { StoreHeroTransitionService } from './transitions/StoreHeroTransitionService';
 import { bindTransition } from '../bindTransition';
 import { initialState } from './states/initialState';
+import { ClearSelectedSelbriTransitionService } from './transitions/ClearSelectedSelbriTransitionService';
+import { ModifySelbriTransitionService } from './transitions/ModifySelbriTransitionService';
+import { SetSelbriFilterTransitionService } from './transitions/SetSelbriFilterTransitionService';
+import { SetSelectedSelbriTransitionService } from './transitions/SetSelectedSelbriTransitionService';
+import { ShowEditorTransitionService } from './transitions/ShowEditorTransitionService';
+import { StoreConfigTransitionService } from './transitions/StoreConfigTransitionService';
+import { StoreSelbriTransitionService } from './transitions/StoreSelbriTransitionService';
 
 export const repository = createReducer(
   initialState,
-  on(modifyHero, bindTransition(ModifyHeroTransitionService)),
+  on(modifySelbri, bindTransition(ModifySelbriTransitionService)),
   on(showEditor, bindTransition(ShowEditorTransitionService)),
-  on(setHeroFilter, bindTransition(SetHeroFilterTransitionService)),
-  on(setSelectedHero, bindTransition(SetSelectedHeroTransitionService)),
+  on(setSelbriFilter, bindTransition(SetSelbriFilterTransitionService)),
+  on(setSelectedSelbri, bindTransition(SetSelectedSelbriTransitionService)),
   on(storeConfig, bindTransition(StoreConfigTransitionService)),
-  on(storeHero, bindTransition(StoreHeroTransitionService)),
+  on(storeSelbri, bindTransition(StoreSelbriTransitionService)),
   on(setAuthenticated, bindTransition(SetAuthenticatedTransitionService)),
-  on(clearSelectedHero, bindTransition(ClearSelectedHeroTransitionService))
+  on(clearSelectedSelbri, bindTransition(ClearSelectedSelbriTransitionService))
 );

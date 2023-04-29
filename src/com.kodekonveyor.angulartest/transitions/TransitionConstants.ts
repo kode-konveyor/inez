@@ -1,2 +1,2 @@
-export const HEROITEM_ID_PREFIX = "heroitem_";
+export const HEROITEM_ID_PREFIX = "selbriitem_";
 

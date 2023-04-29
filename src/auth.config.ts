@@ -5,9 +5,9 @@ import config from 'capacitor.config';
 const auth0Domain = 'kode-konveyor.eu.auth0.com';
 const auth0ClientId = 'OqUGGMvs9Ch8yitD3sf2lm6mN61MZqPw';
 const AUDIENCE = 'https://test.kodekonveyor.com/angulartest';
-const API_URL = 'https://test.kodekonveyor.com/angulartest/api/v1/hero';
+const API_URL = 'https://test.kodekonveyor.com/angulartest/api/v1/selbri';
 const SCOPE = 'read:current_user';
-const TEST_API_URL = 'http://localhost:9090/angulartest/api/v1/hero';
+const TEST_API_URL = 'http://localhost:9090/angulartest/api/v1/selbri';
 
 const IOS = 'ios';
 const ANDROID = 'android';
@@ -48,7 +48,7 @@ export const authConfig: AuthConfig = {
         },
       },
       {
-        uri: '/angulartest/api/v1/hero',
+        uri: '/angulartest/api/v1/selbri',
         tokenOptions: {
           authorizationParams: {
             audience: AUDIENCE,
