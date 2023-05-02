@@ -12,7 +12,7 @@ export const ActionTestDataDescriptor = {
     payload: SelbriTestData.default().representation,
   },
   storeSelbri: {
-    type: 'store selbri',
+    type: 'store Selbri',
     payload: SelbriTestData.withId(),
   },
   storeConfigAction: {
@@ -36,6 +36,9 @@ export const ActionTestDataDescriptor = {
     payload: { baseUrl: UrlTestData.baseUrl() },
   },
   setAuthenticated: { type: 'set Authenticated' },
+  clearSelectedSelbri: { type: 'clear selected selbri' },
+  storedCreateuser: { type: 'stored item', payload: 'create user' },
+  storedConfig: { type: 'stored item', payload: 'sTORED CONFIG' },
 };
 
 type Foo<T extends Record<string, unknown>> = {

@@ -12,12 +12,12 @@ export class SaveSelbriService {
     this.saveSelbri = this.saveSelbri.bind(this);
   }
 
-  saveSelbri(
-    createEvent: ActionArgument<typeof createSelbri>,
-    configEvent: ActionArgument<typeof storeConfig>
-  ): Observable<Selbri> {
-    const baseURL = configEvent.payload.baseUrl;
-    const selbri: Selbri = { id: '', representation: createEvent.payload };
+  saveSelbri(arg: {
+    createEvent: ActionArgument<typeof createSelbri>;
+    configEvent: ActionArgument<typeof storeConfig>;
+  }): Observable<Selbri> {
+    const baseURL = arg.configEvent.payload.baseUrl;
+    const selbri: Selbri = { id: '', representation: arg.createEvent.payload };
     return this.httpClient.post<Selbri>(
       baseURL.concat(UrlMapConstants.ADD_HERO_URL),
       selbri

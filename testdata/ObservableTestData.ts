@@ -21,4 +21,8 @@ export const ObservableTestData = {
     observableOf(storeSelbriForAll) as unknown as Observable<
       { payload: Selbri } & TypedAction<'store Selbri'>
     >,
+  config: () =>
+    observableOf({
+      baseUrl: 'BASE_URL',
+    }),
 };

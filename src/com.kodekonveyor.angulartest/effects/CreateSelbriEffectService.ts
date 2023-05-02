@@ -4,7 +4,6 @@ import { type Action } from '@ngrx/store';
 import { combineLatest, type Observable } from 'rxjs';
 import { exhaustMap, catchError } from 'rxjs/operators';
 import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
-import { wrapForMerge } from 'src/com.kodekonveyor.common/wrapForMerge';
 import {
   clearSelectedSelbri,
   createSelbri,
@@ -25,11 +24,11 @@ export class CreateSelbriEffectService {
   }
 
   createSelbriEffect(): Observable<Action> {
-    return combineLatest([
-      this.actions$.pipe(ofType(createSelbri.type)),
-      this.actions$.pipe(ofType(storeConfig.type)),
-    ]).pipe(
-      exhaustMap(wrapForMerge(this.saveSelbriService.saveSelbri)),
+    return combineLatest({
+      createEvent: this.actions$.pipe(ofType(createSelbri.type)),
+      configEvent: this.actions$.pipe(ofType(storeConfig.type)),
+    }).pipe(
+      exhaustMap(this.saveSelbriService.saveSelbri),
       mapToActions(
         (selbri) => storeSelbri({ payload: selbri }),
         clearSelectedSelbri

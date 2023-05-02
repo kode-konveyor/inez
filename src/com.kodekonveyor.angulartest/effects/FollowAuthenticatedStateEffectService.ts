@@ -18,8 +18,9 @@ export class FollowAuthenticatedStateEffectService {
   }
 
   followAuthenticatedStateEffect(): Observable<Action> {
+    const dispatcher = this.synchronizer.dispatcher(changeUser);
     return this.authService.user$.pipe(
-      exhaustMap(this.synchronizer.dispatcher(changeUser)),
+      exhaustMap(dispatcher),
       catchError(this.genericErrorHandlerService.genericErrorHandler)
     );
   }

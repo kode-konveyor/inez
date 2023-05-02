@@ -11,4 +11,15 @@ export const ActionSequenceTestData = {
     ActionTestData.storeSelbrisAll(),
     ActionTestData.setAuthenticated(),
   ],
+  createSelbriAndStoreConfig: () => [
+    ActionTestData.createSelbriAction(),
+    ActionTestData.storeConfig(),
+  ],
+  storeSelbriAndCearSelectedSelbri: () => [
+    ActionTestData.storeSelbri(),
+    ActionTestData.clearSelectedSelbri(),
+  ],
+  authenticateduser: () => [{ name: 'joe' } as unknown as Action],
+  authenticatedEvent: () => [ActionTestData.storedCreateuser()],
+  storedConfig: () => [ActionTestData.storedConfig()],
 } satisfies Record<string, () => Array<Action>>;
