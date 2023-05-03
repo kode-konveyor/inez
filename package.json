@@ -4,9 +4,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "all": "npm run qa && npm run build && cordova build android",
-    "qa": "npm run lint && npm run test && npm run mutate",
+    "all": "npm run qa && cordova build android",
+    "qa": "npm run lint && npm run test && npm run end2endtest && npm run mutate",
     "ng": "ng",
+    "end2endtest": "npm run build && npm run startMongo && (npm run startserver & npm run e2e) && npm run stopserver && npm run stopMongo",
+    "e2e": "runContracts -j dist/out-tsc -c e2e/userJourney.ts",
     "lint": "eslint .",
     "start": "ng serve --proxy-config=proxy.conf.json",
     "build": "ng build",
@@ -18,7 +20,6 @@
     "stopserver": "kill $(cat tmp/server.pid)",
     "startMongo": "docker run -p 27017:27017 -d mongo",
     "stopMongo": "docker kill $(docker ps |grep mongo|awk '{print $1}')"
-
   },
   "keywords": [
     "ecosystem:cordova"
@@ -70,10 +71,12 @@
     "@angular/compiler-cli": "latest",
     "@capacitor/cli": "latest",
     "@stryker-mutator/core": "latest",
+    "@types/selenium-webdriver": "latest",
     "@types/sinon": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "android": "latest",
     "cdd-ts": "latest",
+    "chromedriver": "latest",
     "colors": "latest",
     "cordova-android": "latest",
     "eslint": "latest",
@@ -82,6 +85,8 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-n": "latest",
     "eslint-plugin-promise": "latest",
+    "geckodriver": "latest",
+    "selenium-webdriver": "latest",
     "typescript": "latest",
     "zenta2-server": "latest"
   }
