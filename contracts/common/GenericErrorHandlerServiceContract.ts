@@ -7,6 +7,7 @@ import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable'
 export const GenericErrorHandlerServiceContractParties = [
   bound(GenericErrorHandlerService),
 ];
+
 const output = `\\[
  \\[
   {

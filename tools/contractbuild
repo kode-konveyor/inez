@@ -1,0 +1,15 @@
+#!/bin/bash
+
+externals=$(cat package.json |
+python3 -c "import sys, json;d=json.load(sys.stdin);print(' '.join(list(map(lambda x: '--external:'+x,list(d['devDependencies'].keys())+list(d['dependencies'].keys())))))")
+
+for i in contracts/*/*
+do
+    echo $i
+    if [ "x$1" = "xwatch" ]
+    then
+        esbuild $i --watch=forever --format=esm --bundle --platform=node $externals --outfile=dist/$(dirname $i)/$(basename $i .ts ).js --sourcemap=inline&
+    else
+        esbuild $i --format=esm --bundle --platform=node $externals --outfile=dist/$(dirname $i)/$(basename $i .ts ).js --sourcemap=inline
+    fi
+done

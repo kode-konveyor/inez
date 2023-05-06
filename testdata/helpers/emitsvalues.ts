@@ -4,9 +4,11 @@ import { type Observable, firstValueFrom, toArray } from 'rxjs';
 export function emitsvalues(value: Array<unknown>) {
   return async (observable: Observable<unknown>): Promise<unknown> => {
     const returned = await firstValueFrom(observable.pipe(toArray()));
-    if (serialize(returned) === serialize(value)) return undefined;
+    const returnedRepresentations = serialize(returned);
+    const valueRepresentation = serialize(value);
+    if (returnedRepresentations === valueRepresentation) return undefined;
     throw new Error(
-      new DiffService().diff(serialize(value), serialize(returned))
+      new DiffService().diff(valueRepresentation, returnedRepresentations)
     );
   };
 }

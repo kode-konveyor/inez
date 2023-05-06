@@ -44,3 +44,13 @@ export const storedItem = createAction(
   'stored item',
   props<{ action: unknown }>()
 );
+
+export const commandEntered = createAction(
+  'command entered',
+  props<{ payload: string }>()
+);
+
+export const messageForUser = createAction(
+  'message for user',
+  props<{ kind: '' | 'error'; msg: string; subject: unknown }>()
+);

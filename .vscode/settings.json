@@ -1,8 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "javaPMD.rulesets": [
-    "pmd.xml"
-  ],
+  "javaPMD.rulesets": ["pmd.xml"],
   "java.configuration.updateBuildConfiguration": "automatic",
   "[Makefile]": {
     "editor.insertSpaces": false,
@@ -15,5 +13,7 @@
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
   "files.autoSave": "onFocusChange",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "javascript.preferences.importModuleSpecifierEnding": "minimal",
+  "typescript.preferences.importModuleSpecifierEnding": "minimal"
 }

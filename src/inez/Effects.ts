@@ -6,6 +6,7 @@ import { FollowAuthenticatedStateEffectService } from './effects/FollowAuthentic
 import { LoggingEffectService } from './effects/LoggingEffectService';
 import { ObtainConfigEffectService } from './effects/ObtainConfigEffectService';
 import { StoreSelbrisEffectService } from './effects/StoreSelbrisEffectService';
+import { CommandEnteredEffectService } from './effects/CommandEnteredEffectService';
 
 @Injectable()
 export class Effects {
@@ -15,7 +16,8 @@ export class Effects {
     private readonly changeUserEffect: ChangeUserEffectService,
     private readonly createSelbriEffect: CreateSelbriEffectService,
     private readonly storeSelbriseffect: StoreSelbrisEffectService,
-    private readonly loggingEffect: LoggingEffectService
+    private readonly loggingEffect: LoggingEffectService,
+    private readonly commandEnteredEffect: CommandEnteredEffectService
   ) {}
 
   followAuthenticatedState$ = createEffect(
@@ -31,15 +33,28 @@ export class Effects {
     dispatch: true,
   });
 
-  createSelbriEffect$ = createEffect(this.createSelbriEffect.createSelbriEffect, {
-    dispatch: true,
-  });
+  createSelbriEffect$ = createEffect(
+    this.createSelbriEffect.createSelbriEffect,
+    {
+      dispatch: true,
+    }
+  );
 
-  storeSelbriseffect$ = createEffect(this.storeSelbriseffect.storeSelbrisEffect, {
-    dispatch: true,
-  });
+  storeSelbriseffect$ = createEffect(
+    this.storeSelbriseffect.storeSelbrisEffect,
+    {
+      dispatch: true,
+    }
+  );
 
   loggingEffect$ = createEffect(this.loggingEffect.loggingEffect, {
     dispatch: true,
   });
+
+  commandEnteredEffect$ = createEffect(
+    this.commandEnteredEffect.commandEnteredEffect,
+    {
+      dispatch: true,
+    }
+  );
 }

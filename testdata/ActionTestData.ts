@@ -39,6 +39,27 @@ export const ActionTestDataDescriptor = {
   clearSelectedSelbri: { type: 'clear selected selbri' },
   storedCreateuser: { type: 'stored item', payload: 'create user' },
   storedConfig: { type: 'stored item', payload: 'sTORED CONFIG' },
+  newCommand: { type: 'command entered', payload: 'foo' },
+  errorMessage: {
+    type: 'message for user',
+    kind: 'error',
+    msg: 'syntax error',
+    subject: 'foo',
+  },
+  createCommand: {
+    type: 'command entered',
+    payload: 'create ' + SelbriTestData.fromCommand().representation,
+  },
+  createdMessage: {
+    type: 'message for user',
+    kind: '',
+    msg: 'created selbri',
+    subject: SelbriTestData.fromCommand().representation,
+  },
+  createSelbriFromCommand: {
+    type: 'create selbri',
+    payload: SelbriTestData.fromCommand().representation,
+  },
 };
 
 type Foo<T extends Record<string, unknown>> = {

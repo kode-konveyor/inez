@@ -17,6 +17,7 @@ type Selectors = Record<string, Selector<StoreState, any>>;
 @Injectable()
 export class Synchronizer {
   constructor(private readonly store: Store<StoreState>) {}
+
   getStoreView(operators: Selectors): Observable<any> {
     const selector = createSelector(operators);
     const storeView = this.store.select(selector);

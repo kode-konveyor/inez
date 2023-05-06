@@ -36,6 +36,11 @@ export const TransitionTestDataDescriptor = {
       selbris: {
         authenticated: true,
       },
+      commandline: {
+        line: 'foo',
+        messageIDs: ['1'],
+      },
+      userMessages: [{ id: '1', kind: '', message: 'foo message' }],
     },
   },
 
@@ -62,7 +67,9 @@ export const TransitionTestDataDescriptor = {
         selbri: SelbriTestData.withId(),
         selected: false,
       };
-      draft.componentstates.selbrilist.selbriids.push(SelbriTestData.withId().id);
+      draft.componentstates.selbrilist.selbriids.push(
+        SelbriTestData.withId().id
+      );
     },
   },
 
@@ -75,7 +82,9 @@ export const TransitionTestDataDescriptor = {
         selbri: SelbriTestData.withId(),
         selected: true,
       };
-      draft.componentstates.selbrilist.selbriids.push(SelbriTestData.withId().id);
+      draft.componentstates.selbrilist.selbriids.push(
+        SelbriTestData.withId().id
+      );
     },
   },
   nonInitialStateSelbriEditorReset: {
@@ -146,6 +155,13 @@ export const TransitionTestDataDescriptor = {
       draft.componentstates.selbriitem[
         HEROITEM_ID_PREFIX + SelbriTestData.another().id
       ].selected = false;
+    },
+  },
+
+  initialStateWithCommand: {
+    __from: 'initialState',
+    __transform: (draft: AppState) => {
+      draft.componentstates.commandline.line = 'have command';
     },
   },
 } satisfies TestDataDescriptor<AppState>;

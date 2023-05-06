@@ -21,5 +21,7 @@ export const initialState: AppState = {
     selbris: {
       authenticated: false,
     },
+    commandline: { line: '', messageIDs: [] },
+    userMessages: [],
   },
 };

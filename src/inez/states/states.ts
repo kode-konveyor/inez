@@ -38,5 +38,9 @@ export const states = {
       authenticated: (state: StoreState) =>
         state.r.componentstates.selbris.authenticated,
     },
+    commandline: {
+      _: (state: StoreState) => state.r.componentstates.commandline,
+      line: (state: StoreState) => state.r.componentstates.commandline.line,
+    },
   },
 };

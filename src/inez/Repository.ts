@@ -8,6 +8,7 @@ import {
   showEditor,
   storeSelbri,
   setAuthenticated,
+  commandEntered,
 } from './repositories/actions';
 import { SetAuthenticatedTransitionService } from './transitions/SetAuthenticatedTransitionService';
 import { bindTransition } from '../bindTransition';
@@ -19,6 +20,7 @@ import { SetSelectedSelbriTransitionService } from './transitions/SetSelectedSel
 import { ShowEditorTransitionService } from './transitions/ShowEditorTransitionService';
 import { StoreConfigTransitionService } from './transitions/StoreConfigTransitionService';
 import { StoreSelbriTransitionService } from './transitions/StoreSelbriTransitionService';
+import { CommandEnteredTransitionService } from './transitions/CommandEnteredTransitionService';
 
 export const repository = createReducer(
   initialState,
@@ -29,5 +31,6 @@ export const repository = createReducer(
   on(storeConfig, bindTransition(StoreConfigTransitionService)),
   on(storeSelbri, bindTransition(StoreSelbriTransitionService)),
   on(setAuthenticated, bindTransition(SetAuthenticatedTransitionService)),
-  on(clearSelectedSelbri, bindTransition(ClearSelectedSelbriTransitionService))
+  on(clearSelectedSelbri, bindTransition(ClearSelectedSelbriTransitionService)),
+  on(commandEntered, bindTransition(CommandEnteredTransitionService))
 );

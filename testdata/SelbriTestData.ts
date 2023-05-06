@@ -8,6 +8,7 @@ const SelbriTestDataDescriptor = {
   withId: { __from: 'default', id: '1' },
   modified: { __from: 'withId', representation: 'Test Selbri modified' },
   another: { id: '2', representation: 'Another Test Selbri' },
+  fromCommand: { id: '3', representation: 'created From Command' },
 } satisfies TestDataDescriptor<Selbri>;
 
 export const SelbriTestData = new MakeTestDataService<

@@ -29,6 +29,9 @@ import { SelbriEditorComponent } from './UI/selbrieditor/selbrieditor.component'
 import { SelbriFilterComponent } from './UI/selbrifilter/selbrifilter.component';
 import { SelbriitemComponent } from './UI/selbriitem/selbriitem.component';
 import { SelbriListComponent } from './UI/selbrilist/selbrilist.component';
+import { CommandlineComponent } from './UI/commandline/commandline.component';
+import { UserMessageComponent } from './UI/usermessage/usermessage.component';
+import { CommandEnteredEffectService } from './effects/CommandEnteredEffectService';
 
 const STORE_FEATURE_NAME = 'r';
 @NgModule({
@@ -41,6 +44,8 @@ const STORE_FEATURE_NAME = 'r';
     PageComponent,
     LoginButtonComponent,
     LogoutButtonComponent,
+    CommandlineComponent,
+    UserMessageComponent,
   ],
   imports: [
     EffectsModule.forFeature([Effects]),
@@ -59,6 +64,7 @@ const STORE_FEATURE_NAME = 'r';
     CreateSelbriEffectService,
     StoreSelbrisEffectService,
     LoggingEffectService,
+    CommandEnteredEffectService,
     ObtainSelbrisService,
     SaveSelbriService,
     Synchronizer,

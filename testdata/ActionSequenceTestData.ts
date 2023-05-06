@@ -22,4 +22,11 @@ export const ActionSequenceTestData = {
   authenticateduser: () => [{ name: 'joe' } as unknown as Action],
   authenticatedEvent: () => [ActionTestData.storedCreateuser()],
   storedConfig: () => [ActionTestData.storedConfig()],
+  newCommand: () => [ActionTestData.newCommand()],
+  errorMessage: () => [ActionTestData.errorMessage()],
+  createCommand: () => [ActionTestData.createCommand()],
+  createdByCommand: () => [
+    ActionTestData.createdMessage(),
+    ActionTestData.createSelbriFromCommand(),
+  ],
 } satisfies Record<string, () => Array<Action>>;
