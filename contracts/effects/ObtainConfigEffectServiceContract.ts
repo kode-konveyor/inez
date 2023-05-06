@@ -1,8 +1,8 @@
 import { type Action } from '@ngrx/store';
 import { Contract } from 'cdd-ts';
 import { of } from 'rxjs';
-import { ObtainConfigEffectService } from 'src/com.kodekonveyor.angulartest/effects/ObtainConfigEffectService';
-import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
+import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';
+import { ObtainConfigEffectService } from 'src/inez/effects/ObtainConfigEffectService';
 import { ActionSequenceTestData } from 'testdata/ActionSequenceTestData';
 import { ExternalServices } from 'testdata/ExternalServices';
 import { emitsvalues } from 'testdata/helpers/emitsvalues';

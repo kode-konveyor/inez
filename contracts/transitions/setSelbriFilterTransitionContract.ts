@@ -1,6 +1,6 @@
 import { Contract } from 'cdd-ts';
 import { bindTransition } from 'src/bindTransition';
-import { SetSelbriFilterTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/SetSelbriFilterTransitionService';
+import { SetSelbriFilterTransitionService } from 'src/inez/transitions/SetSelbriFilterTransitionService';
 import { ActionTestData } from 'testdata/ActionTestData';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 

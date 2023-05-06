@@ -1,9 +1,9 @@
 {
-  "/angulartest/selbris": {
+  "/inez/selbris": {
     "target": "http://localhost:9090/",
     "secure": false
   },
-  "/angulartest/selbri/add": {
+  "/inez/selbri/add": {
     "target": "http://localhost:9090/",
     "secure": false
   }

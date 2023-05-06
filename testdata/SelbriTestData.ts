@@ -1,6 +1,6 @@
 import { MakeTestDataService } from 'cdd-ts';
 import { type TestDataDescriptor } from 'cdd-ts/dist/src/types/TestDataDescriptor';
-import { type Selbri } from 'src/com.kodekonveyor.angulartest/types/Selbri';
+import { type Selbri } from 'src/inez/types/Selbri';
 
 const SelbriTestDataDescriptor = {
   default: { representation: 'Test Selbri' },

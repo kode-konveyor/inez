@@ -5,9 +5,9 @@ import Sinon from 'sinon';
 import {
   changeUser,
   storeConfig,
-} from 'src/com.kodekonveyor.angulartest/repositories/actions';
-import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
-import { type Synchronizer } from 'src/com.kodekonveyor.common/Synchronizer';
+} from 'src/inez/repositories/actions';
+import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';
+import { type Synchronizer } from 'src/common/Synchronizer';
 import { ActionTestData } from './ActionTestData';
 import { ObservableTestData } from './ObservableTestData';
 import { SelbriTestData } from './SelbriTestData';

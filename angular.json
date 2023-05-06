@@ -6,7 +6,7 @@
     "analytics": false
   },
   "projects": {
-    "angulartest": {
+    "inez": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angulartest:build:production"
+              "browserTarget": "inez:build:production"
             },
             "development": {
-              "browserTarget": "angulartest:build:development",
+              "browserTarget": "inez:build:development",
               "headers": {
                 "Access-Control-Allow-Headers": "Content-Type",
                 "Access-Control-Allow-Origin": "*"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angulartest:build"
+            "browserTarget": "inez:build"
           }
         },
       }

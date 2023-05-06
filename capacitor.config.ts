@@ -1,8 +1,8 @@
 import { type CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.kodekonveyor.angulartest',
-  appName: 'angulartest',
+  appId: 'com.kodekonveyor.inez',
+  appName: 'inez',
   webDir: 'www',
   plugins: {},
 };

@@ -1,5 +1,5 @@
 import { Contract, serialize } from 'cdd-ts';
-import { SaveSelbriService } from 'src/com.kodekonveyor.angulartest/services/SaveSelbriService';
+import { SaveSelbriService } from 'src/inez/services/SaveSelbriService.js';
 import { ExternalServices } from 'testdata/ExternalServices';
 import { ObservableTestData } from 'testdata/ObservableTestData';
 import { SaveSelbriParameterTestData } from '../../testdata/SaveSelbriParameterTestData.js';

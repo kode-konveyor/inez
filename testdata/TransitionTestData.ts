@@ -1,12 +1,12 @@
-import { type AppState } from 'src/com.kodekonveyor.angulartest/types/AppState';
+import { type AppState } from 'src/inez/types/AppState';
 
 import { MakeTestDataService } from 'cdd-ts';
-import { HEROITEM_ID_PREFIX } from 'src/com.kodekonveyor.angulartest/transitions/TransitionConstants';
+import { HEROITEM_ID_PREFIX } from 'src/inez/transitions/TransitionConstants';
 import { type TestDataDescriptor } from 'cdd-ts/dist/src/types/TestDataDescriptor';
 import { SelbriTestData } from './SelbriTestData';
 import { UrlTestData } from './UrlTestData';
 import { SelbriEditorTestdata } from './SelbriEditorTestdata';
-import { initialState } from 'src/com.kodekonveyor.angulartest/states/initialState';
+import { initialState } from 'src/inez/states/initialState';
 
 export const TransitionTestDataDescriptor = {
   initialState,

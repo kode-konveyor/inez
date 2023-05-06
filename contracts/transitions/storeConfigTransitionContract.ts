@@ -1,6 +1,6 @@
 import { Contract } from 'cdd-ts';
 import { bindTransition } from 'src/bindTransition';
-import { StoreConfigTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/StoreConfigTransitionService';
+import { StoreConfigTransitionService } from 'src/inez/transitions/StoreConfigTransitionService';
 import { ActionTestData } from 'testdata/ActionTestData';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 

@@ -1,7 +1,7 @@
 import { type TypedAction } from '@ngrx/store/src/models';
 import { type Observable, of } from 'rxjs';
-import { storeSelbri } from 'src/com.kodekonveyor.angulartest/repositories/actions';
-import { type Selbri } from 'src/com.kodekonveyor.angulartest/types/Selbri';
+import { storeSelbri } from 'src/inez/repositories/actions';
+import { type Selbri } from 'src/inez/types/Selbri';
 import { observableOf } from './helpers/observableOf';
 import { SelbrisTestData } from './SelbrisTestData';
 import { SelbriTestData } from './SelbriTestData';

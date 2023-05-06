@@ -1,6 +1,6 @@
 import { ConsoleLogChecker, Contract, serialize } from 'cdd-ts';
 import { of } from 'rxjs';
-import { LoggingEffectService } from 'src/com.kodekonveyor.angulartest/effects/LoggingEffectService';
+import { LoggingEffectService } from 'src/inez/effects/LoggingEffectService';
 import { ActionSequenceTestData } from 'testdata/ActionSequenceTestData';
 import { ActionFeeder } from 'testdata/helpers/ActionFeeder';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';

@@ -1,9 +1,9 @@
 import { Contract } from 'cdd-ts';
 import { ObtainSelbrisServiceContract } from 'contracts/services/ObtainSelbrisServiceContract';
 import { of } from 'rxjs';
-import { ChangeUserEffectService } from 'src/com.kodekonveyor.angulartest/effects/ChangeUserEffectService';
-import { type ObtainSelbrisService } from 'src/com.kodekonveyor.angulartest/services/ObtainSelbrisService';
-import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
+import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';
+import { ChangeUserEffectService } from 'src/inez/effects/ChangeUserEffectService';
+import { type ObtainSelbrisService } from 'src/inez/services/ObtainSelbrisService';
 import { emitsvalues } from 'testdata/helpers/emitsvalues';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { ActionSequenceTestData } from '../../testdata/ActionSequenceTestData';
@@ -40,5 +40,7 @@ export const ChangeUserEffectContract = new Contract()
   .ifCalledWith()
   .thenReturn('a storeSelbris and  setAuthenticated are emitted', {
     default: ActionSequenceTestData.storeSelbrisAndSetAuthenticated,
-    check: emitsvalues(ActionSequenceTestData.storeSelbrisAndSetAuthenticated()),
+    check: emitsvalues(
+      ActionSequenceTestData.storeSelbrisAndSetAuthenticated()
+    ),
   });

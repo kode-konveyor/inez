@@ -1,6 +1,6 @@
 import { Contract } from 'cdd-ts';
 import { bindTransition } from 'src/bindTransition';
-import { SetAuthenticatedTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/SetAuthenticatedTransitionService';
+import { SetAuthenticatedTransitionService } from 'src/inez/transitions/SetAuthenticatedTransitionService';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
 export const setAuthenticatedTransitionContractParties = [

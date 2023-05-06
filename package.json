@@ -1,9 +1,10 @@
 {
-  "name": "angulartest",
-  "version": "1.0-19-gb4930bb",
+  "name": "@kode-konveyor/inez",
+  "version": "1.0.20",
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "preinstall": "git config core.hooksPath .githooks",
     "all": "npm run qa && cordova build android",
     "qa": "npm run lint && npm run test && npm run end2endtest && npm run mutate",
     "ng": "ng",
@@ -19,12 +20,14 @@
     "startserver": "mkdir -p tmp&& node --unhandled-rejections=strict node_modules/zenta2-server/dist/app.js",
     "stopserver": "kill $(cat tmp/server.pid)",
     "startMongo": "docker run -p 27017:27017 -d mongo",
-    "stopMongo": "docker kill $(docker ps |grep mongo|awk '{print $1}')"
+    "stopMongo": "docker kill $(docker ps |grep mongo|awk '{print $1}')",
+    "publish:patch": "npm run qa && npm version patch &&./tools/updateversion&& git push origin develop --tags && npm publish",
+    "publish:minor": "npm run qa && npm version minor &&./tools/updateversion&& git push origin develop --tags && npm publish",
+    "publish:major": "npm run qa && npm version major &&./tools/updateversion&& git push origin develop --tags && npm publish"
   },
   "keywords": [
     "ecosystem:cordova"
   ],
-  "private": true,
   "dependencies": {
     "@angular/animations": "latest",
     "@angular/common": "latest",
@@ -60,7 +63,7 @@
   "serve": {
     "builder": "@angular-devkit/build-angular:dev-server",
     "options": {
-      "browserTarget": "angulartest:build",
+      "browserTarget": "inez:build",
       "proxyConfig": "/proxy.conf.json"
     }
   },

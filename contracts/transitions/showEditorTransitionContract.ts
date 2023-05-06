@@ -1,6 +1,6 @@
 import { Contract } from 'cdd-ts';
 import { bindTransition } from 'src/bindTransition';
-import { ShowEditorTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/ShowEditorTransitionService';
+import { ShowEditorTransitionService } from 'src/inez/transitions/ShowEditorTransitionService';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
 export const showEditorTransitionContractParties = [

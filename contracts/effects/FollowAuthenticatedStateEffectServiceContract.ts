@@ -1,7 +1,6 @@
 import { type AuthService } from '@auth0/auth0-angular';
 import { Contract } from 'cdd-ts';
-import { FollowAuthenticatedStateEffectService } from 'src/com.kodekonveyor.angulartest/effects/FollowAuthenticatedStateEffectService';
-import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
+import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';
 import { ActionFeeder } from 'testdata/helpers/ActionFeeder';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { of } from 'rxjs';
@@ -9,6 +8,7 @@ import { ActionSequenceTestData } from 'testdata/ActionSequenceTestData';
 import { type Action } from '@ngrx/store';
 import { emitsvalues } from 'testdata/helpers/emitsvalues';
 import { ExternalServices } from 'testdata/ExternalServices';
+import { FollowAuthenticatedStateEffectService } from 'src/inez/effects/FollowAuthenticatedStateEffectService';
 
 const authService = { user$: ActionFeeder.actions } as unknown as AuthService;
 

@@ -1,4 +1,3 @@
-import { ObtainSelbrisService } from '../../src/com.kodekonveyor.angulartest/services/ObtainSelbrisService';
 import { Contract, serialize } from 'cdd-ts';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { ObservableTestData } from 'testdata/ObservableTestData';
@@ -6,6 +5,7 @@ import { SelbrisTestData } from 'testdata/SelbrisTestData';
 import { emitsvalues } from 'testdata/helpers/emitsvalues';
 import { ExternalServices } from 'testdata/ExternalServices';
 import { ObtainSelbrisParameterTestData } from 'testdata/ObtainSelbrisParameterTestData';
+import { ObtainSelbrisService } from 'src/inez/services/ObtainSelbrisService';
 
 export const ObtainSelbrisServiceContractParties = [
   new ObtainSelbrisService(ExternalServices.httpClient).obtainSelbris,

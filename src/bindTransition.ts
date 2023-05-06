@@ -1,5 +1,5 @@
 import { type Action } from '@ngrx/store';
-import { type AppState } from './com.kodekonveyor.angulartest/types/AppState';
+import { type AppState } from './inez/types/AppState';
 
 export function bindTransition(
   ServiceClass: new (...args: Array<any>) => any,

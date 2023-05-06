@@ -1,7 +1,7 @@
 import { Contract } from 'cdd-ts';
 import { StoreSelbrisServiceContract } from 'contracts/services/StoreSelbrisServiceContract';
 import { of } from 'rxjs';
-import { StoreSelbrisEffectService } from 'src/com.kodekonveyor.angulartest/effects/StoreSelbrisEffectService';
+import { StoreSelbrisEffectService } from 'src/inez/effects/StoreSelbrisEffectService';
 import { ExternalServices } from 'testdata/ExternalServices';
 import { ActionFeeder } from 'testdata/helpers/ActionFeeder';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';

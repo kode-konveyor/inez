@@ -1,6 +1,6 @@
 import { bound, ConsoleLogChecker, Contract } from 'cdd-ts';
 import { of } from 'rxjs';
-import { GenericErrorHandlerService } from 'src/com.kodekonveyor.common/GenericErrorHandlerService';
+import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';
 import { ActionFeeder } from 'testdata/helpers/ActionFeeder';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 

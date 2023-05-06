@@ -1,5 +1,4 @@
 import { Contract } from 'cdd-ts';
-import { StoreSelbrisService } from 'src/com.kodekonveyor.angulartest/services/StoreSelbrisService';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { ActionTestData } from 'testdata/ActionTestData';
 import {
@@ -7,6 +6,7 @@ import {
   storeSelbriForAll,
 } from 'testdata/ObservableTestData';
 import { emitsvalues } from 'testdata/helpers/emitsvalues';
+import { StoreSelbrisService } from 'src/inez/services/StoreSelbrisService';
 
 export const StoreSelbrisServiceContractParties = [
   new StoreSelbrisService().storeSelbris,

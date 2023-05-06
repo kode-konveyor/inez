@@ -1,6 +1,6 @@
 import { Contract } from 'cdd-ts';
 import { bindTransition } from 'src/bindTransition';
-import { ClearSelectedSelbriTransitionService } from 'src/com.kodekonveyor.angulartest/transitions/ClearSelectedSelbriTransitionService';
+import { ClearSelectedSelbriTransitionService } from 'src/inez/transitions/ClearSelectedSelbriTransitionService';
 import { TransitionTestData } from 'testdata/TransitionTestData';
 
 export const clearSelectedSelbriTransitionContractParties = [
