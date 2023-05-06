@@ -1,6 +1,6 @@
 {
   "name": "@kode-konveyor/inez",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -21,9 +21,10 @@
     "stopserver": "kill $(cat tmp/server.pid)",
     "startMongo": "docker run -p 27017:27017 -d mongo",
     "stopMongo": "docker kill $(docker ps |grep mongo|awk '{print $1}')",
-    "publish:patch": "npm run qa && npm version patch &&./tools/updateversion&& git push origin develop --tags && npm publish",
-    "publish:minor": "npm run qa && npm version minor &&./tools/updateversion&& git push origin develop --tags && npm publish",
-    "publish:major": "npm run qa && npm version major &&./tools/updateversion&& git push origin develop --tags && npm publish"
+    "version": "./tools/updateversion",
+    "publish:patch": "npm run qa && npm version patch && git push origin develop --tags && npm publish --access=public",
+    "publish:minor": "npm run qa && npm version minor && git push origin develop --tags && npm publish --access=public",
+    "publish:major": "npm run qa && npm version major && git push origin develop --tags && npm publish --access=public"
   },
   "keywords": [
     "ecosystem:cordova"

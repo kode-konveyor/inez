@@ -1,6 +1,5 @@
 #!/bin/bash
-set -e
-VERSION=$(grep '"version":' package.json |sed 's/^.*://;s/[ ",]//g')
-echo $VERSION >VERSION
-sed -i 's~\(<widget.* version="\)[^"]*"\(.*\)$~\1'$(cat VERSION)'"\2~' config.xml
+set -xe
+VERSION=$(grep '"version":' package.json |head -1|sed 's/^.*://;s/[ ",]//g')
+sed -i 's~\(<widget.* version="\)[^"]*"\(.*\)$~\1'$VERSION'"\2~' config.xml
 sed -i 's/versionName ".*"/versionName "'$VERSION'"/' etc/build.gradle
