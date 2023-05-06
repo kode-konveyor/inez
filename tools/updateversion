@@ -3,3 +3,4 @@ set -xe
 VERSION=$(grep '"version":' package.json |head -1|sed 's/^.*://;s/[ ",]//g')
 sed -i 's~\(<widget.* version="\)[^"]*"\(.*\)$~\1'$VERSION'"\2~' config.xml
 sed -i 's/versionName ".*"/versionName "'$VERSION'"/' etc/build.gradle
+git add config.xml etc/build.gradle
