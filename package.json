@@ -1,6 +1,6 @@
 {
   "name": "@kode-konveyor/inez",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "main": "index.js",
   "type": "module",
   "scripts": {
