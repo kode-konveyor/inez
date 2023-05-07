@@ -19,7 +19,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "npm run contractbuild && runContracts",
     "mutate": "stryker run&& ./tools/checktsmutate",
-    "startserver": "mkdir -p tmp&& node --unhandled-rejections=strict node_modules/zenta2-server/dist/app.js",
+    "startserver": "mkdir -p tmp&& node --unhandled-rejections=strict node_modules/@kodekonveyor/inez-server/dist/app.js",
     "stopserver": "kill $(cat tmp/server.pid)",
     "startMongo": "docker run -p 27017:27017 -d mongo",
     "stopMongo": "docker kill $(docker ps |grep mongo|awk '{print $1}')",
@@ -95,6 +95,6 @@
     "geckodriver": "latest",
     "selenium-webdriver": "latest",
     "typescript": "latest",
-    "zenta2-server": "latest"
+    "@kodekonveyor/inez-server": "latest"
   }
 }
