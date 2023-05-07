@@ -2,12 +2,12 @@
 import { type User } from '@auth0/auth0-angular';
 import { createAction, props } from '@ngrx/store';
 import { type Config } from '../types/Config';
-import { type Selbri } from '../types/Selbri';
+import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 import { type Selbris } from '../types/Selbris';
 
 export const modifySelbri = createAction(
   'modify Selbri',
-  props<{ payload: Selbri }>()
+  props<{ payload: SelbriDTO }>()
 );
 export const showEditor = createAction('show editor');
 export const setSelbriFilter = createAction(
@@ -16,7 +16,7 @@ export const setSelbriFilter = createAction(
 );
 export const setSelectedSelbri = createAction(
   'set selected selbri',
-  props<{ payload: Selbri }>()
+  props<{ payload: SelbriDTO }>()
 );
 export const changeUser = createAction(
   'change user',
@@ -36,7 +36,7 @@ export const createSelbri = createAction(
 );
 export const storeSelbri = createAction(
   'store Selbri',
-  props<{ payload: Selbri }>()
+  props<{ payload: SelbriDTO }>()
 );
 export const setAuthenticated = createAction('set Authenticated');
 export const clearSelectedSelbri = createAction('clear selected selbri');

@@ -1,7 +1,7 @@
 import { type TypedAction } from '@ngrx/store/src/models';
 import { type Observable, of } from 'rxjs';
 import { storeSelbri } from 'src/inez/repositories/actions';
-import { type Selbri } from 'src/inez/types/Selbri';
+import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 import { observableOf } from './helpers/observableOf';
 import { SelbrisTestData } from './SelbrisTestData';
 import { SelbriTestData } from './SelbriTestData';
@@ -19,7 +19,7 @@ export const ObservableTestData = {
   idedSelbri: () => observableOf(SelbriTestData.withId()),
   storeSelbriForAll: () =>
     observableOf(storeSelbriForAll) as unknown as Observable<
-      { payload: Selbri } & TypedAction<'store Selbri'>
+      { payload: SelbriDTO } & TypedAction<'store Selbri'>
     >,
   config: () =>
     observableOf({

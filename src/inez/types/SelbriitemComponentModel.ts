@@ -1,6 +1,6 @@
-import { type Selbri } from './Selbri';
+import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 
 export interface SelbriitemComponentModel {
-  selbri: Selbri;
+  selbri: SelbriDTO;
   selected: boolean;
 }

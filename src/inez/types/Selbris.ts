@@ -1,3 +1,3 @@
-import { type Selbri } from './Selbri';
+import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 
-export type Selbris = Array<Selbri>;
+export type Selbris = Array<SelbriDTO>;

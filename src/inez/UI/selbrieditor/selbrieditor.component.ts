@@ -1,9 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Synchronizer } from 'src/common/Synchronizer';
-import {
-  createSelbri,
-  modifySelbri,
-} from 'src/inez/repositories/actions';
+import { createSelbri, modifySelbri } from 'src/inez/repositories/actions';
 import { type SelbriEditorComponentModel } from 'src/inez/types/SelbriEditorComponentModel';
 
 @Component({
@@ -37,6 +34,7 @@ export class SelbriEditorComponent implements SelbriEditorComponentModel {
         payload: {
           id: this.selectedSelbriId,
           representation: newValue,
+          references: [],
         },
       })
     );

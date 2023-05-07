@@ -1,12 +1,12 @@
 import { produce } from 'immer';
 import { type AppState } from '../types/AppState';
-import { type Selbri } from '../types/Selbri';
+import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 import { HEROITEM_ID_PREFIX } from './TransitionConstants';
 
 export class StoreSelbriTransitionService {
   storeSelbriTransition(
     state: AppState,
-    action: { payload: Selbri }
+    action: { payload: SelbriDTO }
   ): AppState {
     const selbri = action.payload;
     return produce(state, (draft) => {

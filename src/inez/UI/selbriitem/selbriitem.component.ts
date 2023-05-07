@@ -2,7 +2,7 @@ import { Component, Input, type OnInit } from '@angular/core';
 import { Synchronizer } from 'src/common/Synchronizer';
 import { setSelectedSelbri } from 'src/inez/repositories/actions';
 import { type SelbriitemComponentModel } from 'src/inez/types/SelbriitemComponentModel';
-import { type Selbri } from 'src/inez/types/Selbri';
+import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 
 @Component({
   selector: 'selbriitem',
@@ -10,7 +10,7 @@ import { type Selbri } from 'src/inez/types/Selbri';
 })
 export class SelbriitemComponent implements SelbriitemComponentModel, OnInit {
   @Input() id!: string;
-  selbri!: Selbri;
+  selbri!: SelbriDTO;
   selected!: boolean;
 
   constructor(private readonly synchronizeService: Synchronizer) {}

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { type Observable } from 'rxjs';
 import { type createSelbri, type storeConfig } from '../repositories/actions';
 import { type ActionArgument } from 'src/common/ActionArgument';
-import { type Selbri } from '../types/Selbri';
+import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 
 @Injectable()
 export class SaveSelbriService {
@@ -15,10 +15,14 @@ export class SaveSelbriService {
   saveSelbri(arg: {
     createEvent: ActionArgument<typeof createSelbri>;
     configEvent: ActionArgument<typeof storeConfig>;
-  }): Observable<Selbri> {
+  }): Observable<SelbriDTO> {
     const baseURL = arg.configEvent.payload.baseUrl;
-    const selbri: Selbri = { id: '', representation: arg.createEvent.payload };
-    return this.httpClient.post<Selbri>(
+    const selbri: SelbriDTO = {
+      id: '',
+      representation: arg.createEvent.payload,
+      references: [],
+    };
+    return this.httpClient.post<SelbriDTO>(
       baseURL.concat(UrlMapConstants.ADD_HERO_URL),
       selbri
     );

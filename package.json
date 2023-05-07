@@ -1,6 +1,7 @@
 {
   "name": "@kodekonveyor/inez",
   "version": "1.0.26",
+  "description": "Inez is Not Even Zenta",
   "main": "index.js",
   "type": "module",
   "scripts": {
