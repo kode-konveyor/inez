@@ -42,5 +42,10 @@ export const states = {
       _: (state: StoreState) => state.r.componentstates.commandline,
       line: (state: StoreState) => state.r.componentstates.commandline.line,
     },
+    userMessages: {
+      _: (n: IdType) => (state: StoreState) => {
+        return state.r.componentstates.userMessages[n];
+      },
+    },
   },
 };

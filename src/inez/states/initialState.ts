@@ -10,6 +10,8 @@ export const initialState: AppState = {
       show: false,
       selectedSelbriId: '',
       selectedSelbriName: '',
+      references: [],
+      idToAdd: '',
     },
     selbrifilter: {
       selbriFilter: '',
@@ -22,6 +24,6 @@ export const initialState: AppState = {
       authenticated: false,
     },
     commandline: { line: '', messageIDs: [] },
-    userMessages: [],
+    userMessages: {},
   },
 };

@@ -49,5 +49,4 @@ export const userJourney = new UITester()
   .screenshot('this also appears in the list')
   .lookAt(By.xpath(EMPTY_COMMANDLINE_XPATH))
   .screenshot('the commandline is cleared')
-
   .check();

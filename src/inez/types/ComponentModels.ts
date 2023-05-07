@@ -7,7 +7,7 @@ import { type CommandlineComponentModel } from './CommandlineComponentModel';
 import { type UserMessageComponentModel } from './UserMessageComponentModel.js';
 
 export const emptyComponents = [];
-export const multiComponents = ['selbriitem', 'usermessage'];
+export const multiComponents = ['selbriitem', 'userMessages'];
 
 export interface ComponentModels {
   selbrieditor: SelbriEditorComponentModel;
@@ -16,5 +16,5 @@ export interface ComponentModels {
   selbrilist: SelbriListComponentModel;
   selbris: SelbrisComponentModel;
   commandline: CommandlineComponentModel;
-  userMessages: Array<UserMessageComponentModel>;
+  userMessages: Record<string, UserMessageComponentModel>;
 }

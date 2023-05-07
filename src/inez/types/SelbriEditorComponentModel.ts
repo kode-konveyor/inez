@@ -5,4 +5,6 @@ export interface SelbriEditorComponentModel {
   show: boolean;
   selectedSelbriId: IdType;
   selectedSelbriName: string;
+  references: Array<string>;
+  idToAdd: string;
 }

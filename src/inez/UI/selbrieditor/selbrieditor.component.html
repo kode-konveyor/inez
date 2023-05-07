@@ -1,8 +1,32 @@
-<div id="{{id}}" class="selbrieditor" *ngIf="show">
-  <div id="{{id}}-id" class="selbrieditor-id">{{selectedSelbriId}}</div>
-  <div id="{{id}}-name" class="selbrieditor-name">
-    <input id="{{id}}-name-input" class="selbrieditor-name-input" [(ngModel)]="selectedSelbriName"
-      (ngModelChange)="onInput($event)">
+<div id="{{ id }}" class="selbrieditor" *ngIf="show">
+  <div id="{{ id }}-id" class="selbrieditor-id">{{ selectedSelbriId }}</div>
+  <div id="{{ id }}-name" class="selbrieditor-name">
+    <input
+      id="{{ id }}-name-input"
+      class="selbrieditor-name-input"
+      [(ngModel)]="selectedSelbriName"
+      (ngModelChange)="onInput($event)"
+    />
   </div>
-  <div id="{{id}}-create" class="selbrieditor-create" *ngIf="createMode" (click)="createButtonClick()">Create</div>
+  <div id="{{ id }}-reference-list">
+    <div id="{{ id }}-ngfor" *ngFor="let selbriId of references">
+      <selbriitem
+        id="{{ id }}_selbriitem_{{ selbriId }}"
+        itemId="{{ selbriId }}"
+        class="selbri-reference-selbriitem"
+      ></selbriitem>
+    </div>
+  </div>
+  <div id="{{ id }}-references">
+    <input id="{{ id }}-newselbri-input" [(ngModel)]="idToAdd" />
+    <div id="{{ id }}-references-add" (click)="addReference()">+</div>
+  </div>
+  <div
+    id="{{ id }}-create"
+    class="selbrieditor-create"
+    *ngIf="createMode"
+    (click)="createButtonClick()"
+  >
+    Create
+  </div>
 </div>

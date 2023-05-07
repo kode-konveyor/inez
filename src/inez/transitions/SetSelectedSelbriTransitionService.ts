@@ -16,6 +16,8 @@ export class SetSelectedSelbriTransitionService {
         show: true,
         selectedSelbriId: selbri.id,
         selectedSelbriName: selbri.representation,
+        references: selbri.references,
+        idToAdd: '',
       };
       for (const key of Object.keys(state.componentstates.selbriitem)) {
         const item = draft.componentstates.selbriitem[key];

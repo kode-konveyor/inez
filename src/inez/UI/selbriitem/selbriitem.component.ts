@@ -10,6 +10,7 @@ import { type SelbriDTO } from '@kodekonveyor/inez-server/src/DTO/SelbriDTO';
 })
 export class SelbriitemComponent implements SelbriitemComponentModel, OnInit {
   @Input() id!: string;
+  @Input() itemId!: string;
   selbri!: SelbriDTO;
   selected!: boolean;
 

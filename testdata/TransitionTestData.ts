@@ -1,7 +1,6 @@
 import { type AppState } from 'src/inez/types/AppState';
 
 import { MakeTestDataService } from '@kodekonveyor/cdd-ts';
-import { HEROITEM_ID_PREFIX } from 'src/inez/transitions/TransitionConstants';
 import { type TestDataDescriptor } from '@kodekonveyor/cdd-ts/dist/src/types/TestDataDescriptor';
 import { SelbriTestData } from './SelbriTestData';
 import { UrlTestData } from './UrlTestData';
@@ -21,11 +20,11 @@ export const TransitionTestDataDescriptor = {
         selbriFilter: '^T',
       },
       selbriitem: {
-        selbriitem_1: {
+        '1': {
           selbri: SelbriTestData.withId(),
           selected: false,
         },
-        selbriitem_2: {
+        '2': {
           selbri: SelbriTestData.another(),
           selected: true,
         },
@@ -40,7 +39,14 @@ export const TransitionTestDataDescriptor = {
         line: 'foo',
         messageIDs: ['1'],
       },
-      userMessages: [{ id: '1', kind: '', message: 'foo message' }],
+      userMessages: {
+        '1': {
+          id: '1',
+          kind: '',
+          message: 'foo message',
+          subject: 'some subject',
+        },
+      },
     },
   },
 
@@ -61,9 +67,7 @@ export const TransitionTestDataDescriptor = {
   initialStateSelbriStored: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.selbriitem[
-        HEROITEM_ID_PREFIX + SelbriTestData.withId().id
-      ] = {
+      draft.componentstates.selbriitem[SelbriTestData.withId().id] = {
         selbri: SelbriTestData.withId(),
         selected: false,
       };
@@ -76,9 +80,7 @@ export const TransitionTestDataDescriptor = {
   nonInitialStateSelbriStored: {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
-      draft.componentstates.selbriitem[
-        HEROITEM_ID_PREFIX + SelbriTestData.withId().id
-      ] = {
+      draft.componentstates.selbriitem[SelbriTestData.withId().id] = {
         selbri: SelbriTestData.withId(),
         selected: true,
       };
@@ -98,8 +100,7 @@ export const TransitionTestDataDescriptor = {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
       // eslint-disable-next-line @typescript-eslint/dot-notation
-      draft.componentstates.selbriitem['selbriitem_1'].selbri =
-        SelbriTestData.modified();
+      draft.componentstates.selbriitem['1'].selbri = SelbriTestData.modified();
     },
   },
 
@@ -149,19 +150,25 @@ export const TransitionTestDataDescriptor = {
     __from: 'nonInitialState',
     __transform: (draft: AppState) => {
       draft.componentstates.selbrieditor = SelbriEditorTestdata.selbriSelected;
-      draft.componentstates.selbriitem[
-        HEROITEM_ID_PREFIX + SelbriTestData.withId().id
-      ].selected = true;
-      draft.componentstates.selbriitem[
-        HEROITEM_ID_PREFIX + SelbriTestData.another().id
-      ].selected = false;
+      draft.componentstates.selbriitem[SelbriTestData.withId().id].selected =
+        true;
+      draft.componentstates.selbriitem[SelbriTestData.another().id].selected =
+        false;
     },
   },
-
   initialStateWithCommand: {
     __from: 'initialState',
     __transform: (draft: AppState) => {
       draft.componentstates.commandline.line = 'have command';
+    },
+  },
+  initialStateWithMessageStored: {
+    __from: 'initialState',
+    __transform: (draft: AppState) => {
+      draft.componentstates.userMessages = {
+        '0': { id: '0', kind: 'error', message: 'message', subject: 'subject' },
+      };
+      draft.componentstates.commandline.messageIDs = ['0'];
     },
   },
 } satisfies TestDataDescriptor<AppState>;

@@ -37,7 +37,7 @@ export class Synchronizer {
   fillFields(context: any, model: string): void {
     let operator;
     if (multiComponents.includes(model)) {
-      const id = context.id;
+      const id = context.itemId;
       operator = (states.componentstates as any)[model]._(id);
     } else {
       operator = (states.componentstates as any)[model]._;

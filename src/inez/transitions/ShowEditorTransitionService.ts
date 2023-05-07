@@ -9,6 +9,8 @@ export class ShowEditorTransitionService {
         show: true,
         selectedSelbriId: '',
         selectedSelbriName: '',
+        references: [],
+        idToAdd: '',
       };
     });
   }

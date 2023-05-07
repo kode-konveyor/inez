@@ -1,5 +1,9 @@
-<div id="{{id}}" class="selbrilist" *ngIf="selbriids">
-  <div id="{{id}}-ngfor" *ngFor="let selbrid of selbriids ">
-    <selbriitem id="selbriitem_{{selbrid}}" class="selbrilist-selbriitem"></selbriitem>
+<div id="{{ id }}" class="selbrilist" *ngIf="selbriids">
+  <div id="{{ id }}-ngfor" *ngFor="let selbriId of selbriids">
+    <selbriitem
+      id="selbriitem_{{ selbriId }}"
+      itemId="{{ selbriId }}"
+      class="selbrilist-selbriitem"
+    ></selbriitem>
   </div>
 </div>

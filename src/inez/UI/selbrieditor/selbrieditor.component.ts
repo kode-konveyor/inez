@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Synchronizer } from 'src/common/Synchronizer';
-import { createSelbri, modifySelbri } from 'src/inez/repositories/actions';
+import {
+  createSelbri,
+  messageForUser,
+  modifySelbri,
+} from 'src/inez/repositories/actions';
 import { type SelbriEditorComponentModel } from 'src/inez/types/SelbriEditorComponentModel';
 
 @Component({
@@ -12,6 +16,8 @@ export class SelbriEditorComponent implements SelbriEditorComponentModel {
   createMode = false;
   selectedSelbriId = '';
   selectedSelbriName = '';
+  references = [];
+  idToAdd = '';
   show = false;
 
   constructor(readonly synchronizer: Synchronizer) {
@@ -23,6 +29,16 @@ export class SelbriEditorComponent implements SelbriEditorComponentModel {
     this.synchronizer.dispatch(
       createSelbri({
         payload: this.selectedSelbriName,
+      })
+    );
+  }
+
+  addReference(): void {
+    this.synchronizer.dispatch(
+      messageForUser({
+        msg: 'plus clicked',
+        kind: '',
+        subject: this.idToAdd,
       })
     );
   }
