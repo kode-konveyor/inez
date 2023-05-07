@@ -1,4 +1,4 @@
-import { serialize } from 'cdd-ts';
+import { serialize } from '@kodekonveyor/cdd-ts';
 import { type Observable, of } from 'rxjs';
 
 export function observableOf<T>(value: T): Observable<T> {

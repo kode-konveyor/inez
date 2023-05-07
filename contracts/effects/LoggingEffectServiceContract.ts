@@ -1,4 +1,4 @@
-import { ConsoleLogChecker, Contract, serialize } from 'cdd-ts';
+import { ConsoleLogChecker, Contract, serialize } from '@kodekonveyor/cdd-ts';
 import { of } from 'rxjs';
 import { LoggingEffectService } from 'src/inez/effects/LoggingEffectService';
 import { ActionSequenceTestData } from 'testdata/ActionSequenceTestData';

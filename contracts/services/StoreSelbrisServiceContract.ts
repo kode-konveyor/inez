@@ -1,4 +1,4 @@
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { ActionTestData } from 'testdata/ActionTestData';
 import {

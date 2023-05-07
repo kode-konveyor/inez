@@ -1,7 +1,7 @@
 import { SelbrisTestData } from './SelbrisTestData';
 import { UrlTestData } from './UrlTestData';
 import { type User } from '@auth0/auth0-angular';
-import { MakeTestDataService } from 'cdd-ts';
+import { MakeTestDataService } from '@kodekonveyor/cdd-ts';
 import { SelbriTestData } from './SelbriTestData';
 
 const user: User = { name: 'joe' };

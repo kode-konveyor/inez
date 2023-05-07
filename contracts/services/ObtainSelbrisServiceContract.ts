@@ -1,4 +1,4 @@
-import { Contract, serialize } from 'cdd-ts';
+import { Contract, serialize } from '@kodekonveyor/cdd-ts';
 import { returnsEmptyObservable } from 'testdata/helpers/returnsEmptyObservable';
 import { ObservableTestData } from 'testdata/ObservableTestData';
 import { SelbrisTestData } from 'testdata/SelbrisTestData';

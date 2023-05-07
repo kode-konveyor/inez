@@ -82,7 +82,7 @@
     "sinon": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "android": "latest",
-    "cdd-ts": "latest",
+    "@kodekonveyor/cdd-ts": "latest",
     "chromedriver": "latest",
     "colors": "latest",
     "cordova-android": "latest",

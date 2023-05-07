@@ -7,7 +7,7 @@ import {
   type WebElement,
 } from 'selenium-webdriver';
 import fs from 'fs';
-import { messageFormat } from 'cdd-ts';
+import { messageFormat } from '@kodekonveyor/cdd-ts';
 export const BASE64 = 'base64';
 
 const NOTE_BORDER_COLOR = 'red';

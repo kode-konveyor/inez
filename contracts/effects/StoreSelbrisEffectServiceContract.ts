@@ -1,4 +1,4 @@
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { StoreSelbrisServiceContract } from 'contracts/services/StoreSelbrisServiceContract';
 import { of } from 'rxjs';
 import { StoreSelbrisEffectService } from 'src/inez/effects/StoreSelbrisEffectService';

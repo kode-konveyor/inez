@@ -1,4 +1,4 @@
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { CommandEnteredTransitionService } from '../../src/inez/transitions/CommandEnteredTransitionService';
 import { bindTransition } from '../../src/bindTransition';
 import { TransitionTestData } from '../../testdata/TransitionTestData';

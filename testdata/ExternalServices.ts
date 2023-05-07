@@ -1,11 +1,8 @@
 import { type HttpClient } from '@angular/common/http';
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { of } from 'rxjs';
 import Sinon from 'sinon';
-import {
-  changeUser,
-  storeConfig,
-} from 'src/inez/repositories/actions';
+import { changeUser, storeConfig } from 'src/inez/repositories/actions';
 import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';
 import { type Synchronizer } from 'src/common/Synchronizer';
 import { ActionTestData } from './ActionTestData';

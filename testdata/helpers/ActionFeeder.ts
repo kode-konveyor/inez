@@ -1,7 +1,7 @@
 import { type Actions } from '@ngrx/effects';
 import { type Action } from '@ngrx/store';
-import { Mutex } from 'cdd-ts';
-import { type EnvironmentManipulatorType } from 'cdd-ts/dist/src/types/EnvironmentManipulatorType';
+import { Mutex } from '@kodekonveyor/cdd-ts';
+import { type EnvironmentManipulatorType } from '@kodekonveyor/cdd-ts/dist/src/types/EnvironmentManipulatorType';
 import { Observable } from 'rxjs';
 import { ActionSequenceTestData } from '../ActionSequenceTestData';
 

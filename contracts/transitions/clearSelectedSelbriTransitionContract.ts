@@ -1,4 +1,4 @@
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { bindTransition } from 'src/bindTransition';
 import { ClearSelectedSelbriTransitionService } from 'src/inez/transitions/ClearSelectedSelbriTransitionService';
 import { TransitionTestData } from 'testdata/TransitionTestData';

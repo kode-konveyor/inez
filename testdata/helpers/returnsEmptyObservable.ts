@@ -1,4 +1,4 @@
-import { serialize } from 'cdd-ts';
+import { serialize } from '@kodekonveyor/cdd-ts';
 import { type Observable, firstValueFrom } from 'rxjs';
 
 export async function returnsEmptyObservable(

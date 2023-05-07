@@ -1,4 +1,4 @@
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { ObtainSelbrisServiceContract } from 'contracts/services/ObtainSelbrisServiceContract';
 import { of } from 'rxjs';
 import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';

@@ -1,5 +1,5 @@
-import { MakeTestDataService } from 'cdd-ts';
-import { type TestDataDescriptor } from 'cdd-ts/dist/src/types/TestDataDescriptor';
+import { MakeTestDataService } from '@kodekonveyor/cdd-ts';
+import { type TestDataDescriptor } from '@kodekonveyor/cdd-ts/dist/src/types/TestDataDescriptor';
 import { type Selbri } from 'src/inez/types/Selbri';
 
 const SelbriTestDataDescriptor = {

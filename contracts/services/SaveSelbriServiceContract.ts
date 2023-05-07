@@ -1,4 +1,4 @@
-import { Contract, serialize } from 'cdd-ts';
+import { Contract, serialize } from '@kodekonveyor/cdd-ts';
 import { SaveSelbriService } from 'src/inez/services/SaveSelbriService.js';
 import { ExternalServices } from 'testdata/ExternalServices';
 import { ObservableTestData } from 'testdata/ObservableTestData';

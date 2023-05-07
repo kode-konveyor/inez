@@ -1,8 +1,8 @@
 import { type AppState } from 'src/inez/types/AppState';
 
-import { MakeTestDataService } from 'cdd-ts';
+import { MakeTestDataService } from '@kodekonveyor/cdd-ts';
 import { HEROITEM_ID_PREFIX } from 'src/inez/transitions/TransitionConstants';
-import { type TestDataDescriptor } from 'cdd-ts/dist/src/types/TestDataDescriptor';
+import { type TestDataDescriptor } from '@kodekonveyor/cdd-ts/dist/src/types/TestDataDescriptor';
 import { SelbriTestData } from './SelbriTestData';
 import { UrlTestData } from './UrlTestData';
 import { SelbriEditorTestdata } from './SelbriEditorTestdata';

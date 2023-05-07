@@ -1,5 +1,5 @@
 import { type Action } from '@ngrx/store';
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { SaveSelbriServiceContract } from 'contracts/services/SaveSelbriServiceContract';
 import { of } from 'rxjs';
 import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';

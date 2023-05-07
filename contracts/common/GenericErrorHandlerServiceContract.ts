@@ -1,4 +1,4 @@
-import { bound, ConsoleLogChecker, Contract } from 'cdd-ts';
+import { bound, ConsoleLogChecker, Contract } from '@kodekonveyor/cdd-ts';
 import { of } from 'rxjs';
 import { GenericErrorHandlerService } from 'src/common/GenericErrorHandlerService';
 import { ActionFeeder } from 'testdata/helpers/ActionFeeder';

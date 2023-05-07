@@ -1,4 +1,4 @@
-import { Contract } from 'cdd-ts';
+import { Contract } from '@kodekonveyor/cdd-ts';
 import { of } from 'rxjs';
 import { GenericErrorHandlerService } from '../../src/common/GenericErrorHandlerService.js';
 import { CommandEnteredEffectService } from '../../src/inez/effects/CommandEnteredEffectService.js';
